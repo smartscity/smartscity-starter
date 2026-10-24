@@ -4,4 +4,6 @@ Production dependencies are declared in the module POMs: Spring Boot/Spring, SLF
 
 The supplied legacy source was reviewed as a design reference; its source archive, hashes and findings are recorded in [the input audit](docs/proposals/id-v1/legacy-input-audit.md). This implementation does not copy the legacy source files.
 
+The opt-in benchmark module uses OpenJDK JMH 1.37 (GPLv2 with Classpath Exception), jopt-simple and Apache Commons Math. These tools never enter production dependencies. Harness source is original; JMH documentation was consulted for setup and counter semantics.
+
 Dependency license metadata remains available in the respective dependency POMs. The project license has not yet been selected; no remote publication has been performed.

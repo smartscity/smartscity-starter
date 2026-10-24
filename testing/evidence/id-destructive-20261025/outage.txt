@@ -1,0 +1,132 @@
+["/Users/liyunlong/git/smartscity/smartscity-starter/mvnw", "-o", "-B", "-pl", "smartscity-id-spring-boot-autoconfigure", "-am", "-Dsurefire.failIfNoSpecifiedTests=false", "-DargLine=-Xmx512m", "-Did.test.mysql.url=jdbc:mysql://127.0.0.1:13367/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true", "test", "-Dtest=MySqlOutageTest", "-Did.test.mysql.outage=true"]
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Starter                                                 [pom]
+[INFO] smartscity-id-api                                                  [jar]
+[INFO] smartscity-id-spi                                                  [jar]
+[INFO] smartscity-id-core                                                 [jar]
+[INFO] smartscity-id-spring-boot-autoconfigure                            [jar]
+[INFO] 
+[INFO] -----------------< com.smartscity:smartscity-starter >------------------
+[INFO] Building Smartscity Starter 0.1.0-SNAPSHOT                         [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-id-api >------------------
+[INFO] Building smartscity-id-api 0.1.0-SNAPSHOT                          [2/5]
+[INFO]   from smartscity-id-api/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-api ---
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-api ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-api/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-api ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-api/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-api ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-api ---
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-id-spi >------------------
+[INFO] Building smartscity-id-spi 0.1.0-SNAPSHOT                          [3/5]
+[INFO]   from smartscity-id-spi/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spi ---
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spi ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-spi/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spi ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spi ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-spi/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spi ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spi ---
+[INFO] 
+[INFO] -----------------< com.smartscity:smartscity-id-core >------------------
+[INFO] Building smartscity-id-core 0.1.0-SNAPSHOT                         [4/5]
+[INFO]   from smartscity-id-core/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-core ---
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-core ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-core/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-core ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-core/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-core ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-core ---
+[INFO] 
+[INFO] -------< com.smartscity:smartscity-id-spring-boot-autoconfigure >-------
+[INFO] Building smartscity-id-spring-boot-autoconfigure 0.1.0-SNAPSHOT    [5/5]
+[INFO]   from smartscity-id-spring-boot-autoconfigure/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spring-boot-autoconfigure ---
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spring-boot-autoconfigure ---
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spring-boot-autoconfigure ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spring-boot-autoconfigure ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-spring-boot-autoconfigure/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spring-boot-autoconfigure ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spring-boot-autoconfigure ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.autoconfigure.MySqlOutageTest
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.592 s -- in com.smartscity.id.autoconfigure.MySqlOutageTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Smartscity Starter 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Starter ................................. SUCCESS [  0.533 s]
+[INFO] smartscity-id-api .................................. SUCCESS [  0.596 s]
+[INFO] smartscity-id-spi .................................. SUCCESS [  0.050 s]
+[INFO] smartscity-id-core ................................. SUCCESS [  0.086 s]
+[INFO] smartscity-id-spring-boot-autoconfigure ............ SUCCESS [  2.164 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.620 s
+[INFO] Finished at: 2026-10-25T02:19:10+08:00
+[INFO] ------------------------------------------------------------------------

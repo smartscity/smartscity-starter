@@ -1,0 +1,93 @@
+["/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java", "-Xms128m", "-Xmx256m", "-jar", "/Users/liyunlong/git/smartscity/smartscity-starter/smartscity-id-benchmark/target/benchmarks.jar", "IdBenchmark.generate", "-p", "profile=javascript", "-t", "8", "-f", "1", "-wi", "2", "-w", "2s", "-i", "3", "-r", "3s", "-foe", "true", "-prof", "gc", "-rf", "json", "-rff", "/Users/liyunlong/git/smartscity/smartscity-starter/testing/evidence/id-benchmark-20261025/javascript-8.json"]
+# JMH version: 1.37
+# VM version: JDK 21.0.12.1, OpenJDK 64-Bit Server VM, 21.0.12.1+1-LTS
+# VM invoker: /Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java
+# VM options: -Xms128m -Xmx256m -Xms512m -Xmx512m
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 2 s each
+# Measurement: 3 iterations, 3 s each
+# Timeout: 10 min per iteration
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.smartscity.id.benchmark.IdBenchmark.generate
+# Parameters: (profile = javascript)
+
+# Run progress: 0.00% complete, ETA 00:00:13
+# Fork: 1 of 1
+# Warmup Iteration   1: 49588.254 ops/s
+# Warmup Iteration   2: 40086.104 ops/s
+Iteration   1: 39661.151 ops/s
+                 gc.alloc.rate:      0.532 MB/sec
+                 gc.alloc.rate.norm: 14.109 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                38956.912 ops/s
+                 timeouts:           762.237 ops/s
+
+Iteration   2: 33543.287 ops/s
+                 gc.alloc.rate:      0.544 MB/sec
+                 gc.alloc.rate.norm: 17.106 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32766.965 ops/s
+                 timeouts:           780.990 ops/s
+
+Iteration   3: 33450.064 ops/s
+                 gc.alloc.rate:      0.542 MB/sec
+                 gc.alloc.rate.norm: 17.098 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32676.871 ops/s
+                 timeouts:           777.848 ops/s
+
+
+
+Result "com.smartscity.id.benchmark.IdBenchmark.generate":
+  35551.501 ±(99.9%) 64936.106 ops/s [Average]
+  (min, avg, max) = (33450.064, 35551.501, 39661.151), stdev = 3559.367
+  CI (99.9%): [≈ 0, 100487.607] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:gc.alloc.rate":
+  0.539 ±(99.9%) 0.110 MB/sec [Average]
+  (min, avg, max) = (0.532, 0.539, 0.544), stdev = 0.006
+  CI (99.9%): [0.430, 0.649] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:gc.alloc.rate.norm":
+  16.105 ±(99.9%) 31.533 B/op [Average]
+  (min, avg, max) = (14.109, 16.105, 17.106), stdev = 1.728
+  CI (99.9%): [≈ 0, 47.637] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:gc.count":
+  ≈ 0 counts
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:ids":
+  34800.249 ±(99.9%) 65678.442 ops/s [Average]
+  (min, avg, max) = (32676.871, 34800.249, 38956.912), stdev = 3600.057
+  CI (99.9%): [≈ 0, 100478.691] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:timeouts":
+  773.692 ±(99.9%) 183.239 ops/s [Average]
+  (min, avg, max) = (762.237, 773.692, 780.990), stdev = 10.044
+  CI (99.9%): [590.452, 956.931] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:13
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                 (profile)   Mode  Cnt      Score       Error   Units
+IdBenchmark.generate                     javascript  thrpt    3  35551.501 ± 64936.106   ops/s
+IdBenchmark.generate:gc.alloc.rate       javascript  thrpt    3      0.539 ±     0.110  MB/sec
+IdBenchmark.generate:gc.alloc.rate.norm  javascript  thrpt    3     16.105 ±    31.533    B/op
+IdBenchmark.generate:gc.count            javascript  thrpt    3        ≈ 0              counts
+IdBenchmark.generate:ids                 javascript  thrpt    3  34800.249 ± 65678.442   ops/s
+IdBenchmark.generate:timeouts            javascript  thrpt    3    773.692 ±   183.239   ops/s
+
+Benchmark result is saved to /Users/liyunlong/git/smartscity/smartscity-starter/testing/evidence/id-benchmark-20261025/javascript-8.json

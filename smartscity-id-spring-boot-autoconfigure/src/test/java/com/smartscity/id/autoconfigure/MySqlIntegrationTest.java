@@ -5,6 +5,8 @@ import com.smartscity.id.autoconfigure.jdbc.*;
 import com.smartscity.id.core.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.io.TempDir;
 import java.nio.file.*;
 import java.sql.*;
@@ -62,6 +64,40 @@ class MySqlIntegrationTest {
             awaitFile(process, out); long raw = Long.parseLong(Files.readAllLines(out).get(0));
             process.destroy(); assertTrue(process.waitFor(10, TimeUnit.SECONDS)); assertEquals("OFFLINE", state(raw));
         } finally { process.destroyForcibly(); }
+    }
+    @Test @Timeout(30) @EnabledOnOs({OS.LINUX, OS.MAC})
+    void stoppedProcessResumesWithoutReusingIdsDuringOverlappingStartup() throws Exception {
+        String group = "suspend_" + System.nanoTime();
+        Path a = dir.resolve("paused"), signal = dir.resolve("resume"), b = dir.resolve("overlap");
+        Process first = child(group, a, signal), second = null;
+        try {
+            awaitFile(first, a);
+            signal(first, "STOP");
+            Thread.sleep(1200); // Real OS pause across a second boundary; no host clock mutation.
+            second = child(group, b, null);
+            assertTrue(second.waitFor(15, TimeUnit.SECONDS)); assertEquals(0, second.exitValue());
+            awaitFile(second, b);
+            Files.createFile(signal); signal(first, "CONT");
+            assertTrue(first.waitFor(10, TimeUnit.SECONDS)); assertEquals(0, first.exitValue());
+            List<String> before = Files.readAllLines(a), overlap = Files.readAllLines(b);
+            assertNotEquals(before.get(0), overlap.get(0));
+            Set<String> ids = new HashSet<>();
+            for (String id : before.subList(1, before.size())) assertTrue(ids.add(id));
+            for (String id : overlap.subList(1, overlap.size())) assertTrue(ids.add(id));
+            List<String> after = Files.readAllLines(dir.resolve("paused.after"));
+            assertEquals(128, after.size());
+            for (String id : after) assertTrue(ids.add(id));
+            assertEquals("OFFLINE", state(Long.parseLong(before.get(0))));
+        } finally {
+            first.destroyForcibly(); first.waitFor(5, TimeUnit.SECONDS);
+            if (second != null) { second.destroyForcibly(); second.waitFor(5, TimeUnit.SECONDS); }
+        }
+    }
+    private void signal(Process process, String signal) throws Exception {
+        Process command = new ProcessBuilder("/bin/kill", "-" + signal, Long.toString(process.pid())).start();
+        try {
+            assertTrue(command.waitFor(2, TimeUnit.SECONDS)); assertEquals(0, command.exitValue());
+        } finally { command.destroyForcibly(); }
     }
     @Test void runningSdkDoesNotOpenDatabaseConnections() throws Exception {
         IdProperties p = config("local_" + System.nanoTime());

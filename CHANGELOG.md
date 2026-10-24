@@ -10,4 +10,6 @@
 - 增加 Spring Boot 自动装配、健康与指标、DDL、配置校验、可运行示例及功能集成测试。
 - 复审修复时钟采样误判与锚点衔接、生产故障停发、取消/异常资源清理、ZK 关闭预算及 SQL 原始异常保留。
 
-当前未发布。实际验证组合与未执行项见 [门禁结果](testing/GATE-RESULTS.md)；按用户要求未运行性能测试。
+- 新增隔离破坏测试执行器、真实 SIGSTOP/SIGCONT 用例、JMH 及 10 万/s 定速探针，保留完整实测结果和未达标状态。
+
+当前未发布。实际验证组合与未执行项见 [门禁结果](testing/GATE-RESULTS.md)；隔离破坏及性能实验见[本轮报告](testing/EXPERIMENT-RESULTS.md)。

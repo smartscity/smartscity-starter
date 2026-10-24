@@ -37,6 +37,6 @@ smartscity:
 ./mvnw -Pverification clean verify
 ```
 
-真实 MySQL 测试需显式传入 `-Did.test.mysql.url=jdbc:mysql://127.0.0.1:13367/smartscity_id_test`，仅使用隔离测试库。缺环境时报告跳过，不能视为通过。ZK 测试启动临时本地服务器。性能测试默认排除，本轮不执行。
+真实 MySQL 测试需显式传入 `-Did.test.mysql.url=jdbc:mysql://127.0.0.1:13367/smartscity_id_test`，仅使用隔离测试库。缺环境时报告跳过，不能视为通过。ZK 测试启动临时本地服务器。性能测试默认排除；显式执行命令和预算见[实验说明](docs/08-Benchmark.md)。隔离破坏测试：`python3 testing/run-destructive.py --run --output /tmp/id-fault-result`（需要 MySQL 本地二进制，自动创建并清理独立实例）。
 
-[验收证据](testing/GATE-RESULTS.md)和[兼容矩阵](docs/03-Compatibility-Matrix.md)说明实际已验证范围；不承诺未运行组合。项目许可证尚待选择，未提交、推送或发布。
+[验收证据](testing/GATE-RESULTS.md)和[兼容矩阵](docs/03-Compatibility-Matrix.md)说明实际已验证范围；不承诺未运行组合。项目许可证尚待选择；已本地提交，未推送或发布。

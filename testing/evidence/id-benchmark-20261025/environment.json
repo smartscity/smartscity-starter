@@ -1,0 +1,16 @@
+{
+  "os": "macOS-26.5.1-x86_64-i386-64bit-Mach-O",
+  "logicalCpus": 12,
+  "java": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode)",
+  "baseCommit": "b7685f86ff1ac17a0abd7137e2977270af301946",
+  "gitStatus": "M CHANGELOG.md\n M README.md\n M THIRD-PARTY-NOTICES.md\n M docs/00-README.md\n M docs/01-Project-Scope.md\n M docs/04-Module-Boundaries.md\n M docs/07-Testing-and-Gates.md\n M docs/08-Benchmark.md\n M docs/phases/current.md\n M docs/planning/review-state.md\n M smartscity-id-benchmark/README.md\n M smartscity-id-benchmark/pom.xml\n M smartscity-id-spring-boot-autoconfigure/src/test/java/com/smartscity/id/autoconfigure/MySqlIntegrationTest.java\n M testing/TEST-INVENTORY.md\n?? smartscity-id-benchmark/src/main/java/com/\n?? testing/evidence/id-destructive-20261025/\n?? testing/run-benchmarks.py\n?? testing/run-destructive.py",
+  "jarSha256": "2bb486e5278faaeed07c593ea192ca8ea841eb667227f02dcfd65b54209e9f68",
+  "jvm": [
+    "-Xms512m",
+    "-Xmx512m"
+  ],
+  "budgetSeconds": 480,
+  "storage": "local; no storage or network I/O on measured ID path",
+  "cpu": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+  "memoryBytes": 17179869184
+}

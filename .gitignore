@@ -11,3 +11,4 @@
 !.env.example
 *.log
 !testing/evidence/*.log
+__pycache__/
