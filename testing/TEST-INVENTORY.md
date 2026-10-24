@@ -6,6 +6,8 @@
 |---|---|
 | 编码、时间、容量、CAS、并发、超时、中断、关闭 | CoreTest |
 | 采样期间暂停、共用校时锚点、生产故障、初始化清理及并发关闭 | ClockAndLifecycleTest |
+| 累计回拨、采样重试、nanoTime 跨界、满/空缓存、并发终止及编码边界 | ClockRollbackTest、ClockRollbackConcurrencyTest（可控时钟，[专项报告](CLOCK-RESULTS.md)） |
+| 数据库校时偏差/溢出/NULL、慢查询及失败清理 | ClockValidationTest（合成 JDBC 响应，非真实数据库兼容证明） |
 | JDBC 设置/回滚异常、启动 Error、取消后迟到驱动的资源释放 | LifecycleReviewTest（H2 与故障代理，仅证明生命周期行为） |
 | 配置、Bean 退让、健康与指标 | AutoConfigurationTest |
 | JDBC 事务与并行分配的进程内检查 | JdbcIntegrationTest（H2，不作为数据库兼容证明） |

@@ -112,6 +112,7 @@ def main():
                     "-Dsurefire.failIfNoSpecifiedTests=false", "-DargLine=-Xmx512m",
                     f"-Did.test.mysql.url=jdbc:mysql://127.0.0.1:{PORT}/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true"]
             selected = ["CoreTest", "ClockAndLifecycleTest", "LifecycleReviewTest", "MySqlIntegrationTest", "ZookeeperIntegrationTest"]
+            selected += ["ClockRollbackTest", "ClockRollbackConcurrencyTest", "ClockValidationTest"]
             if args.restart:
                 selected += ["RestartConcurrencyTest", "RestartStabilityTest", "ZookeeperRestartStabilityTest"]
                 base += ["-Did.test.restart=true"]

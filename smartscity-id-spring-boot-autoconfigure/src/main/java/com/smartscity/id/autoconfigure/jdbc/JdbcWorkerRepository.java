@@ -60,14 +60,26 @@ public final class JdbcWorkerRepository {
              PreparedStatement ps = statement(connection, dialect.timeQuery()); ResultSet rs = ps.executeQuery()) {
             if (!rs.next()) throw new SQLException("Database returned no time");
             databaseMillis = rs.getLong(1);
+            if (rs.wasNull()) throw new SQLException("Database returned null time");
         }
-        long elapsed = (System.nanoTime() - startNanos) / 1_000_000;
+        long elapsedNanos = System.nanoTime() - startNanos;
+        long elapsed = elapsedNanos / 1_000_000;
         long endWall = clock.millis();
-        // Conservative bound: even the worst point within this round-trip must fit tolerance.
-        long midpoint = startWall + elapsed / 2;
-        if (elapsed > toleranceMillis || Math.abs(endWall - startWall - elapsed) > toleranceMillis
-                || Math.abs(databaseMillis - midpoint) + (elapsed + 1) / 2 > toleranceMillis) {
+        if (elapsedNanos < 0 || elapsed > toleranceMillis) {
             throw new IdException(IdException.Reason.CLOCK, "Database/local clock validation failed");
+        }
+        try {
+            // Conservative bound without subtract/abs overflow accepting an invalid timestamp.
+            long midpoint = Math.addExact(startWall, elapsed / 2);
+            long localDrift = Math.subtractExact(Math.subtractExact(endWall, startWall), elapsed);
+            long databaseDrift = Math.subtractExact(databaseMillis, midpoint);
+            long remainingTolerance = toleranceMillis - (elapsed + 1) / 2;
+            if (localDrift > toleranceMillis || localDrift < -toleranceMillis
+                    || databaseDrift > remainingTolerance || databaseDrift < -remainingTolerance) {
+                throw new IdException(IdException.Reason.CLOCK, "Database/local clock validation failed");
+            }
+        } catch (ArithmeticException overflow) {
+            throw new IdException(IdException.Reason.CLOCK, "Database/local clock arithmetic overflow", overflow);
         }
     }
     public long insert(String group) throws SQLException {

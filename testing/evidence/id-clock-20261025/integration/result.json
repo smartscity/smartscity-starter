@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "isolatedPort": 13367,
+  "cleanup": true,
+  "restart": false,
+  "faults": {
+    "tests": 56,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "outage": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "elapsedSeconds": 36.03
+}
