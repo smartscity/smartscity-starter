@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+**/target/
+.build-cache/
+.env
+.env.*
+!.env.example
+*.log
+!testing/evidence/*.log

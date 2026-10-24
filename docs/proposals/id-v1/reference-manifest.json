@@ -1,0 +1,248 @@
+{
+  "files": [
+    {
+      "path": "longhub-framework-unique-id-base/longhub-framework-unique-id-base.iml",
+      "bytes": 11732,
+      "sha256": "ced04db16a82980dc826abe05e8b15f0709064a541d851b17e834d547efb2559"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/pom.xml",
+      "bytes": 2087,
+      "sha256": "67e840745e416720d8638c17aad2d4c82b0a5293887c94c737c3e15cf7cba1d5"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/buffer/BufferPaddingExecutor.java",
+      "bytes": 5791,
+      "sha256": "33cf2cf79485bec00251afe5842aa417787e50eb456eb86dcfc34134dc22f8a1"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/buffer/BufferedUniqueIdProvider.java",
+      "bytes": 295,
+      "sha256": "b59dcf90efb27b20fbebd1d59707285c83bbcbce81bda8eca5291da0dbd49162"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/buffer/RejectedPutBufferHandler.java",
+      "bytes": 283,
+      "sha256": "78707f2b599ef50a26ed6ea0a606e10243626786c73c4f6f703cd18ea3ad3e59"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/buffer/RejectedTakeBufferHandler.java",
+      "bytes": 258,
+      "sha256": "3cdf7152ea79a85efad4d74cb28279b001bf13449bbaaebb3a174300e1ee228b"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/buffer/RingBuffer.java",
+      "bytes": 9061,
+      "sha256": "5df78c18448aea40e1498013ea5c86bfad5c57e073dd835eac85ae257a0109dc"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/exception/RegisterCenterException.java",
+      "bytes": 479,
+      "sha256": "4b688ff66fce54d9ad96ddd80013eb3eb3bcee54590a47bb36614d41fabe0214"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/exception/RegisterCenterExceptionHandler.java",
+      "bytes": 1399,
+      "sha256": "15a247d0cdb9f89addf3fdc21b27910f6a063c08c93489b0ae572358cb06642d"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/exception/UniqueIdGenerateException.java",
+      "bytes": 1744,
+      "sha256": "625c0d725101223059cf8874a243ad7ab4998a6780fa38e01131c92568864ec2"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/hook/UniqueIdShutdownHook.java",
+      "bytes": 2541,
+      "sha256": "7d59e2f52d9d8ab3aac0dfce4bf3ab7172076cf23753be69051788841a1dd289"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/reg/RegistryCenter.java",
+      "bytes": 2571,
+      "sha256": "773223867f7a67f5db402ef7a84451defd4cfd5e66953a91003b2720d1b8b02c"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/reg/ZookeeperConfiguration.java",
+      "bytes": 1160,
+      "sha256": "03fdb2db4336e4a41f570118297638fe0f104881b03a66ae12de5f8d7a6e0ed8"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/reg/ZookeeperRegistryCenter.java",
+      "bytes": 10627,
+      "sha256": "d9ae8f501ec3304c766d26833f8c4484a116d689d5db142362ac908dbaf597f0"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/repository/WorkerNodeEntity.java",
+      "bytes": 3157,
+      "sha256": "67e440f5e8f8d0c6dce98a6a454d63047521d9c35bf959ffd773948bb73f279e"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/repository/WorkerNodeMapper.java",
+      "bytes": 981,
+      "sha256": "d090c273b8bd5bfa890c0ec3baf6104ccd73e097775445071a56e0967964f04d"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/BitsAllocator.java",
+      "bytes": 3093,
+      "sha256": "401539978c90c018303505f3eb593c92d3294d9cd79c0bfd6384f7abf58178c0"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/CachedUniqueIdGenerator.java",
+      "bytes": 5498,
+      "sha256": "a1850761a6c7305d87a6a20d11d916cf8625107c99f4f4b13129d1ece07ac4aa"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/DefaultUniqueIdGenerator.java",
+      "bytes": 8090,
+      "sha256": "ff160c5250b0c200c8f39750439e2d0f852b5da66f65df4c1fa448fb3d25e994"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/DisposableWorkerIdAssigner.java",
+      "bytes": 3198,
+      "sha256": "b490a8e846c49915973e304bb6e4a4d48fe877acaa95f488205d06a500b63b89"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/UniqueIdGenerator.java",
+      "bytes": 597,
+      "sha256": "927d2203f41639dac6d177d8768b8ddf38f17dabdb4325d08496e89ed7b7038e"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/WorkNodeService.java",
+      "bytes": 512,
+      "sha256": "9c6b7fce38b88b662ad5f734777757a91fd4b6f88ae0411bbfc05fe11680ef61"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/WorkNodeServiceImpl.java",
+      "bytes": 2809,
+      "sha256": "033039eea5c52ba1c7f154b06ed1b576eed0cfe54338065e4c7b84a9a0beab26"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/service/WorkerIdAssigner.java",
+      "bytes": 269,
+      "sha256": "43e6225e3a810200109015543f51f645bf1bf0bb364523c70558fea406748b9e"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/DateUtils.java",
+      "bytes": 2525,
+      "sha256": "f5c1ddef088b84deb58ee8474fbc52bfbddb0402edbd995eada8635254088d67"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/DockerUtils.java",
+      "bytes": 2452,
+      "sha256": "b38af5d44018b8958bdb5572adef0b014d9878db08f121c2ac6d4b7cfba7e38b"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/EnumUtils.java",
+      "bytes": 951,
+      "sha256": "566d01d1b078ebd6feeed6029fc730c8ef2ae1aef3cbd6a1432c81aa0e295a9c"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/NamingThreadFactory.java",
+      "bytes": 3994,
+      "sha256": "8c12af86924fc69a3b0d1994396ecfd8df66871bbde75cfe3b82327cdbbf2ff3"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/NetUtils.java",
+      "bytes": 2465,
+      "sha256": "cc419a624354b3764843253a9082aac3c75daa18b2786872a4e92f689bea6f9b"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/PaddedAtomicLong.java",
+      "bytes": 712,
+      "sha256": "22be92c27529e436cda570f53009429c7faa0e0679207fb7f40f490cca73568c"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/ValuedEnum.java",
+      "bytes": 106,
+      "sha256": "7dfff76ff70f496cbe7a2ffd003a6c0011e00170cecb70b6d8ceb28407e18343"
+    },
+    {
+      "path": "longhub-framework-unique-id-base/src/main/java/com/longfor/longhub/framework/uniqueid/utils/WorkerNodeType.java",
+      "bytes": 415,
+      "sha256": "5aa567e66e2bf458f43b8b85e67bdda3f362a856698eb14dd79e743794dc0df9"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/longhub-framework-unique-id-sdk.iml",
+      "bytes": 13725,
+      "sha256": "19ba4ba929ad52523021e6b6218089a4dd2d1e4f1ae226f26d5cfe7bef0e1597"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/pom.xml",
+      "bytes": 2566,
+      "sha256": "77dd76c346ef10961142adfcc810f6c42ef0f7a03589ea2598f57352b91f5e36"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/main/java/com/longfor/longhub/framework/uniqueid/config/AbstractGlobalIdConfiguration.java",
+      "bytes": 7423,
+      "sha256": "7ee0e6821a6e1bee547764d6f7cf19302cb842fbe7f9cb0d629bbb8cc866315f"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/main/java/com/longfor/longhub/framework/uniqueid/config/GlobalIdDataBaseProperties.java",
+      "bytes": 1154,
+      "sha256": "f56547e902ebc43ba9f94ad8509c8965e6f55fef101381650a38c4cefc68b1f7"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/main/java/com/longfor/longhub/framework/uniqueid/config/UniqueIdGeneratorProperties.java",
+      "bytes": 540,
+      "sha256": "ea8cad3e75898a2f0a999a6a0d4fe6c62cc1bc8113348151558ce408d59590a4"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/java/com/longfor/longhub/framework/uniqueid/UniqueIdSdkApplication.java",
+      "bytes": 598,
+      "sha256": "9e0763fab548fc7c62ba6b9a2b8c01a7c255c68abf31a380fd62e14df9135179"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/java/com/longfor/longhub/framework/uniqueid/config/AccountUniqueIdConfiguration.java",
+      "bytes": 1131,
+      "sha256": "ef8f7bcfd2c1c88f25fc1248093a43f464f91b8fdb06b0ecfdeb32a98374e2af"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/java/com/longfor/longhub/framework/uniqueid/config/OrderUniqueIdConfiguration.java",
+      "bytes": 1118,
+      "sha256": "922e0c6f1b681ce6365e8ac9d5679fbc7f9feece6e07d8a1deb4f746d952f53e"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/java/com/longfor/longhub/framework/uniqueid/config/UserUniqueIdConfiguration.java",
+      "bytes": 1115,
+      "sha256": "8750baf2be09b70a1075bb7732a3656fd20e0e3595160cc63ca83dec3117298c"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/java/com/longfor/longhub/framework/uniqueid/controller/UniqueIdController.java",
+      "bytes": 1165,
+      "sha256": "4a87662ed5ca2c9933d637d8ce68335e64dd0760a7de8609f316d3382b97cb37"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/resources/application-test.yml",
+      "bytes": 3553,
+      "sha256": "f0456327ffbbc2cdd026e7ee12baeea650b608cfbb8faa54ba22067f04090dd2"
+    },
+    {
+      "path": "longhub-framework-unique-id-sdk/src/test/resources/application.yml",
+      "bytes": 121,
+      "sha256": "90d06d7e1d55a6aabcfb10d70c39a8ec7261439152b0b1cb8fc0397284fa510b"
+    },
+    {
+      "path": "longhub-framework-unique-id-spi/longhub-framework-unique-id-spi.iml",
+      "bytes": 8163,
+      "sha256": "05dcac227bcebd8d912c749414bc43e2030c94b2d1c765789821e73d53859b55"
+    },
+    {
+      "path": "longhub-framework-unique-id-spi/pom.xml",
+      "bytes": 710,
+      "sha256": "9e9d3961961ec804f5e84bbbbb34f31612fe6a6a7f5bdcefe1be02d079cc105f"
+    },
+    {
+      "path": "longhub-framework-unique-id-starter.iml",
+      "bytes": 8037,
+      "sha256": "38431b0a7564c51c8fc5793a24740c8c6b173fbb3f4c70677a1ef905b146c18d"
+    },
+    {
+      "path": "pom.xml",
+      "bytes": 937,
+      "sha256": "285d6aa550574d015b2536cfdc3666b3070dd9b3031e02ce5c6045b58edf4869"
+    }
+  ],
+  "errors": [],
+  "directory_count": 38,
+  "expected_files": 48,
+  "expected_bytes": 143908
+}

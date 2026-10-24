@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1280" viewBox="0 0 1280 1280" role="img" aria-labelledby="title desc">
+<title id="title">分布式 ID：时间推进与空间所有权分离</title>
+<desc id="desc">协调存储持久分配不重叠时间区间，后台控制设施预取授权，业务线程只在本地原子分配。同一 Worker 的旧进程和新进程使用互不重叠的时间区间。</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#536b83"/></marker></defs>
+<style>text { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; fill: #173047; } .title {font-size:31px;font-weight:700} .subtitle {font-size:18px;fill:#5d7084} .label {font-size:23px;font-weight:600} .body {font-size:18px} .small {font-size:16px;fill:#5d7084} .edge {stroke:#536b83;stroke-width:2.5;fill:none;marker-end:url(#arrow)}</style>
+<rect width="1280" height="1280" fill="#f5f8fc"/>
+<text x="48" y="58" class="title">单调时间负责推进 · 持久区间负责唯一</text>
+<text x="48" y="91" class="subtitle">技术方案 v0.2 · IN REVIEW · 参考源码已静态审阅 · 非实现验收</text>
+
+<rect x="48" y="125" width="1184" height="140" rx="14" fill="#e8f2ff" stroke="#9cbbdf" stroke-width="1.5"/>
+<text x="70" y="161" class="label">持久协调存储：NamespaceManifest + WorkerRecord</text>
+<text x="70" y="194" class="body">同一 Worker 串行预留 [A, E)；先提交 highWater = E，再确认授权</text>
+<text x="70" y="221" class="body">已确认空间永不重授；会话可过期，上界不能过期；主备切换不得丢失已确认提交</text>
+<path d="M355 265 L355 320" class="edge" stroke-dasharray="7 6"/>
+<text x="380" y="302" class="small">低频申请 / 续约 / 确认</text>
+<rect x="48" y="325" width="650" height="154" rx="14" fill="#ffffff" stroke="#ccd8e5" stroke-width="1.5"/>
+<text x="70" y="361" class="label">后台控制设施</text>
+<text x="70" y="394" class="body">WorkerSession：控制新区间申请资格</text>
+<text x="70" y="421" class="body">GrantRefill：一个未完成申请，当前 + 下一授权</text>
+<text x="70" y="448" class="body">超时结果未知时确认原请求，不猜测成功</text>
+<rect x="742" y="325" width="490" height="154" rx="14" fill="#fff5e3" stroke="#dec79e" stroke-width="1.5"/>
+<text x="764" y="361" class="label">进程内单调时间</text>
+<text x="764" y="394" class="body">日历锚点 + nanoTime 差值</text>
+<text x="764" y="421" class="body">用于时间推进、等待与超时</text>
+<text x="764" y="448" class="body">不跨 JVM 比较，不恢复旧 nanoTime</text>
+<path d="M355 479 L355 542" class="edge"/>
+<path d="M987 479 L987 542" class="edge"/>
+<text x="377" y="518" class="small">发布已确认授权</text>
+<text x="1007" y="518" class="small">本地候选时间</text>
+<rect x="48" y="548" width="1184" height="160" rx="14" fill="#eaf6ef" stroke="#a5cfb5" stroke-width="1.5"/>
+<text x="70" y="584" class="label">JVM 内发号路径：GrantCursor + 原子分配</text>
+<text x="70" y="617" class="body">业务调用 → 检查可用状态和范围 → CAS 保留一个 / 一批序号 → 编码为 positive long</text>
+<text x="70" y="644" class="body">每次发号无网络、无磁盘；越界 / 无安全容量明确失败</text>
+<text x="70" y="671" class="body">默认先做批量 CAS；RingBuffer 只有在正确性与稳态性能验证后才加入</text>
+<text x="48" y="757" class="label">同一 Worker 的接管：旧进程恢复也不能重用新区间</text>
+<text x="48" y="787" class="small">半开区间：右端点属于下一段。generation 限制新申请，区间不重叠保护数值唯一。</text>
+<path d="M110 843 H1170" stroke="#8a9aab" stroke-width="2"/>
+<rect x="160" y="819" width="440" height="54" rx="7" fill="#c7dff8" stroke="#6798c8"/>
+<rect x="600" y="819" width="440" height="54" rx="7" fill="#c4e7d0" stroke="#6ba582"/>
+<text x="204" y="853" class="body">旧进程 · Worker 17 · [1000, 2000)</text>
+<text x="642" y="853" class="body">新进程 · Worker 17 · [2000, 3000)</text>
+<path d="M160 879 V889" stroke="#536b83" stroke-width="2"/><text x="138" y="914" class="body">1000</text>
+<path d="M600 879 V889" stroke="#536b83" stroke-width="2"/><text x="578" y="914" class="body">2000</text>
+<path d="M1040 879 V889" stroke="#536b83" stroke-width="2"/><text x="1018" y="914" class="body">3000</text>
+<text x="1111" y="913" class="small">逻辑时间</text>
+<rect x="48" y="945" width="1184" height="105" rx="14" fill="#ffffff" stroke="#ccd8e5" stroke-width="1.5"/>
+<text x="70" y="981" class="label">证明前提与代价</text>
+<text x="70" y="1014" class="body">持久上界不回退 · 授权单运行体消费 · 不允许活动内存克隆 · 空洞与重启等待可以发生</text>
+<text x="48" y="1120" class="label">时间 → 候选位置　　授权 → 空间归属　　CAS → 单次消费</text>
+<text x="48" y="1165" class="subtitle">本图是设计草案；代码审计、故障验收、运行矩阵与 Benchmark 尚未完成。</text>
+</svg>

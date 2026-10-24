@@ -1,0 +1,7 @@
+Wrapper ZIP SHA-1: 640f7c39ee902b630ada7e77086a6ddb9fceae56
+Wrapper ZIP SHA-256 (recorded): 6cb584c2bc907b849a0b931d8266d3ff3214cdd3127115ed4f49fb7176413d36
+Maven ZIP SHA-512: 251c676eb88684d6dd86c666817979d256a335c31ad34ab0e1df17eeca1cd504a6c890e906a46d04e51cc7a4fb02f33a75971ef750558034e0a81c257be02267
+Maven ZIP SHA-256: b0d9292f06c5faded31ddcb6cb69099f316d6fea40a7778624b259bad9fed18a
+Official Maven Central checksum comparisons: PASS
+Scripts extracted unchanged; POSIX executable bit set.
+Windows execution: NOT_RUN

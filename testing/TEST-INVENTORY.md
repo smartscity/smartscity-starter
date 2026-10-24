@@ -1,0 +1,18 @@
+# 测试清单
+
+本表是覆盖映射，实际通过/跳过见[GATE-RESULTS](GATE-RESULTS.md)。
+
+| 范围 | 可执行入口 |
+|---|---|
+| 编码、时间、容量、CAS、并发、超时、中断、关闭 | CoreTest |
+| 采样期间暂停、共用校时锚点、生产故障、初始化清理及并发关闭 | ClockAndLifecycleTest |
+| JDBC 设置/回滚异常、启动 Error、取消后迟到驱动的资源释放 | LifecycleReviewTest（H2 与故障代理，仅证明生命周期行为） |
+| 配置、Bean 退让、健康与指标 | AutoConfigurationTest |
+| JDBC 事务与并行分配的进程内检查 | JdbcIntegrationTest（H2，不作为数据库兼容证明） |
+| MySQL 校时/自增/冲突、零运行期数据库连接、多进程与 kill -9 | MySqlIntegrationTest（显式 URL） |
+| PostgreSQL identity/校时/冲突/退出 | PostgresIntegrationTest（显式 URL） |
+| ZK 原子占用、复用、断连恢复、服务器会话过期、完整 SDK 缓存停发、无响应关闭与中断保留 | ZookeeperIntegrationTest（临时真实服务器与 TCP 客户端；完整 SDK 用例另需 MySQL URL） |
+| 真数据库停机后已启动 SDK 继续发号、新启动失败 | MySqlOutageTest（另加显式破坏性测试开关，仅限本轮隔离端口） |
+| 自动发现、禁用、用户 Bean、真实 Starter 发号及可选健康/指标 | StarterDiscoveryTest（独立 Boot BOM） |
+| 用户接入路径 | samples/id-example 的实际启动 |
+| 未覆盖目标 | TiDB 实例、未安装 JDK/Boot 组合、性能测试分别保持 NOT_RUN |
