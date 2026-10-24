@@ -1,6 +1,8 @@
 # ID 验收记录
 
-最新进展：实现和 review 修复已提交 `b7685f8`；按后续授权增加隔离破坏测试及 benchmark，见[本轮实验报告](EXPERIMENT-RESULTS.md)。以下保留实现/review 检查点原始范围。
+最新稳定性补测见[重启报告](RESTART-RESULTS.md)，不包含持续运行。
+
+实现和 review 修复已提交 `b7685f8`；按后续授权增加隔离破坏测试及 benchmark，见[本轮实验报告](EXPERIMENT-RESULTS.md)。以下保留实现/review 检查点原始范围。
 
 ## 实现与复审检查点
 

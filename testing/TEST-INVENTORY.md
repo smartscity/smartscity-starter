@@ -20,3 +20,5 @@
 隔离故障统一入口：`python3 testing/run-destructive.py --run --output <新目录>`；新建私有 MySQL、真实子进程和 ZK TCP，覆盖时钟、关闭、取消、失联、过期、停机。时钟异常通过 TimeSource 注入，不修改宿主机时间；进程 SIGSTOP 不等于整机休眠验证。
 
 性能入口、预算与口径见[实验说明](../docs/08-Benchmark.md)。
+
+有限轮次补测（`id.test.restart=true`）：RestartConcurrencyTest、RestartStabilityTest、ZookeeperRestartStabilityTest。内容与实际结果见[报告](RESTART-RESULTS.md)；不包含用户已排除的持续运行测试。

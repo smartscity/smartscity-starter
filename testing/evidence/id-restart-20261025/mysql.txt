@@ -1,0 +1,13 @@
+2026-10-24T18:42:28.159332Z 0 [System] [MY-015015] [Server] MySQL Server - start.
+2026-10-24T18:42:28.464830Z 0 [System] [MY-010116] [Server] /usr/local/bin/mysqld (mysqld 9.6.0) starting as process 51678
+2026-10-24T18:42:28.464849Z 0 [System] [MY-015590] [Server] MySQL Server has access to 12 logical CPUs.
+2026-10-24T18:42:28.464867Z 0 [System] [MY-015590] [Server] MySQL Server has access to 17179869184 bytes of physical memory.
+2026-10-24T18:42:28.470096Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/id-fault-ac8b5bo9/data/ is case insensitive
+2026-10-24T18:42:28.479946Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-24T18:42:28.740865Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-24T18:42:29.100244Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-10-24T18:42:29.100332Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-10-24T18:42:29.141015Z 0 [System] [MY-010931] [Server] /usr/local/bin/mysqld: ready for connections. Version: '9.6.0'  socket: '/var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/id-fault-ac8b5bo9/mysql.sock'  port: 13367  Homebrew.
+2026-10-24T18:42:37.478789Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 9.6.0).
+2026-10-24T18:42:38.017116Z 0 [System] [MY-010910] [Server] /usr/local/bin/mysqld: Shutdown complete (mysqld 9.6.0)  Homebrew.
+2026-10-24T18:42:38.017168Z 0 [System] [MY-015016] [Server] MySQL Server - end.

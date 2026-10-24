@@ -53,12 +53,14 @@ def run(command, output, timeout):
             stop(process)
 
 
-def reports(destination):
+def reports(destination, expected):
     destination.mkdir()
     totals = dict(tests=0, failures=0, errors=0, skipped=0)
+    suites = set()
     for module in ("smartscity-id-core", "smartscity-id-spring-boot-autoconfigure"):
         for path in (ROOT / module / "target/surefire-reports").glob("TEST-*.xml"):
             suite = ET.parse(path).getroot()
+            suites.add(suite.attrib["name"].rsplit(".", 1)[-1])
             for key in totals:
                 totals[key] += int(suite.attrib.get(key, 0))
             # Keep assertion output without XML's entire host environment/classpath.
@@ -66,6 +68,8 @@ def reports(destination):
             if text.exists():
                 shutil.copyfile(text, destination / text.name)
     (destination / "totals.json").write_text(json.dumps(totals, indent=2) + "\n")
+    if not set(expected).issubset(suites) or totals["tests"] == 0:
+        raise RuntimeError(f"Missing selected test suites: {set(expected) - suites}")
     return totals
 
 
@@ -73,6 +77,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", action="store_true", help="Explicit opt-in to kill/pause isolated SDKs and shut down test MySQL")
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--restart", action="store_true", help="Also run bounded restart, ZK flapping and close-race tests; no soak or benchmark")
     args = parser.parse_args()
     if not args.run:
         parser.error("--run is required")
@@ -85,7 +90,7 @@ def main():
     out.mkdir(parents=True, exist_ok=False)
     started = time.monotonic()
     server = None
-    status = {"status": "FAIL", "isolatedPort": PORT, "cleanup": False}
+    status = {"status": "FAIL", "isolatedPort": PORT, "cleanup": False, "restart": args.restart}
     # A new private directory on every run; never reuse user data directories.
     with tempfile.TemporaryDirectory(prefix="id-fault-") as temporary:
         work = Path(temporary)
@@ -106,19 +111,25 @@ def main():
             base = [str(ROOT / "mvnw"), "-o", "-B", "-pl", "smartscity-id-spring-boot-autoconfigure", "-am",
                     "-Dsurefire.failIfNoSpecifiedTests=false", "-DargLine=-Xmx512m",
                     f"-Did.test.mysql.url=jdbc:mysql://127.0.0.1:{PORT}/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true"]
-            run(base + ["clean", "test", "-Dtest=CoreTest,ClockAndLifecycleTest,LifecycleReviewTest,MySqlIntegrationTest,ZookeeperIntegrationTest"], out / "faults.txt", 150)
-            status["faults"] = reports(out / "fault-reports")
+            selected = ["CoreTest", "ClockAndLifecycleTest", "LifecycleReviewTest", "MySqlIntegrationTest", "ZookeeperIntegrationTest"]
+            if args.restart:
+                selected += ["RestartConcurrencyTest", "RestartStabilityTest", "ZookeeperRestartStabilityTest"]
+                base += ["-Did.test.restart=true"]
+            run(base + ["clean", "test", "-Dtest=" + ",".join(selected)], out / "faults.txt", 420 if args.restart else 150)
+            status["faults"] = reports(out / "fault-reports", selected)
             # Remove stale reports so outage totals only include this invocation.
             for module in ("smartscity-id-core", "smartscity-id-spring-boot-autoconfigure"):
                 shutil.rmtree(ROOT / module / "target/surefire-reports", ignore_errors=True)
             run(base + ["test", "-Dtest=MySqlOutageTest", "-Did.test.mysql.outage=true"], out / "outage.txt", 40)
-            status["outage"] = reports(out / "outage-reports")
+            status["outage"] = reports(out / "outage-reports", ["MySqlOutageTest"])
             if any(t["failures"] or t["errors"] or t["skipped"] for t in (status["faults"], status["outage"])):
                 raise RuntimeError("A selected fault test failed or was skipped")
             status["status"] = "PASS"
         finally:
             stop(server)
             status["cleanup"] = not port_open()
+            if not status["cleanup"]:
+                status["status"] = "FAIL"
             status["elapsedSeconds"] = round(time.monotonic() - started, 2)
             (out / "result.json").write_text(json.dumps(status, indent=2) + "\n")
             if not status["cleanup"]:

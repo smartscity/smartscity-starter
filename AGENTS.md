@@ -8,6 +8,7 @@
 - 遵循 [已确认方案](docs/proposals/id-v1/README.md) 和 [实施阶段](docs/phases/current.md)。
 - 不把未运行的数据库、JDK/Boot 组合或理论容量当作已验证能力。
 - 本次可提交到本地；不要 push、tag 或发布。
+- 最新补测只做有限轮次重启/故障/并发验证；用户已排除持续运行测试。
 
 ## 修改前必读
 

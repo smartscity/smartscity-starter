@@ -39,4 +39,6 @@ smartscity:
 
 真实 MySQL 测试需显式传入 `-Did.test.mysql.url=jdbc:mysql://127.0.0.1:13367/smartscity_id_test`，仅使用隔离测试库。缺环境时报告跳过，不能视为通过。ZK 测试启动临时本地服务器。性能测试默认排除；显式执行命令和预算见[实验说明](docs/08-Benchmark.md)。隔离破坏测试：`python3 testing/run-destructive.py --run --output /tmp/id-fault-result`（需要 MySQL 本地二进制，自动创建并清理独立实例）。
 
+有限轮次重启测试使用 Java/JUnit，覆盖 1000 次 SDK 创建/关闭、20 轮真实进程替换及 ZK 抖动；入口见[重启稳定性说明](testing/RESTART-RESULTS.md)。默认不运行这些循环。
+
 [验收证据](testing/GATE-RESULTS.md)和[兼容矩阵](docs/03-Compatibility-Matrix.md)说明实际已验证范围；不承诺未运行组合。项目许可证尚待选择；已本地提交，未推送或发布。

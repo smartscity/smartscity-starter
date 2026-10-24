@@ -1,0 +1,9 @@
+["/usr/local/bin/mysqld", "--no-defaults", "--datadir=/var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/id-fault-rdtqbsq3/data", "--initialize-insecure"]
+2026-10-24T18:43:11.372661Z 0 [System] [MY-015017] [Server] MySQL Server Initialization - start.
+2026-10-24T18:43:11.376824Z 0 [System] [MY-013169] [Server] /usr/local/bin/mysqld (mysqld 9.6.0) initializing of server in progress as process 51939
+2026-10-24T18:43:11.381685Z 0 [Warning] [MY-010159] [Server] Setting lower_case_table_names=2 because file system for /var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/id-fault-rdtqbsq3/data/ is case insensitive
+2026-10-24T18:43:11.388369Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-10-24T18:43:11.609265Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-10-24T18:43:12.499018Z 5 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-10-24T18:43:13.503784Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 9.6.0).
+2026-10-24T18:43:13.852767Z 0 [System] [MY-015018] [Server] MySQL Server Initialization - end.
