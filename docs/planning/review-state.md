@@ -10,3 +10,4 @@
 - 最新授权：本地提交实现与 review 修复；准备并运行隔离破坏测试与 benchmark，不 push。实现提交 `b7685f8`，后续实验见[报告](../../testing/EXPERIMENT-RESULTS.md)。
 - 后续用户明确取消持续运行测试，授权增加反复重启等有限轮次检查；本轮不重跑 benchmark，见[重启稳定性报告](../../testing/RESTART-RESULTS.md)。
 - 随后要求完善时间回拨专项：补充可控时钟/并发/校时验证，修复数据库校时算术溢出及 NULL 漏检；默认参数和唯一性边界不变，见[专项报告](../../testing/CLOCK-RESULTS.md)。
+- 最新授权：准备手动 GitHub Actions benchmark，复用 Java/JMH 与定速检查，JDK 21 构建、17/21 运行，支持托管与自托管 runner；本地验证和提交，不 push、不触发远程运行。[入口与预算](../08-Benchmark.md#github-actions)。

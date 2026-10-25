@@ -23,4 +23,6 @@
 
 性能入口、预算与口径见[实验说明](../docs/08-Benchmark.md)。
 
+Actions 编排/结果校验：`bash testing/check-benchmark-ci.sh`（先构建 benchmark JAR），使用合成进程验证正常、失败、缺失、重复、超时及严格目标分支；不是性能测试。workflow 语法使用 actionlint；远程执行证据单独记录。
+
 有限轮次补测（`id.test.restart=true`）：RestartConcurrencyTest、RestartStabilityTest、ZookeeperRestartStabilityTest。内容与实际结果见[报告](RESTART-RESULTS.md)；不包含用户已排除的持续运行测试。

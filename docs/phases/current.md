@@ -1,9 +1,9 @@
-# 当前阶段：时间回拨专项补测
+# 当前阶段：GitHub Actions benchmark 接入
 
-2026-10-25 用户要求检查时间回拨专项，缺项继续完善。此前有限轮次重启补测已完成；继续排除持续运行和 benchmark，保持既有本地提交授权，不 push、tag 或发布。
+2026-10-25 用户批准接入手动 JMH workflow。时间回拨专项和有限轮次重启补测已完成。本轮准备配置、验证并本地提交，不 push、不触发远程运行、不做持续运行测试。
 
-范围：累计偏差、采样不稳定/暂停、并发缓存停发、Epoch/时间字段边界、数据库校时异常及资源释放；修复复现的校时整数溢出和 NULL 漏检。公共 API、默认参数及已批准唯一性边界不变。
+范围：JDK 21 构建，JDK 17/21 串行测量，三种布局 × 1/4/8 线程，有限时长定速检查，托管/自托管选择，超时与失败归档。生产代码不变，预算及统计口径由[性能文档](../08-Benchmark.md#github-actions)拥有。
 
-顺序：核对契约和覆盖 → 可控时钟/JDBC 故障复现 → 修复 → 核心与适配层回归 → 隔离 MySQL/ZK 生命周期回归 → 文档与本地提交。新增用例是 Java/JUnit，不操作宿主机时间。完成标准：实际结果、资源清理、覆盖与未验证项均可追溯。
+职责：workflow 拥有 job 和归档；Bash 入口拥有有界子进程、输出目录和测量状态；jq 校验结果；原 Java BenchmarkGenerator/JMH/FixedRateProbe 拥有 SDK 和测量线程。复用 Factory 和顺序 Pipeline，不新增生产抽象或重复实现发号逻辑。
 
-结果见[时间回拨报告](../../testing/CLOCK-RESULTS.md)。历史结果：[重启稳定性](../../testing/RESTART-RESULTS.md)、[性能与故障实验](../../testing/EXPERIMENT-RESULTS.md)。
+验收：workflow 静态检查、JMH 构建和双 JDK 发现、结果校验及编排成功/失败场景；实际 Actions 运行标记 NOT_RUN，不把合成检查当作性能结果。完成后文档闭环并本地提交。此前记录：[时间回拨](../../testing/CLOCK-RESULTS.md)、[重启稳定性](../../testing/RESTART-RESULTS.md)、[性能与故障实验](../../testing/EXPERIMENT-RESULTS.md)。

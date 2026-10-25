@@ -1,0 +1,2 @@
+Benchmarks: 
+com.smartscity.id.benchmark.IdBenchmark.generate

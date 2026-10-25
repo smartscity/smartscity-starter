@@ -41,4 +41,6 @@ smartscity:
 
 有限轮次重启测试使用 Java/JUnit，覆盖 1000 次 SDK 创建/关闭、20 轮真实进程替换及 ZK 抖动；入口见[重启稳定性说明](testing/RESTART-RESULTS.md)。默认不运行这些循环。
 
+JMH 可通过 GitHub Actions 手动运行，支持托管 runner 或自己的 Linux 测试机，默认比较 JDK 17/21；触发方式、预算与结果口径见[Actions 使用说明](docs/08-Benchmark.md#github-actions)。
+
 [验收证据](testing/GATE-RESULTS.md)和[兼容矩阵](docs/03-Compatibility-Matrix.md)说明实际已验证范围；不承诺未运行组合。项目许可证尚待选择；已本地提交，未推送或发布。

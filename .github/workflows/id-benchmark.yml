@@ -1,0 +1,83 @@
+name: ID benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: Execution machine (self-hosted requires the id-benchmark label)
+        type: choice
+        default: github-hosted
+        options:
+          - github-hosted
+          - self-hosted
+      require_100k:
+        description: Fail the job unless all three fixed-rate trials meet the 100k target
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+# Serialize this repository's benchmark runs, including different branches.
+concurrency:
+  group: id-benchmark
+  cancel-in-progress: false
+
+jobs:
+  benchmark:
+    name: JMH / JDK ${{ matrix.java }} / ${{ inputs.runner }}
+    runs-on: ${{ fromJSON(inputs.runner == 'self-hosted' && '["self-hosted","linux","x64","id-benchmark"]' || '["ubuntu-24.04"]') }}
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        java: ['17', '21']
+    defaults:
+      run:
+        shell: bash
+    env:
+      RUNTIME_JDK: ${{ matrix.java }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Prepare output
+        run: |
+          results="$RUNNER_TEMP/id-benchmark-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}-jdk${RUNTIME_JDK}"
+          mkdir "$results"
+          echo "RESULTS=$results" >> "$GITHUB_ENV"
+      - name: Set up build JDK
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: '**/pom.xml'
+      - name: Build JMH executable
+        run: |
+          java -version 2> "$RESULTS/build-java.txt"
+          ./mvnw -B -ntp -Pbenchmarks -pl smartscity-id-benchmark -am -DskipTests clean package 2>&1 | tee "$RESULTS/build.txt"
+      - name: Set up measurement JDK
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - name: Verify tools and JMH discovery
+        run: |
+          for tool in jq timeout sha256sum lscpu; do command -v "$tool"; done
+          java -jar smartscity-id-benchmark/target/benchmarks.jar -l | tee "$RESULTS/benchmarks.txt"
+          grep -Fx 'com.smartscity.id.benchmark.IdBenchmark.generate' "$RESULTS/benchmarks.txt"
+      - name: Run bounded measurements
+        timeout-minutes: 10
+        env:
+          REQUIRE_100K: ${{ inputs.require_100k }}
+        run: bash testing/run-benchmark-ci.sh "$RESULTS/measurements"
+      - name: Preserve results even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: id-benchmark-${{ inputs.runner }}-jdk${{ matrix.java }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.RESULTS }}
+          if-no-files-found: error
+          retention-days: 30

@@ -22,6 +22,31 @@ python3 testing/run-benchmarks.py --run --output /tmp/id-benchmark-result
 - 预计 4～5 分钟；脚本总上限 480 秒，JMH 每场 40 秒、定速每轮 40 秒。构建下载不计入执行预算。
 - 重复 ID、非 TIMEOUT 发号错误、子进程失败或超预算立即中止，保留 PARTIAL 证据；超时请求如实计数，不伪装成功。
 
+## GitHub Actions
+
+[ID benchmark workflow](../.github/workflows/id-benchmark.yml) 仅允许手动触发，不随 push/PR 或定时自动运行。workflow 进入仓库默认分支后，在 **Actions → ID benchmark → Run workflow** 选择执行分支和参数（[GitHub 手动触发说明](https://docs.github.com/en/actions/how-tos/manage-workflow-runs/manually-run-a-workflow)）。本地准备完成不代表已推送或远程执行。
+
+| 参数 | 默认值及含义 |
+|---|---|
+| `runner` | `github-hosted` 使用 Ubuntu 24.04；`self-hosted` 使用带 `self-hosted, linux, x64, id-benchmark` 标签的机器 |
+| `require_100k` | `false`：记录 MET/NOT_MET，正常完成测量即可；`true`：三次定速检查必须全部达标，否则 job 失败 |
+
+- JDK 21 构建，各用 Temurin JDK 17/21 运行。两个 job 串行，每个 job 包含上述 9 场 JMH 和 3 次定速检查；每场参数、512 MiB 测量堆及生产默认配置不变。
+- 每个 JDK 测量预算 480 秒，单场上限 40 秒；测量 step 上限 10 分钟，含构建的 job 上限 25 分钟。预计总测量 8～10 分钟，依赖/JDK 下载另计。仓库内同 workflow 不并发；仍需避免自托管机器上的其他负载。
+- Java 负责测量，Bash 负责有界进程调度，jq 验证及汇总结果；不使用 Python 执行本 CI 入口。复用现有 BenchmarkGenerator 工厂，不改变 Core/生产依赖。
+- Summary 展示成功 ID/s、超时/s、分配量及定速 p99、missed/late/重复数；Artifacts 保存每场原始 JSON、日志、CPU/OS/JDK、源码/JAR 指纹和构建日志，保留 30 天。
+- 缺失指标、错误场景、重复 ID、命令失败或超时均失败，已有测量标记 PARTIAL；校验通过的完整执行标记 MEASURED，**不等于 10 万 TPS 达标**。取消时尽力保留部分结果，强制停止或 runner 丢失不保证上传。
+
+自托管机须预装 Bash、Git、jq、GNU coreutils（timeout/sha256sum）、util-linux（lscpu），并能运行所固定 Actions 版本及下载 Temurin/Maven 依赖。使用独占、空闲的测试机器；无需 MySQL/ZK。GitHub 托管结果用于观察趋势，生产容量与版本对比使用固定机器、相同参数，并保留 before/after 证据。[Runner 类型](https://docs.github.com/en/actions/how-tos/write-workflows/choose-where-workflows-run/choose-the-runner-for-a-job)。
+
+本地 Linux 也可执行相同入口（先完成上述 JDK 21 构建，再切换所需运行 JDK）：
+
+```sh
+REQUIRE_100K=false bash testing/run-benchmark-ci.sh /tmp/id-ci-result
+```
+
+输出目录须不存在。编排及结果检查可用 `bash testing/check-benchmark-ci.sh` 验证；其中使用合成进程和结果，不产生性能结论。当前验证状态见[Actions 接入记录](../testing/evidence/id-actions-20261025/README.md)。
+
 ## 统计口径
 
 JMH 主指标是调用次数；`ids` 才是成功 ID/s，`timeouts` 是超时/s。`gc.alloc.rate.norm` 是字节/调用，包含失败路径，不能当作字节/成功 ID。计数采用 [OpenJDK JMH 辅助计数器](https://github.com/openjdk/jmh/blob/master/jmh-samples/src/main/java/org/openjdk/jmh/samples/JMHSample_23_AuxCounters.java) 的分项统计方式。
