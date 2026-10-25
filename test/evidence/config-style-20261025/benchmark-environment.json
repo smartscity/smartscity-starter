@@ -1,0 +1,21 @@
+{
+  "os": "macOS-26.5.1-x86_64-i386-64bit-Mach-O",
+  "architecture": "x86_64",
+  "jvm": "openjdk version \"21.0.12.1\" 2026-08-18 LTS\nOpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode)",
+  "profile": "standard",
+  "threads": [
+    1,
+    4
+  ],
+  "forks": 2,
+  "warmup": "2 x 1s",
+  "measurement": "3 x 1s",
+  "heap": "-Xms512m -Xmx512m",
+  "profiler": "gc",
+  "scope": "bounded local diagnostic, not sustained capacity or distributed uniqueness",
+  "baselineArtifactSha256": "f89df5f6651afb8bd281ea06c3e361a874a8d16536b0145088071c3995b175d2",
+  "afterArtifactSha256": "47db7fd4ed72ccd40cd143676ca5167cf53b1a89c6aeebe8d191ba301c9b05c6",
+  "machdep.cpu.brand_string": "Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz",
+  "hw.ncpu": "12",
+  "hw.memsize": "17179869184"
+}

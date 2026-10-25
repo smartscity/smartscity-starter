@@ -1,9 +1,7 @@
 # Third-party inputs
 
-Production dependencies are declared in the module POMs: Spring Boot/Spring, SLF4J, and optional ZooKeeper/Micrometer/health adapters. The application supplies its JDBC driver. Test dependencies and downloaded database test binaries do not enter the production Starter dependency graph.
+Smartscity Starter source is licensed under Apache License 2.0; see [LICENSE](LICENSE). Third-party code and dependencies retain their own licenses.
 
-The supplied legacy source was reviewed as a design reference; its source archive, hashes and findings are recorded in [the input audit](docs/proposals/id-v1/legacy-input-audit.md). This implementation does not copy the legacy source files.
+Spring Boot/Spring, SLF4J, optional ZooKeeper/Micrometer and application-supplied JDBC drivers remain external dependencies. Tests use JUnit, AssertJ, H2 and database drivers. JMH 1.37, jopt-simple and Commons Math are confined to the opt-in benchmark artifact; JMH uses GPLv2 with the Classpath Exception.
 
-The opt-in benchmark module uses OpenJDK JMH 1.37 (GPLv2 with Classpath Exception), jopt-simple and Apache Commons Math. These tools never enter production dependencies. Harness source is original; JMH documentation was consulted for setup and counter semantics.
-
-Dependency license metadata remains available in the respective dependency POMs. The project license has not yet been selected; no remote publication has been performed.
+Legacy reference input was inspected before the original implementation; no legacy source files were copied. Its hashes remain in [the reference manifest](test/evidence/legacy-reference-manifest.json); the original audit is preserved at `f86b741:docs/proposals/id-v1/legacy-input-audit.md` in Git. Dependency license metadata is supplied by each upstream POM. No remote publication has been performed.

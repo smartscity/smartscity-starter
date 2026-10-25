@@ -1,0 +1,33 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Parent                                                  [pom]
+[INFO] smartscity-id                                                      [jar]
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-parent >------------------
+[INFO] Building Smartscity Parent 0.1.0-SNAPSHOT                          [1/2]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:apply (default-cli) @ smartscity-parent ---
+[INFO] 
+[INFO] --------------------< com.smartscity:smartscity-id >--------------------
+[INFO] Building smartscity-id 0.1.0-SNAPSHOT                              [2/2]
+[INFO]   from /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:apply (default-cli) @ smartscity-id ---
+[INFO] Writing clean file: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/HotPathCorrectnessTest.java
+[INFO] Spotless.Java is keeping 25 files clean - 1 were changed to be clean, 0 were already clean, 24 were skipped because caching determined they were already clean
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Smartscity Parent 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Parent .................................. SUCCESS [  0.795 s]
+[INFO] smartscity-id ...................................... SUCCESS [  2.186 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.933 s
+[INFO] Finished at: 2026-10-25T18:05:30+08:00
+[INFO] ------------------------------------------------------------------------

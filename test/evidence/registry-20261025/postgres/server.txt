@@ -1,0 +1,91 @@
+2026-10-25 16:51:32.240 +08 [52663] LOG:  starting PostgreSQL 14.15 on x86_64-apple-darwin23.6.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.4), 64-bit
+2026-10-25 16:51:32.257 +08 [52663] LOG:  listening on IPv4 address "127.0.0.1", port 63453
+2026-10-25 16:51:32.276 +08 [52663] LOG:  listening on Unix socket "/var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/starter-postgres-data-8lti8sbb/.s.PGSQL.63453"
+2026-10-25 16:51:32.338 +08 [52664] LOG:  database system was shut down at 2026-10-25 16:51:31 +08
+2026-10-25 16:51:32.396 +08 [52663] LOG:  database system is ready to accept connections
+2026-10-25 16:51:48.472 +08 [53261] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53261] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53261] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.472 +08 [53259] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53259] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53259] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.472 +08 [53265] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53265] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53265] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.472 +08 [53264] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53264] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53264] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.472 +08 [53262] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53262] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53262] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.472 +08 [53266] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53266] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53266] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.472 +08 [53263] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.472 +08 [53263] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.472 +08 [53263] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.554 +08 [53272] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.554 +08 [53272] DETAIL:  Key (group_name)=(registry_7494878130733) already exists.
+2026-10-25 16:51:48.554 +08 [53272] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.612 +08 [53276] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.612 +08 [53276] DETAIL:  Key (group_name)=(registry_7494878130733_identity) already exists.
+2026-10-25 16:51:48.612 +08 [53276] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.625 +08 [53277] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.625 +08 [53277] DETAIL:  Key (group_name)=(registry_7494878130733_identity) already exists.
+2026-10-25 16:51:48.625 +08 [53277] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.643 +08 [53278] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.643 +08 [53278] DETAIL:  Key (group_name)=(registry_7494878130733_identity) already exists.
+2026-10-25 16:51:48.643 +08 [53278] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.684 +08 [53282] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.684 +08 [53282] DETAIL:  Key (group_name)=(registry_7494878130733_identity) already exists.
+2026-10-25 16:51:48.684 +08 [53282] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.750 +08 [53286] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.750 +08 [53286] DETAIL:  Key (group_name)=(pg_7495170960627) already exists.
+2026-10-25 16:51:48.750 +08 [53286] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:48.793 +08 [53289] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:48.793 +08 [53289] DETAIL:  Key (group_name)=(pg_7495170960627) already exists.
+2026-10-25 16:51:48.793 +08 [53289] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53311] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53311] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53311] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53316] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53316] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53316] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53313] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53313] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53313] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53317] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53317] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53317] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53315] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53315] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53315] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53314] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53314] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53314] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.793 +08 [53310] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.793 +08 [53310] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.793 +08 [53310] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.871 +08 [53323] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.871 +08 [53323] DETAIL:  Key (group_name)=(registry_7499178374490) already exists.
+2026-10-25 16:51:52.871 +08 [53323] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.936 +08 [53327] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.936 +08 [53327] DETAIL:  Key (group_name)=(registry_7499178374490_identity) already exists.
+2026-10-25 16:51:52.936 +08 [53327] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.962 +08 [53328] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.962 +08 [53328] DETAIL:  Key (group_name)=(registry_7499178374490_identity) already exists.
+2026-10-25 16:51:52.962 +08 [53328] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:52.980 +08 [53329] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:52.980 +08 [53329] DETAIL:  Key (group_name)=(registry_7499178374490_identity) already exists.
+2026-10-25 16:51:52.980 +08 [53329] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:53.025 +08 [53333] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:53.025 +08 [53333] DETAIL:  Key (group_name)=(registry_7499178374490_identity) already exists.
+2026-10-25 16:51:53.025 +08 [53333] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:53.087 +08 [53337] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:53.087 +08 [53337] DETAIL:  Key (group_name)=(pg_7499507515852) already exists.
+2026-10-25 16:51:53.087 +08 [53337] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:53.131 +08 [53340] ERROR:  duplicate key value violates unique constraint "smartscity_id_group_group_name_key"
+2026-10-25 16:51:53.131 +08 [53340] DETAIL:  Key (group_name)=(pg_7499507515852) already exists.
+2026-10-25 16:51:53.131 +08 [53340] STATEMENT:  INSERT INTO smartscity_id_group (group_name, layout, epoch_second, config_version, worker_slots, next_worker_id, created_at, updated_at) VALUES ($1, $2, $3, 1, $4, 0, $5, $6)
+2026-10-25 16:51:53.635 +08 [52663] LOG:  received immediate shutdown request
+2026-10-25 16:51:53.741 +08 [52663] LOG:  database system is shut down

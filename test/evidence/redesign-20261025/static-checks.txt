@@ -1,0 +1,16 @@
+["python3", "test/check-repository.py"]
+PASS responsibility layout, reactor paths, English maintained files and documentation navigation/links
+exit=0
+["python3", "-m", "py_compile", "test/check-artifacts.py", "test/run-destructive.py", "test/run-benchmarks.py", "test/check-repository.py", "test/run-compatibility.py", "build/check-release.py"]
+exit=0
+["bash", "-n", "test/run-benchmark-ci.sh", "test/check-benchmark-ci.sh", "test/run-runtime-probe.sh"]
+exit=0
+["/private/tmp/id-ci-tools/actionlint", "-version"]
+1.7.12
+installed by downloading from release page
+built with go1.26.1 compiler for darwin/amd64
+exit=0
+["/private/tmp/id-ci-tools/actionlint", "-shellcheck=", ".github/workflows/publish.yml", ".github/workflows/id-benchmark.yml", ".github/workflows/ci.yml"]
+exit=0
+["git", "diff", "--check"]
+exit=0

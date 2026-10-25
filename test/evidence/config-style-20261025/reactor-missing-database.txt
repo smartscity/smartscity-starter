@@ -1,0 +1,281 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Parent                                                  [pom]
+[INFO] smartscity-dependencies                                            [pom]
+[INFO] smartscity-id                                                      [jar]
+[INFO] smartscity-id-spring-boot                                          [jar]
+[INFO] smartscity-id-spring-boot4                                         [jar]
+[INFO] smartscity-starter-id                                              [jar]
+[INFO] smartscity-starter-id-boot4                                        [jar]
+[INFO] smartscity-id-compatibility-tests                                  [jar]
+[INFO] smartscity-id-benchmark                                            [jar]
+[INFO] smartscity-id-example                                              [jar]
+[INFO] smartscity-id-example-boot4                                        [jar]
+[INFO] smartscity-starter                                                 [pom]
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-parent >------------------
+[INFO] Building Smartscity Parent 0.1.0-SNAPSHOT                         [1/12]
+[INFO]   from build/smartscity-parent/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-parent ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-parent/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-parent ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-parent ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-parent/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-parent/0.1.0-SNAPSHOT/smartscity-parent-0.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] ---------------< com.smartscity:smartscity-dependencies >---------------
+[INFO] Building smartscity-dependencies 0.1.0-SNAPSHOT                   [2/12]
+[INFO]   from build/smartscity-dependencies/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-dependencies ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-dependencies ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-dependencies/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-dependencies/0.1.0-SNAPSHOT/smartscity-dependencies-0.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] --------------------< com.smartscity:smartscity-id >--------------------
+[INFO] Building smartscity-id 0.1.0-SNAPSHOT                             [3/12]
+[INFO]   from module/smartscity-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 21 files clean - 0 needs changes to be clean, 21 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 14 source files with javac [debug parameters release 9] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 7 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java: Some input files use or override a deprecated API.
+[INFO] /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.core.ClockAndLifecycleTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.102 s -- in com.smartscity.id.core.ClockAndLifecycleTest
+[INFO] Running com.smartscity.id.core.IdLayoutTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 s -- in com.smartscity.id.core.IdLayoutTest
+[INFO] Running com.smartscity.id.core.ClockRollbackConcurrencyTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.094 s -- in com.smartscity.id.core.ClockRollbackConcurrencyTest
+[INFO] Running com.smartscity.id.core.CoreTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.054 s -- in com.smartscity.id.core.CoreTest
+[INFO] Running com.smartscity.id.core.RestartConcurrencyTest
+CLOSE_RACE cycles=50 consumers=4 capacity=2 duplicateClaims=0 leaseClosesPerCycle=1
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.197 s -- in com.smartscity.id.core.RestartConcurrencyTest
+[INFO] Running com.smartscity.id.core.ClockRollbackTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.059 s -- in com.smartscity.id.core.ClockRollbackTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target/smartscity-id-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id/0.1.0-SNAPSHOT/smartscity-id-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target/smartscity-id-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id/0.1.0-SNAPSHOT/smartscity-id-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.smartscity:smartscity-id-spring-boot >--------------
+[INFO] Building smartscity-id-spring-boot 0.1.0-SNAPSHOT                 [4/12]
+[INFO]   from module/smartscity-id-spring-boot/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-spring-boot ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-spring-boot ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 23 files clean - 0 needs changes to be clean, 23 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spring-boot ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (shared-adapter-source) @ smartscity-id-spring-boot ---
+[INFO] Source directory: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/src/shared/java added.
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spring-boot ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spring-boot ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug parameters release 9] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spring-boot ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spring-boot ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spring-boot ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.autoconfigure.MySqlIntegrationTest
+[WARNING] Tests run: 5, Failures: 0, Errors: 0, Skipped: 5, Time elapsed: 0.005 s -- in com.smartscity.id.autoconfigure.MySqlIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.ZookeeperIntegrationTest
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+SLF4J: Failed to load class "org.slf4j.impl.StaticMDCBinder".
+SLF4J: Defaulting to no-operation MDCAdapter implementation.
+SLF4J: See http://www.slf4j.org/codes.html#no_static_mdc_binder for further details.
+[WARNING] Tests run: 8, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 7.565 s -- in com.smartscity.id.autoconfigure.ZookeeperIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest
+ZK_REUSE cycles=50 sameSlot=7 orphanNodes=0
+[ERROR] Tests run: 3, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 11.10 s <<< FAILURE! -- in com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest
+[ERROR] com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest.fiveDisconnectsUnderTrafficRecoverButExpiredOwnerCannotResume -- Time elapsed: 0.024 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.smartscity.id.autoconfigure.RestartDatabase.<init>(RestartDatabase.java:26)
+	at com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest.fiveDisconnectsUnderTrafficRecoverButExpiredOwnerCannotResume(ZookeeperRestartStabilityTest.java:169)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest.repeatedFailedAndSuccessfulSdkStartsReleaseRowsConnectionsAndNodes -- Time elapsed: 0.012 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.smartscity.id.autoconfigure.RestartDatabase.<init>(RestartDatabase.java:26)
+	at com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest.repeatedFailedAndSuccessfulSdkStartsReleaseRowsConnectionsAndNodes(ZookeeperRestartStabilityTest.java:118)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running com.smartscity.id.autoconfigure.RestartStabilityTest
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.010 s <<< FAILURE! -- in com.smartscity.id.autoconfigure.RestartStabilityTest
+[ERROR] com.smartscity.id.autoconfigure.RestartStabilityTest.thousandSdkRestartsReleaseConnectionsThreadsAndShutdownHookReferences -- Time elapsed: 0.004 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.smartscity.id.autoconfigure.RestartDatabase.<init>(RestartDatabase.java:26)
+	at com.smartscity.id.autoconfigure.RestartStabilityTest.thousandSdkRestartsReleaseConnectionsThreadsAndShutdownHookReferences(RestartStabilityTest.java:31)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.smartscity.id.autoconfigure.RestartStabilityTest.rollingProcessesSurviveTwentyAlternatingTermAndKillReplacements -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.smartscity.id.autoconfigure.RestartDatabase.<init>(RestartDatabase.java:26)
+	at com.smartscity.id.autoconfigure.RestartStabilityTest.rollingProcessesSurviveTwentyAlternatingTermAndKillReplacements(RestartStabilityTest.java:97)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running com.smartscity.id.autoconfigure.MySqlOutageTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.MySqlOutageTest
+[INFO] Running com.smartscity.id.autoconfigure.LifecycleReviewTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.365 s -- in com.smartscity.id.autoconfigure.LifecycleReviewTest
+[INFO] Running com.smartscity.id.autoconfigure.ClockValidationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 s -- in com.smartscity.id.autoconfigure.ClockValidationTest
+[INFO] Running com.smartscity.id.autoconfigure.JdbcIntegrationTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in com.smartscity.id.autoconfigure.JdbcIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.AutoConfigurationTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.632 s -- in com.smartscity.id.autoconfigure.AutoConfigurationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   RestartStabilityTest.rollingProcessesSurviveTwentyAlternatingTermAndKillReplacements:97 Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+[ERROR]   RestartStabilityTest.thousandSdkRestartsReleaseConnectionsThreadsAndShutdownHookReferences:31 Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+[ERROR]   ZookeeperRestartStabilityTest.fiveDisconnectsUnderTrafficRecoverButExpiredOwnerCannotResume:169 Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+[ERROR]   ZookeeperRestartStabilityTest.repeatedFailedAndSuccessfulSdkStartsReleaseRowsConnectionsAndNodes:118 Restart tests require the dedicated loopback test database ==> expected: <true> but was: <false>
+[INFO] 
+[ERROR] Tests run: 40, Failures: 4, Errors: 0, Skipped: 8
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for smartscity-starter 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Parent .................................. SUCCESS [  0.822 s]
+[INFO] smartscity-dependencies ............................ SUCCESS [  0.008 s]
+[INFO] smartscity-id ...................................... SUCCESS [  6.138 s]
+[INFO] smartscity-id-spring-boot .......................... FAILURE [ 22.570 s]
+[INFO] smartscity-id-spring-boot4 ......................... SKIPPED
+[INFO] smartscity-starter-id .............................. SKIPPED
+[INFO] smartscity-starter-id-boot4 ........................ SKIPPED
+[INFO] smartscity-id-compatibility-tests .................. SKIPPED
+[INFO] smartscity-id-benchmark ............................ SKIPPED
+[INFO] smartscity-id-example .............................. SKIPPED
+[INFO] smartscity-id-example-boot4 ........................ SKIPPED
+[INFO] smartscity-starter ................................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  30.053 s
+[INFO] Finished at: 2026-10-25T16:09:45+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.4:test (default-test) on project smartscity-id-spring-boot: There are test failures.
+[ERROR] 
+[ERROR] See /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :smartscity-id-spring-boot

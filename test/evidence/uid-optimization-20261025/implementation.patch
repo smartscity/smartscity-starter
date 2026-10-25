@@ -1,0 +1,476 @@
+--- before/module/smartscity-id/src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
++++ after/module/smartscity-id/src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
+@@ -18,7 +18,10 @@
+  * @author jack
+  */
+ public final class CachedUniqueIdGenerator implements IdGenerator {
++  private static final int REFILL_CHUNK = 256;
+   private final GeneratorOptions options;
++  private final int lowWatermark;
++  private final AtomicBoolean producerParked = new AtomicBoolean();
+   private final WorkerLease lease;
+   private final MonotonicClock clock;
+   private final RingBuffer ring;
+@@ -87,13 +90,16 @@
+     this.lease = Objects.requireNonNull(lease);
+     try {
+       this.options = Objects.requireNonNull(options);
++      lowWatermark = options.capacity * options.lowWaterPercent / 100;
+       clock = clockFactory.get();
+       ring = new RingBuffer(options.capacity);
+       source = new DefaultUniqueIdGenerator(options.bits, lease.workerId());
+       producer = new Thread(this::produce, "smartscity-id-fill-" + lease.rawId());
+       producer.setDaemon(true);
+       checkAvailable();
+-      fill();
++      while (ring.size() < ring.capacity() && fill() != 0) {
++        // Initialization owns the producer cursor until the background thread starts.
++      }
+       if (ring.size() == 0) {
+         throw new IdException(IdException.Reason.STARTUP, "Initial cache is empty");
+       }
+@@ -111,7 +117,7 @@
+     }
+   }
+ 
+-  private void checkAvailable() {
++  private long checkAvailable() {
+     if (closed.get()) {
+       throw new IdException(IdException.Reason.CLOSED, "Generator closed");
+     }
+@@ -132,6 +138,7 @@
+       if (second < 0 || second > options.bits.getMaxTime()) {
+         throw new IdException(IdException.Reason.CAPACITY, "Epoch time range exhausted");
+       }
++      return second;
+     } catch (IdException e) {
+       failure.compareAndSet(null, e);
+       throw e;
+@@ -156,9 +163,7 @@
+             throw new IdException(IdException.Reason.TIMEOUT, "ID wait deadline exceeded");
+           }
+           metrics.generated.increment();
+-          if (ring.size() <= options.capacity * options.lowWaterPercent / 100) {
+-            LockSupport.unpark(producer);
+-          }
++          requestRefill();
+           return id;
+         }
+         if (waitingSince == 0) {
+@@ -169,7 +174,7 @@
+         if (remaining <= 0) {
+           throw new IdException(IdException.Reason.TIMEOUT, "ID cache wait timed out");
+         }
+-        LockSupport.unpark(producer);
++        requestRefill();
+         LockSupport.parkNanos(this, Math.min(remaining, 100_000));
+       }
+     } catch (IdException e) {
+@@ -184,19 +189,31 @@
+     }
+   }
+ 
+-  private void fill() {
++  private void requestRefill() {
++    if (producerParked.get()
++        && ring.size() <= lowWatermark
++        && producerParked.compareAndSet(true, false)) {
++      LockSupport.unpark(producer);
++    }
++  }
++
++  private int fill() {
+     long start = System.nanoTime();
+     try {
+-      while (!closed.get() && ring.size() < ring.capacity()) {
++      long second = checkAvailable();
++      int produced = 0;
++      while (produced < REFILL_CHUNK && !closed.get() && ring.size() < ring.capacity()) {
+         if (Thread.currentThread().isInterrupted()) {
+           throw new IdException(IdException.Reason.INTERRUPTED, "Cache initialization interrupted");
+         }
+-        checkAvailable();
+-        long id = source.next(clock.seconds(options.bits.getLayout().getEpoch()));
+-        if (id == 0 || !ring.offer(id)) {
+-          break;
+-        }
+-      }
++        // Consumers validate before and after claiming. Producer validation is amortized per chunk.
++        long id = source.nextBuffered(second);
++        if (!ring.offer(id)) {
++          break; // A stalled claimant can still own the next slot; the unused ID is burned.
++        }
++        produced++;
++      }
++      return produced;
+     } finally {
+       metrics.refillNanos.add(System.nanoTime() - start);
+     }
+@@ -204,9 +221,12 @@
+ 
+   private void produce() {
+     while (!closed.get() && failure.get() == null) {
++      int produced = 0;
+       try {
+-        checkAvailable();
+-        fill();
++        produced = fill();
++        if (produced == REFILL_CHUNK) {
++          continue;
++        }
+       } catch (IdException e) {
+         if (e.getReason() != IdException.Reason.COORDINATION
+             && e.getReason() != IdException.Reason.CLOSED) {
+@@ -221,8 +241,15 @@
+           throw (Error) e;
+         }
+       }
+-      // One thread + unpark permit merges refill signals; periodic check prevents missed wakeups.
++      producerParked.set(true);
++      // Arm before rechecking: a consumer racing the park either changes occupancy or leaves a
++      // permit.
++      if (produced > 0 && ring.size() <= lowWatermark) {
++        producerParked.set(false);
++        continue;
++      }
+       LockSupport.parkNanos(this, 1_000_000);
++      producerParked.set(false);
+     }
+   }
+ 
+--- before/module/smartscity-id/src/main/java/com/smartscity/id/core/DefaultUniqueIdGenerator.java
++++ after/module/smartscity-id/src/main/java/com/smartscity/id/core/DefaultUniqueIdGenerator.java
+@@ -27,6 +27,21 @@
+     }
+     this.bits = bits;
+     this.worker = worker;
++  }
++
++  /** Advances the producer's logical time when its current sequence has been consumed. */
++  long nextBuffered(long nowSecond) {
++    if (nowSecond < 0 || nowSecond > bits.getMaxTime()) {
++      throw new IdException(IdException.Reason.CAPACITY, "Wall time outside identity layout");
++    }
++    long logicalSecond = Math.max(nowSecond, second);
++    if (logicalSecond == second && nextSequence > bits.getMaxSequence()) {
++      if (second == bits.getMaxTime()) {
++        throw new IdException(IdException.Reason.CAPACITY, "Logical timestamp range exhausted");
++      }
++      logicalSecond++;
++    }
++    return next(logicalSecond);
+   }
+ 
+   /**
+--- before/module/smartscity-id/src/main/java/com/smartscity/id/core/MonotonicClock.java
++++ after/module/smartscity-id/src/main/java/com/smartscity/id/core/MonotonicClock.java
+@@ -91,7 +91,9 @@
+             wall < lower
+                 ? Math.subtractExact(wall, lower)
+                 : wall > upper ? Math.subtractExact(wall, upper) : 0;
+-        deviationMillis = deviation;
++        if (deviationMillis != deviation) {
++          deviationMillis = deviation;
++        }
+         if (deviation > toleranceMillis || deviation < -toleranceMillis) {
+           throw invalidClock("Wall/monotonic clock deviation exceeds tolerance");
+         }
+--- before/module/smartscity-id/src/main/java/com/smartscity/id/core/RingBuffer.java
++++ after/module/smartscity-id/src/main/java/com/smartscity/id/core/RingBuffer.java
+@@ -63,19 +63,25 @@
+   }
+ 
+   /**
+-   * Attempts one bounded consumer claim; failed CAS never grants ownership.
++   * Attempts up to eight consumer claims; failed CAS never grants ownership.
+    *
+    * @return a positive ID, or zero when no claim was obtained
+    */
+   public long poll() {
+-    long c = head.get();
+-    int index = (int) c & mask;
+-    if ((long) SEQUENCE.getAcquire(sequence, index) != c + 1 || !head.compareAndSet(c, c + 1)) {
+-      return 0;
++    for (int attempt = 0; attempt < 8; attempt++) {
++      long c = head.get();
++      int index = (int) c & mask;
++      if ((long) SEQUENCE.getAcquire(sequence, index) != c + 1) {
++        return 0;
++      }
++      if (head.compareAndSet(c, c + 1)) {
++        long id = ids[index];
++        SEQUENCE.setRelease(sequence, index, c + ids.length);
++        return id;
++      }
++      Thread.onSpinWait();
+     }
+-    long id = ids[index];
+-    SEQUENCE.setRelease(sequence, index, c + ids.length);
+-    return id;
++    return 0;
+   }
+ 
+   /**
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java
+@@ -93,15 +93,17 @@
+   void concurrentCloseRejectsAnEmptyCacheWaiterAndReleasesLeaseOnce() throws Exception {
+     CoreTest.Lease lease = new CoreTest.Lease();
+     ExecutorService pool = Executors.newFixedThreadPool(5);
+-    try (CachedUniqueIdGenerator g =
+-        new CachedUniqueIdGenerator(
+-            GeneratorOptions.builder()
+-                .bits(new BitsAllocator(20, 4, 1))
+-                .capacity(2)
+-                .waitTimeout(java.time.Duration.ofSeconds(1))
+-                .build(),
+-            lease,
+-            new CoreTest.Clock())) {
++    try (PausedProducerTime time = new PausedProducerTime(new CoreTest.Clock());
++        CachedUniqueIdGenerator g =
++            new CachedUniqueIdGenerator(
++                GeneratorOptions.builder()
++                    .bits(new BitsAllocator(20, 4, 1))
++                    .capacity(2)
++                    .waitTimeout(java.time.Duration.ofSeconds(1))
++                    .build(),
++                lease,
++                time)) {
++      time.awaitPaused();
+       g.getUniqueId();
+       g.getUniqueId();
+       Future<IdException> waiting =
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockRollbackConcurrencyTest.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockRollbackConcurrencyTest.java
+@@ -190,8 +190,17 @@
+     ControlledTime time = new ControlledTime();
+     CoreTest.Lease lease = new CoreTest.Lease();
+     ExecutorService callers = Executors.newFixedThreadPool(4);
+-    try (CachedUniqueIdGenerator generator =
+-        new CachedUniqueIdGenerator(options(new BitsAllocator(20, 4, 1)), lease, time)) {
++    try (PausedProducerTime paused = new PausedProducerTime(time);
++        CachedUniqueIdGenerator generator =
++            new CachedUniqueIdGenerator(
++                GeneratorOptions.builder()
++                    .bits(new BitsAllocator(20, 4, 1))
++                    .capacity(2)
++                    .waitTimeout(Duration.ofSeconds(1))
++                    .build(),
++                lease,
++                paused)) {
++      paused.awaitPaused();
+       generator.getUniqueId();
+       generator.getUniqueId();
+       List<Future<?>> waiting = new ArrayList<>();
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockRollbackTest.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockRollbackTest.java
+@@ -164,18 +164,20 @@
+   }
+ 
+   @Test
+-  void wallRollbackCannotReplenishAnExhaustedSecondOrExtendTheWait() {
++  void wallRollbackCannotReplenishAPausedProducerOrExtendTheWait() throws Exception {
+     ControlledTime time = new ControlledTime();
+     Set<Long> ids = new HashSet<>();
+-    try (CachedUniqueIdGenerator generator =
+-        new CachedUniqueIdGenerator(
+-            GeneratorOptions.builder()
+-                .bits(new BitsAllocator(20, 4, 2))
+-                .capacity(4)
+-                .waitTimeout(Duration.ofMillis(10))
+-                .build(),
+-            new CoreTest.Lease(),
+-            time)) {
++    try (PausedProducerTime paused = new PausedProducerTime(time);
++        CachedUniqueIdGenerator generator =
++            new CachedUniqueIdGenerator(
++                GeneratorOptions.builder()
++                    .bits(new BitsAllocator(20, 4, 2))
++                    .capacity(4)
++                    .waitTimeout(Duration.ofMillis(10))
++                    .build(),
++                new CoreTest.Lease(),
++                paused)) {
++      paused.awaitPaused();
+       for (int i = 0; i < 4; i++) {
+         assertTrue(ids.add(generator.getUniqueId()));
+       }
+@@ -189,6 +191,7 @@
+                     assertThrows(IdException.class, generator::getUniqueId).getReason()));
+       }
+       time.set(BASE + 1000, 1_000_000_000);
++      paused.close();
+       assertTrue(ids.add(generator.getUniqueId()));
+     }
+   }
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/CoreTest.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/CoreTest.java
+@@ -207,24 +207,87 @@
+ 
+   @Test
+   @Timeout(5)
+-  void cacheTimeoutThenNextSecondRecoversWithoutReusingIds() throws Exception {
++  void cacheBorrowsFutureSecondsWithoutReusingIdsAtAFrozenWallClock() throws Exception {
+     Clock clock = new Clock();
+     Lease lease = new Lease();
+-    GeneratorOptions o =
+-        GeneratorOptions.builder().bits(new BitsAllocator(20, 4, 2)).capacity(4).build();
+-    try (CachedUniqueIdGenerator generator = new CachedUniqueIdGenerator(o, lease, clock)) {
++    GeneratorOptions options =
++        GeneratorOptions.builder()
++            .bits(new BitsAllocator(20, 4, 2))
++            .capacity(4)
++            .waitTimeout(Duration.ofSeconds(1))
++            .build();
++    try (CachedUniqueIdGenerator generator = new CachedUniqueIdGenerator(options, lease, clock)) {
+       Set<Long> ids = new HashSet<>();
+-      for (int i = 0; i < 4; i++) {
+-        assertTrue(ids.add(generator.getUniqueId()));
+-      }
++      long previous = 0;
++      for (int i = 0; i < 1024; i++) {
++        long id = generator.getUniqueId();
++        assertTrue(ids.add(id));
++        assertTrue(id > previous);
++        previous = id;
++      }
++      assertTrue(
++          generator.parse(previous).getTimestamp().getEpochSecond()
++              > BitsAllocator.EPOCH.getEpochSecond() + 100);
++      assertTrue(generator.snapshot().isReady());
++      assertEquals(1024, generator.snapshot().getGenerated());
++    }
++    assertEquals(1, lease.closes.get());
++  }
++
++  @Test
++  void bufferedCursorAdvancesLogicalTimeSkipsReservedZeroAndNeverWraps() {
++    BitsAllocator bits = new BitsAllocator(3, 1, 2);
++    DefaultUniqueIdGenerator source = new DefaultUniqueIdGenerator(bits, 0);
++    Set<Long> ids = new HashSet<>();
++    for (long expected = 1; expected <= 3; expected++) {
++      assertEquals(expected, source.nextBuffered(0));
++      ids.add(expected);
++    }
++    long future = source.nextBuffered(0);
++    assertEquals(bits.allocate(1, 0, 0), future);
++    assertTrue(ids.add(future));
++    assertEquals(bits.allocate(5, 0, 0), source.nextBuffered(5));
++    assertEquals(bits.allocate(5, 0, 1), source.nextBuffered(0));
++    for (int sequence = 0; sequence < 4; sequence++) {
++      assertEquals(bits.allocate(7, 0, sequence), source.nextBuffered(7));
++    }
++    assertEquals(
++        IdException.Reason.CAPACITY,
++        assertThrows(IdException.class, () -> source.nextBuffered(0)).getReason());
++    assertEquals(
++        IdException.Reason.CAPACITY,
++        assertThrows(IdException.class, () -> source.nextBuffered(8)).getReason());
++  }
++
++  @Test
++  void cachedLogicalExhaustionIsTerminalAndNeverWrapsTimestamp() {
++    BitsAllocator bits = new BitsAllocator(7, 4, 1);
++    Set<Long> ids = new HashSet<>();
++    try (CachedUniqueIdGenerator generator =
++        new CachedUniqueIdGenerator(
++            GeneratorOptions.builder().bits(bits).capacity(4).build(), new Lease(), new Clock())) {
++      boolean exhausted = false;
++      for (int i = 0; i < 100; i++) {
++        try {
++          long id = generator.getUniqueId();
++          assertTrue(ids.add(id));
++          long second =
++              generator.parse(id).getTimestamp().getEpochSecond()
++                  - BitsAllocator.EPOCH.getEpochSecond();
++          assertTrue(second >= 100 && second <= 127);
++        } catch (IdException e) {
++          assertEquals(IdException.Reason.CAPACITY, e.getReason());
++          exhausted = true;
++          break;
++        }
++      }
++      assertTrue(exhausted);
++      assertTrue(ids.size() <= 56);
+       assertEquals(
+-          IdException.Reason.TIMEOUT,
++          IdException.Reason.CAPACITY,
+           assertThrows(IdException.class, generator::getUniqueId).getReason());
+-      clock.nanos.addAndGet(1_000_000_000L);
+-      assertTrue(ids.add(generator.getUniqueId()));
+-      assertTrue(generator.snapshot().getWaits() > 0);
+-    }
+-    assertEquals(1, lease.closes.get());
++      assertFalse(generator.snapshot().isReady());
++    }
+   }
+ 
+   @Test
+@@ -291,7 +354,11 @@
+     Set<Long> ids = ConcurrentHashMap.newKeySet();
+     try (CachedUniqueIdGenerator g =
+         new CachedUniqueIdGenerator(
+-            GeneratorOptions.builder().capacity(64).waitTimeout(Duration.ofSeconds(1)).build(),
++            GeneratorOptions.builder()
++                .bits(new BitsAllocator(20, 4, 4))
++                .capacity(64)
++                .waitTimeout(Duration.ofSeconds(1))
++                .build(),
+             new Lease(),
+             new Clock())) {
+       List<Future<?>> jobs = new ArrayList<>();
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/PausedProducerTime.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/PausedProducerTime.java
+@@ -0,0 +1,52 @@
++package com.smartscity.id.core;
++
++import com.smartscity.id.spi.TimeSource;
++import java.util.concurrent.CountDownLatch;
++import java.util.concurrent.TimeUnit;
++
++/**
++ * Holds only the background producer so cache-empty failure tests do not depend on sequence limits.
++ *
++ * @author jack
++ */
++final class PausedProducerTime implements TimeSource, AutoCloseable {
++  private final TimeSource delegate;
++  private final CountDownLatch entered = new CountDownLatch(1);
++  private final CountDownLatch released = new CountDownLatch(1);
++
++  PausedProducerTime(TimeSource delegate) {
++    this.delegate = delegate;
++  }
++
++  void awaitPaused() throws InterruptedException {
++    if (!entered.await(2, TimeUnit.SECONDS)) {
++      throw new AssertionError("Producer did not reach its clock check");
++    }
++  }
++
++  @Override
++  public long nanoTime() {
++    if (Thread.currentThread().getName().startsWith("smartscity-id-fill-")) {
++      entered.countDown();
++      try {
++        if (!released.await(5, TimeUnit.SECONDS)) {
++          throw new AssertionError("Producer release timed out");
++        }
++      } catch (InterruptedException e) {
++        Thread.currentThread().interrupt();
++        throw new AssertionError(e);
++      }
++    }
++    return delegate.nanoTime();
++  }
++
++  @Override
++  public long wallTimeMillis() {
++    return delegate.wallTimeMillis();
++  }
++
++  @Override
++  public void close() {
++    released.countDown();
++  }
++}

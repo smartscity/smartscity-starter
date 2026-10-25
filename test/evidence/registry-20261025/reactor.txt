@@ -1,0 +1,1125 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Parent                                                  [pom]
+[INFO] smartscity-dependencies                                            [pom]
+[INFO] smartscity-id                                                      [jar]
+[INFO] smartscity-id-spring-boot                                          [jar]
+[INFO] smartscity-id-spring-boot4                                         [jar]
+[INFO] smartscity-starter-id                                              [jar]
+[INFO] smartscity-starter-id-boot4                                        [jar]
+[INFO] smartscity-id-compatibility-tests                                  [jar]
+[INFO] smartscity-id-benchmark                                            [jar]
+[INFO] smartscity-id-example                                              [jar]
+[INFO] smartscity-id-example-boot4                                        [jar]
+[INFO] smartscity-starter                                                 [pom]
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-parent >------------------
+[INFO] Building Smartscity Parent 0.1.0-SNAPSHOT                         [1/12]
+[INFO]   from build/smartscity-parent/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-parent ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-parent/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-parent ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-parent ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-parent/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-parent/0.1.0-SNAPSHOT/smartscity-parent-0.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] ---------------< com.smartscity:smartscity-dependencies >---------------
+[INFO] Building smartscity-dependencies 0.1.0-SNAPSHOT                   [2/12]
+[INFO]   from build/smartscity-dependencies/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-dependencies ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-dependencies ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-dependencies/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-dependencies/0.1.0-SNAPSHOT/smartscity-dependencies-0.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] --------------------< com.smartscity:smartscity-id >--------------------
+[INFO] Building smartscity-id 0.1.0-SNAPSHOT                             [3/12]
+[INFO]   from module/smartscity-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 22 files clean - 0 needs changes to be clean, 22 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 14 source files with javac [debug parameters release 9] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java: Some input files use or override a deprecated API.
+[INFO] /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.core.ClockAndLifecycleTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.089 s -- in com.smartscity.id.core.ClockAndLifecycleTest
+[INFO] Running com.smartscity.id.core.IdLayoutTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 s -- in com.smartscity.id.core.IdLayoutTest
+[INFO] Running com.smartscity.id.core.ClockRollbackConcurrencyTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.100 s -- in com.smartscity.id.core.ClockRollbackConcurrencyTest
+[INFO] Running com.smartscity.id.core.CoreTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.056 s -- in com.smartscity.id.core.CoreTest
+[INFO] Running com.smartscity.id.core.RestartConcurrencyTest
+[WARNING] Tests run: 3, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0 s -- in com.smartscity.id.core.RestartConcurrencyTest
+[INFO] Running com.smartscity.id.core.ClockRollbackTest
+[INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.059 s -- in com.smartscity.id.core.ClockRollbackTest
+[INFO] Running com.smartscity.id.api.IdExceptionTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.smartscity.id.api.IdExceptionTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[WARNING] Tests run: 42, Failures: 0, Errors: 0, Skipped: 3
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target/smartscity-id-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id/0.1.0-SNAPSHOT/smartscity-id-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target/smartscity-id-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id/0.1.0-SNAPSHOT/smartscity-id-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< com.smartscity:smartscity-id-spring-boot >--------------
+[INFO] Building smartscity-id-spring-boot 0.1.0-SNAPSHOT                 [4/12]
+[INFO]   from module/smartscity-id-spring-boot/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-spring-boot ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-spring-boot ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 24 files clean - 0 needs changes to be clean, 24 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spring-boot ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (shared-adapter-source) @ smartscity-id-spring-boot ---
+[INFO] Source directory: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/src/shared/java added.
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spring-boot ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spring-boot ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 9] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spring-boot ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spring-boot ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spring-boot ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.autoconfigure.MySqlIntegrationTest
+[WARNING] Tests run: 6, Failures: 0, Errors: 0, Skipped: 6, Time elapsed: 0.010 s -- in com.smartscity.id.autoconfigure.MySqlIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.ZookeeperIntegrationTest
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+SLF4J: Failed to load class "org.slf4j.impl.StaticMDCBinder".
+SLF4J: Defaulting to no-operation MDCAdapter implementation.
+SLF4J: See http://www.slf4j.org/codes.html#no_static_mdc_binder for further details.
+[WARNING] Tests run: 8, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 8.401 s -- in com.smartscity.id.autoconfigure.ZookeeperIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest
+[WARNING] Tests run: 3, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest
+[INFO] Running com.smartscity.id.autoconfigure.RestartStabilityTest
+[WARNING] Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.RestartStabilityTest
+[INFO] Running com.smartscity.id.autoconfigure.MySqlOutageTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.001 s -- in com.smartscity.id.autoconfigure.MySqlOutageTest
+[INFO] Running com.smartscity.id.autoconfigure.LifecycleReviewTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.382 s -- in com.smartscity.id.autoconfigure.LifecycleReviewTest
+[INFO] Running com.smartscity.id.autoconfigure.ClockValidationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in com.smartscity.id.autoconfigure.ClockValidationTest
+[INFO] Running com.smartscity.id.autoconfigure.JdbcIntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 s -- in com.smartscity.id.autoconfigure.JdbcIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.AutoConfigurationTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.566 s -- in com.smartscity.id.autoconfigure.AutoConfigurationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[WARNING] Tests run: 44, Failures: 0, Errors: 0, Skipped: 14
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id-spring-boot ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/target/smartscity-id-spring-boot-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id-spring-boot ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-spring-boot/0.1.0-SNAPSHOT/smartscity-id-spring-boot-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/target/smartscity-id-spring-boot-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-spring-boot/0.1.0-SNAPSHOT/smartscity-id-spring-boot-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.smartscity:smartscity-id-spring-boot4 >--------------
+[INFO] Building smartscity-id-spring-boot4 0.1.0-SNAPSHOT                [5/12]
+[INFO]   from module/smartscity-id-spring-boot4/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-spring-boot4 ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-spring-boot4 ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spring-boot4 ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (shared-adapter-source) @ smartscity-id-spring-boot4 ---
+[INFO] Source directory: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/../smartscity-id-spring-boot/src/shared/java added.
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spring-boot4 ---
+[INFO] Copying 5 resources from ../smartscity-id-spring-boot/src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spring-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spring-boot4 ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spring-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spring-boot4 ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.autoconfigure.MySqlIntegrationTest
+[WARNING] Tests run: 6, Failures: 0, Errors: 0, Skipped: 6, Time elapsed: 0.005 s -- in com.smartscity.id.autoconfigure.MySqlIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.ZookeeperIntegrationTest
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[WARNING] Tests run: 8, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 7.394 s -- in com.smartscity.id.autoconfigure.ZookeeperIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest
+[WARNING] Tests run: 3, Failures: 0, Errors: 0, Skipped: 3, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.ZookeeperRestartStabilityTest
+[INFO] Running com.smartscity.id.autoconfigure.RestartStabilityTest
+[WARNING] Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.RestartStabilityTest
+[INFO] Running com.smartscity.id.autoconfigure.MySqlOutageTest
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 s -- in com.smartscity.id.autoconfigure.MySqlOutageTest
+[INFO] Running com.smartscity.id.autoconfigure.LifecycleReviewTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.376 s -- in com.smartscity.id.autoconfigure.LifecycleReviewTest
+[INFO] Running com.smartscity.id.autoconfigure.ClockValidationTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 s -- in com.smartscity.id.autoconfigure.ClockValidationTest
+[INFO] Running com.smartscity.id.autoconfigure.JdbcIntegrationTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.109 s -- in com.smartscity.id.autoconfigure.JdbcIntegrationTest
+[INFO] Running com.smartscity.id.autoconfigure.AutoConfigurationTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.755 s -- in com.smartscity.id.autoconfigure.AutoConfigurationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[WARNING] Tests run: 44, Failures: 0, Errors: 0, Skipped: 14
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id-spring-boot4 ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/target/smartscity-id-spring-boot4-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id-spring-boot4 ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-spring-boot4/0.1.0-SNAPSHOT/smartscity-id-spring-boot4-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/target/smartscity-id-spring-boot4-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-spring-boot4/0.1.0-SNAPSHOT/smartscity-id-spring-boot4-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------------< com.smartscity:smartscity-starter-id >----------------
+[INFO] Building smartscity-starter-id 0.1.0-SNAPSHOT                     [6/12]
+[INFO]   from starter/smartscity-starter-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-starter-id ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter-id ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter-id ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-starter-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-starter-id ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-starter-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-starter-id ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-starter-id ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-starter-id ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id/target/smartscity-starter-id-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-starter-id ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-starter-id/0.1.0-SNAPSHOT/smartscity-starter-id-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id/target/smartscity-starter-id-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-starter-id/0.1.0-SNAPSHOT/smartscity-starter-id-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.smartscity:smartscity-starter-id-boot4 >-------------
+[INFO] Building smartscity-starter-id-boot4 0.1.0-SNAPSHOT               [7/12]
+[INFO]   from starter/smartscity-starter-id-boot4/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-starter-id-boot4 ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id-boot4/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter-id-boot4 ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter-id-boot4 ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-starter-id-boot4 ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id-boot4/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-starter-id-boot4 ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-starter-id-boot4 ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id-boot4/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-starter-id-boot4 ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-starter-id-boot4 ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-starter-id-boot4 ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id-boot4/target/smartscity-starter-id-boot4-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-starter-id-boot4 ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id-boot4/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-starter-id-boot4/0.1.0-SNAPSHOT/smartscity-starter-id-boot4-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/starter/smartscity-starter-id-boot4/target/smartscity-starter-id-boot4-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-starter-id-boot4/0.1.0-SNAPSHOT/smartscity-starter-id-boot4-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------< com.smartscity:smartscity-id-compatibility-tests >----------
+[INFO] Building smartscity-id-compatibility-tests 0.1.0-SNAPSHOT         [8/12]
+[INFO]   from test/smartscity-id-compatibility-tests/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-compatibility-tests ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-compatibility-tests ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-compatibility-tests ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-compatibility-tests ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-compatibility-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-compatibility-tests ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-compatibility-tests ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-compatibility-tests ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.compatibility.StarterDiscoveryTest
+16:44:58.080 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@5ddf0d24
+16:44:58.091 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+16:44:58.526 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertySourcesPlaceholderConfigurer'
+16:44:58.530 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor'
+16:44:58.536 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+16:44:58.537 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'forceAutoProxyCreatorToUseClassProxying'
+16:44:58.537 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+16:44:58.541 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+16:44:58.541 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+16:44:58.545 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor'
+16:44:58.545 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinder'
+16:44:58.546 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinderFactory'
+16:44:58.547 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+16:44:58.589 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroupsBeanPostProcessor'
+16:44:58.597 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'meterRegistryPostProcessor'
+16:44:58.598 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'meterRegistryPostProcessor' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@5ddf0d24'
+16:44:58.605 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'starterDiscoveryTest.Application'
+16:44:58.606 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'customGenerator'
+16:44:58.619 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.AutoConfigurationPackages'
+16:44:58.619 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration'
+16:44:58.621 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdAutoConfiguration'
+16:44:58.623 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.BoundConfigurationProperties'
+16:44:58.623 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter'
+16:44:58.624 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:58.647 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdHealthAutoConfiguration'
+16:44:58.649 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscityIdHealthIndicator'
+16:44:58.650 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdHealthIndicator' via factory method to bean named 'customGenerator'
+16:44:58.651 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdMetricsAutoConfiguration'
+16:44:58.651 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscityIdMetrics'
+16:44:58.652 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdMetrics' via factory method to bean named 'customGenerator'
+16:44:58.652 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdMetrics' via factory method to bean named 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:58.654 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration'
+16:44:58.655 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationAvailability'
+16:44:58.657 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.availability.AvailabilityHealthContributorAutoConfiguration'
+16:44:58.659 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration'
+16:44:58.660 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonComponentModule'
+16:44:58.675 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonMixinModule'
+16:44:58.676 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'jsonMixinModule' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@5ddf0d24'
+16:44:58.676 [main] DEBUG org.springframework.boot.autoconfigure.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'com.smartscity.id.compatibility'. Automatic @Repository and @Entity scanning is enabled.
+16:44:58.683 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration'
+16:44:58.683 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointOperationParameterMapper'
+16:44:58.689 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointCachingOperationInvokerAdvisor'
+16:44:58.689 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'endpointCachingOperationInvokerAdvisor' via factory method to bean named 'environment'
+16:44:58.691 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthContributorAutoConfiguration'
+16:44:58.691 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceHealthIndicator'
+16:44:58.691 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:58.692 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceHealthIndicator' via factory method to bean named 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:58.693 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration'
+16:44:58.694 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'pingHealthContributor'
+16:44:58.694 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration'
+16:44:58.695 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthStatusAggregator'
+16:44:58.695 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:58.699 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthStatusAggregator' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:58.700 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthHttpCodeStatusMapper'
+16:44:58.700 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthHttpCodeStatusMapper' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:58.701 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroups'
+16:44:58.702 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@5ddf0d24'
+16:44:58.702 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:58.706 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthContributorRegistry'
+16:44:58.710 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@5ddf0d24'
+16:44:58.710 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'healthEndpointGroups'
+16:44:58.710 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'smartscityIdHealthIndicator'
+16:44:58.710 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'diskSpaceHealthIndicator'
+16:44:58.710 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'pingHealthContributor'
+16:44:58.716 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpoint'
+16:44:58.716 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthContributorRegistry'
+16:44:58.716 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthEndpointGroups'
+16:44:58.716 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:58.721 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration'
+16:44:58.721 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration'
+16:44:58.724 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:58.725 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration' via constructor to bean named 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:58.726 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration'
+16:44:58.728 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.info-org.springframework.boot.actuate.autoconfigure.info.InfoContributorProperties'
+16:44:58.730 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration'
+16:44:58.730 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'micrometerClock'
+16:44:58.731 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertiesMeterFilter'
+16:44:58.731 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:58.737 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'propertiesMeterFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:58.742 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration'
+16:44:58.742 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleMeterRegistry'
+16:44:58.742 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleConfig'
+16:44:58.743 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:58.744 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleConfig' via factory method to bean named 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:58.747 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'simpleConfig'
+16:44:58.747 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'micrometerClock'
+16:44:58.762 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'metricsHttpClientUriTagFilter'
+16:44:58.763 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.web.client.HttpClientMetricsAutoConfiguration'
+16:44:58.763 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'metricsHttpClientUriTagFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:58.766 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmGcMetrics'
+16:44:58.766 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.JvmMetricsAutoConfiguration'
+16:44:58.769 [main] DEBUG io.micrometer.core.util.internal.logging.InternalLoggerFactory - Using SLF4J as the default logging framework
+16:44:58.779 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmHeapPressureMetrics'
+16:44:58.784 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmMemoryMetrics'
+16:44:58.785 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmThreadMetrics'
+16:44:58.786 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'classLoaderMetrics'
+16:44:58.786 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'logbackMetrics'
+16:44:58.787 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.LogbackMetricsAutoConfiguration'
+16:44:58.788 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'uptimeMetrics'
+16:44:58.788 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration'
+16:44:58.789 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'processorMetrics'
+16:44:58.791 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'fileDescriptorMetrics'
+16:44:58.792 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceMetrics'
+16:44:58.793 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceMetrics' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:58.822 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration'
+16:44:58.823 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.integration.IntegrationMetricsAutoConfiguration'
+16:44:58.823 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.startup.StartupTimeMetricsListenerAutoConfiguration'
+16:44:58.823 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'startupTimeMetrics'
+16:44:58.823 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'startupTimeMetrics' via factory method to bean named 'simpleMeterRegistry'
+16:44:58.825 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration'
+16:44:58.826 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskExecutorBuilder'
+16:44:58.826 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:58.827 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskExecutorBuilder' via factory method to bean named 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:58.829 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration'
+16:44:58.829 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskSchedulerBuilder'
+16:44:58.830 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:58.831 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskSchedulerBuilder' via factory method to bean named 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:58.831 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.task.TaskExecutorMetricsAutoConfiguration'
+16:44:58.835 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationTaskExecutor'
+16:44:58.835 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'applicationTaskExecutor' via factory method to bean named 'taskExecutorBuilder'
+16:44:58.841 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:44:58.844 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eagerTaskExecutorMetrics'
+16:44:58.844 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration'
+16:44:58.845 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration'
+16:44:58.845 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration'
+16:44:58.845 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration'
+16:44:58.845 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'lifecycleProcessor'
+16:44:58.846 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:58.847 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'lifecycleProcessor' via factory method to bean named 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:58.848 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration'
+16:44:58.848 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.sql.init-org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties'
+16:44:58.850 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration'
+16:44:58.850 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties'
+16:44:58.851 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.server-org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties'
+16:44:58.918 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@5ddf0d24, started on Sun Oct 25 16:44:58 SGT 2026
+16:44:58.919 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+16:44:58.930 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@53ed09e8
+16:44:58.930 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+16:44:59.000 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertySourcesPlaceholderConfigurer'
+16:44:59.000 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor'
+16:44:59.001 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+16:44:59.001 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'forceAutoProxyCreatorToUseClassProxying'
+16:44:59.001 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+16:44:59.001 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+16:44:59.001 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+16:44:59.002 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor'
+16:44:59.002 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinder'
+16:44:59.002 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinderFactory'
+16:44:59.002 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+16:44:59.010 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroupsBeanPostProcessor'
+16:44:59.011 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'meterRegistryPostProcessor'
+16:44:59.011 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'meterRegistryPostProcessor' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@53ed09e8'
+16:44:59.012 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'starterDiscoveryTest.Application'
+16:44:59.012 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'customGenerator'
+16:44:59.012 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.AutoConfigurationPackages'
+16:44:59.012 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration'
+16:44:59.013 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdAutoConfiguration'
+16:44:59.013 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.BoundConfigurationProperties'
+16:44:59.013 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter'
+16:44:59.013 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:59.016 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdHealthAutoConfiguration'
+16:44:59.017 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscityIdHealthIndicator'
+16:44:59.017 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdHealthIndicator' via factory method to bean named 'customGenerator'
+16:44:59.017 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdMetricsAutoConfiguration'
+16:44:59.017 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscityIdMetrics'
+16:44:59.018 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdMetrics' via factory method to bean named 'customGenerator'
+16:44:59.018 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdMetrics' via factory method to bean named 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:59.018 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration'
+16:44:59.018 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationAvailability'
+16:44:59.018 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.availability.AvailabilityHealthContributorAutoConfiguration'
+16:44:59.018 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration'
+16:44:59.019 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonComponentModule'
+16:44:59.020 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonMixinModule'
+16:44:59.020 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'jsonMixinModule' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@53ed09e8'
+16:44:59.021 [main] DEBUG org.springframework.boot.autoconfigure.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'com.smartscity.id.compatibility'. Automatic @Repository and @Entity scanning is enabled.
+16:44:59.023 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration'
+16:44:59.024 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointOperationParameterMapper'
+16:44:59.024 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointCachingOperationInvokerAdvisor'
+16:44:59.025 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'endpointCachingOperationInvokerAdvisor' via factory method to bean named 'environment'
+16:44:59.025 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthContributorAutoConfiguration'
+16:44:59.025 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceHealthIndicator'
+16:44:59.025 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:59.026 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceHealthIndicator' via factory method to bean named 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:59.026 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration'
+16:44:59.026 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'pingHealthContributor'
+16:44:59.026 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration'
+16:44:59.027 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthStatusAggregator'
+16:44:59.027 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.028 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthStatusAggregator' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.028 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthHttpCodeStatusMapper'
+16:44:59.028 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthHttpCodeStatusMapper' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.029 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroups'
+16:44:59.029 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@53ed09e8'
+16:44:59.029 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.029 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthContributorRegistry'
+16:44:59.030 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@53ed09e8'
+16:44:59.030 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'healthEndpointGroups'
+16:44:59.030 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'smartscityIdHealthIndicator'
+16:44:59.030 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'diskSpaceHealthIndicator'
+16:44:59.030 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'pingHealthContributor'
+16:44:59.031 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpoint'
+16:44:59.031 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthContributorRegistry'
+16:44:59.031 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthEndpointGroups'
+16:44:59.031 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.031 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration'
+16:44:59.032 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration'
+16:44:59.032 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:59.033 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration' via constructor to bean named 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:59.033 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration'
+16:44:59.033 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.info-org.springframework.boot.actuate.autoconfigure.info.InfoContributorProperties'
+16:44:59.033 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration'
+16:44:59.034 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'micrometerClock'
+16:44:59.034 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertiesMeterFilter'
+16:44:59.034 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.035 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'propertiesMeterFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.035 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration'
+16:44:59.035 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleMeterRegistry'
+16:44:59.036 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleConfig'
+16:44:59.036 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:59.036 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleConfig' via factory method to bean named 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:59.036 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'simpleConfig'
+16:44:59.036 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'micrometerClock'
+16:44:59.037 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'metricsHttpClientUriTagFilter'
+16:44:59.037 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.web.client.HttpClientMetricsAutoConfiguration'
+16:44:59.037 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'metricsHttpClientUriTagFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.038 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmGcMetrics'
+16:44:59.038 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.JvmMetricsAutoConfiguration'
+16:44:59.038 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmHeapPressureMetrics'
+16:44:59.039 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmMemoryMetrics'
+16:44:59.039 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmThreadMetrics'
+16:44:59.039 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'classLoaderMetrics'
+16:44:59.039 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'logbackMetrics'
+16:44:59.040 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.LogbackMetricsAutoConfiguration'
+16:44:59.040 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'uptimeMetrics'
+16:44:59.040 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration'
+16:44:59.040 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'processorMetrics'
+16:44:59.040 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'fileDescriptorMetrics'
+16:44:59.041 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceMetrics'
+16:44:59.041 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceMetrics' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.042 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration'
+16:44:59.042 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.integration.IntegrationMetricsAutoConfiguration'
+16:44:59.042 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.startup.StartupTimeMetricsListenerAutoConfiguration'
+16:44:59.043 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'startupTimeMetrics'
+16:44:59.043 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'startupTimeMetrics' via factory method to bean named 'simpleMeterRegistry'
+16:44:59.043 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration'
+16:44:59.043 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskExecutorBuilder'
+16:44:59.043 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:59.044 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskExecutorBuilder' via factory method to bean named 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:59.044 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration'
+16:44:59.044 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskSchedulerBuilder'
+16:44:59.045 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:59.045 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskSchedulerBuilder' via factory method to bean named 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:59.045 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.task.TaskExecutorMetricsAutoConfiguration'
+16:44:59.046 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationTaskExecutor'
+16:44:59.046 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'applicationTaskExecutor' via factory method to bean named 'taskExecutorBuilder'
+16:44:59.047 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:44:59.047 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eagerTaskExecutorMetrics'
+16:44:59.047 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration'
+16:44:59.047 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration'
+16:44:59.048 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration'
+16:44:59.048 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration'
+16:44:59.048 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'lifecycleProcessor'
+16:44:59.048 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:59.049 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'lifecycleProcessor' via factory method to bean named 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:59.049 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration'
+16:44:59.049 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.sql.init-org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties'
+16:44:59.050 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration'
+16:44:59.050 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties'
+16:44:59.056 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.server-org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties'
+16:44:59.061 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@53ed09e8, started on Sun Oct 25 16:44:58 SGT 2026
+16:44:59.062 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+16:44:59.065 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@1f0b3cfe
+16:44:59.065 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+16:44:59.079 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Found key 'smartscity.id.enabled' in PropertySource 'configurationProperties' with value of type String
+16:44:59.080 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Found key 'smartscity.id.enabled' in PropertySource 'configurationProperties' with value of type String
+16:44:59.080 [main] DEBUG org.springframework.core.env.PropertySourcesPropertyResolver - Found key 'smartscity.id.enabled' in PropertySource 'configurationProperties' with value of type String
+16:44:59.123 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertySourcesPlaceholderConfigurer'
+16:44:59.123 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor'
+16:44:59.124 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+16:44:59.124 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'forceAutoProxyCreatorToUseClassProxying'
+16:44:59.124 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+16:44:59.124 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+16:44:59.125 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+16:44:59.125 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor'
+16:44:59.125 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinder'
+16:44:59.125 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinderFactory'
+16:44:59.125 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+16:44:59.133 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroupsBeanPostProcessor'
+16:44:59.133 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'meterRegistryPostProcessor'
+16:44:59.133 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'meterRegistryPostProcessor' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@1f0b3cfe'
+16:44:59.134 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'starterDiscoveryTest.Application'
+16:44:59.134 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'customGenerator'
+16:44:59.134 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.AutoConfigurationPackages'
+16:44:59.135 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration'
+16:44:59.135 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration'
+16:44:59.135 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationAvailability'
+16:44:59.135 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.availability.AvailabilityHealthContributorAutoConfiguration'
+16:44:59.136 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration'
+16:44:59.136 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonComponentModule'
+16:44:59.137 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonMixinModule'
+16:44:59.137 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'jsonMixinModule' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@1f0b3cfe'
+16:44:59.137 [main] DEBUG org.springframework.boot.autoconfigure.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'com.smartscity.id.compatibility'. Automatic @Repository and @Entity scanning is enabled.
+16:44:59.140 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration'
+16:44:59.140 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointOperationParameterMapper'
+16:44:59.141 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointCachingOperationInvokerAdvisor'
+16:44:59.141 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'endpointCachingOperationInvokerAdvisor' via factory method to bean named 'environment'
+16:44:59.142 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthContributorAutoConfiguration'
+16:44:59.142 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceHealthIndicator'
+16:44:59.142 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:59.142 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.BoundConfigurationProperties'
+16:44:59.143 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceHealthIndicator' via factory method to bean named 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:59.144 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter'
+16:44:59.144 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration'
+16:44:59.144 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'pingHealthContributor'
+16:44:59.144 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration'
+16:44:59.144 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthStatusAggregator'
+16:44:59.144 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthStatusAggregator' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthHttpCodeStatusMapper'
+16:44:59.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthHttpCodeStatusMapper' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroups'
+16:44:59.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@1f0b3cfe'
+16:44:59.146 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.147 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthContributorRegistry'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@1f0b3cfe'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'healthEndpointGroups'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'diskSpaceHealthIndicator'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'pingHealthContributor'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpoint'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthContributorRegistry'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthEndpointGroups'
+16:44:59.148 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.149 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration'
+16:44:59.149 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration'
+16:44:59.149 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:59.150 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration' via constructor to bean named 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:59.150 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration'
+16:44:59.150 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.info-org.springframework.boot.actuate.autoconfigure.info.InfoContributorProperties'
+16:44:59.151 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration'
+16:44:59.151 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'micrometerClock'
+16:44:59.152 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertiesMeterFilter'
+16:44:59.152 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.153 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'propertiesMeterFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.153 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration'
+16:44:59.153 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleMeterRegistry'
+16:44:59.154 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleConfig'
+16:44:59.154 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:59.154 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleConfig' via factory method to bean named 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:59.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'simpleConfig'
+16:44:59.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'micrometerClock'
+16:44:59.155 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'metricsHttpClientUriTagFilter'
+16:44:59.156 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.web.client.HttpClientMetricsAutoConfiguration'
+16:44:59.156 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'metricsHttpClientUriTagFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.156 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmGcMetrics'
+16:44:59.156 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.JvmMetricsAutoConfiguration'
+16:44:59.157 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmHeapPressureMetrics'
+16:44:59.158 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmMemoryMetrics'
+16:44:59.158 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmThreadMetrics'
+16:44:59.158 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'classLoaderMetrics'
+16:44:59.158 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'logbackMetrics'
+16:44:59.158 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.LogbackMetricsAutoConfiguration'
+16:44:59.158 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'uptimeMetrics'
+16:44:59.159 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration'
+16:44:59.159 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'processorMetrics'
+16:44:59.159 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'fileDescriptorMetrics'
+16:44:59.160 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceMetrics'
+16:44:59.160 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceMetrics' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.162 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration'
+16:44:59.162 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.integration.IntegrationMetricsAutoConfiguration'
+16:44:59.162 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.startup.StartupTimeMetricsListenerAutoConfiguration'
+16:44:59.162 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'startupTimeMetrics'
+16:44:59.162 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'startupTimeMetrics' via factory method to bean named 'simpleMeterRegistry'
+16:44:59.163 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration'
+16:44:59.163 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskExecutorBuilder'
+16:44:59.163 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:59.164 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskExecutorBuilder' via factory method to bean named 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:59.165 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration'
+16:44:59.165 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskSchedulerBuilder'
+16:44:59.165 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:59.166 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskSchedulerBuilder' via factory method to bean named 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:59.166 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.task.TaskExecutorMetricsAutoConfiguration'
+16:44:59.167 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationTaskExecutor'
+16:44:59.168 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'applicationTaskExecutor' via factory method to bean named 'taskExecutorBuilder'
+16:44:59.168 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:44:59.168 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eagerTaskExecutorMetrics'
+16:44:59.169 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration'
+16:44:59.169 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration'
+16:44:59.169 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration'
+16:44:59.169 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration'
+16:44:59.169 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'lifecycleProcessor'
+16:44:59.170 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:59.170 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'lifecycleProcessor' via factory method to bean named 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:59.170 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration'
+16:44:59.171 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.sql.init-org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties'
+16:44:59.172 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration'
+16:44:59.172 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties'
+16:44:59.173 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.server-org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties'
+16:44:59.175 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@1f0b3cfe, started on Sun Oct 25 16:44:59 SGT 2026
+16:44:59.175 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+16:44:59.182 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@23f3da8b
+16:44:59.183 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+16:44:59.246 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertySourcesPlaceholderConfigurer'
+16:44:59.246 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.sql.init.dependency.DatabaseInitializationDependencyConfigurer$DependsOnDatabaseInitializationPostProcessor'
+16:44:59.247 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+16:44:59.247 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'forceAutoProxyCreatorToUseClassProxying'
+16:44:59.247 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+16:44:59.247 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+16:44:59.248 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+16:44:59.248 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor'
+16:44:59.248 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinder'
+16:44:59.248 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinderFactory'
+16:44:59.248 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.aop.config.internalAutoProxyCreator'
+16:44:59.256 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroupsBeanPostProcessor'
+16:44:59.256 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'meterRegistryPostProcessor'
+16:44:59.256 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'meterRegistryPostProcessor' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@23f3da8b'
+16:44:59.257 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'starterDiscoveryTest.Application'
+16:44:59.257 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'customGenerator'
+16:44:59.257 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.AutoConfigurationPackages'
+16:44:59.257 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration'
+16:44:59.258 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdAutoConfiguration'
+16:44:59.258 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.BoundConfigurationProperties'
+16:44:59.258 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter'
+16:44:59.258 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:59.261 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdHealthAutoConfiguration'
+16:44:59.262 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscityIdHealthIndicator'
+16:44:59.262 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdHealthIndicator' via factory method to bean named 'customGenerator'
+16:44:59.262 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'com.smartscity.id.autoconfigure.IdMetricsAutoConfiguration'
+16:44:59.262 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscityIdMetrics'
+16:44:59.263 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdMetrics' via factory method to bean named 'customGenerator'
+16:44:59.263 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'smartscityIdMetrics' via factory method to bean named 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:59.263 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration'
+16:44:59.263 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationAvailability'
+16:44:59.263 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.availability.AvailabilityHealthContributorAutoConfiguration'
+16:44:59.263 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration'
+16:44:59.264 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonComponentModule'
+16:44:59.265 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jsonMixinModule'
+16:44:59.265 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'jsonMixinModule' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@23f3da8b'
+16:44:59.265 [main] DEBUG org.springframework.boot.autoconfigure.AutoConfigurationPackages - @EnableAutoConfiguration was declared on a class in the package 'com.smartscity.id.compatibility'. Automatic @Repository and @Entity scanning is enabled.
+16:44:59.267 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.endpoint.EndpointAutoConfiguration'
+16:44:59.268 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointOperationParameterMapper'
+16:44:59.268 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'endpointCachingOperationInvokerAdvisor'
+16:44:59.268 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'endpointCachingOperationInvokerAdvisor' via factory method to bean named 'environment'
+16:44:59.268 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthContributorAutoConfiguration'
+16:44:59.269 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceHealthIndicator'
+16:44:59.269 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:59.269 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceHealthIndicator' via factory method to bean named 'management.health.diskspace-org.springframework.boot.actuate.autoconfigure.system.DiskSpaceHealthIndicatorProperties'
+16:44:59.270 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthContributorAutoConfiguration'
+16:44:59.270 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'pingHealthContributor'
+16:44:59.270 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointConfiguration'
+16:44:59.270 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthStatusAggregator'
+16:44:59.270 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.271 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthStatusAggregator' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.271 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthHttpCodeStatusMapper'
+16:44:59.272 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthHttpCodeStatusMapper' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.272 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpointGroups'
+16:44:59.272 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@23f3da8b'
+16:44:59.272 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpointGroups' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.272 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthContributorRegistry'
+16:44:59.273 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'org.springframework.context.annotation.AnnotationConfigApplicationContext@23f3da8b'
+16:44:59.273 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'healthEndpointGroups'
+16:44:59.273 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'smartscityIdHealthIndicator'
+16:44:59.273 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'diskSpaceHealthIndicator'
+16:44:59.273 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthContributorRegistry' via factory method to bean named 'pingHealthContributor'
+16:44:59.274 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'healthEndpoint'
+16:44:59.274 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthContributorRegistry'
+16:44:59.274 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'healthEndpointGroups'
+16:44:59.274 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'healthEndpoint' via factory method to bean named 'management.endpoint.health-org.springframework.boot.actuate.autoconfigure.health.HealthEndpointProperties'
+16:44:59.274 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.health.HealthEndpointAutoConfiguration'
+16:44:59.275 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration'
+16:44:59.275 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:59.276 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration' via constructor to bean named 'spring.info-org.springframework.boot.autoconfigure.info.ProjectInfoProperties'
+16:44:59.276 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.info.InfoContributorAutoConfiguration'
+16:44:59.276 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.info-org.springframework.boot.actuate.autoconfigure.info.InfoContributorProperties'
+16:44:59.276 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.MetricsAutoConfiguration'
+16:44:59.276 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'micrometerClock'
+16:44:59.277 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'propertiesMeterFilter'
+16:44:59.277 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.278 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'propertiesMeterFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.278 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleMetricsExportAutoConfiguration'
+16:44:59.278 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleMeterRegistry'
+16:44:59.278 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'simpleConfig'
+16:44:59.278 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:59.279 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleConfig' via factory method to bean named 'management.metrics.export.simple-org.springframework.boot.actuate.autoconfigure.metrics.export.simple.SimpleProperties'
+16:44:59.279 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'simpleConfig'
+16:44:59.279 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'simpleMeterRegistry' via factory method to bean named 'micrometerClock'
+16:44:59.280 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'metricsHttpClientUriTagFilter'
+16:44:59.280 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.web.client.HttpClientMetricsAutoConfiguration'
+16:44:59.280 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'metricsHttpClientUriTagFilter' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.280 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmGcMetrics'
+16:44:59.280 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.JvmMetricsAutoConfiguration'
+16:44:59.281 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmHeapPressureMetrics'
+16:44:59.282 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmMemoryMetrics'
+16:44:59.282 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'jvmThreadMetrics'
+16:44:59.282 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'classLoaderMetrics'
+16:44:59.282 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'logbackMetrics'
+16:44:59.282 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.LogbackMetricsAutoConfiguration'
+16:44:59.283 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'uptimeMetrics'
+16:44:59.283 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.SystemMetricsAutoConfiguration'
+16:44:59.283 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'processorMetrics'
+16:44:59.283 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'fileDescriptorMetrics'
+16:44:59.284 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'diskSpaceMetrics'
+16:44:59.284 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'diskSpaceMetrics' via factory method to bean named 'management.metrics-org.springframework.boot.actuate.autoconfigure.metrics.MetricsProperties'
+16:44:59.285 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.CompositeMeterRegistryAutoConfiguration'
+16:44:59.286 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.integration.IntegrationMetricsAutoConfiguration'
+16:44:59.286 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.startup.StartupTimeMetricsListenerAutoConfiguration'
+16:44:59.286 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'startupTimeMetrics'
+16:44:59.286 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'startupTimeMetrics' via factory method to bean named 'simpleMeterRegistry'
+16:44:59.286 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskExecutionAutoConfiguration'
+16:44:59.287 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskExecutorBuilder'
+16:44:59.287 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:59.288 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskExecutorBuilder' via factory method to bean named 'spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionProperties'
+16:44:59.288 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.task.TaskSchedulingAutoConfiguration'
+16:44:59.288 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'taskSchedulerBuilder'
+16:44:59.288 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:59.289 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'taskSchedulerBuilder' via factory method to bean named 'spring.task.scheduling-org.springframework.boot.autoconfigure.task.TaskSchedulingProperties'
+16:44:59.289 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.metrics.task.TaskExecutorMetricsAutoConfiguration'
+16:44:59.290 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'applicationTaskExecutor'
+16:44:59.291 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'applicationTaskExecutor' via factory method to bean named 'taskExecutorBuilder'
+16:44:59.291 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+16:44:59.291 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'eagerTaskExecutorMetrics'
+16:44:59.291 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration'
+16:44:59.292 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.aop.AopAutoConfiguration'
+16:44:59.292 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration'
+16:44:59.292 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration'
+16:44:59.292 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'lifecycleProcessor'
+16:44:59.292 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:59.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Autowiring by type from bean name 'lifecycleProcessor' via factory method to bean named 'spring.lifecycle-org.springframework.boot.autoconfigure.context.LifecycleProperties'
+16:44:59.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.autoconfigure.sql.init.SqlInitializationAutoConfiguration'
+16:44:59.293 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'spring.sql.init-org.springframework.boot.autoconfigure.sql.init.SqlInitializationProperties'
+16:44:59.294 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.actuate.autoconfigure.web.server.ManagementContextAutoConfiguration'
+16:44:59.294 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.endpoints.web-org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties'
+16:44:59.295 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'management.server-org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties'
+16:44:59.297 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@23f3da8b, started on Sun Oct 25 16:44:59 SGT 2026
+16:44:59.297 [main] DEBUG org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+16:44:59.306 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c87fdf2
+16:44:59.306 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalConfigurationAnnotationProcessor'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerProcessor'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.event.internalEventListenerFactory'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalAutowiredAnnotationProcessor'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.context.annotation.internalCommonAnnotationProcessor'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinder'
+16:44:59.308 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.internalConfigurationPropertiesBinderFactory'
+16:44:59.309 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'idAutoConfiguration'
+16:44:59.309 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'idGenerator'
+16:44:59.310 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.BoundConfigurationProperties'
+16:44:59.310 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter'
+16:44:59.310 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'smartscity.id-com.smartscity.id.autoconfigure.IdProperties'
+16:44:59.316 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c87fdf2, started on Sun Oct 25 16:44:59 SGT 2026
+2026-10-25 16:44:59.442  INFO 48729 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Starting ForkedBooter v3.5.4 using Java 21.0.12.1 on 192.168.0.155 with PID 48729 (started by liyunlong in /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests)
+2026-10-25 16:44:59.448  INFO 48729 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : No active profile set, falling back to 1 default profile: "default"
+2026-10-25 16:44:59.587  INFO 48729 --- [           main] o.a.maven.surefire.booter.ForkedBooter   : Started ForkedBooter in 0.258 seconds (JVM running for 2.214)
+[WARNING] Tests run: 8, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 1.714 s -- in com.smartscity.id.compatibility.StarterDiscoveryTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[WARNING] Tests run: 8, Failures: 0, Errors: 0, Skipped: 2
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id-compatibility-tests ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/target/smartscity-id-compatibility-tests-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id-compatibility-tests ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-compatibility-tests/0.1.0-SNAPSHOT/smartscity-id-compatibility-tests-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/target/smartscity-id-compatibility-tests-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-compatibility-tests/0.1.0-SNAPSHOT/smartscity-id-compatibility-tests-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ---------------< com.smartscity:smartscity-id-benchmark >---------------
+[INFO] Building smartscity-id-benchmark 0.1.0-SNAPSHOT                   [9/12]
+[INFO]   from test/smartscity-id-benchmark/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-benchmark ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-benchmark ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 3 files clean - 0 needs changes to be clean, 3 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-benchmark ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-benchmark ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-benchmark ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 9] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-benchmark ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-benchmark ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-benchmark ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id-benchmark ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/smartscity-id-benchmark-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- shade:3.5.0:shade (default) @ smartscity-id-benchmark ---
+[INFO] Including com.smartscity:smartscity-id:jar:0.1.0-SNAPSHOT in the shaded jar.
+[INFO] Including org.openjdk.jmh:jmh-core:jar:1.37 in the shaded jar.
+[INFO] Including net.sf.jopt-simple:jopt-simple:jar:5.0.4 in the shaded jar.
+[INFO] Including org.apache.commons:commons-math3:jar:3.6.1 in the shaded jar.
+[WARNING] commons-math3-3.6.1.jar, jmh-core-1.37.jar, jopt-simple-5.0.4.jar, smartscity-id-0.1.0-SNAPSHOT.jar, smartscity-id-benchmark-0.1.0-SNAPSHOT.jar define 1 overlapping resource: 
+[WARNING]   - META-INF/MANIFEST.MF
+[WARNING] maven-shade-plugin has detected that some files are
+[WARNING] present in two or more JARs. When this happens, only one
+[WARNING] single version of the file is copied to the uber jar.
+[WARNING] Usually this is not harmful and you can skip these warnings,
+[WARNING] otherwise try to manually exclude artifacts based on
+[WARNING] mvn dependency:tree -Ddetail=true and the above output.
+[WARNING] See https://maven.apache.org/plugins/maven-shade-plugin/
+[INFO] Replacing /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar with /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/smartscity-id-benchmark-0.1.0-SNAPSHOT-shaded.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id-benchmark ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-benchmark/0.1.0-SNAPSHOT/smartscity-id-benchmark-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/smartscity-id-benchmark-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-benchmark/0.1.0-SNAPSHOT/smartscity-id-benchmark-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------------< com.smartscity:smartscity-id-example >----------------
+[INFO] Building smartscity-id-example 0.1.0-SNAPSHOT                    [10/12]
+[INFO]   from samples/id-example/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-example ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-example ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-example ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-example ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-example ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-example ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-example ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-example ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id-example ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example/target/smartscity-id-example-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:2.7.18:repackage (default) @ smartscity-id-example ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id-example ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-example/0.1.0-SNAPSHOT/smartscity-id-example-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example/target/smartscity-id-example-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-example/0.1.0-SNAPSHOT/smartscity-id-example-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -------------< com.smartscity:smartscity-id-example-boot4 >-------------
+[INFO] Building smartscity-id-example-boot4 0.1.0-SNAPSHOT              [11/12]
+[INFO]   from samples/id-example-boot4/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id-example-boot4 ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-example-boot4 ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-example-boot4 ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-example-boot4 ---
+[INFO] Copying 1 resource from ../id-example/src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-example-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-example-boot4 ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-example-boot4 ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-example-boot4 ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.5.0:jar (default-jar) @ smartscity-id-example-boot4 ---
+[INFO] Building jar: /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/target/smartscity-id-example-boot4-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (default) @ smartscity-id-example-boot4 ---
+[INFO] Replacing main artifact /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/target/smartscity-id-example-boot4-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/target/smartscity-id-example-boot4-0.1.0-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-id-example-boot4 ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-example-boot4/0.1.0-SNAPSHOT/smartscity-id-example-boot4-0.1.0-SNAPSHOT.pom
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/samples/id-example-boot4/target/smartscity-id-example-boot4-0.1.0-SNAPSHOT.jar to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-id-example-boot4/0.1.0-SNAPSHOT/smartscity-id-example-boot4-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------------< com.smartscity:smartscity-starter >------------------
+[INFO] Building smartscity-starter 0.1.0-SNAPSHOT                       [12/12]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-starter ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-starter ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-starter/0.1.0-SNAPSHOT/smartscity-starter-0.1.0-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for smartscity-starter 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Parent .................................. SUCCESS [  0.827 s]
+[INFO] smartscity-dependencies ............................ SUCCESS [  0.011 s]
+[INFO] smartscity-id ...................................... SUCCESS [  5.190 s]
+[INFO] smartscity-id-spring-boot .......................... SUCCESS [ 12.622 s]
+[INFO] smartscity-id-spring-boot4 ......................... SUCCESS [ 10.795 s]
+[INFO] smartscity-starter-id .............................. SUCCESS [  0.068 s]
+[INFO] smartscity-starter-id-boot4 ........................ SUCCESS [  0.075 s]
+[INFO] smartscity-id-compatibility-tests .................. SUCCESS [  2.678 s]
+[INFO] smartscity-id-benchmark ............................ SUCCESS [  0.706 s]
+[INFO] smartscity-id-example .............................. SUCCESS [  0.634 s]
+[INFO] smartscity-id-example-boot4 ........................ SUCCESS [  0.455 s]
+[INFO] smartscity-starter ................................. SUCCESS [  0.020 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  34.458 s
+[INFO] Finished at: 2026-10-25T16:45:01+08:00
+[INFO] ------------------------------------------------------------------------

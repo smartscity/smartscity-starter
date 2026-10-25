@@ -1,0 +1,98 @@
+{
+  "smartscity-starter": {
+    "path": "pom.xml",
+    "dependencies": []
+  },
+  "smartscity-dependencies": {
+    "path": "build/smartscity-dependencies/pom.xml",
+    "dependencies": []
+  },
+  "smartscity-parent": {
+    "path": "build/smartscity-parent/pom.xml",
+    "dependencies": []
+  },
+  "smartscity-id": {
+    "path": "module/smartscity-id/pom.xml",
+    "dependencies": []
+  },
+  "smartscity-id-spring-boot": {
+    "path": "module/smartscity-id-spring-boot/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-id",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-id-spring-boot4": {
+    "path": "module/smartscity-id-spring-boot4/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-id",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-id-example": {
+    "path": "samples/id-example/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-starter-id",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-id-example-boot4": {
+    "path": "samples/id-example-boot4/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-starter-id-boot4",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-starter-id": {
+    "path": "starter/smartscity-starter-id/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-id-spring-boot",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-starter-id-boot4": {
+    "path": "starter/smartscity-starter-id-boot4/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-id-spring-boot4",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-id-benchmark": {
+    "path": "test/smartscity-id-benchmark/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "smartscity-id",
+        "scope": "compile",
+        "optional": "false"
+      }
+    ]
+  },
+  "smartscity-id-compatibility-tests": {
+    "path": "test/smartscity-id-compatibility-tests/pom.xml",
+    "dependencies": [
+      {
+        "artifact": "${id.starter.artifact}",
+        "scope": "test",
+        "optional": "false"
+      }
+    ]
+  }
+}

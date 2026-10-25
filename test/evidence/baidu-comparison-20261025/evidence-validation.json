@@ -1,0 +1,116 @@
+{
+  "rawSampleShape": "PASS",
+  "scenarios": 18,
+  "measuredIterations": 108,
+  "auxiliaryTimedLoopEquivalence": "FAIL",
+  "deviations": [
+    {
+      "profile": "standard",
+      "threads": 1,
+      "implementation": "smartscity",
+      "auxiliaryVsPrimaryPercent": 0.0
+    },
+    {
+      "profile": "standard",
+      "threads": 1,
+      "implementation": "baidu-default",
+      "auxiliaryVsPrimaryPercent": 0.0
+    },
+    {
+      "profile": "standard",
+      "threads": 1,
+      "implementation": "baidu-cached",
+      "auxiliaryVsPrimaryPercent": -1.1102230246251565e-14
+    },
+    {
+      "profile": "standard",
+      "threads": 4,
+      "implementation": "baidu-default",
+      "auxiliaryVsPrimaryPercent": 8.962259799490525
+    },
+    {
+      "profile": "standard",
+      "threads": 4,
+      "implementation": "baidu-cached",
+      "auxiliaryVsPrimaryPercent": 0.4301365231890397
+    },
+    {
+      "profile": "standard",
+      "threads": 4,
+      "implementation": "smartscity",
+      "auxiliaryVsPrimaryPercent": 0.00830131659239619
+    },
+    {
+      "profile": "standard",
+      "threads": 8,
+      "implementation": "baidu-cached",
+      "auxiliaryVsPrimaryPercent": 0.3929383797895536
+    },
+    {
+      "profile": "standard",
+      "threads": 8,
+      "implementation": "smartscity",
+      "auxiliaryVsPrimaryPercent": 0.020889335414819854
+    },
+    {
+      "profile": "standard",
+      "threads": 8,
+      "implementation": "baidu-default",
+      "auxiliaryVsPrimaryPercent": 13.823948948555476
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 1,
+      "implementation": "baidu-default",
+      "auxiliaryVsPrimaryPercent": 0.0
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 1,
+      "implementation": "baidu-cached",
+      "auxiliaryVsPrimaryPercent": 0.0
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 1,
+      "implementation": "smartscity",
+      "auxiliaryVsPrimaryPercent": 2.220446049250313e-14
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 4,
+      "implementation": "baidu-cached",
+      "auxiliaryVsPrimaryPercent": 0.032455388581853484
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 4,
+      "implementation": "smartscity",
+      "auxiliaryVsPrimaryPercent": 0.009868388097511449
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 4,
+      "implementation": "baidu-default",
+      "auxiliaryVsPrimaryPercent": 0.11029189225315594
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 8,
+      "implementation": "smartscity",
+      "auxiliaryVsPrimaryPercent": 0.005313934399775455
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 8,
+      "implementation": "baidu-default",
+      "auxiliaryVsPrimaryPercent": 0.38971199962931635
+    },
+    {
+      "profile": "high-throughput",
+      "threads": 8,
+      "implementation": "baidu-cached",
+      "auxiliaryVsPrimaryPercent": 0.1200117354014818
+    }
+  ]
+}

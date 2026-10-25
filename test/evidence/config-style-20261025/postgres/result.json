@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "cleanup": true,
+  "version": "14.15",
+  "port": 53798,
+  "adapters": {
+    "smartscity-id-spring-boot": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "smartscity-id-spring-boot4": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  }
+}

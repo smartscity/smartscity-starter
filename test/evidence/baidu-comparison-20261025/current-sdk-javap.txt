@@ -1,0 +1,3693 @@
+Compiled from "IdException.java"
+public final class com.smartscity.id.api.IdException extends java.lang.RuntimeException {
+  private static final long serialVersionUID = 1l;
+    descriptor: J
+
+  private final com.smartscity.id.api.IdException$Reason reason;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public com.smartscity.id.api.IdException(com.smartscity.id.api.IdException$Reason);
+    descriptor: (Lcom/smartscity/id/api/IdException$Reason;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aconst_null
+       3: aconst_null
+       4: invokespecial #1                  // Method "<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;Ljava/lang/Throwable;)V
+       7: return
+
+  public com.smartscity.id.api.IdException(com.smartscity.id.api.IdException$Reason, java.lang.String);
+    descriptor: (Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aconst_null
+       4: invokespecial #1                  // Method "<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;Ljava/lang/Throwable;)V
+       7: return
+
+  public com.smartscity.id.api.IdException(com.smartscity.id.api.IdException$Reason, java.lang.String, java.lang.Throwable);
+    descriptor: (Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;Ljava/lang/Throwable;)V
+    Code:
+       0: aload_0
+       1: aload_2
+       2: aload_3
+       3: invokespecial #7                  // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+       6: aload_0
+       7: aload_1
+       8: ldc           #12                 // String reason
+      10: invokestatic  #14                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      13: checkcast     #20                 // class com/smartscity/id/api/IdException$Reason
+      16: putfield      #22                 // Field reason:Lcom/smartscity/id/api/IdException$Reason;
+      19: return
+
+  public com.smartscity.id.api.IdException$Reason getReason();
+    descriptor: ()Lcom/smartscity/id/api/IdException$Reason;
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field reason:Lcom/smartscity/id/api/IdException$Reason;
+       4: areturn
+
+  public java.lang.String getCode();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field reason:Lcom/smartscity/id/api/IdException$Reason;
+       4: invokevirtual #25                 // Method com/smartscity/id/api/IdException$Reason.code:()Ljava/lang/String;
+       7: areturn
+
+  public java.lang.String getDefaultMessage();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field reason:Lcom/smartscity/id/api/IdException$Reason;
+       4: invokevirtual #29                 // Method com/smartscity/id/api/IdException$Reason.message:()Ljava/lang/String;
+       7: areturn
+
+  public java.lang.String getDetails();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: invokespecial #32                 // Method java/lang/RuntimeException.getMessage:()Ljava/lang/String;
+       4: areturn
+
+  public java.lang.String getMessage();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: invokevirtual #35                 // Method getDetails:()Ljava/lang/String;
+       4: astore_1
+       5: aload_0
+       6: invokevirtual #38                 // Method getCode:()Ljava/lang/String;
+       9: aload_0
+      10: invokevirtual #41                 // Method getDefaultMessage:()Ljava/lang/String;
+      13: aload_1
+      14: ifnull        24
+      17: aload_1
+      18: invokevirtual #44                 // Method java/lang/String.isEmpty:()Z
+      21: ifeq          29
+      24: ldc           #50                 // String
+      26: goto          35
+      29: aload_1
+      30: invokedynamic #52,  0             // InvokeDynamic #0:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      35: invokedynamic #56,  0             // InvokeDynamic #1:makeConcatWithConstants:(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+      40: areturn
+}
+Compiled from "IdException.java"
+public final class com.smartscity.id.api.IdException$Reason extends java.lang.Enum<com.smartscity.id.api.IdException$Reason> {
+  public static final com.smartscity.id.api.IdException$Reason CONFIGURATION;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason STARTUP;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason CLOCK;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason CAPACITY;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason TIMEOUT;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason INTERRUPTED;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason COORDINATION;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason CLOSED;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  public static final com.smartscity.id.api.IdException$Reason INTERNAL;
+    descriptor: Lcom/smartscity/id/api/IdException$Reason;
+
+  private final java.lang.String code;
+    descriptor: Ljava/lang/String;
+
+  private final java.lang.String message;
+    descriptor: Ljava/lang/String;
+
+  private static final com.smartscity.id.api.IdException$Reason[] $VALUES;
+    descriptor: [Lcom/smartscity/id/api/IdException$Reason;
+
+  public static com.smartscity.id.api.IdException$Reason[] values();
+    descriptor: ()[Lcom/smartscity/id/api/IdException$Reason;
+    Code:
+       0: getstatic     #31                 // Field $VALUES:[Lcom/smartscity/id/api/IdException$Reason;
+       3: invokevirtual #35                 // Method "[Lcom/smartscity/id/api/IdException$Reason;".clone:()Ljava/lang/Object;
+       6: checkcast     #36                 // class "[Lcom/smartscity/id/api/IdException$Reason;"
+       9: areturn
+
+  public static com.smartscity.id.api.IdException$Reason valueOf(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/smartscity/id/api/IdException$Reason;
+    Code:
+       0: ldc           #1                  // class com/smartscity/id/api/IdException$Reason
+       2: aload_0
+       3: invokestatic  #40                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class com/smartscity/id/api/IdException$Reason
+       9: areturn
+
+  private com.smartscity.id.api.IdException$Reason(java.lang.String, java.lang.String);
+    descriptor: (Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #46                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: aload_0
+       7: aload_3
+       8: putfield      #50                 // Field code:Ljava/lang/String;
+      11: aload_0
+      12: aload         4
+      14: putfield      #54                 // Field message:Ljava/lang/String;
+      17: return
+
+  public java.lang.String code();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #50                 // Field code:Ljava/lang/String;
+       4: areturn
+
+  public java.lang.String message();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #54                 // Field message:Ljava/lang/String;
+       4: areturn
+
+  private static com.smartscity.id.api.IdException$Reason[] $values();
+    descriptor: ()[Lcom/smartscity/id/api/IdException$Reason;
+    Code:
+       0: bipush        9
+       2: anewarray     #1                  // class com/smartscity/id/api/IdException$Reason
+       5: dup
+       6: iconst_0
+       7: getstatic     #3                  // Field CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+      10: aastore
+      11: dup
+      12: iconst_1
+      13: getstatic     #7                  // Field STARTUP:Lcom/smartscity/id/api/IdException$Reason;
+      16: aastore
+      17: dup
+      18: iconst_2
+      19: getstatic     #10                 // Field CLOCK:Lcom/smartscity/id/api/IdException$Reason;
+      22: aastore
+      23: dup
+      24: iconst_3
+      25: getstatic     #13                 // Field CAPACITY:Lcom/smartscity/id/api/IdException$Reason;
+      28: aastore
+      29: dup
+      30: iconst_4
+      31: getstatic     #16                 // Field TIMEOUT:Lcom/smartscity/id/api/IdException$Reason;
+      34: aastore
+      35: dup
+      36: iconst_5
+      37: getstatic     #19                 // Field INTERRUPTED:Lcom/smartscity/id/api/IdException$Reason;
+      40: aastore
+      41: dup
+      42: bipush        6
+      44: getstatic     #22                 // Field COORDINATION:Lcom/smartscity/id/api/IdException$Reason;
+      47: aastore
+      48: dup
+      49: bipush        7
+      51: getstatic     #25                 // Field CLOSED:Lcom/smartscity/id/api/IdException$Reason;
+      54: aastore
+      55: dup
+      56: bipush        8
+      58: getstatic     #28                 // Field INTERNAL:Lcom/smartscity/id/api/IdException$Reason;
+      61: aastore
+      62: areturn
+
+  static {};
+    descriptor: ()V
+    Code:
+       0: new           #1                  // class com/smartscity/id/api/IdException$Reason
+       3: dup
+       4: ldc           #57                 // String CONFIGURATION
+       6: iconst_0
+       7: ldc           #58                 // String ID-001
+       9: ldc           #60                 // String Invalid ID generator configuration
+      11: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      14: putstatic     #3                  // Field CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+      17: new           #1                  // class com/smartscity/id/api/IdException$Reason
+      20: dup
+      21: ldc           #65                 // String STARTUP
+      23: iconst_1
+      24: ldc           #66                 // String ID-002
+      26: ldc           #68                 // String ID generator initialization failed
+      28: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      31: putstatic     #7                  // Field STARTUP:Lcom/smartscity/id/api/IdException$Reason;
+      34: new           #1                  // class com/smartscity/id/api/IdException$Reason
+      37: dup
+      38: ldc           #70                 // String CLOCK
+      40: iconst_2
+      41: ldc           #71                 // String ID-003
+      43: ldc           #73                 // String Clock validation failed
+      45: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      48: putstatic     #10                 // Field CLOCK:Lcom/smartscity/id/api/IdException$Reason;
+      51: new           #1                  // class com/smartscity/id/api/IdException$Reason
+      54: dup
+      55: ldc           #75                 // String CAPACITY
+      57: iconst_3
+      58: ldc           #76                 // String ID-004
+      60: ldc           #78                 // String ID generation capacity exhausted
+      62: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      65: putstatic     #13                 // Field CAPACITY:Lcom/smartscity/id/api/IdException$Reason;
+      68: new           #1                  // class com/smartscity/id/api/IdException$Reason
+      71: dup
+      72: ldc           #80                 // String TIMEOUT
+      74: iconst_4
+      75: ldc           #81                 // String ID-005
+      77: ldc           #83                 // String ID generation operation timed out
+      79: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      82: putstatic     #16                 // Field TIMEOUT:Lcom/smartscity/id/api/IdException$Reason;
+      85: new           #1                  // class com/smartscity/id/api/IdException$Reason
+      88: dup
+      89: ldc           #85                 // String INTERRUPTED
+      91: iconst_5
+      92: ldc           #86                 // String ID-006
+      94: ldc           #88                 // String ID generation was interrupted
+      96: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+      99: putstatic     #19                 // Field INTERRUPTED:Lcom/smartscity/id/api/IdException$Reason;
+     102: new           #1                  // class com/smartscity/id/api/IdException$Reason
+     105: dup
+     106: ldc           #90                 // String COORDINATION
+     108: bipush        6
+     110: ldc           #91                 // String ID-007
+     112: ldc           #93                 // String Worker coordination failed
+     114: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     117: putstatic     #22                 // Field COORDINATION:Lcom/smartscity/id/api/IdException$Reason;
+     120: new           #1                  // class com/smartscity/id/api/IdException$Reason
+     123: dup
+     124: ldc           #95                 // String CLOSED
+     126: bipush        7
+     128: ldc           #96                 // String ID-008
+     130: ldc           #98                 // String ID generator is closed
+     132: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     135: putstatic     #25                 // Field CLOSED:Lcom/smartscity/id/api/IdException$Reason;
+     138: new           #1                  // class com/smartscity/id/api/IdException$Reason
+     141: dup
+     142: ldc           #100                // String INTERNAL
+     144: bipush        8
+     146: ldc           #101                // String ID-999
+     148: ldc           #103                // String Unexpected ID generator failure
+     150: invokespecial #62                 // Method "<init>":(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+     153: putstatic     #28                 // Field INTERNAL:Lcom/smartscity/id/api/IdException$Reason;
+     156: invokestatic  #105                // Method $values:()[Lcom/smartscity/id/api/IdException$Reason;
+     159: putstatic     #31                 // Field $VALUES:[Lcom/smartscity/id/api/IdException$Reason;
+     162: return
+}
+Compiled from "IdGenerator.java"
+public interface com.smartscity.id.api.IdGenerator extends java.lang.AutoCloseable {
+  public abstract long getUniqueId();
+    descriptor: ()J
+
+  public abstract com.smartscity.id.api.IdParts parse(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdParts;
+
+  public abstract com.smartscity.id.api.IdSnapshot snapshot();
+    descriptor: ()Lcom/smartscity/id/api/IdSnapshot;
+
+  public abstract void close();
+    descriptor: ()V
+}
+Compiled from "IdParts.java"
+public final class com.smartscity.id.api.IdParts {
+  private final java.time.Instant timestamp;
+    descriptor: Ljava/time/Instant;
+
+  private final long workerId;
+    descriptor: J
+
+  private final long sequence;
+    descriptor: J
+
+  public com.smartscity.id.api.IdParts(java.time.Instant, long, long);
+    descriptor: (Ljava/time/Instant;JJ)V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: putfield      #7                  // Field timestamp:Ljava/time/Instant;
+       9: aload_0
+      10: lload_2
+      11: putfield      #13                 // Field workerId:J
+      14: aload_0
+      15: lload         4
+      17: putfield      #17                 // Field sequence:J
+      20: return
+
+  public java.time.Instant getTimestamp();
+    descriptor: ()Ljava/time/Instant;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field timestamp:Ljava/time/Instant;
+       4: areturn
+
+  public long getWorkerId();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #13                 // Field workerId:J
+       4: lreturn
+
+  public long getSequence();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field sequence:J
+       4: lreturn
+}
+Compiled from "IdSnapshot.java"
+public final class com.smartscity.id.api.IdSnapshot {
+  private final long startedAtMillis;
+    descriptor: J
+
+  private final boolean ready;
+    descriptor: Z
+
+  private final java.lang.String state;
+    descriptor: Ljava/lang/String;
+
+  private final long rawWorkerId;
+    descriptor: J
+
+  private final long workerId;
+    descriptor: J
+
+  private final long generated;
+    descriptor: J
+
+  private final long waits;
+    descriptor: J
+
+  private final long waitNanos;
+    descriptor: J
+
+  private final long latencyNanos;
+    descriptor: J
+
+  private final long clockDeviationMillis;
+    descriptor: J
+
+  private final long oldestAgeMillis;
+    descriptor: J
+
+  private final long refillNanos;
+    descriptor: J
+
+  private final long refillFailures;
+    descriptor: J
+
+  private final long latencyP50Nanos;
+    descriptor: J
+
+  private final long latencyP95Nanos;
+    descriptor: J
+
+  private final long latencyP99Nanos;
+    descriptor: J
+
+  private final int buffered;
+    descriptor: I
+
+  private final java.util.Map<com.smartscity.id.api.IdException$Reason, java.lang.Long> failures;
+    descriptor: Ljava/util/Map;
+
+  private com.smartscity.id.api.IdSnapshot(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)V
+    Code:
+       0: aload_0
+       1: invokespecial #7                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokestatic  #12                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$000:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+       9: putfield      #18                 // Field startedAtMillis:J
+      12: aload_0
+      13: aload_1
+      14: invokestatic  #22                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$100:(Lcom/smartscity/id/api/IdSnapshot$Builder;)Z
+      17: putfield      #26                 // Field ready:Z
+      20: aload_0
+      21: aload_1
+      22: invokestatic  #30                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$200:(Lcom/smartscity/id/api/IdSnapshot$Builder;)Ljava/lang/String;
+      25: putfield      #34                 // Field state:Ljava/lang/String;
+      28: aload_0
+      29: aload_1
+      30: invokestatic  #38                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$300:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      33: putfield      #41                 // Field rawWorkerId:J
+      36: aload_0
+      37: aload_1
+      38: invokestatic  #44                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$400:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      41: putfield      #47                 // Field workerId:J
+      44: aload_0
+      45: aload_1
+      46: invokestatic  #50                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$500:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      49: putfield      #53                 // Field generated:J
+      52: aload_0
+      53: aload_1
+      54: invokestatic  #56                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$600:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      57: putfield      #59                 // Field waits:J
+      60: aload_0
+      61: aload_1
+      62: invokestatic  #62                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$700:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      65: putfield      #65                 // Field waitNanos:J
+      68: aload_0
+      69: aload_1
+      70: invokestatic  #68                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$800:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      73: putfield      #71                 // Field latencyNanos:J
+      76: aload_0
+      77: aload_1
+      78: invokestatic  #74                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$900:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      81: putfield      #77                 // Field clockDeviationMillis:J
+      84: aload_0
+      85: aload_1
+      86: invokestatic  #80                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$1000:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      89: putfield      #83                 // Field oldestAgeMillis:J
+      92: aload_0
+      93: aload_1
+      94: invokestatic  #86                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$1100:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+      97: putfield      #89                 // Field refillNanos:J
+     100: aload_0
+     101: aload_1
+     102: invokestatic  #92                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$1200:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+     105: putfield      #95                 // Field refillFailures:J
+     108: aload_0
+     109: aload_1
+     110: invokestatic  #98                 // Method com/smartscity/id/api/IdSnapshot$Builder.access$1300:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+     113: putfield      #101                // Field latencyP50Nanos:J
+     116: aload_0
+     117: aload_1
+     118: invokestatic  #104                // Method com/smartscity/id/api/IdSnapshot$Builder.access$1400:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+     121: putfield      #107                // Field latencyP95Nanos:J
+     124: aload_0
+     125: aload_1
+     126: invokestatic  #110                // Method com/smartscity/id/api/IdSnapshot$Builder.access$1500:(Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+     129: putfield      #113                // Field latencyP99Nanos:J
+     132: aload_0
+     133: aload_1
+     134: invokestatic  #116                // Method com/smartscity/id/api/IdSnapshot$Builder.access$1600:(Lcom/smartscity/id/api/IdSnapshot$Builder;)I
+     137: putfield      #120                // Field buffered:I
+     140: new           #124                // class java/util/EnumMap
+     143: dup
+     144: ldc           #126                // class com/smartscity/id/api/IdException$Reason
+     146: invokespecial #128                // Method java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+     149: astore_2
+     150: aload_2
+     151: aload_1
+     152: invokestatic  #131                // Method com/smartscity/id/api/IdSnapshot$Builder.access$1700:(Lcom/smartscity/id/api/IdSnapshot$Builder;)Ljava/util/Map;
+     155: invokevirtual #135                // Method java/util/EnumMap.putAll:(Ljava/util/Map;)V
+     158: aload_0
+     159: aload_2
+     160: invokestatic  #139                // Method java/util/Collections.unmodifiableMap:(Ljava/util/Map;)Ljava/util/Map;
+     163: putfield      #145                // Field failures:Ljava/util/Map;
+     166: return
+
+  public long getStartedAtMillis();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field startedAtMillis:J
+       4: lreturn
+
+  public boolean isReady();
+    descriptor: ()Z
+    Code:
+       0: aload_0
+       1: getfield      #26                 // Field ready:Z
+       4: ireturn
+
+  public java.lang.String getState();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #34                 // Field state:Ljava/lang/String;
+       4: areturn
+
+  public long getRawWorkerId();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #41                 // Field rawWorkerId:J
+       4: lreturn
+
+  public long getWorkerId();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #47                 // Field workerId:J
+       4: lreturn
+
+  public long getGenerated();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #53                 // Field generated:J
+       4: lreturn
+
+  public long getWaits();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #59                 // Field waits:J
+       4: lreturn
+
+  public long getWaitNanos();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #65                 // Field waitNanos:J
+       4: lreturn
+
+  public long getLatencyNanos();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #71                 // Field latencyNanos:J
+       4: lreturn
+
+  public long getClockDeviationMillis();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #77                 // Field clockDeviationMillis:J
+       4: lreturn
+
+  public long getOldestAgeMillis();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #83                 // Field oldestAgeMillis:J
+       4: lreturn
+
+  public long getRefillNanos();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #89                 // Field refillNanos:J
+       4: lreturn
+
+  public long getRefillFailures();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #95                 // Field refillFailures:J
+       4: lreturn
+
+  public long getLatencyP50Nanos();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #101                // Field latencyP50Nanos:J
+       4: lreturn
+
+  public long getLatencyP95Nanos();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #107                // Field latencyP95Nanos:J
+       4: lreturn
+
+  public long getLatencyP99Nanos();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #113                // Field latencyP99Nanos:J
+       4: lreturn
+
+  public int getBuffered();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #120                // Field buffered:I
+       4: ireturn
+
+  public java.util.Map<com.smartscity.id.api.IdException$Reason, java.lang.Long> getFailures();
+    descriptor: ()Ljava/util/Map;
+    Code:
+       0: aload_0
+       1: getfield      #145                // Field failures:Ljava/util/Map;
+       4: areturn
+
+  public static com.smartscity.id.api.IdSnapshot$Builder builder();
+    descriptor: ()Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: new           #13                 // class com/smartscity/id/api/IdSnapshot$Builder
+       3: dup
+       4: invokespecial #149                // Method com/smartscity/id/api/IdSnapshot$Builder."<init>":()V
+       7: areturn
+
+  com.smartscity.id.api.IdSnapshot(com.smartscity.id.api.IdSnapshot$Builder, com.smartscity.id.api.IdSnapshot$1);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;Lcom/smartscity/id/api/IdSnapshot$1;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #1                  // Method "<init>":(Lcom/smartscity/id/api/IdSnapshot$Builder;)V
+       5: return
+}
+Compiled from "IdSnapshot.java"
+class com.smartscity.id.api.IdSnapshot$1 {
+}
+Compiled from "IdSnapshot.java"
+public final class com.smartscity.id.api.IdSnapshot$Builder {
+  private long startedAtMillis;
+    descriptor: J
+
+  private boolean ready;
+    descriptor: Z
+
+  private java.lang.String state;
+    descriptor: Ljava/lang/String;
+
+  private long rawWorkerId;
+    descriptor: J
+
+  private long workerId;
+    descriptor: J
+
+  private long generated;
+    descriptor: J
+
+  private long waits;
+    descriptor: J
+
+  private long waitNanos;
+    descriptor: J
+
+  private long latencyNanos;
+    descriptor: J
+
+  private long clockDeviationMillis;
+    descriptor: J
+
+  private long oldestAgeMillis;
+    descriptor: J
+
+  private long refillNanos;
+    descriptor: J
+
+  private long refillFailures;
+    descriptor: J
+
+  private long latencyP50Nanos;
+    descriptor: J
+
+  private long latencyP95Nanos;
+    descriptor: J
+
+  private long latencyP99Nanos;
+    descriptor: J
+
+  private int buffered;
+    descriptor: I
+
+  private java.util.Map<com.smartscity.id.api.IdException$Reason, java.lang.Long> failures;
+    descriptor: Ljava/util/Map;
+
+  public com.smartscity.id.api.IdSnapshot$Builder();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #62                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #68                 // class java/util/EnumMap
+       8: dup
+       9: ldc           #70                 // class com/smartscity/id/api/IdException$Reason
+      11: invokespecial #72                 // Method java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+      14: putfield      #1                  // Field failures:Ljava/util/Map;
+      17: return
+
+  public com.smartscity.id.api.IdSnapshot$Builder startedAtMillis(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #59                 // Field startedAtMillis:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder ready(boolean);
+    descriptor: (Z)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #55                 // Field ready:Z
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder state(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #51                 // Field state:Ljava/lang/String;
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder rawWorkerId(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #48                 // Field rawWorkerId:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder workerId(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #45                 // Field workerId:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder generated(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #42                 // Field generated:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder waits(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #39                 // Field waits:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder waitNanos(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #36                 // Field waitNanos:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder latencyNanos(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #33                 // Field latencyNanos:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder clockDeviationMillis(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #30                 // Field clockDeviationMillis:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder oldestAgeMillis(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #27                 // Field oldestAgeMillis:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder refillNanos(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #24                 // Field refillNanos:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder refillFailures(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #21                 // Field refillFailures:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder latencyP50Nanos(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #18                 // Field latencyP50Nanos:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder latencyP95Nanos(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #15                 // Field latencyP95Nanos:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder latencyP99Nanos(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: lload_1
+       2: putfield      #11                 // Field latencyP99Nanos:J
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder buffered(int);
+    descriptor: (I)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #7                  // Field buffered:I
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot$Builder failures(java.util.Map<com.smartscity.id.api.IdException$Reason, java.lang.Long>);
+    descriptor: (Ljava/util/Map;)Lcom/smartscity/id/api/IdSnapshot$Builder;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field failures:Ljava/util/Map;
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.api.IdSnapshot build();
+    descriptor: ()Lcom/smartscity/id/api/IdSnapshot;
+    Code:
+       0: new           #75                 // class com/smartscity/id/api/IdSnapshot
+       3: dup
+       4: aload_0
+       5: aconst_null
+       6: invokespecial #77                 // Method com/smartscity/id/api/IdSnapshot."<init>":(Lcom/smartscity/id/api/IdSnapshot$Builder;Lcom/smartscity/id/api/IdSnapshot$1;)V
+       9: areturn
+
+  static long access$000(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #59                 // Field startedAtMillis:J
+       4: lreturn
+
+  static boolean access$100(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)Z
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field ready:Z
+       4: ireturn
+
+  static java.lang.String access$200(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field state:Ljava/lang/String;
+       4: areturn
+
+  static long access$300(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #48                 // Field rawWorkerId:J
+       4: lreturn
+
+  static long access$400(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field workerId:J
+       4: lreturn
+
+  static long access$500(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #42                 // Field generated:J
+       4: lreturn
+
+  static long access$600(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #39                 // Field waits:J
+       4: lreturn
+
+  static long access$700(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field waitNanos:J
+       4: lreturn
+
+  static long access$800(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field latencyNanos:J
+       4: lreturn
+
+  static long access$900(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #30                 // Field clockDeviationMillis:J
+       4: lreturn
+
+  static long access$1000(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #27                 // Field oldestAgeMillis:J
+       4: lreturn
+
+  static long access$1100(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #24                 // Field refillNanos:J
+       4: lreturn
+
+  static long access$1200(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #21                 // Field refillFailures:J
+       4: lreturn
+
+  static long access$1300(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #18                 // Field latencyP50Nanos:J
+       4: lreturn
+
+  static long access$1400(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #15                 // Field latencyP95Nanos:J
+       4: lreturn
+
+  static long access$1500(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)J
+    Code:
+       0: aload_0
+       1: getfield      #11                 // Field latencyP99Nanos:J
+       4: lreturn
+
+  static int access$1600(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)I
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field buffered:I
+       4: ireturn
+
+  static java.util.Map access$1700(com.smartscity.id.api.IdSnapshot$Builder);
+    descriptor: (Lcom/smartscity/id/api/IdSnapshot$Builder;)Ljava/util/Map;
+    Code:
+       0: aload_0
+       1: getfield      #1                  // Field failures:Ljava/util/Map;
+       4: areturn
+}
+Compiled from "BitsAllocator.java"
+public final class com.smartscity.id.core.BitsAllocator {
+  public static final java.time.Instant EPOCH;
+    descriptor: Ljava/time/Instant;
+
+  private final com.smartscity.id.core.IdLayout layout;
+    descriptor: Lcom/smartscity/id/core/IdLayout;
+
+  private final int timeBits;
+    descriptor: I
+
+  private final int workerBits;
+    descriptor: I
+
+  private final int sequenceBits;
+    descriptor: I
+
+  private final long maxTime;
+    descriptor: J
+
+  private final long maxWorker;
+    descriptor: J
+
+  private final long maxSequence;
+    descriptor: J
+
+  public com.smartscity.id.core.BitsAllocator(int, int, int);
+    descriptor: (III)V
+    Code:
+       0: aload_0
+       1: new           #1                  // class com/smartscity/id/core/IdLayout
+       4: dup
+       5: getstatic     #3                  // Field com/smartscity/id/core/IdLayout.DEFAULT_EPOCH:Ljava/time/Instant;
+       8: iload_1
+       9: iload_2
+      10: iload_3
+      11: invokespecial #7                  // Method com/smartscity/id/core/IdLayout."<init>":(Ljava/time/Instant;III)V
+      14: invokespecial #11                 // Method "<init>":(Lcom/smartscity/id/core/IdLayout;)V
+      17: return
+
+  public com.smartscity.id.core.BitsAllocator(com.smartscity.id.core.IdLayout);
+    descriptor: (Lcom/smartscity/id/core/IdLayout;)V
+    Code:
+       0: aload_0
+       1: invokespecial #16                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: ldc           #21                 // String layout
+       8: invokestatic  #23                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+      11: checkcast     #1                  // class com/smartscity/id/core/IdLayout
+      14: putfield      #29                 // Field layout:Lcom/smartscity/id/core/IdLayout;
+      17: aload_0
+      18: aload_1
+      19: invokevirtual #32                 // Method com/smartscity/id/core/IdLayout.getTimestampBits:()I
+      22: putfield      #36                 // Field timeBits:I
+      25: aload_0
+      26: aload_1
+      27: invokevirtual #40                 // Method com/smartscity/id/core/IdLayout.getWorkerBits:()I
+      30: putfield      #43                 // Field workerBits:I
+      33: aload_0
+      34: aload_1
+      35: invokevirtual #46                 // Method com/smartscity/id/core/IdLayout.getSequenceBits:()I
+      38: putfield      #49                 // Field sequenceBits:I
+      41: aload_0
+      42: lconst_1
+      43: aload_0
+      44: getfield      #36                 // Field timeBits:I
+      47: lshl
+      48: lconst_1
+      49: lsub
+      50: putfield      #52                 // Field maxTime:J
+      53: aload_0
+      54: lconst_1
+      55: aload_0
+      56: getfield      #43                 // Field workerBits:I
+      59: lshl
+      60: lconst_1
+      61: lsub
+      62: putfield      #56                 // Field maxWorker:J
+      65: aload_0
+      66: lconst_1
+      67: aload_0
+      68: getfield      #49                 // Field sequenceBits:I
+      71: lshl
+      72: lconst_1
+      73: lsub
+      74: putfield      #59                 // Field maxSequence:J
+      77: return
+
+  public com.smartscity.id.core.IdLayout getLayout();
+    descriptor: ()Lcom/smartscity/id/core/IdLayout;
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field layout:Lcom/smartscity/id/core/IdLayout;
+       4: areturn
+
+  public static com.smartscity.id.core.BitsAllocator standard();
+    descriptor: ()Lcom/smartscity/id/core/BitsAllocator;
+    Code:
+       0: new           #12                 // class com/smartscity/id/core/BitsAllocator
+       3: dup
+       4: invokestatic  #62                 // Method com/smartscity/id/core/IdLayout.standard:()Lcom/smartscity/id/core/IdLayout;
+       7: invokespecial #11                 // Method "<init>":(Lcom/smartscity/id/core/IdLayout;)V
+      10: areturn
+
+  public static com.smartscity.id.core.BitsAllocator highThroughput();
+    descriptor: ()Lcom/smartscity/id/core/BitsAllocator;
+    Code:
+       0: new           #12                 // class com/smartscity/id/core/BitsAllocator
+       3: dup
+       4: invokestatic  #66                 // Method com/smartscity/id/core/IdLayout.highThroughput:()Lcom/smartscity/id/core/IdLayout;
+       7: invokespecial #11                 // Method "<init>":(Lcom/smartscity/id/core/IdLayout;)V
+      10: areturn
+
+  public static com.smartscity.id.core.BitsAllocator javascript(int);
+    descriptor: (I)Lcom/smartscity/id/core/BitsAllocator;
+    Code:
+       0: new           #12                 // class com/smartscity/id/core/BitsAllocator
+       3: dup
+       4: iload_0
+       5: invokestatic  #69                 // Method com/smartscity/id/core/IdLayout.javascript:(I)Lcom/smartscity/id/core/IdLayout;
+       8: invokespecial #11                 // Method "<init>":(Lcom/smartscity/id/core/IdLayout;)V
+      11: areturn
+
+  public long allocate(long, long, long);
+    descriptor: (JJJ)J
+    Code:
+       0: lload_1
+       1: lconst_0
+       2: lcmp
+       3: iflt          47
+       6: lload_1
+       7: aload_0
+       8: getfield      #52                 // Field maxTime:J
+      11: lcmp
+      12: ifgt          47
+      15: lload_3
+      16: lconst_0
+      17: lcmp
+      18: iflt          47
+      21: lload_3
+      22: aload_0
+      23: getfield      #56                 // Field maxWorker:J
+      26: lcmp
+      27: ifgt          47
+      30: lload         5
+      32: lconst_0
+      33: lcmp
+      34: iflt          47
+      37: lload         5
+      39: aload_0
+      40: getfield      #59                 // Field maxSequence:J
+      43: lcmp
+      44: ifle          60
+      47: new           #73                 // class com/smartscity/id/api/IdException
+      50: dup
+      51: getstatic     #75                 // Field com/smartscity/id/api/IdException$Reason.CAPACITY:Lcom/smartscity/id/api/IdException$Reason;
+      54: ldc           #81                 // String ID field exceeds its range
+      56: invokespecial #83                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      59: athrow
+      60: lload_1
+      61: aload_0
+      62: getfield      #43                 // Field workerBits:I
+      65: aload_0
+      66: getfield      #49                 // Field sequenceBits:I
+      69: iadd
+      70: lshl
+      71: lload_3
+      72: aload_0
+      73: getfield      #49                 // Field sequenceBits:I
+      76: lshl
+      77: lor
+      78: lload         5
+      80: lor
+      81: lstore        7
+      83: lload         7
+      85: lconst_0
+      86: lcmp
+      87: ifne          103
+      90: new           #73                 // class com/smartscity/id/api/IdException
+      93: dup
+      94: getstatic     #75                 // Field com/smartscity/id/api/IdException$Reason.CAPACITY:Lcom/smartscity/id/api/IdException$Reason;
+      97: ldc           #86                 // String ID zero is reserved
+      99: invokespecial #83                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+     102: athrow
+     103: lload         7
+     105: lreturn
+
+  public com.smartscity.id.api.IdParts parse(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdParts;
+    Code:
+       0: lload_1
+       1: lconst_0
+       2: lcmp
+       3: ifle          46
+       6: aload_0
+       7: getfield      #36                 // Field timeBits:I
+      10: aload_0
+      11: getfield      #43                 // Field workerBits:I
+      14: iadd
+      15: aload_0
+      16: getfield      #49                 // Field sequenceBits:I
+      19: iadd
+      20: bipush        63
+      22: if_icmpge     59
+      25: lload_1
+      26: aload_0
+      27: getfield      #36                 // Field timeBits:I
+      30: aload_0
+      31: getfield      #43                 // Field workerBits:I
+      34: iadd
+      35: aload_0
+      36: getfield      #49                 // Field sequenceBits:I
+      39: iadd
+      40: lushr
+      41: lconst_0
+      42: lcmp
+      43: ifeq          59
+      46: new           #73                 // class com/smartscity/id/api/IdException
+      49: dup
+      50: getstatic     #88                 // Field com/smartscity/id/api/IdException$Reason.CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+      53: ldc           #91                 // String ID does not fit this layout
+      55: invokespecial #83                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      58: athrow
+      59: new           #93                 // class com/smartscity/id/api/IdParts
+      62: dup
+      63: aload_0
+      64: getfield      #29                 // Field layout:Lcom/smartscity/id/core/IdLayout;
+      67: invokevirtual #95                 // Method com/smartscity/id/core/IdLayout.getEpoch:()Ljava/time/Instant;
+      70: lload_1
+      71: aload_0
+      72: getfield      #43                 // Field workerBits:I
+      75: aload_0
+      76: getfield      #49                 // Field sequenceBits:I
+      79: iadd
+      80: lushr
+      81: invokevirtual #99                 // Method java/time/Instant.plusSeconds:(J)Ljava/time/Instant;
+      84: lload_1
+      85: aload_0
+      86: getfield      #49                 // Field sequenceBits:I
+      89: lushr
+      90: aload_0
+      91: getfield      #56                 // Field maxWorker:J
+      94: land
+      95: lload_1
+      96: aload_0
+      97: getfield      #59                 // Field maxSequence:J
+     100: land
+     101: invokespecial #105                // Method com/smartscity/id/api/IdParts."<init>":(Ljava/time/Instant;JJ)V
+     104: areturn
+
+  public int getTimeBits();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field timeBits:I
+       4: ireturn
+
+  public int getWorkerBits();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #43                 // Field workerBits:I
+       4: ireturn
+
+  public int getSequenceBits();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #49                 // Field sequenceBits:I
+       4: ireturn
+
+  public long getMaxTime();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #52                 // Field maxTime:J
+       4: lreturn
+
+  public long getMaxSequence();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #59                 // Field maxSequence:J
+       4: lreturn
+
+  public long getWorkerSlots();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #56                 // Field maxWorker:J
+       4: lconst_1
+       5: ladd
+       6: lreturn
+
+  public java.lang.String signature();
+    descriptor: ()Ljava/lang/String;
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field timeBits:I
+       4: aload_0
+       5: getfield      #43                 // Field workerBits:I
+       8: aload_0
+       9: getfield      #49                 // Field sequenceBits:I
+      12: invokedynamic #108,  0            // InvokeDynamic #0:makeConcatWithConstants:(III)Ljava/lang/String;
+      17: areturn
+
+  static {};
+    descriptor: ()V
+    Code:
+       0: getstatic     #3                  // Field com/smartscity/id/core/IdLayout.DEFAULT_EPOCH:Ljava/time/Instant;
+       3: putstatic     #112                // Field EPOCH:Ljava/time/Instant;
+       6: return
+}
+Compiled from "CachedUniqueIdGenerator.java"
+public final class com.smartscity.id.core.CachedUniqueIdGenerator implements com.smartscity.id.api.IdGenerator {
+  private final com.smartscity.id.core.GeneratorOptions options;
+    descriptor: Lcom/smartscity/id/core/GeneratorOptions;
+
+  private final com.smartscity.id.spi.WorkerLease lease;
+    descriptor: Lcom/smartscity/id/spi/WorkerLease;
+
+  private final com.smartscity.id.core.MonotonicClock clock;
+    descriptor: Lcom/smartscity/id/core/MonotonicClock;
+
+  private final com.smartscity.id.core.RingBuffer ring;
+    descriptor: Lcom/smartscity/id/core/RingBuffer;
+
+  private final com.smartscity.id.core.DefaultUniqueIdGenerator source;
+    descriptor: Lcom/smartscity/id/core/DefaultUniqueIdGenerator;
+
+  private final com.smartscity.id.core.GeneratorMetrics metrics;
+    descriptor: Lcom/smartscity/id/core/GeneratorMetrics;
+
+  private final java.util.concurrent.atomic.AtomicBoolean closed;
+    descriptor: Ljava/util/concurrent/atomic/AtomicBoolean;
+
+  private final java.util.concurrent.atomic.AtomicReference<com.smartscity.id.api.IdException> failure;
+    descriptor: Ljava/util/concurrent/atomic/AtomicReference;
+
+  private final java.lang.Thread producer;
+    descriptor: Ljava/lang/Thread;
+
+  public com.smartscity.id.core.CachedUniqueIdGenerator(com.smartscity.id.core.GeneratorOptions, com.smartscity.id.spi.WorkerLease, com.smartscity.id.spi.TimeSource);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions;Lcom/smartscity/id/spi/WorkerLease;Lcom/smartscity/id/spi/TimeSource;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: aload_3
+       4: aload_1
+       5: invokedynamic #1,  0              // InvokeDynamic #0:get:(Lcom/smartscity/id/spi/TimeSource;Lcom/smartscity/id/core/GeneratorOptions;)Ljava/util/function/Supplier;
+      10: invokespecial #5                  // Method "<init>":(Lcom/smartscity/id/core/GeneratorOptions;Lcom/smartscity/id/spi/WorkerLease;Ljava/util/function/Supplier;)V
+      13: return
+
+  public static com.smartscity.id.core.CachedUniqueIdGenerator usingClock(com.smartscity.id.core.GeneratorOptions, com.smartscity.id.spi.WorkerLease, com.smartscity.id.core.MonotonicClock);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions;Lcom/smartscity/id/spi/WorkerLease;Lcom/smartscity/id/core/MonotonicClock;)Lcom/smartscity/id/core/CachedUniqueIdGenerator;
+    Code:
+       0: new           #6                  // class com/smartscity/id/core/CachedUniqueIdGenerator
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: aload_2
+       7: invokedynamic #11,  0             // InvokeDynamic #1:get:(Lcom/smartscity/id/core/MonotonicClock;)Ljava/util/function/Supplier;
+      12: invokespecial #5                  // Method "<init>":(Lcom/smartscity/id/core/GeneratorOptions;Lcom/smartscity/id/spi/WorkerLease;Ljava/util/function/Supplier;)V
+      15: areturn
+
+  private com.smartscity.id.core.CachedUniqueIdGenerator(com.smartscity.id.core.GeneratorOptions, com.smartscity.id.spi.WorkerLease, java.util.function.Supplier<com.smartscity.id.core.MonotonicClock>);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions;Lcom/smartscity/id/spi/WorkerLease;Ljava/util/function/Supplier;)V
+    Code:
+       0: aload_0
+       1: invokespecial #14                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #19                 // class com/smartscity/id/core/GeneratorMetrics
+       8: dup
+       9: invokespecial #21                 // Method com/smartscity/id/core/GeneratorMetrics."<init>":()V
+      12: putfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+      15: aload_0
+      16: new           #26                 // class java/util/concurrent/atomic/AtomicBoolean
+      19: dup
+      20: invokespecial #28                 // Method java/util/concurrent/atomic/AtomicBoolean."<init>":()V
+      23: putfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+      26: aload_0
+      27: new           #33                 // class java/util/concurrent/atomic/AtomicReference
+      30: dup
+      31: invokespecial #35                 // Method java/util/concurrent/atomic/AtomicReference."<init>":()V
+      34: putfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+      37: aload_0
+      38: aload_2
+      39: invokestatic  #40                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      42: checkcast     #46                 // class com/smartscity/id/spi/WorkerLease
+      45: putfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+      48: aload_0
+      49: aload_1
+      50: invokestatic  #40                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      53: checkcast     #52                 // class com/smartscity/id/core/GeneratorOptions
+      56: putfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+      59: aload_0
+      60: aload_3
+      61: invokeinterface #58,  1           // InterfaceMethod java/util/function/Supplier.get:()Ljava/lang/Object;
+      66: checkcast     #63                 // class com/smartscity/id/core/MonotonicClock
+      69: putfield      #65                 // Field clock:Lcom/smartscity/id/core/MonotonicClock;
+      72: aload_0
+      73: new           #69                 // class com/smartscity/id/core/RingBuffer
+      76: dup
+      77: aload_1
+      78: getfield      #71                 // Field com/smartscity/id/core/GeneratorOptions.capacity:I
+      81: invokespecial #75                 // Method com/smartscity/id/core/RingBuffer."<init>":(I)V
+      84: putfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+      87: aload_0
+      88: new           #82                 // class com/smartscity/id/core/DefaultUniqueIdGenerator
+      91: dup
+      92: aload_1
+      93: getfield      #84                 // Field com/smartscity/id/core/GeneratorOptions.bits:Lcom/smartscity/id/core/BitsAllocator;
+      96: aload_2
+      97: invokeinterface #88,  1           // InterfaceMethod com/smartscity/id/spi/WorkerLease.workerId:()J
+     102: invokespecial #92                 // Method com/smartscity/id/core/DefaultUniqueIdGenerator."<init>":(Lcom/smartscity/id/core/BitsAllocator;J)V
+     105: putfield      #95                 // Field source:Lcom/smartscity/id/core/DefaultUniqueIdGenerator;
+     108: aload_0
+     109: new           #99                 // class java/lang/Thread
+     112: dup
+     113: aload_0
+     114: invokedynamic #101,  0            // InvokeDynamic #2:run:(Lcom/smartscity/id/core/CachedUniqueIdGenerator;)Ljava/lang/Runnable;
+     119: aload_2
+     120: invokeinterface #105,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.rawId:()J
+     125: invokedynamic #108,  0            // InvokeDynamic #3:makeConcatWithConstants:(J)Ljava/lang/String;
+     130: invokespecial #112                // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;Ljava/lang/String;)V
+     133: putfield      #115                // Field producer:Ljava/lang/Thread;
+     136: aload_0
+     137: getfield      #115                // Field producer:Ljava/lang/Thread;
+     140: iconst_1
+     141: invokevirtual #119                // Method java/lang/Thread.setDaemon:(Z)V
+     144: aload_0
+     145: invokespecial #123                // Method checkAvailable:()V
+     148: aload_0
+     149: invokespecial #126                // Method fill:()V
+     152: aload_0
+     153: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+     156: invokevirtual #129                // Method com/smartscity/id/core/RingBuffer.size:()I
+     159: ifne          175
+     162: new           #133                // class com/smartscity/id/api/IdException
+     165: dup
+     166: getstatic     #135                // Field com/smartscity/id/api/IdException$Reason.STARTUP:Lcom/smartscity/id/api/IdException$Reason;
+     169: ldc           #141                // String Initial cache is empty
+     171: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+     174: athrow
+     175: aload_0
+     176: getfield      #115                // Field producer:Ljava/lang/Thread;
+     179: invokevirtual #146                // Method java/lang/Thread.start:()V
+     182: goto          223
+     185: astore        4
+     187: aload_0
+     188: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+     191: iconst_1
+     192: invokevirtual #153                // Method java/util/concurrent/atomic/AtomicBoolean.set:(Z)V
+     195: aload_2
+     196: invokeinterface #156,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.close:()V
+     201: goto          220
+     204: astore        5
+     206: aload         5
+     208: aload         4
+     210: if_acmpeq     220
+     213: aload         4
+     215: aload         5
+     217: invokevirtual #159                // Method java/lang/Throwable.addSuppressed:(Ljava/lang/Throwable;)V
+     220: aload         4
+     222: athrow
+     223: return
+    Exception table:
+       from    to  target type
+          48   182   185   Class java/lang/RuntimeException
+          48   182   185   Class java/lang/Error
+         195   201   204   Class java/lang/RuntimeException
+         195   201   204   Class java/lang/Error
+
+  private void checkAvailable();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+       4: invokevirtual #165                // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+       7: ifeq          23
+      10: new           #133                // class com/smartscity/id/api/IdException
+      13: dup
+      14: getstatic     #168                // Field com/smartscity/id/api/IdException$Reason.CLOSED:Lcom/smartscity/id/api/IdException$Reason;
+      17: ldc           #171                // String Generator closed
+      19: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      22: athrow
+      23: aload_0
+      24: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+      27: invokevirtual #173                // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+      30: checkcast     #133                // class com/smartscity/id/api/IdException
+      33: astore_1
+      34: aload_1
+      35: ifnull        40
+      38: aload_1
+      39: athrow
+      40: aload_0
+      41: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+      44: invokeinterface #174,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.state:()Lcom/smartscity/id/spi/WorkerLease$State;
+      49: astore_2
+      50: aload_2
+      51: getstatic     #178                // Field com/smartscity/id/spi/WorkerLease$State.ACTIVE:Lcom/smartscity/id/spi/WorkerLease$State;
+      54: if_acmpeq     103
+      57: new           #133                // class com/smartscity/id/api/IdException
+      60: dup
+      61: getstatic     #184                // Field com/smartscity/id/api/IdException$Reason.COORDINATION:Lcom/smartscity/id/api/IdException$Reason;
+      64: aload_2
+      65: invokestatic  #187                // Method java/lang/String.valueOf:(Ljava/lang/Object;)Ljava/lang/String;
+      68: invokedynamic #193,  0            // InvokeDynamic #4:makeConcatWithConstants:(Ljava/lang/String;)Ljava/lang/String;
+      73: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      76: astore_3
+      77: aload_2
+      78: getstatic     #196                // Field com/smartscity/id/spi/WorkerLease$State.EXPIRED:Lcom/smartscity/id/spi/WorkerLease$State;
+      81: if_acmpeq     91
+      84: aload_2
+      85: getstatic     #199                // Field com/smartscity/id/spi/WorkerLease$State.CLOSED:Lcom/smartscity/id/spi/WorkerLease$State;
+      88: if_acmpne     101
+      91: aload_0
+      92: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+      95: aconst_null
+      96: aload_3
+      97: invokevirtual #201                // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     100: pop
+     101: aload_3
+     102: athrow
+     103: aload_0
+     104: getfield      #65                 // Field clock:Lcom/smartscity/id/core/MonotonicClock;
+     107: aload_0
+     108: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+     111: getfield      #84                 // Field com/smartscity/id/core/GeneratorOptions.bits:Lcom/smartscity/id/core/BitsAllocator;
+     114: invokevirtual #205                // Method com/smartscity/id/core/BitsAllocator.getLayout:()Lcom/smartscity/id/core/IdLayout;
+     117: invokevirtual #211                // Method com/smartscity/id/core/IdLayout.getEpoch:()Ljava/time/Instant;
+     120: invokevirtual #217                // Method com/smartscity/id/core/MonotonicClock.seconds:(Ljava/time/Instant;)J
+     123: lstore_3
+     124: lload_3
+     125: lconst_0
+     126: lcmp
+     127: iflt          145
+     130: lload_3
+     131: aload_0
+     132: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+     135: getfield      #84                 // Field com/smartscity/id/core/GeneratorOptions.bits:Lcom/smartscity/id/core/BitsAllocator;
+     138: invokevirtual #221                // Method com/smartscity/id/core/BitsAllocator.getMaxTime:()J
+     141: lcmp
+     142: ifle          158
+     145: new           #133                // class com/smartscity/id/api/IdException
+     148: dup
+     149: getstatic     #224                // Field com/smartscity/id/api/IdException$Reason.CAPACITY:Lcom/smartscity/id/api/IdException$Reason;
+     152: ldc           #227                // String Epoch time range exhausted
+     154: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+     157: athrow
+     158: goto          174
+     161: astore_3
+     162: aload_0
+     163: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+     166: aconst_null
+     167: aload_3
+     168: invokevirtual #201                // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     171: pop
+     172: aload_3
+     173: athrow
+     174: return
+    Exception table:
+       from    to  target type
+         103   158   161   Class com/smartscity/id/api/IdException
+
+  public long getUniqueId();
+    descriptor: ()J
+    Code:
+       0: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+       3: lstore_1
+       4: lconst_0
+       5: lstore_3
+       6: invokestatic  #234                // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+       9: invokevirtual #238                // Method java/lang/Thread.isInterrupted:()Z
+      12: ifeq          28
+      15: new           #133                // class com/smartscity/id/api/IdException
+      18: dup
+      19: getstatic     #241                // Field com/smartscity/id/api/IdException$Reason.INTERRUPTED:Lcom/smartscity/id/api/IdException$Reason;
+      22: ldc           #244                // String ID wait interrupted
+      24: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      27: athrow
+      28: aload_0
+      29: invokespecial #123                // Method checkAvailable:()V
+      32: aload_0
+      33: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+      36: invokevirtual #246                // Method com/smartscity/id/core/RingBuffer.poll:()J
+      39: lstore        5
+      41: lload         5
+      43: lconst_0
+      44: lcmp
+      45: ifeq          176
+      48: aload_0
+      49: invokespecial #123                // Method checkAvailable:()V
+      52: lload_3
+      53: lconst_0
+      54: lcmp
+      55: ifeq          88
+      58: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+      61: lload_1
+      62: lsub
+      63: aload_0
+      64: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+      67: getfield      #249                // Field com/smartscity/id/core/GeneratorOptions.waitNanos:J
+      70: lcmp
+      71: iflt          88
+      74: new           #133                // class com/smartscity/id/api/IdException
+      77: dup
+      78: getstatic     #253                // Field com/smartscity/id/api/IdException$Reason.TIMEOUT:Lcom/smartscity/id/api/IdException$Reason;
+      81: ldc_w         #256                // String ID wait deadline exceeded
+      84: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      87: athrow
+      88: aload_0
+      89: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+      92: getfield      #258                // Field com/smartscity/id/core/GeneratorMetrics.generated:Ljava/util/concurrent/atomic/LongAdder;
+      95: invokevirtual #262                // Method java/util/concurrent/atomic/LongAdder.increment:()V
+      98: aload_0
+      99: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+     102: invokevirtual #129                // Method com/smartscity/id/core/RingBuffer.size:()I
+     105: aload_0
+     106: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+     109: getfield      #71                 // Field com/smartscity/id/core/GeneratorOptions.capacity:I
+     112: aload_0
+     113: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+     116: getfield      #267                // Field com/smartscity/id/core/GeneratorOptions.lowWaterPercent:I
+     119: imul
+     120: bipush        100
+     122: idiv
+     123: if_icmpgt     133
+     126: aload_0
+     127: getfield      #115                // Field producer:Ljava/lang/Thread;
+     130: invokestatic  #270                // Method java/util/concurrent/locks/LockSupport.unpark:(Ljava/lang/Thread;)V
+     133: lload         5
+     135: lstore        7
+     137: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+     140: lstore        9
+     142: aload_0
+     143: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     146: lload         9
+     148: lload_1
+     149: lsub
+     150: invokevirtual #276                // Method com/smartscity/id/core/GeneratorMetrics.latency:(J)V
+     153: lload_3
+     154: lconst_0
+     155: lcmp
+     156: ifeq          173
+     159: aload_0
+     160: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     163: getfield      #280                // Field com/smartscity/id/core/GeneratorMetrics.waitNanos:Ljava/util/concurrent/atomic/LongAdder;
+     166: lload         9
+     168: lload_3
+     169: lsub
+     170: invokevirtual #282                // Method java/util/concurrent/atomic/LongAdder.add:(J)V
+     173: lload         7
+     175: lreturn
+     176: lload_3
+     177: lconst_0
+     178: lcmp
+     179: ifne          196
+     182: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+     185: lstore_3
+     186: aload_0
+     187: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     190: getfield      #285                // Field com/smartscity/id/core/GeneratorMetrics.waits:Ljava/util/concurrent/atomic/LongAdder;
+     193: invokevirtual #262                // Method java/util/concurrent/atomic/LongAdder.increment:()V
+     196: aload_0
+     197: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+     200: getfield      #249                // Field com/smartscity/id/core/GeneratorOptions.waitNanos:J
+     203: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+     206: lload_1
+     207: lsub
+     208: lsub
+     209: lstore        7
+     211: lload         7
+     213: lconst_0
+     214: lcmp
+     215: ifgt          232
+     218: new           #133                // class com/smartscity/id/api/IdException
+     221: dup
+     222: getstatic     #253                // Field com/smartscity/id/api/IdException$Reason.TIMEOUT:Lcom/smartscity/id/api/IdException$Reason;
+     225: ldc_w         #288                // String ID cache wait timed out
+     228: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+     231: athrow
+     232: aload_0
+     233: getfield      #115                // Field producer:Ljava/lang/Thread;
+     236: invokestatic  #270                // Method java/util/concurrent/locks/LockSupport.unpark:(Ljava/lang/Thread;)V
+     239: aload_0
+     240: lload         7
+     242: ldc2_w        #290                // long 100000l
+     245: invokestatic  #292                // Method java/lang/Math.min:(JJ)J
+     248: invokestatic  #298                // Method java/util/concurrent/locks/LockSupport.parkNanos:(Ljava/lang/Object;J)V
+     251: goto          6
+     254: astore        5
+     256: aload_0
+     257: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     260: aload         5
+     262: invokevirtual #302                // Method com/smartscity/id/api/IdException.getReason:()Lcom/smartscity/id/api/IdException$Reason;
+     265: invokevirtual #306                // Method com/smartscity/id/core/GeneratorMetrics.failed:(Lcom/smartscity/id/api/IdException$Reason;)V
+     268: aload         5
+     270: athrow
+     271: astore        11
+     273: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+     276: lstore        12
+     278: aload_0
+     279: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     282: lload         12
+     284: lload_1
+     285: lsub
+     286: invokevirtual #276                // Method com/smartscity/id/core/GeneratorMetrics.latency:(J)V
+     289: lload_3
+     290: lconst_0
+     291: lcmp
+     292: ifeq          309
+     295: aload_0
+     296: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     299: getfield      #280                // Field com/smartscity/id/core/GeneratorMetrics.waitNanos:Ljava/util/concurrent/atomic/LongAdder;
+     302: lload         12
+     304: lload_3
+     305: lsub
+     306: invokevirtual #282                // Method java/util/concurrent/atomic/LongAdder.add:(J)V
+     309: aload         11
+     311: athrow
+    Exception table:
+       from    to  target type
+           6   137   254   Class com/smartscity/id/api/IdException
+         176   254   254   Class com/smartscity/id/api/IdException
+           6   137   271   any
+         176   273   271   any
+
+  private void fill();
+    descriptor: ()V
+    Code:
+       0: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+       3: lstore_1
+       4: aload_0
+       5: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+       8: invokevirtual #165                // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+      11: ifne          109
+      14: aload_0
+      15: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+      18: invokevirtual #129                // Method com/smartscity/id/core/RingBuffer.size:()I
+      21: aload_0
+      22: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+      25: invokevirtual #310                // Method com/smartscity/id/core/RingBuffer.capacity:()I
+      28: if_icmpge     109
+      31: invokestatic  #234                // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+      34: invokevirtual #238                // Method java/lang/Thread.isInterrupted:()Z
+      37: ifeq          54
+      40: new           #133                // class com/smartscity/id/api/IdException
+      43: dup
+      44: getstatic     #241                // Field com/smartscity/id/api/IdException$Reason.INTERRUPTED:Lcom/smartscity/id/api/IdException$Reason;
+      47: ldc_w         #312                // String Cache initialization interrupted
+      50: invokespecial #143                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      53: athrow
+      54: aload_0
+      55: invokespecial #123                // Method checkAvailable:()V
+      58: aload_0
+      59: getfield      #95                 // Field source:Lcom/smartscity/id/core/DefaultUniqueIdGenerator;
+      62: aload_0
+      63: getfield      #65                 // Field clock:Lcom/smartscity/id/core/MonotonicClock;
+      66: aload_0
+      67: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+      70: getfield      #84                 // Field com/smartscity/id/core/GeneratorOptions.bits:Lcom/smartscity/id/core/BitsAllocator;
+      73: invokevirtual #205                // Method com/smartscity/id/core/BitsAllocator.getLayout:()Lcom/smartscity/id/core/IdLayout;
+      76: invokevirtual #211                // Method com/smartscity/id/core/IdLayout.getEpoch:()Ljava/time/Instant;
+      79: invokevirtual #217                // Method com/smartscity/id/core/MonotonicClock.seconds:(Ljava/time/Instant;)J
+      82: invokevirtual #314                // Method com/smartscity/id/core/DefaultUniqueIdGenerator.next:(J)J
+      85: lstore_3
+      86: lload_3
+      87: lconst_0
+      88: lcmp
+      89: ifeq          109
+      92: aload_0
+      93: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+      96: lload_3
+      97: invokevirtual #318                // Method com/smartscity/id/core/RingBuffer.offer:(J)Z
+     100: ifne          106
+     103: goto          109
+     106: goto          4
+     109: aload_0
+     110: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     113: getfield      #322                // Field com/smartscity/id/core/GeneratorMetrics.refillNanos:Ljava/util/concurrent/atomic/LongAdder;
+     116: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+     119: lload_1
+     120: lsub
+     121: invokevirtual #282                // Method java/util/concurrent/atomic/LongAdder.add:(J)V
+     124: goto          147
+     127: astore        5
+     129: aload_0
+     130: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     133: getfield      #322                // Field com/smartscity/id/core/GeneratorMetrics.refillNanos:Ljava/util/concurrent/atomic/LongAdder;
+     136: invokestatic  #229                // Method java/lang/System.nanoTime:()J
+     139: lload_1
+     140: lsub
+     141: invokevirtual #282                // Method java/util/concurrent/atomic/LongAdder.add:(J)V
+     144: aload         5
+     146: athrow
+     147: return
+    Exception table:
+       from    to  target type
+           4   109   127   any
+         127   129   127   any
+
+  private void produce();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+       4: invokevirtual #165                // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+       7: ifne          138
+      10: aload_0
+      11: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+      14: invokevirtual #173                // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+      17: ifnonnull     138
+      20: aload_0
+      21: invokespecial #123                // Method checkAvailable:()V
+      24: aload_0
+      25: invokespecial #126                // Method fill:()V
+      28: goto          128
+      31: astore_1
+      32: aload_1
+      33: invokevirtual #302                // Method com/smartscity/id/api/IdException.getReason:()Lcom/smartscity/id/api/IdException$Reason;
+      36: getstatic     #184                // Field com/smartscity/id/api/IdException$Reason.COORDINATION:Lcom/smartscity/id/api/IdException$Reason;
+      39: if_acmpeq     72
+      42: aload_1
+      43: invokevirtual #302                // Method com/smartscity/id/api/IdException.getReason:()Lcom/smartscity/id/api/IdException$Reason;
+      46: getstatic     #168                // Field com/smartscity/id/api/IdException$Reason.CLOSED:Lcom/smartscity/id/api/IdException$Reason;
+      49: if_acmpeq     72
+      52: aload_0
+      53: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+      56: getfield      #325                // Field com/smartscity/id/core/GeneratorMetrics.refillFailures:Ljava/util/concurrent/atomic/LongAdder;
+      59: invokevirtual #262                // Method java/util/concurrent/atomic/LongAdder.increment:()V
+      62: aload_0
+      63: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+      66: aconst_null
+      67: aload_1
+      68: invokevirtual #201                // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+      71: pop
+      72: goto          128
+      75: astore_1
+      76: aload_0
+      77: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+      80: getfield      #325                // Field com/smartscity/id/core/GeneratorMetrics.refillFailures:Ljava/util/concurrent/atomic/LongAdder;
+      83: invokevirtual #262                // Method java/util/concurrent/atomic/LongAdder.increment:()V
+      86: aload_0
+      87: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+      90: aconst_null
+      91: new           #133                // class com/smartscity/id/api/IdException
+      94: dup
+      95: getstatic     #328                // Field com/smartscity/id/api/IdException$Reason.INTERNAL:Lcom/smartscity/id/api/IdException$Reason;
+      98: ldc_w         #331                // String Cache producer failed
+     101: aload_1
+     102: invokespecial #333                // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;Ljava/lang/Throwable;)V
+     105: invokevirtual #201                // Method java/util/concurrent/atomic/AtomicReference.compareAndSet:(Ljava/lang/Object;Ljava/lang/Object;)Z
+     108: pop
+     109: aload_1
+     110: instanceof    #336                // class java/lang/VirtualMachineError
+     113: ifne          123
+     116: aload_1
+     117: instanceof    #338                // class java/lang/ThreadDeath
+     120: ifeq          128
+     123: aload_1
+     124: checkcast     #151                // class java/lang/Error
+     127: athrow
+     128: aload_0
+     129: ldc2_w        #340                // long 1000000l
+     132: invokestatic  #298                // Method java/util/concurrent/locks/LockSupport.parkNanos:(Ljava/lang/Object;J)V
+     135: goto          0
+     138: return
+    Exception table:
+       from    to  target type
+          20    28    31   Class com/smartscity/id/api/IdException
+          20    28    75   Class java/lang/RuntimeException
+          20    28    75   Class java/lang/Error
+
+  public com.smartscity.id.api.IdParts parse(long);
+    descriptor: (J)Lcom/smartscity/id/api/IdParts;
+    Code:
+       0: aload_0
+       1: getfield      #54                 // Field options:Lcom/smartscity/id/core/GeneratorOptions;
+       4: getfield      #84                 // Field com/smartscity/id/core/GeneratorOptions.bits:Lcom/smartscity/id/core/BitsAllocator;
+       7: lload_1
+       8: invokevirtual #342                // Method com/smartscity/id/core/BitsAllocator.parse:(J)Lcom/smartscity/id/api/IdParts;
+      11: areturn
+
+  public com.smartscity.id.api.IdSnapshot snapshot();
+    descriptor: ()Lcom/smartscity/id/api/IdSnapshot;
+    Code:
+       0: aload_0
+       1: getfield      #36                 // Field failure:Ljava/util/concurrent/atomic/AtomicReference;
+       4: invokevirtual #173                // Method java/util/concurrent/atomic/AtomicReference.get:()Ljava/lang/Object;
+       7: checkcast     #133                // class com/smartscity/id/api/IdException
+      10: astore_1
+      11: aload_0
+      12: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+      15: invokeinterface #174,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.state:()Lcom/smartscity/id/spi/WorkerLease$State;
+      20: astore_2
+      21: aload_0
+      22: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+      25: invokevirtual #165                // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+      28: ifne          46
+      31: aload_1
+      32: ifnonnull     46
+      35: aload_2
+      36: getstatic     #178                // Field com/smartscity/id/spi/WorkerLease$State.ACTIVE:Lcom/smartscity/id/spi/WorkerLease$State;
+      39: if_acmpne     46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: istore_3
+      48: aload_0
+      49: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+      52: invokevirtual #165                // Method java/util/concurrent/atomic/AtomicBoolean.get:()Z
+      55: ifeq          64
+      58: ldc_w         #346                // String CLOSED
+      61: goto          82
+      64: aload_1
+      65: ifnull        78
+      68: aload_1
+      69: invokevirtual #302                // Method com/smartscity/id/api/IdException.getReason:()Lcom/smartscity/id/api/IdException$Reason;
+      72: invokevirtual #347                // Method com/smartscity/id/api/IdException$Reason.name:()Ljava/lang/String;
+      75: goto          82
+      78: aload_2
+      79: invokevirtual #351                // Method com/smartscity/id/spi/WorkerLease$State.name:()Ljava/lang/String;
+      82: astore        4
+      84: aload_0
+      85: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+      88: invokevirtual #352                // Method com/smartscity/id/core/RingBuffer.oldestId:()J
+      91: lstore        5
+      93: lload         5
+      95: lconst_0
+      96: lcmp
+      97: ifne          104
+     100: lconst_0
+     101: goto          124
+     104: lconst_0
+     105: invokestatic  #355                // Method java/lang/System.currentTimeMillis:()J
+     108: aload_0
+     109: lload         5
+     111: invokevirtual #358                // Method parse:(J)Lcom/smartscity/id/api/IdParts;
+     114: invokevirtual #359                // Method com/smartscity/id/api/IdParts.getTimestamp:()Ljava/time/Instant;
+     117: invokevirtual #364                // Method java/time/Instant.toEpochMilli:()J
+     120: lsub
+     121: invokestatic  #369                // Method java/lang/Math.max:(JJ)J
+     124: lstore        7
+     126: invokestatic  #372                // Method com/smartscity/id/api/IdSnapshot.builder:()Lcom/smartscity/id/api/IdSnapshot$Builder;
+     129: aload_0
+     130: getfield      #65                 // Field clock:Lcom/smartscity/id/core/MonotonicClock;
+     133: invokevirtual #378                // Method com/smartscity/id/core/MonotonicClock.getAnchorMillis:()J
+     136: invokevirtual #381                // Method com/smartscity/id/api/IdSnapshot$Builder.startedAtMillis:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     139: iload_3
+     140: invokevirtual #387                // Method com/smartscity/id/api/IdSnapshot$Builder.ready:(Z)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     143: aload         4
+     145: invokevirtual #391                // Method com/smartscity/id/api/IdSnapshot$Builder.state:(Ljava/lang/String;)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     148: aload_0
+     149: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+     152: invokeinterface #105,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.rawId:()J
+     157: invokevirtual #394                // Method com/smartscity/id/api/IdSnapshot$Builder.rawWorkerId:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     160: aload_0
+     161: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+     164: invokeinterface #88,  1           // InterfaceMethod com/smartscity/id/spi/WorkerLease.workerId:()J
+     169: invokevirtual #397                // Method com/smartscity/id/api/IdSnapshot$Builder.workerId:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     172: aload_0
+     173: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     176: getfield      #258                // Field com/smartscity/id/core/GeneratorMetrics.generated:Ljava/util/concurrent/atomic/LongAdder;
+     179: invokevirtual #399                // Method java/util/concurrent/atomic/LongAdder.sum:()J
+     182: invokevirtual #402                // Method com/smartscity/id/api/IdSnapshot$Builder.generated:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     185: aload_0
+     186: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     189: getfield      #285                // Field com/smartscity/id/core/GeneratorMetrics.waits:Ljava/util/concurrent/atomic/LongAdder;
+     192: invokevirtual #399                // Method java/util/concurrent/atomic/LongAdder.sum:()J
+     195: invokevirtual #404                // Method com/smartscity/id/api/IdSnapshot$Builder.waits:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     198: aload_0
+     199: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     202: getfield      #280                // Field com/smartscity/id/core/GeneratorMetrics.waitNanos:Ljava/util/concurrent/atomic/LongAdder;
+     205: invokevirtual #399                // Method java/util/concurrent/atomic/LongAdder.sum:()J
+     208: invokevirtual #406                // Method com/smartscity/id/api/IdSnapshot$Builder.waitNanos:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     211: aload_0
+     212: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     215: getfield      #408                // Field com/smartscity/id/core/GeneratorMetrics.latencyNanos:Ljava/util/concurrent/atomic/LongAdder;
+     218: invokevirtual #399                // Method java/util/concurrent/atomic/LongAdder.sum:()J
+     221: invokevirtual #411                // Method com/smartscity/id/api/IdSnapshot$Builder.latencyNanos:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     224: aload_0
+     225: getfield      #65                 // Field clock:Lcom/smartscity/id/core/MonotonicClock;
+     228: invokevirtual #413                // Method com/smartscity/id/core/MonotonicClock.getDeviationMillis:()J
+     231: invokevirtual #416                // Method com/smartscity/id/api/IdSnapshot$Builder.clockDeviationMillis:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     234: lload         7
+     236: invokevirtual #419                // Method com/smartscity/id/api/IdSnapshot$Builder.oldestAgeMillis:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     239: aload_0
+     240: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     243: getfield      #322                // Field com/smartscity/id/core/GeneratorMetrics.refillNanos:Ljava/util/concurrent/atomic/LongAdder;
+     246: invokevirtual #399                // Method java/util/concurrent/atomic/LongAdder.sum:()J
+     249: invokevirtual #422                // Method com/smartscity/id/api/IdSnapshot$Builder.refillNanos:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     252: aload_0
+     253: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     256: getfield      #325                // Field com/smartscity/id/core/GeneratorMetrics.refillFailures:Ljava/util/concurrent/atomic/LongAdder;
+     259: invokevirtual #399                // Method java/util/concurrent/atomic/LongAdder.sum:()J
+     262: invokevirtual #424                // Method com/smartscity/id/api/IdSnapshot$Builder.refillFailures:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     265: aload_0
+     266: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     269: ldc2_w        #426                // double 0.5d
+     272: invokevirtual #428                // Method com/smartscity/id/core/GeneratorMetrics.percentile:(D)J
+     275: invokevirtual #432                // Method com/smartscity/id/api/IdSnapshot$Builder.latencyP50Nanos:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     278: aload_0
+     279: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     282: ldc2_w        #435                // double 0.95d
+     285: invokevirtual #428                // Method com/smartscity/id/core/GeneratorMetrics.percentile:(D)J
+     288: invokevirtual #437                // Method com/smartscity/id/api/IdSnapshot$Builder.latencyP95Nanos:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     291: aload_0
+     292: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     295: ldc2_w        #440                // double 0.99d
+     298: invokevirtual #428                // Method com/smartscity/id/core/GeneratorMetrics.percentile:(D)J
+     301: invokevirtual #442                // Method com/smartscity/id/api/IdSnapshot$Builder.latencyP99Nanos:(J)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     304: aload_0
+     305: getfield      #78                 // Field ring:Lcom/smartscity/id/core/RingBuffer;
+     308: invokevirtual #129                // Method com/smartscity/id/core/RingBuffer.size:()I
+     311: invokevirtual #445                // Method com/smartscity/id/api/IdSnapshot$Builder.buffered:(I)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     314: aload_0
+     315: getfield      #22                 // Field metrics:Lcom/smartscity/id/core/GeneratorMetrics;
+     318: invokevirtual #449                // Method com/smartscity/id/core/GeneratorMetrics.failures:()Ljava/util/Map;
+     321: invokevirtual #453                // Method com/smartscity/id/api/IdSnapshot$Builder.failures:(Ljava/util/Map;)Lcom/smartscity/id/api/IdSnapshot$Builder;
+     324: invokevirtual #456                // Method com/smartscity/id/api/IdSnapshot$Builder.build:()Lcom/smartscity/id/api/IdSnapshot;
+     327: areturn
+
+  public void close();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: getfield      #29                 // Field closed:Ljava/util/concurrent/atomic/AtomicBoolean;
+       4: iconst_0
+       5: iconst_1
+       6: invokevirtual #460                // Method java/util/concurrent/atomic/AtomicBoolean.compareAndSet:(ZZ)Z
+       9: ifne          13
+      12: return
+      13: aload_0
+      14: getfield      #115                // Field producer:Ljava/lang/Thread;
+      17: invokestatic  #270                // Method java/util/concurrent/locks/LockSupport.unpark:(Ljava/lang/Thread;)V
+      20: aload_0
+      21: getfield      #115                // Field producer:Ljava/lang/Thread;
+      24: ldc2_w        #463                // long 1000l
+      27: invokevirtual #465                // Method java/lang/Thread.join:(J)V
+      30: aload_0
+      31: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+      34: invokeinterface #156,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.close:()V
+      39: goto          73
+      42: astore_1
+      43: invokestatic  #234                // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+      46: invokevirtual #470                // Method java/lang/Thread.interrupt:()V
+      49: aload_0
+      50: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+      53: invokeinterface #156,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.close:()V
+      58: goto          73
+      61: astore_2
+      62: aload_0
+      63: getfield      #48                 // Field lease:Lcom/smartscity/id/spi/WorkerLease;
+      66: invokeinterface #156,  1          // InterfaceMethod com/smartscity/id/spi/WorkerLease.close:()V
+      71: aload_2
+      72: athrow
+      73: return
+    Exception table:
+       from    to  target type
+          20    30    42   Class java/lang/InterruptedException
+          20    30    61   any
+          42    49    61   any
+
+  private static com.smartscity.id.core.MonotonicClock lambda$usingClock$1(com.smartscity.id.core.MonotonicClock);
+    descriptor: (Lcom/smartscity/id/core/MonotonicClock;)Lcom/smartscity/id/core/MonotonicClock;
+    Code:
+       0: aload_0
+       1: invokestatic  #40                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+       4: checkcast     #63                 // class com/smartscity/id/core/MonotonicClock
+       7: areturn
+
+  private static com.smartscity.id.core.MonotonicClock lambda$new$0(com.smartscity.id.spi.TimeSource, com.smartscity.id.core.GeneratorOptions);
+    descriptor: (Lcom/smartscity/id/spi/TimeSource;Lcom/smartscity/id/core/GeneratorOptions;)Lcom/smartscity/id/core/MonotonicClock;
+    Code:
+       0: new           #63                 // class com/smartscity/id/core/MonotonicClock
+       3: dup
+       4: aload_0
+       5: aload_1
+       6: getfield      #473                // Field com/smartscity/id/core/GeneratorOptions.clockToleranceMillis:J
+       9: invokespecial #476                // Method com/smartscity/id/core/MonotonicClock."<init>":(Lcom/smartscity/id/spi/TimeSource;J)V
+      12: areturn
+}
+Compiled from "DefaultUniqueIdGenerator.java"
+public final class com.smartscity.id.core.DefaultUniqueIdGenerator {
+  private final com.smartscity.id.core.BitsAllocator bits;
+    descriptor: Lcom/smartscity/id/core/BitsAllocator;
+
+  private final long worker;
+    descriptor: J
+
+  private long second;
+    descriptor: J
+
+  private long nextSequence;
+    descriptor: J
+
+  public com.smartscity.id.core.DefaultUniqueIdGenerator(com.smartscity.id.core.BitsAllocator, long);
+    descriptor: (Lcom/smartscity/id/core/BitsAllocator;J)V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: ldc2_w        #7                  // long -1l
+       8: putfield      #9                  // Field second:J
+      11: lload_2
+      12: lconst_0
+      13: lcmp
+      14: iflt          26
+      17: lload_2
+      18: aload_1
+      19: invokevirtual #15                 // Method com/smartscity/id/core/BitsAllocator.getWorkerSlots:()J
+      22: lcmp
+      23: iflt          44
+      26: new           #21                 // class java/lang/IllegalArgumentException
+      29: dup
+      30: lload_2
+      31: aload_1
+      32: invokevirtual #15                 // Method com/smartscity/id/core/BitsAllocator.getWorkerSlots:()J
+      35: invokedynamic #23,  0             // InvokeDynamic #0:makeConcatWithConstants:(JJ)Ljava/lang/String;
+      40: invokespecial #27                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      43: athrow
+      44: aload_0
+      45: aload_1
+      46: putfield      #30                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+      49: aload_0
+      50: lload_2
+      51: putfield      #34                 // Field worker:J
+      54: return
+
+  public long next(long);
+    descriptor: (J)J
+    Code:
+       0: lload_1
+       1: lconst_0
+       2: lcmp
+       3: iflt          18
+       6: lload_1
+       7: aload_0
+       8: getfield      #30                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+      11: invokevirtual #37                 // Method com/smartscity/id/core/BitsAllocator.getMaxTime:()J
+      14: lcmp
+      15: ifle          46
+      18: new           #40                 // class com/smartscity/id/api/IdException
+      21: dup
+      22: getstatic     #42                 // Field com/smartscity/id/api/IdException$Reason.CAPACITY:Lcom/smartscity/id/api/IdException$Reason;
+      25: aload_0
+      26: getfield      #34                 // Field worker:J
+      29: lload_1
+      30: aload_0
+      31: getfield      #30                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+      34: invokevirtual #37                 // Method com/smartscity/id/core/BitsAllocator.getMaxTime:()J
+      37: invokedynamic #48,  0             // InvokeDynamic #1:makeConcatWithConstants:(JJJ)Ljava/lang/String;
+      42: invokespecial #51                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      45: athrow
+      46: lload_1
+      47: aload_0
+      48: getfield      #9                  // Field second:J
+      51: lcmp
+      52: ifge          80
+      55: new           #40                 // class com/smartscity/id/api/IdException
+      58: dup
+      59: getstatic     #54                 // Field com/smartscity/id/api/IdException$Reason.CLOCK:Lcom/smartscity/id/api/IdException$Reason;
+      62: aload_0
+      63: getfield      #34                 // Field worker:J
+      66: aload_0
+      67: getfield      #9                  // Field second:J
+      70: lload_1
+      71: invokedynamic #57,  0             // InvokeDynamic #2:makeConcatWithConstants:(JJJ)Ljava/lang/String;
+      76: invokespecial #51                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      79: athrow
+      80: lload_1
+      81: aload_0
+      82: getfield      #9                  // Field second:J
+      85: lcmp
+      86: ifle          99
+      89: aload_0
+      90: lload_1
+      91: putfield      #9                  // Field second:J
+      94: aload_0
+      95: lconst_0
+      96: putfield      #58                 // Field nextSequence:J
+      99: aload_0
+     100: getfield      #9                  // Field second:J
+     103: lconst_0
+     104: lcmp
+     105: ifne          131
+     108: aload_0
+     109: getfield      #34                 // Field worker:J
+     112: lconst_0
+     113: lcmp
+     114: ifne          131
+     117: aload_0
+     118: getfield      #58                 // Field nextSequence:J
+     121: lconst_0
+     122: lcmp
+     123: ifne          131
+     126: aload_0
+     127: lconst_1
+     128: putfield      #58                 // Field nextSequence:J
+     131: aload_0
+     132: getfield      #58                 // Field nextSequence:J
+     135: aload_0
+     136: getfield      #30                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+     139: invokevirtual #61                 // Method com/smartscity/id/core/BitsAllocator.getMaxSequence:()J
+     142: lcmp
+     143: ifle          148
+     146: lconst_0
+     147: lreturn
+     148: aload_0
+     149: getfield      #30                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+     152: aload_0
+     153: getfield      #9                  // Field second:J
+     156: aload_0
+     157: getfield      #34                 // Field worker:J
+     160: aload_0
+     161: dup
+     162: getfield      #58                 // Field nextSequence:J
+     165: dup2_x1
+     166: lconst_1
+     167: ladd
+     168: putfield      #58                 // Field nextSequence:J
+     171: invokevirtual #64                 // Method com/smartscity/id/core/BitsAllocator.allocate:(JJJ)J
+     174: lreturn
+}
+Compiled from "GeneratorMetrics.java"
+final class com.smartscity.id.core.GeneratorMetrics {
+  final java.util.concurrent.atomic.LongAdder generated;
+    descriptor: Ljava/util/concurrent/atomic/LongAdder;
+
+  final java.util.concurrent.atomic.LongAdder waits;
+    descriptor: Ljava/util/concurrent/atomic/LongAdder;
+
+  final java.util.concurrent.atomic.LongAdder waitNanos;
+    descriptor: Ljava/util/concurrent/atomic/LongAdder;
+
+  final java.util.concurrent.atomic.LongAdder latencyNanos;
+    descriptor: Ljava/util/concurrent/atomic/LongAdder;
+
+  final java.util.concurrent.atomic.LongAdder refillNanos;
+    descriptor: Ljava/util/concurrent/atomic/LongAdder;
+
+  final java.util.concurrent.atomic.LongAdder refillFailures;
+    descriptor: Ljava/util/concurrent/atomic/LongAdder;
+
+  private final java.util.concurrent.atomic.LongAdder[] latencyBuckets;
+    descriptor: [Ljava/util/concurrent/atomic/LongAdder;
+
+  private final java.util.EnumMap<com.smartscity.id.api.IdException$Reason, java.util.concurrent.atomic.LongAdder> failures;
+    descriptor: Ljava/util/EnumMap;
+
+  com.smartscity.id.core.GeneratorMetrics();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #7                  // class java/util/concurrent/atomic/LongAdder
+       8: dup
+       9: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+      12: putfield      #10                 // Field generated:Ljava/util/concurrent/atomic/LongAdder;
+      15: aload_0
+      16: new           #7                  // class java/util/concurrent/atomic/LongAdder
+      19: dup
+      20: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+      23: putfield      #16                 // Field waits:Ljava/util/concurrent/atomic/LongAdder;
+      26: aload_0
+      27: new           #7                  // class java/util/concurrent/atomic/LongAdder
+      30: dup
+      31: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+      34: putfield      #19                 // Field waitNanos:Ljava/util/concurrent/atomic/LongAdder;
+      37: aload_0
+      38: new           #7                  // class java/util/concurrent/atomic/LongAdder
+      41: dup
+      42: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+      45: putfield      #22                 // Field latencyNanos:Ljava/util/concurrent/atomic/LongAdder;
+      48: aload_0
+      49: new           #7                  // class java/util/concurrent/atomic/LongAdder
+      52: dup
+      53: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+      56: putfield      #25                 // Field refillNanos:Ljava/util/concurrent/atomic/LongAdder;
+      59: aload_0
+      60: new           #7                  // class java/util/concurrent/atomic/LongAdder
+      63: dup
+      64: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+      67: putfield      #28                 // Field refillFailures:Ljava/util/concurrent/atomic/LongAdder;
+      70: aload_0
+      71: bipush        64
+      73: anewarray     #7                  // class java/util/concurrent/atomic/LongAdder
+      76: putfield      #31                 // Field latencyBuckets:[Ljava/util/concurrent/atomic/LongAdder;
+      79: aload_0
+      80: new           #35                 // class java/util/EnumMap
+      83: dup
+      84: ldc           #37                 // class com/smartscity/id/api/IdException$Reason
+      86: invokespecial #39                 // Method java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+      89: putfield      #42                 // Field failures:Ljava/util/EnumMap;
+      92: invokestatic  #46                 // Method com/smartscity/id/api/IdException$Reason.values:()[Lcom/smartscity/id/api/IdException$Reason;
+      95: astore_1
+      96: aload_1
+      97: arraylength
+      98: istore_2
+      99: iconst_0
+     100: istore_3
+     101: iload_3
+     102: iload_2
+     103: if_icmpge     134
+     106: aload_1
+     107: iload_3
+     108: aaload
+     109: astore        4
+     111: aload_0
+     112: getfield      #42                 // Field failures:Ljava/util/EnumMap;
+     115: aload         4
+     117: new           #7                  // class java/util/concurrent/atomic/LongAdder
+     120: dup
+     121: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+     124: invokevirtual #50                 // Method java/util/EnumMap.put:(Ljava/lang/Enum;Ljava/lang/Object;)Ljava/lang/Object;
+     127: pop
+     128: iinc          3, 1
+     131: goto          101
+     134: iconst_0
+     135: istore_1
+     136: iload_1
+     137: aload_0
+     138: getfield      #31                 // Field latencyBuckets:[Ljava/util/concurrent/atomic/LongAdder;
+     141: arraylength
+     142: if_icmpge     164
+     145: aload_0
+     146: getfield      #31                 // Field latencyBuckets:[Ljava/util/concurrent/atomic/LongAdder;
+     149: iload_1
+     150: new           #7                  // class java/util/concurrent/atomic/LongAdder
+     153: dup
+     154: invokespecial #9                  // Method java/util/concurrent/atomic/LongAdder."<init>":()V
+     157: aastore
+     158: iinc          1, 1
+     161: goto          136
+     164: return
+
+  void latency(long);
+    descriptor: (J)V
+    Code:
+       0: aload_0
+       1: getfield      #22                 // Field latencyNanos:Ljava/util/concurrent/atomic/LongAdder;
+       4: lload_1
+       5: invokevirtual #54                 // Method java/util/concurrent/atomic/LongAdder.add:(J)V
+       8: lload_1
+       9: lconst_1
+      10: lcmp
+      11: ifgt          18
+      14: iconst_0
+      15: goto          27
+      18: bipush        64
+      20: lload_1
+      21: lconst_1
+      22: lsub
+      23: invokestatic  #58                 // Method java/lang/Long.numberOfLeadingZeros:(J)I
+      26: isub
+      27: istore_3
+      28: aload_0
+      29: getfield      #31                 // Field latencyBuckets:[Ljava/util/concurrent/atomic/LongAdder;
+      32: bipush        63
+      34: iload_3
+      35: invokestatic  #64                 // Method java/lang/Math.min:(II)I
+      38: aaload
+      39: invokevirtual #70                 // Method java/util/concurrent/atomic/LongAdder.increment:()V
+      42: return
+
+  long percentile(double);
+    descriptor: (D)J
+    Code:
+       0: bipush        64
+       2: newarray       long
+       4: astore_3
+       5: lconst_0
+       6: lstore        4
+       8: iconst_0
+       9: istore        6
+      11: iload         6
+      13: aload_3
+      14: arraylength
+      15: if_icmpge     47
+      18: aload_3
+      19: iload         6
+      21: aload_0
+      22: getfield      #31                 // Field latencyBuckets:[Ljava/util/concurrent/atomic/LongAdder;
+      25: iload         6
+      27: aaload
+      28: invokevirtual #73                 // Method java/util/concurrent/atomic/LongAdder.sum:()J
+      31: lastore
+      32: lload         4
+      34: aload_3
+      35: iload         6
+      37: laload
+      38: ladd
+      39: lstore        4
+      41: iinc          6, 1
+      44: goto          11
+      47: lload         4
+      49: lconst_0
+      50: lcmp
+      51: ifne          56
+      54: lconst_0
+      55: lreturn
+      56: lload         4
+      58: l2d
+      59: dload_1
+      60: dmul
+      61: invokestatic  #77                 // Method java/lang/Math.ceil:(D)D
+      64: d2l
+      65: lstore        6
+      67: lconst_0
+      68: lstore        8
+      70: iconst_0
+      71: istore        10
+      73: iload         10
+      75: aload_3
+      76: arraylength
+      77: if_icmpge     121
+      80: lload         8
+      82: aload_3
+      83: iload         10
+      85: laload
+      86: ladd
+      87: lstore        8
+      89: lload         8
+      91: lload         6
+      93: lcmp
+      94: iflt          115
+      97: iload         10
+      99: bipush        63
+     101: if_icmpne     110
+     104: ldc2_w        #81                 // long 9223372036854775807l
+     107: goto          114
+     110: lconst_1
+     111: iload         10
+     113: lshl
+     114: lreturn
+     115: iinc          10, 1
+     118: goto          73
+     121: ldc2_w        #81                 // long 9223372036854775807l
+     124: lreturn
+
+  void failed(com.smartscity.id.api.IdException$Reason);
+    descriptor: (Lcom/smartscity/id/api/IdException$Reason;)V
+    Code:
+       0: aload_0
+       1: getfield      #42                 // Field failures:Ljava/util/EnumMap;
+       4: aload_1
+       5: invokevirtual #83                 // Method java/util/EnumMap.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       8: checkcast     #7                  // class java/util/concurrent/atomic/LongAdder
+      11: invokevirtual #70                 // Method java/util/concurrent/atomic/LongAdder.increment:()V
+      14: return
+
+  java.util.Map<com.smartscity.id.api.IdException$Reason, java.lang.Long> failures();
+    descriptor: ()Ljava/util/Map;
+    Code:
+       0: new           #35                 // class java/util/EnumMap
+       3: dup
+       4: ldc           #37                 // class com/smartscity/id/api/IdException$Reason
+       6: invokespecial #39                 // Method java/util/EnumMap."<init>":(Ljava/lang/Class;)V
+       9: astore_1
+      10: aload_0
+      11: getfield      #42                 // Field failures:Ljava/util/EnumMap;
+      14: aload_1
+      15: invokedynamic #87,  0             // InvokeDynamic #0:accept:(Ljava/util/EnumMap;)Ljava/util/function/BiConsumer;
+      20: invokevirtual #91                 // Method java/util/EnumMap.forEach:(Ljava/util/function/BiConsumer;)V
+      23: aload_1
+      24: areturn
+
+  private static void lambda$failures$0(java.util.EnumMap, com.smartscity.id.api.IdException$Reason, java.util.concurrent.atomic.LongAdder);
+    descriptor: (Ljava/util/EnumMap;Lcom/smartscity/id/api/IdException$Reason;Ljava/util/concurrent/atomic/LongAdder;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: aload_2
+       3: invokevirtual #73                 // Method java/util/concurrent/atomic/LongAdder.sum:()J
+       6: invokestatic  #95                 // Method java/lang/Long.valueOf:(J)Ljava/lang/Long;
+       9: invokevirtual #50                 // Method java/util/EnumMap.put:(Ljava/lang/Enum;Ljava/lang/Object;)Ljava/lang/Object;
+      12: pop
+      13: return
+}
+Compiled from "GeneratorOptions.java"
+public final class com.smartscity.id.core.GeneratorOptions {
+  public final com.smartscity.id.core.BitsAllocator bits;
+    descriptor: Lcom/smartscity/id/core/BitsAllocator;
+
+  public final int capacity;
+    descriptor: I
+
+  public final int lowWaterPercent;
+    descriptor: I
+
+  public final long waitNanos;
+    descriptor: J
+
+  public final long clockToleranceMillis;
+    descriptor: J
+
+  private com.smartscity.id.core.GeneratorOptions(com.smartscity.id.core.GeneratorOptions$Builder);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;)V
+    Code:
+       0: aload_0
+       1: invokespecial #7                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokestatic  #12                 // Method com/smartscity/id/core/GeneratorOptions$Builder.access$000:(Lcom/smartscity/id/core/GeneratorOptions$Builder;)Lcom/smartscity/id/core/BitsAllocator;
+       9: invokestatic  #18                 // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+      12: checkcast     #24                 // class com/smartscity/id/core/BitsAllocator
+      15: putfield      #26                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+      18: aload_0
+      19: aload_1
+      20: invokestatic  #30                 // Method com/smartscity/id/core/GeneratorOptions$Builder.access$100:(Lcom/smartscity/id/core/GeneratorOptions$Builder;)I
+      23: putfield      #34                 // Field capacity:I
+      26: aload_0
+      27: aload_1
+      28: invokestatic  #38                 // Method com/smartscity/id/core/GeneratorOptions$Builder.access$200:(Lcom/smartscity/id/core/GeneratorOptions$Builder;)I
+      31: putfield      #41                 // Field lowWaterPercent:I
+      34: aload_0
+      35: aload_1
+      36: invokestatic  #44                 // Method com/smartscity/id/core/GeneratorOptions$Builder.access$300:(Lcom/smartscity/id/core/GeneratorOptions$Builder;)Ljava/time/Duration;
+      39: invokevirtual #48                 // Method java/time/Duration.toNanos:()J
+      42: putfield      #54                 // Field waitNanos:J
+      45: aload_0
+      46: aload_1
+      47: invokestatic  #58                 // Method com/smartscity/id/core/GeneratorOptions$Builder.access$400:(Lcom/smartscity/id/core/GeneratorOptions$Builder;)Ljava/time/Duration;
+      50: invokevirtual #61                 // Method java/time/Duration.toMillis:()J
+      53: putfield      #64                 // Field clockToleranceMillis:J
+      56: aload_0
+      57: getfield      #34                 // Field capacity:I
+      60: iconst_2
+      61: if_icmplt     84
+      64: aload_0
+      65: getfield      #34                 // Field capacity:I
+      68: ldc           #67                 // int 16777216
+      70: if_icmpgt     84
+      73: aload_0
+      74: getfield      #34                 // Field capacity:I
+      77: invokestatic  #68                 // Method java/lang/Integer.bitCount:(I)I
+      80: iconst_1
+      81: if_icmpeq     94
+      84: new           #74                 // class java/lang/IllegalArgumentException
+      87: dup
+      88: ldc           #76                 // String buffer-size/capacity must be a power of two from 2 through 16777216
+      90: invokespecial #78                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      93: athrow
+      94: aload_0
+      95: getfield      #41                 // Field lowWaterPercent:I
+      98: iconst_1
+      99: if_icmplt     111
+     102: aload_0
+     103: getfield      #41                 // Field lowWaterPercent:I
+     106: bipush        99
+     108: if_icmple     121
+     111: new           #74                 // class java/lang/IllegalArgumentException
+     114: dup
+     115: ldc           #81                 // String low-water-percent must be from 1 through 99
+     117: invokespecial #78                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     120: athrow
+     121: aload_0
+     122: getfield      #54                 // Field waitNanos:J
+     125: lconst_0
+     126: lcmp
+     127: iflt          145
+     130: aload_0
+     131: getfield      #54                 // Field waitNanos:J
+     134: lconst_1
+     135: invokestatic  #83                 // Method java/time/Duration.ofSeconds:(J)Ljava/time/Duration;
+     138: invokevirtual #48                 // Method java/time/Duration.toNanos:()J
+     141: lcmp
+     142: ifle          155
+     145: new           #74                 // class java/lang/IllegalArgumentException
+     148: dup
+     149: ldc           #87                 // String wait-timeout must be from 0 through 1 second
+     151: invokespecial #78                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     154: athrow
+     155: aload_0
+     156: getfield      #64                 // Field clockToleranceMillis:J
+     159: lconst_1
+     160: lcmp
+     161: ifge          174
+     164: new           #74                 // class java/lang/IllegalArgumentException
+     167: dup
+     168: ldc           #89                 // String clock-tolerance must be at least 1 millisecond
+     170: invokespecial #78                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+     173: athrow
+     174: return
+
+  public static com.smartscity.id.core.GeneratorOptions$Builder builder();
+    descriptor: ()Lcom/smartscity/id/core/GeneratorOptions$Builder;
+    Code:
+       0: new           #13                 // class com/smartscity/id/core/GeneratorOptions$Builder
+       3: dup
+       4: invokespecial #91                 // Method com/smartscity/id/core/GeneratorOptions$Builder."<init>":()V
+       7: areturn
+
+  com.smartscity.id.core.GeneratorOptions(com.smartscity.id.core.GeneratorOptions$Builder, com.smartscity.id.core.GeneratorOptions$1);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;Lcom/smartscity/id/core/GeneratorOptions$1;)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #1                  // Method "<init>":(Lcom/smartscity/id/core/GeneratorOptions$Builder;)V
+       5: return
+}
+Compiled from "GeneratorOptions.java"
+class com.smartscity.id.core.GeneratorOptions$1 {
+}
+Compiled from "GeneratorOptions.java"
+public final class com.smartscity.id.core.GeneratorOptions$Builder {
+  private com.smartscity.id.core.BitsAllocator bits;
+    descriptor: Lcom/smartscity/id/core/BitsAllocator;
+
+  private int capacity;
+    descriptor: I
+
+  private int lowWaterPercent;
+    descriptor: I
+
+  private java.time.Duration wait;
+    descriptor: Ljava/time/Duration;
+
+  private java.time.Duration clockTolerance;
+    descriptor: Ljava/time/Duration;
+
+  public com.smartscity.id.core.GeneratorOptions$Builder();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #21                 // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: invokestatic  #27                 // Method com/smartscity/id/core/BitsAllocator.standard:()Lcom/smartscity/id/core/BitsAllocator;
+       8: putfield      #17                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+      11: aload_0
+      12: sipush        16384
+      15: putfield      #14                 // Field capacity:I
+      18: aload_0
+      19: bipush        50
+      21: putfield      #10                 // Field lowWaterPercent:I
+      24: aload_0
+      25: ldc2_w        #33                 // long 10l
+      28: invokestatic  #35                 // Method java/time/Duration.ofMillis:(J)Ljava/time/Duration;
+      31: putfield      #7                  // Field wait:Ljava/time/Duration;
+      34: aload_0
+      35: lconst_1
+      36: invokestatic  #41                 // Method java/time/Duration.ofSeconds:(J)Ljava/time/Duration;
+      39: putfield      #1                  // Field clockTolerance:Ljava/time/Duration;
+      42: return
+
+  public com.smartscity.id.core.GeneratorOptions$Builder bits(com.smartscity.id.core.BitsAllocator);
+    descriptor: (Lcom/smartscity/id/core/BitsAllocator;)Lcom/smartscity/id/core/GeneratorOptions$Builder;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #17                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.core.GeneratorOptions$Builder capacity(int);
+    descriptor: (I)Lcom/smartscity/id/core/GeneratorOptions$Builder;
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #14                 // Field capacity:I
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.core.GeneratorOptions$Builder lowWaterPercent(int);
+    descriptor: (I)Lcom/smartscity/id/core/GeneratorOptions$Builder;
+    Code:
+       0: aload_0
+       1: iload_1
+       2: putfield      #10                 // Field lowWaterPercent:I
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.core.GeneratorOptions$Builder waitTimeout(java.time.Duration);
+    descriptor: (Ljava/time/Duration;)Lcom/smartscity/id/core/GeneratorOptions$Builder;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #7                  // Field wait:Ljava/time/Duration;
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.core.GeneratorOptions$Builder clockTolerance(java.time.Duration);
+    descriptor: (Ljava/time/Duration;)Lcom/smartscity/id/core/GeneratorOptions$Builder;
+    Code:
+       0: aload_0
+       1: aload_1
+       2: putfield      #1                  // Field clockTolerance:Ljava/time/Duration;
+       5: aload_0
+       6: areturn
+
+  public com.smartscity.id.core.GeneratorOptions build();
+    descriptor: ()Lcom/smartscity/id/core/GeneratorOptions;
+    Code:
+       0: new           #44                 // class com/smartscity/id/core/GeneratorOptions
+       3: dup
+       4: aload_0
+       5: aconst_null
+       6: invokespecial #46                 // Method com/smartscity/id/core/GeneratorOptions."<init>":(Lcom/smartscity/id/core/GeneratorOptions$Builder;Lcom/smartscity/id/core/GeneratorOptions$1;)V
+       9: areturn
+
+  static com.smartscity.id.core.BitsAllocator access$000(com.smartscity.id.core.GeneratorOptions$Builder);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;)Lcom/smartscity/id/core/BitsAllocator;
+    Code:
+       0: aload_0
+       1: getfield      #17                 // Field bits:Lcom/smartscity/id/core/BitsAllocator;
+       4: areturn
+
+  static int access$100(com.smartscity.id.core.GeneratorOptions$Builder);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;)I
+    Code:
+       0: aload_0
+       1: getfield      #14                 // Field capacity:I
+       4: ireturn
+
+  static int access$200(com.smartscity.id.core.GeneratorOptions$Builder);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;)I
+    Code:
+       0: aload_0
+       1: getfield      #10                 // Field lowWaterPercent:I
+       4: ireturn
+
+  static java.time.Duration access$300(com.smartscity.id.core.GeneratorOptions$Builder);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;)Ljava/time/Duration;
+    Code:
+       0: aload_0
+       1: getfield      #7                  // Field wait:Ljava/time/Duration;
+       4: areturn
+
+  static java.time.Duration access$400(com.smartscity.id.core.GeneratorOptions$Builder);
+    descriptor: (Lcom/smartscity/id/core/GeneratorOptions$Builder;)Ljava/time/Duration;
+    Code:
+       0: aload_0
+       1: getfield      #1                  // Field clockTolerance:Ljava/time/Duration;
+       4: areturn
+}
+Compiled from "IdLayout.java"
+public final class com.smartscity.id.core.IdLayout {
+  public static final java.time.Instant DEFAULT_EPOCH;
+    descriptor: Ljava/time/Instant;
+
+  private final java.time.Instant epoch;
+    descriptor: Ljava/time/Instant;
+
+  private final int timestampBits;
+    descriptor: I
+
+  private final int workerBits;
+    descriptor: I
+
+  private final int sequenceBits;
+    descriptor: I
+
+  public com.smartscity.id.core.IdLayout(java.time.Instant, int, int, int);
+    descriptor: (Ljava/time/Instant;III)V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: iload_2
+       5: iconst_1
+       6: if_icmplt     50
+       9: iload_3
+      10: iconst_1
+      11: if_icmplt     50
+      14: iload         4
+      16: iconst_1
+      17: if_icmplt     50
+      20: iload_2
+      21: bipush        61
+      23: if_icmpgt     50
+      26: iload_3
+      27: bipush        61
+      29: if_icmpgt     50
+      32: iload         4
+      34: bipush        61
+      36: if_icmpgt     50
+      39: iload_2
+      40: iload_3
+      41: iadd
+      42: iload         4
+      44: iadd
+      45: bipush        63
+      47: if_icmple     63
+      50: new           #7                  // class com/smartscity/id/api/IdException
+      53: dup
+      54: getstatic     #9                  // Field com/smartscity/id/api/IdException$Reason.CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+      57: ldc           #15                 // String ID bits must each be 1..61 and timestamp + worker + sequence must not exceed 63
+      59: invokespecial #17                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      62: athrow
+      63: aload_1
+      64: ifnull        74
+      67: aload_1
+      68: invokevirtual #20                 // Method java/time/Instant.getNano:()I
+      71: ifeq          87
+      74: new           #7                  // class com/smartscity/id/api/IdException
+      77: dup
+      78: getstatic     #9                  // Field com/smartscity/id/api/IdException$Reason.CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+      81: ldc           #26                 // String ID epoch must be a non-null ISO-8601 instant aligned to a whole second
+      83: invokespecial #17                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      86: athrow
+      87: aload_1
+      88: invokevirtual #28                 // Method java/time/Instant.toEpochMilli:()J
+      91: pop2
+      92: aload_1
+      93: lconst_1
+      94: iload_2
+      95: lshl
+      96: lconst_1
+      97: lsub
+      98: invokevirtual #32                 // Method java/time/Instant.plusSeconds:(J)Ljava/time/Instant;
+     101: invokevirtual #28                 // Method java/time/Instant.toEpochMilli:()J
+     104: pop2
+     105: goto          125
+     108: astore        5
+     110: new           #7                  // class com/smartscity/id/api/IdException
+     113: dup
+     114: getstatic     #9                  // Field com/smartscity/id/api/IdException$Reason.CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+     117: ldc           #40                 // String ID epoch and timestamp bits exceed the supported millisecond timestamp range
+     119: aload         5
+     121: invokespecial #42                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;Ljava/lang/Throwable;)V
+     124: athrow
+     125: aload_0
+     126: aload_1
+     127: putfield      #45                 // Field epoch:Ljava/time/Instant;
+     130: aload_0
+     131: iload_2
+     132: putfield      #51                 // Field timestampBits:I
+     135: aload_0
+     136: iload_3
+     137: putfield      #55                 // Field workerBits:I
+     140: aload_0
+     141: iload         4
+     143: putfield      #58                 // Field sequenceBits:I
+     146: return
+    Exception table:
+       from    to  target type
+          87   105   108   Class java/lang/ArithmeticException
+          87   105   108   Class java/time/DateTimeException
+
+  public static com.smartscity.id.core.IdLayout standard();
+    descriptor: ()Lcom/smartscity/id/core/IdLayout;
+    Code:
+       0: new           #46                 // class com/smartscity/id/core/IdLayout
+       3: dup
+       4: getstatic     #61                 // Field DEFAULT_EPOCH:Ljava/time/Instant;
+       7: bipush        30
+       9: bipush        18
+      11: bipush        15
+      13: invokespecial #64                 // Method "<init>":(Ljava/time/Instant;III)V
+      16: areturn
+
+  public static com.smartscity.id.core.IdLayout highThroughput();
+    descriptor: ()Lcom/smartscity/id/core/IdLayout;
+    Code:
+       0: new           #46                 // class com/smartscity/id/core/IdLayout
+       3: dup
+       4: getstatic     #61                 // Field DEFAULT_EPOCH:Ljava/time/Instant;
+       7: bipush        30
+       9: bipush        16
+      11: bipush        17
+      13: invokespecial #64                 // Method "<init>":(Ljava/time/Instant;III)V
+      16: areturn
+
+  public static com.smartscity.id.core.IdLayout javascript(int);
+    descriptor: (I)Lcom/smartscity/id/core/IdLayout;
+    Code:
+       0: iload_0
+       1: bipush        15
+       3: if_icmplt     12
+       6: iload_0
+       7: bipush        17
+       9: if_icmple     25
+      12: new           #7                  // class com/smartscity/id/api/IdException
+      15: dup
+      16: getstatic     #9                  // Field com/smartscity/id/api/IdException$Reason.CONFIGURATION:Lcom/smartscity/id/api/IdException$Reason;
+      19: ldc           #67                 // String JS sequence bits must be 15..17
+      21: invokespecial #17                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      24: athrow
+      25: new           #46                 // class com/smartscity/id/core/IdLayout
+      28: dup
+      29: getstatic     #61                 // Field DEFAULT_EPOCH:Ljava/time/Instant;
+      32: bipush        43
+      34: iload_0
+      35: isub
+      36: bipush        10
+      38: iload_0
+      39: invokespecial #64                 // Method "<init>":(Ljava/time/Instant;III)V
+      42: areturn
+
+  public java.time.Instant getEpoch();
+    descriptor: ()Ljava/time/Instant;
+    Code:
+       0: aload_0
+       1: getfield      #45                 // Field epoch:Ljava/time/Instant;
+       4: areturn
+
+  public int getTimestampBits();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #51                 // Field timestampBits:I
+       4: ireturn
+
+  public int getWorkerBits();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #55                 // Field workerBits:I
+       4: ireturn
+
+  public int getSequenceBits();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #58                 // Field sequenceBits:I
+       4: ireturn
+
+  static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #69                 // String 2026-01-01T00:00:00Z
+       2: invokestatic  #71                 // Method java/time/Instant.parse:(Ljava/lang/CharSequence;)Ljava/time/Instant;
+       5: putstatic     #61                 // Field DEFAULT_EPOCH:Ljava/time/Instant;
+       8: return
+}
+Compiled from "MonotonicClock.java"
+public final class com.smartscity.id.core.MonotonicClock {
+  private static final long MAX_SAMPLE_NANOS = 1000000l;
+    descriptor: J
+
+  private static final int SAMPLE_ATTEMPTS = 3;
+    descriptor: I
+
+  private final com.smartscity.id.spi.TimeSource source;
+    descriptor: Lcom/smartscity/id/spi/TimeSource;
+
+  private final long wallAnchor;
+    descriptor: J
+
+  private final long nanoAnchor;
+    descriptor: J
+
+  private final long toleranceMillis;
+    descriptor: J
+
+  private volatile long deviationMillis;
+    descriptor: J
+
+  public com.smartscity.id.core.MonotonicClock(com.smartscity.id.spi.TimeSource, long);
+    descriptor: (Lcom/smartscity/id/spi/TimeSource;J)V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: aload_1
+       6: invokestatic  #7                  // Method java/util/Objects.requireNonNull:(Ljava/lang/Object;)Ljava/lang/Object;
+       9: checkcast     #13                 // class com/smartscity/id/spi/TimeSource
+      12: putfield      #15                 // Field source:Lcom/smartscity/id/spi/TimeSource;
+      15: lload_2
+      16: lconst_1
+      17: lcmp
+      18: ifge          31
+      21: new           #21                 // class java/lang/IllegalArgumentException
+      24: dup
+      25: ldc           #23                 // String Clock tolerance must be positive
+      27: invokespecial #25                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      30: athrow
+      31: aload_0
+      32: lload_2
+      33: putfield      #28                 // Field toleranceMillis:J
+      36: lconst_0
+      37: lstore        4
+      39: lconst_0
+      40: lstore        6
+      42: iconst_0
+      43: istore        8
+      45: iconst_0
+      46: istore        9
+      48: iload         9
+      50: iconst_3
+      51: if_icmpge     137
+      54: aload_1
+      55: invokeinterface #32,  1           // InterfaceMethod com/smartscity/id/spi/TimeSource.nanoTime:()J
+      60: lstore        10
+      62: aload_1
+      63: invokeinterface #36,  1           // InterfaceMethod com/smartscity/id/spi/TimeSource.wallTimeMillis:()J
+      68: lstore        12
+      70: aload_1
+      71: invokeinterface #32,  1           // InterfaceMethod com/smartscity/id/spi/TimeSource.nanoTime:()J
+      76: lstore        14
+      78: lload         14
+      80: lload         10
+      82: lsub
+      83: lstore        16
+      85: lload         16
+      87: lconst_0
+      88: lcmp
+      89: ifge          98
+      92: ldc           #39                 // String Monotonic clock regressed
+      94: invokestatic  #41                 // Method invalidClock:(Ljava/lang/String;)Lcom/smartscity/id/api/IdException;
+      97: athrow
+      98: lload         16
+     100: ldc2_w        #45                 // long 1000000l
+     103: lcmp
+     104: ifle          110
+     107: goto          131
+     110: lload         10
+     112: lload         16
+     114: ldc2_w        #47                 // long 2l
+     117: ldiv
+     118: ladd
+     119: lstore        4
+     121: lload         12
+     123: lstore        6
+     125: iconst_1
+     126: istore        8
+     128: goto          137
+     131: iinc          9, 1
+     134: goto          48
+     137: iload         8
+     139: ifne          148
+     142: ldc           #49                 // String Cannot obtain a stable clock anchor
+     144: invokestatic  #41                 // Method invalidClock:(Ljava/lang/String;)Lcom/smartscity/id/api/IdException;
+     147: athrow
+     148: aload_0
+     149: lload         4
+     151: putfield      #51                 // Field nanoAnchor:J
+     154: aload_0
+     155: lload         6
+     157: putfield      #54                 // Field wallAnchor:J
+     160: return
+
+  public long millis();
+    descriptor: ()J
+    Code:
+       0: iconst_0
+       1: istore_1
+       2: iload_1
+       3: iconst_3
+       4: if_icmpge     218
+       7: aload_0
+       8: getfield      #15                 // Field source:Lcom/smartscity/id/spi/TimeSource;
+      11: invokeinterface #32,  1           // InterfaceMethod com/smartscity/id/spi/TimeSource.nanoTime:()J
+      16: lstore_2
+      17: aload_0
+      18: getfield      #15                 // Field source:Lcom/smartscity/id/spi/TimeSource;
+      21: invokeinterface #36,  1           // InterfaceMethod com/smartscity/id/spi/TimeSource.wallTimeMillis:()J
+      26: lstore        4
+      28: aload_0
+      29: getfield      #15                 // Field source:Lcom/smartscity/id/spi/TimeSource;
+      32: invokeinterface #32,  1           // InterfaceMethod com/smartscity/id/spi/TimeSource.nanoTime:()J
+      37: lstore        6
+      39: lload         6
+      41: lload_2
+      42: lsub
+      43: lstore        8
+      45: lload_2
+      46: aload_0
+      47: getfield      #51                 // Field nanoAnchor:J
+      50: lsub
+      51: lstore        10
+      53: lload         8
+      55: lconst_0
+      56: lcmp
+      57: iflt          67
+      60: lload         10
+      62: lconst_0
+      63: lcmp
+      64: ifge          73
+      67: ldc           #39                 // String Monotonic clock regressed
+      69: invokestatic  #41                 // Method invalidClock:(Ljava/lang/String;)Lcom/smartscity/id/api/IdException;
+      72: athrow
+      73: lload         8
+      75: ldc2_w        #45                 // long 1000000l
+      78: lcmp
+      79: ifle          85
+      82: goto          212
+      85: aload_0
+      86: getfield      #54                 // Field wallAnchor:J
+      89: lload         10
+      91: ldc2_w        #45                 // long 1000000l
+      94: ldiv
+      95: invokestatic  #57                 // Method java/lang/Math.addExact:(JJ)J
+      98: lstore        12
+     100: aload_0
+     101: getfield      #54                 // Field wallAnchor:J
+     104: lload         6
+     106: aload_0
+     107: getfield      #51                 // Field nanoAnchor:J
+     110: lsub
+     111: ldc2_w        #45                 // long 1000000l
+     114: ldiv
+     115: invokestatic  #57                 // Method java/lang/Math.addExact:(JJ)J
+     118: lstore        14
+     120: lload         4
+     122: lload         12
+     124: lcmp
+     125: ifge          138
+     128: lload         4
+     130: lload         12
+     132: invokestatic  #63                 // Method java/lang/Math.subtractExact:(JJ)J
+     135: goto          157
+     138: lload         4
+     140: lload         14
+     142: lcmp
+     143: ifle          156
+     146: lload         4
+     148: lload         14
+     150: invokestatic  #63                 // Method java/lang/Math.subtractExact:(JJ)J
+     153: goto          157
+     156: lconst_0
+     157: lstore        16
+     159: aload_0
+     160: lload         16
+     162: putfield      #66                 // Field deviationMillis:J
+     165: lload         16
+     167: aload_0
+     168: getfield      #28                 // Field toleranceMillis:J
+     171: lcmp
+     172: ifgt          186
+     175: lload         16
+     177: aload_0
+     178: getfield      #28                 // Field toleranceMillis:J
+     181: lneg
+     182: lcmp
+     183: ifge          192
+     186: ldc           #69                 // String Wall/monotonic clock deviation exceeds tolerance
+     188: invokestatic  #41                 // Method invalidClock:(Ljava/lang/String;)Lcom/smartscity/id/api/IdException;
+     191: athrow
+     192: lload         14
+     194: lreturn
+     195: astore        12
+     197: new           #73                 // class com/smartscity/id/api/IdException
+     200: dup
+     201: getstatic     #75                 // Field com/smartscity/id/api/IdException$Reason.CLOCK:Lcom/smartscity/id/api/IdException$Reason;
+     204: ldc           #81                 // String Clock arithmetic overflow
+     206: aload         12
+     208: invokespecial #83                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;Ljava/lang/Throwable;)V
+     211: athrow
+     212: iinc          1, 1
+     215: goto          2
+     218: ldc           #86                 // String Cannot obtain a stable clock sample
+     220: invokestatic  #41                 // Method invalidClock:(Ljava/lang/String;)Lcom/smartscity/id/api/IdException;
+     223: athrow
+    Exception table:
+       from    to  target type
+          85   194   195   Class java/lang/ArithmeticException
+
+  private static com.smartscity.id.api.IdException invalidClock(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/smartscity/id/api/IdException;
+    Code:
+       0: new           #73                 // class com/smartscity/id/api/IdException
+       3: dup
+       4: getstatic     #75                 // Field com/smartscity/id/api/IdException$Reason.CLOCK:Lcom/smartscity/id/api/IdException$Reason;
+       7: aload_0
+       8: invokespecial #88                 // Method com/smartscity/id/api/IdException."<init>":(Lcom/smartscity/id/api/IdException$Reason;Ljava/lang/String;)V
+      11: areturn
+
+  public long seconds();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getstatic     #91                 // Field com/smartscity/id/core/IdLayout.DEFAULT_EPOCH:Ljava/time/Instant;
+       4: invokevirtual #97                 // Method seconds:(Ljava/time/Instant;)J
+       7: lreturn
+
+  public long seconds(java.time.Instant);
+    descriptor: (Ljava/time/Instant;)J
+    Code:
+       0: aload_0
+       1: invokevirtual #101                // Method millis:()J
+       4: sipush        1000
+       7: invokestatic  #104                // Method java/lang/Math.floorDiv:(JI)J
+      10: aload_1
+      11: invokevirtual #108                // Method java/time/Instant.getEpochSecond:()J
+      14: invokestatic  #63                 // Method java/lang/Math.subtractExact:(JJ)J
+      17: lreturn
+
+  public long getAnchorMillis();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #54                 // Field wallAnchor:J
+       4: lreturn
+
+  public long getDeviationMillis();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #66                 // Field deviationMillis:J
+       4: lreturn
+}
+Compiled from "RingBuffer.java"
+public final class com.smartscity.id.core.RingBuffer {
+  private static final java.lang.invoke.VarHandle SEQUENCE;
+    descriptor: Ljava/lang/invoke/VarHandle;
+
+  private final long[] ids;
+    descriptor: [J
+
+  private final long[] sequence;
+    descriptor: [J
+
+  private final int mask;
+    descriptor: I
+
+  private final com.smartscity.id.core.RingBuffer$PaddedCursor head;
+    descriptor: Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+
+  private final com.smartscity.id.core.RingBuffer$PaddedCursor tail;
+    descriptor: Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+
+  public com.smartscity.id.core.RingBuffer(int);
+    descriptor: (I)V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: aload_0
+       5: new           #7                  // class com/smartscity/id/core/RingBuffer$PaddedCursor
+       8: dup
+       9: aconst_null
+      10: invokespecial #9                  // Method com/smartscity/id/core/RingBuffer$PaddedCursor."<init>":(Lcom/smartscity/id/core/RingBuffer$1;)V
+      13: putfield      #12                 // Field head:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+      16: aload_0
+      17: new           #7                  // class com/smartscity/id/core/RingBuffer$PaddedCursor
+      20: dup
+      21: aconst_null
+      22: invokespecial #9                  // Method com/smartscity/id/core/RingBuffer$PaddedCursor."<init>":(Lcom/smartscity/id/core/RingBuffer$1;)V
+      25: putfield      #18                 // Field tail:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+      28: iload_1
+      29: iconst_2
+      30: if_icmplt     47
+      33: iload_1
+      34: ldc           #21                 // int 16777216
+      36: if_icmpgt     47
+      39: iload_1
+      40: invokestatic  #22                 // Method java/lang/Integer.bitCount:(I)I
+      43: iconst_1
+      44: if_icmpeq     57
+      47: new           #28                 // class java/lang/IllegalArgumentException
+      50: dup
+      51: ldc           #30                 // String Ring capacity must be a power of two in [2, 2^24]
+      53: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      56: athrow
+      57: aload_0
+      58: iload_1
+      59: newarray       long
+      61: putfield      #35                 // Field ids:[J
+      64: aload_0
+      65: iload_1
+      66: newarray       long
+      68: putfield      #39                 // Field sequence:[J
+      71: aload_0
+      72: iload_1
+      73: iconst_1
+      74: isub
+      75: putfield      #42                 // Field mask:I
+      78: iconst_0
+      79: istore_2
+      80: iload_2
+      81: iload_1
+      82: if_icmpge     99
+      85: aload_0
+      86: getfield      #39                 // Field sequence:[J
+      89: iload_2
+      90: iload_2
+      91: i2l
+      92: lastore
+      93: iinc          2, 1
+      96: goto          80
+      99: return
+
+  public boolean offer(long);
+    descriptor: (J)Z
+    Code:
+       0: lload_1
+       1: lconst_0
+       2: lcmp
+       3: ifgt          16
+       6: new           #28                 // class java/lang/IllegalArgumentException
+       9: dup
+      10: ldc           #46                 // String ID must be positive
+      12: invokespecial #32                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+      15: athrow
+      16: aload_0
+      17: getfield      #18                 // Field tail:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+      20: invokevirtual #48                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.get:()J
+      23: lstore_3
+      24: lload_3
+      25: ldc2_w        #54                 // long 9223372036854775807l
+      28: aload_0
+      29: getfield      #35                 // Field ids:[J
+      32: arraylength
+      33: i2l
+      34: lsub
+      35: lcmp
+      36: iflt          49
+      39: new           #56                 // class java/lang/IllegalStateException
+      42: dup
+      43: ldc           #58                 // String Ring position exhausted
+      45: invokespecial #60                 // Method java/lang/IllegalStateException."<init>":(Ljava/lang/String;)V
+      48: athrow
+      49: lload_3
+      50: l2i
+      51: aload_0
+      52: getfield      #42                 // Field mask:I
+      55: iand
+      56: istore        5
+      58: getstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+      61: aload_0
+      62: getfield      #39                 // Field sequence:[J
+      65: iload         5
+      67: invokevirtual #65                 // Method java/lang/invoke/VarHandle.getAcquire:([JI)J
+      70: lload_3
+      71: lcmp
+      72: ifeq          77
+      75: iconst_0
+      76: ireturn
+      77: aload_0
+      78: getfield      #35                 // Field ids:[J
+      81: iload         5
+      83: lload_1
+      84: lastore
+      85: getstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+      88: aload_0
+      89: getfield      #39                 // Field sequence:[J
+      92: iload         5
+      94: lload_3
+      95: lconst_1
+      96: ladd
+      97: invokevirtual #71                 // Method java/lang/invoke/VarHandle.setRelease:([JIJ)V
+     100: aload_0
+     101: getfield      #18                 // Field tail:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+     104: lload_3
+     105: lconst_1
+     106: ladd
+     107: invokevirtual #75                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.lazySet:(J)V
+     110: iconst_1
+     111: ireturn
+
+  public long poll();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #12                 // Field head:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+       4: invokevirtual #48                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.get:()J
+       7: lstore_1
+       8: lload_1
+       9: l2i
+      10: aload_0
+      11: getfield      #42                 // Field mask:I
+      14: iand
+      15: istore_3
+      16: getstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+      19: aload_0
+      20: getfield      #39                 // Field sequence:[J
+      23: iload_3
+      24: invokevirtual #65                 // Method java/lang/invoke/VarHandle.getAcquire:([JI)J
+      27: lload_1
+      28: lconst_1
+      29: ladd
+      30: lcmp
+      31: ifne          48
+      34: aload_0
+      35: getfield      #12                 // Field head:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+      38: lload_1
+      39: lload_1
+      40: lconst_1
+      41: ladd
+      42: invokevirtual #79                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.compareAndSet:(JJ)Z
+      45: ifne          50
+      48: lconst_0
+      49: lreturn
+      50: aload_0
+      51: getfield      #35                 // Field ids:[J
+      54: iload_3
+      55: laload
+      56: lstore        4
+      58: getstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+      61: aload_0
+      62: getfield      #39                 // Field sequence:[J
+      65: iload_3
+      66: lload_1
+      67: aload_0
+      68: getfield      #35                 // Field ids:[J
+      71: arraylength
+      72: i2l
+      73: ladd
+      74: invokevirtual #71                 // Method java/lang/invoke/VarHandle.setRelease:([JIJ)V
+      77: lload         4
+      79: lreturn
+
+  public long oldestId();
+    descriptor: ()J
+    Code:
+       0: aload_0
+       1: getfield      #12                 // Field head:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+       4: invokevirtual #48                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.get:()J
+       7: lstore_1
+       8: lload_1
+       9: l2i
+      10: aload_0
+      11: getfield      #42                 // Field mask:I
+      14: iand
+      15: istore_3
+      16: getstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+      19: aload_0
+      20: getfield      #39                 // Field sequence:[J
+      23: iload_3
+      24: invokevirtual #65                 // Method java/lang/invoke/VarHandle.getAcquire:([JI)J
+      27: lload_1
+      28: lconst_1
+      29: ladd
+      30: lcmp
+      31: ifeq          36
+      34: lconst_0
+      35: lreturn
+      36: aload_0
+      37: getfield      #35                 // Field ids:[J
+      40: iload_3
+      41: laload
+      42: lstore        4
+      44: getstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+      47: aload_0
+      48: getfield      #39                 // Field sequence:[J
+      51: iload_3
+      52: invokevirtual #65                 // Method java/lang/invoke/VarHandle.getAcquire:([JI)J
+      55: lload_1
+      56: lconst_1
+      57: ladd
+      58: lcmp
+      59: ifne          67
+      62: lload         4
+      64: goto          68
+      67: lconst_0
+      68: lreturn
+
+  public int size();
+    descriptor: ()I
+    Code:
+       0: lconst_0
+       1: aload_0
+       2: getfield      #35                 // Field ids:[J
+       5: arraylength
+       6: i2l
+       7: aload_0
+       8: getfield      #18                 // Field tail:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+      11: invokevirtual #48                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.get:()J
+      14: aload_0
+      15: getfield      #12                 // Field head:Lcom/smartscity/id/core/RingBuffer$PaddedCursor;
+      18: invokevirtual #48                 // Method com/smartscity/id/core/RingBuffer$PaddedCursor.get:()J
+      21: lsub
+      22: invokestatic  #83                 // Method java/lang/Math.min:(JJ)J
+      25: invokestatic  #89                 // Method java/lang/Math.max:(JJ)J
+      28: l2i
+      29: ireturn
+
+  public int capacity();
+    descriptor: ()I
+    Code:
+       0: aload_0
+       1: getfield      #35                 // Field ids:[J
+       4: arraylength
+       5: ireturn
+
+  static {};
+    descriptor: ()V
+    Code:
+       0: ldc           #92                 // class "[J"
+       2: invokestatic  #93                 // Method java/lang/invoke/MethodHandles.arrayElementVarHandle:(Ljava/lang/Class;)Ljava/lang/invoke/VarHandle;
+       5: putstatic     #61                 // Field SEQUENCE:Ljava/lang/invoke/VarHandle;
+       8: return
+}
+Compiled from "RingBuffer.java"
+class com.smartscity.id.core.RingBuffer$1 {
+}
+Compiled from "RingBuffer.java"
+final class com.smartscity.id.core.RingBuffer$PaddedCursor extends java.util.concurrent.atomic.AtomicLong {
+  private static final long serialVersionUID = 1l;
+    descriptor: J
+
+  public volatile long p1;
+    descriptor: J
+
+  public volatile long p2;
+    descriptor: J
+
+  public volatile long p3;
+    descriptor: J
+
+  public volatile long p4;
+    descriptor: J
+
+  public volatile long p5;
+    descriptor: J
+
+  public volatile long p6;
+    descriptor: J
+
+  public volatile long p7;
+    descriptor: J
+
+  public volatile long p8;
+    descriptor: J
+
+  private com.smartscity.id.core.RingBuffer$PaddedCursor();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #7                  // Method java/util/concurrent/atomic/AtomicLong."<init>":()V
+       4: return
+
+  com.smartscity.id.core.RingBuffer$PaddedCursor(com.smartscity.id.core.RingBuffer$1);
+    descriptor: (Lcom/smartscity/id/core/RingBuffer$1;)V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method "<init>":()V
+       4: return
+}
+Compiled from "TimeSource.java"
+public interface com.smartscity.id.spi.TimeSource {
+  public static final com.smartscity.id.spi.TimeSource SYSTEM;
+    descriptor: Lcom/smartscity/id/spi/TimeSource;
+
+  public abstract long wallTimeMillis();
+    descriptor: ()J
+
+  public abstract long nanoTime();
+    descriptor: ()J
+
+  static {};
+    descriptor: ()V
+    Code:
+       0: new           #1                  // class com/smartscity/id/spi/TimeSource$1
+       3: dup
+       4: invokespecial #3                  // Method com/smartscity/id/spi/TimeSource$1."<init>":()V
+       7: putstatic     #7                  // Field SYSTEM:Lcom/smartscity/id/spi/TimeSource;
+      10: return
+}
+Compiled from "TimeSource.java"
+class com.smartscity.id.spi.TimeSource$1 implements com.smartscity.id.spi.TimeSource {
+  com.smartscity.id.spi.TimeSource$1();
+    descriptor: ()V
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  public long wallTimeMillis();
+    descriptor: ()J
+    Code:
+       0: invokestatic  #7                  // Method java/lang/System.currentTimeMillis:()J
+       3: lreturn
+
+  public long nanoTime();
+    descriptor: ()J
+    Code:
+       0: invokestatic  #13                 // Method java/lang/System.nanoTime:()J
+       3: lreturn
+}
+Compiled from "WorkerLease.java"
+public interface com.smartscity.id.spi.WorkerLease extends java.lang.AutoCloseable {
+  public abstract long rawId();
+    descriptor: ()J
+
+  public abstract long workerId();
+    descriptor: ()J
+
+  public abstract com.smartscity.id.spi.WorkerLease$State state();
+    descriptor: ()Lcom/smartscity/id/spi/WorkerLease$State;
+
+  public abstract void close();
+    descriptor: ()V
+}
+Compiled from "WorkerLease.java"
+public final class com.smartscity.id.spi.WorkerLease$State extends java.lang.Enum<com.smartscity.id.spi.WorkerLease$State> {
+  public static final com.smartscity.id.spi.WorkerLease$State ACTIVE;
+    descriptor: Lcom/smartscity/id/spi/WorkerLease$State;
+
+  public static final com.smartscity.id.spi.WorkerLease$State SUSPENDED;
+    descriptor: Lcom/smartscity/id/spi/WorkerLease$State;
+
+  public static final com.smartscity.id.spi.WorkerLease$State EXPIRED;
+    descriptor: Lcom/smartscity/id/spi/WorkerLease$State;
+
+  public static final com.smartscity.id.spi.WorkerLease$State CLOSED;
+    descriptor: Lcom/smartscity/id/spi/WorkerLease$State;
+
+  private static final com.smartscity.id.spi.WorkerLease$State[] $VALUES;
+    descriptor: [Lcom/smartscity/id/spi/WorkerLease$State;
+
+  public static com.smartscity.id.spi.WorkerLease$State[] values();
+    descriptor: ()[Lcom/smartscity/id/spi/WorkerLease$State;
+    Code:
+       0: getstatic     #16                 // Field $VALUES:[Lcom/smartscity/id/spi/WorkerLease$State;
+       3: invokevirtual #20                 // Method "[Lcom/smartscity/id/spi/WorkerLease$State;".clone:()Ljava/lang/Object;
+       6: checkcast     #21                 // class "[Lcom/smartscity/id/spi/WorkerLease$State;"
+       9: areturn
+
+  public static com.smartscity.id.spi.WorkerLease$State valueOf(java.lang.String);
+    descriptor: (Ljava/lang/String;)Lcom/smartscity/id/spi/WorkerLease$State;
+    Code:
+       0: ldc           #1                  // class com/smartscity/id/spi/WorkerLease$State
+       2: aload_0
+       3: invokestatic  #25                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+       6: checkcast     #1                  // class com/smartscity/id/spi/WorkerLease$State
+       9: areturn
+
+  private com.smartscity.id.spi.WorkerLease$State();
+    descriptor: (Ljava/lang/String;I)V
+    Code:
+       0: aload_0
+       1: aload_1
+       2: iload_2
+       3: invokespecial #31                 // Method java/lang/Enum."<init>":(Ljava/lang/String;I)V
+       6: return
+
+  private static com.smartscity.id.spi.WorkerLease$State[] $values();
+    descriptor: ()[Lcom/smartscity/id/spi/WorkerLease$State;
+    Code:
+       0: iconst_4
+       1: anewarray     #1                  // class com/smartscity/id/spi/WorkerLease$State
+       4: dup
+       5: iconst_0
+       6: getstatic     #3                  // Field ACTIVE:Lcom/smartscity/id/spi/WorkerLease$State;
+       9: aastore
+      10: dup
+      11: iconst_1
+      12: getstatic     #7                  // Field SUSPENDED:Lcom/smartscity/id/spi/WorkerLease$State;
+      15: aastore
+      16: dup
+      17: iconst_2
+      18: getstatic     #10                 // Field EXPIRED:Lcom/smartscity/id/spi/WorkerLease$State;
+      21: aastore
+      22: dup
+      23: iconst_3
+      24: getstatic     #13                 // Field CLOSED:Lcom/smartscity/id/spi/WorkerLease$State;
+      27: aastore
+      28: areturn
+
+  static {};
+    descriptor: ()V
+    Code:
+       0: new           #1                  // class com/smartscity/id/spi/WorkerLease$State
+       3: dup
+       4: ldc           #35                 // String ACTIVE
+       6: iconst_0
+       7: invokespecial #36                 // Method "<init>":(Ljava/lang/String;I)V
+      10: putstatic     #3                  // Field ACTIVE:Lcom/smartscity/id/spi/WorkerLease$State;
+      13: new           #1                  // class com/smartscity/id/spi/WorkerLease$State
+      16: dup
+      17: ldc           #37                 // String SUSPENDED
+      19: iconst_1
+      20: invokespecial #36                 // Method "<init>":(Ljava/lang/String;I)V
+      23: putstatic     #7                  // Field SUSPENDED:Lcom/smartscity/id/spi/WorkerLease$State;
+      26: new           #1                  // class com/smartscity/id/spi/WorkerLease$State
+      29: dup
+      30: ldc           #38                 // String EXPIRED
+      32: iconst_2
+      33: invokespecial #36                 // Method "<init>":(Ljava/lang/String;I)V
+      36: putstatic     #10                 // Field EXPIRED:Lcom/smartscity/id/spi/WorkerLease$State;
+      39: new           #1                  // class com/smartscity/id/spi/WorkerLease$State
+      42: dup
+      43: ldc           #39                 // String CLOSED
+      45: iconst_3
+      46: invokespecial #36                 // Method "<init>":(Ljava/lang/String;I)V
+      49: putstatic     #13                 // Field CLOSED:Lcom/smartscity/id/spi/WorkerLease$State;
+      52: invokestatic  #40                 // Method $values:()[Lcom/smartscity/id/spi/WorkerLease$State;
+      55: putstatic     #16                 // Field $VALUES:[Lcom/smartscity/id/spi/WorkerLease$State;
+      58: return
+}

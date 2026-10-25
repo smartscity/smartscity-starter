@@ -1,0 +1,121 @@
+{
+  "status": "PASS",
+  "scope": "existing domain public signatures against pre-refactor shaded JAR",
+  "classes": [
+    {
+      "class": "com.smartscity.id.api.IdException$Reason",
+      "retained": 11,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.api.IdException",
+      "retained": 3,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.api.IdGenerator",
+      "retained": 4,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.api.IdParts",
+      "retained": 4,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.api.IdSnapshot$1",
+      "retained": 0,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.api.IdSnapshot$Builder",
+      "retained": 20,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.api.IdSnapshot",
+      "retained": 19,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.BitsAllocator",
+      "retained": 14,
+      "added": [
+        "public com.smartscity.id.core.BitsAllocator(com.smartscity.id.core.IdLayout);",
+        "public com.smartscity.id.core.IdLayout getLayout();"
+      ]
+    },
+    {
+      "class": "com.smartscity.id.core.CachedUniqueIdGenerator",
+      "retained": 6,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.DefaultUniqueIdGenerator",
+      "retained": 2,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.GeneratorMetrics",
+      "retained": 0,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.GeneratorOptions$1",
+      "retained": 0,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.GeneratorOptions$Builder",
+      "retained": 7,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.GeneratorOptions",
+      "retained": 6,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.MonotonicClock",
+      "retained": 5,
+      "added": [
+        "public long seconds(java.time.Instant);"
+      ]
+    },
+    {
+      "class": "com.smartscity.id.core.RingBuffer$1",
+      "retained": 0,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.RingBuffer$PaddedCursor",
+      "retained": 8,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.core.RingBuffer",
+      "retained": 6,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.spi.TimeSource$1",
+      "retained": 2,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.spi.TimeSource",
+      "retained": 3,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.spi.WorkerLease$State",
+      "retained": 6,
+      "added": []
+    },
+    {
+      "class": "com.smartscity.id.spi.WorkerLease",
+      "retained": 4,
+      "added": []
+    }
+  ]
+}

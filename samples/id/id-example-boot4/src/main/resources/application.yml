@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: order-service
+  main:
+    web-application-type: none
+smartscity:
+  id:
+    enabled: true
+    group: orders
+    profile: standard
+    epoch: 2026-01-01T00:00:00Z
+    bits:
+      timestamp: 30
+      worker: 18
+      sequence: 15
+    database:
+      type: mysql
+      use-application-data-source: false
+      url: ${ID_DATABASE_URL}
+      username: ${ID_DATABASE_USER}
+      password: ${ID_DATABASE_PASSWORD:}
+    buffer-size: 16384
+    low-water-percent: 50
+    wait-timeout: 10ms
+    clock-tolerance: 1s
+    startup-timeout: 10s
+    shutdown-timeout: 2s

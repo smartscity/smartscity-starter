@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.smartscity.id.compatibility.StarterDiscoveryTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 1.847 s -- in com.smartscity.id.compatibility.StarterDiscoveryTest

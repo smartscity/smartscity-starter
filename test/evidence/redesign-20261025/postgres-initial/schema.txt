@@ -1,0 +1,1 @@
+["/private/tmp/starter-postgres-14.15/bin/createdb", "-h", "127.0.0.1", "-p", "61195", "-U", "postgres", "smartscity_id_test"]

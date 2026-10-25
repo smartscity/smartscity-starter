@@ -57,7 +57,7 @@ jobs:
       - name: Build JMH executable
         run: |
           java -version 2> "$RESULTS/build-java.txt"
-          ./mvnw -B -ntp -Pbenchmarks -pl smartscity-id-benchmark -am -DskipTests clean package 2>&1 | tee "$RESULTS/build.txt"
+          ./mvnw -B -ntp -Pbenchmarks -pl test/smartscity-id-benchmark -am -DskipTests clean package 2>&1 | tee "$RESULTS/build.txt"
       - name: Set up measurement JDK
         uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
         with:
@@ -66,13 +66,13 @@ jobs:
       - name: Verify tools and JMH discovery
         run: |
           for tool in jq timeout sha256sum lscpu; do command -v "$tool"; done
-          java -jar smartscity-id-benchmark/target/benchmarks.jar -l | tee "$RESULTS/benchmarks.txt"
+          java -jar test/smartscity-id-benchmark/target/benchmarks.jar -l | tee "$RESULTS/benchmarks.txt"
           grep -Fx 'com.smartscity.id.benchmark.IdBenchmark.generate' "$RESULTS/benchmarks.txt"
       - name: Run bounded measurements
         timeout-minutes: 10
         env:
           REQUIRE_100K: ${{ inputs.require_100k }}
-        run: bash testing/run-benchmark-ci.sh "$RESULTS/measurements"
+        run: bash test/run-benchmark-ci.sh "$RESULTS/measurements"
       - name: Preserve results even on failure
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

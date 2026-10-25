@@ -1,59 +1,67 @@
 # Smartscity Starter Agent Guide
 
-## 当前授权范围
+## Scope and authorization
 
-2026-10-25 用户已确认方案、默认参数及实施顺序，并在实现与复审完成后授权本地提交、准备和执行隔离破坏测试与 benchmark。此前“性能测试先不跑”的限制已被本次明确授权替代。最新状态见 [审阅记录](docs/planning/review-state.md)。
+The user accepted the starter-family structure and authorized a local commit of all current project changes on 2026-10-25. The latest instruction stops unit/integration tests and compatibility execution; benchmarks are also excluded. This round only reorganizes samples, consolidates documentation and formatting configuration, and commits the reviewed working state. Do not push, tag, publish or trigger remote workflows. Preserve unrelated changes until included in the authorized all-project commit.
 
-- 只实现 ID 组件，不新增锁、缓存、消息、限流等其他组件。
-- 遵循 [已确认方案](docs/proposals/id-v1/README.md) 和 [实施阶段](docs/phases/current.md)。
-- 不把未运行的数据库、JDK/Boot 组合或理论容量当作已验证能力。
-- 本次可提交到本地；不要 push、tag 或发布。
-- 最新补测只做有限轮次重启/故障/并发验证；用户已排除持续运行测试。
-- 后续已授权接入手动 GitHub Actions benchmark；本次准备配置、本地验证和提交，不 push 或触发远程运行。
+## Before changing code
 
-## 修改前必读
+Read [documentation](docs/README.md), the engineering rules below, accepted ADRs, the owning docs/<component>/README.md and USER_GUIDE.md and [test inventory](docs/id/testing.md). Current source of truth: latest user instruction, accepted ADR, owning contract, compatibility matrix, test evidence, implementation. Historical logs prove only their recorded snapshot.
 
-1. 本文件和 [文档索引](docs/00-README.md)。
-2. [架构与编码规范](docs/engineering/architecture-and-coding.md)及[设计模式策略](docs/engineering/design-pattern-policy.md)。
-3. 相关已接受 ADR、领域 owning 文档、模块 README。
-4. [测试清单](testing/TEST-INVENTORY.md)和当前阶段计划。
+## Repository rules
 
-## Source of Truth
+- Group examples by component under `samples/<component>/`; keep each application in its own standard Maven module.
+- Root responsibilities: `build/`, `core/`, `module/`, `starter/`, `test/`, `samples/`, `docs/`, `.github/`.
+- `build/smartscity-parent` owns compiler, dependency and plugin versions, quality gates and release conventions. Root POM only assembles the reactor. Never inherit the Boot parent.
+- `smartscity-dependencies` manages only Smartscity production coordinates. It must not import Spring, Jackson, Netty or test dependency management.
+- Prefer one domain artifact with packages. Split only for demonstrated dependency, compatibility or release needs. No empty projects, circular dependencies or shared utility dumping grounds.
+- `smartscity-id` has zero production dependencies. All framework, JDBC and ZooKeeper integration lives under starter/. Boot 2.7/3 and Boot 4 are mutually exclusive combined starter binaries; no cross-generation runtime dependency.
+- Each starter family has an unpublished aggregator and the minimum necessary combined integration/starter children. Published children inherit the published build parent directly. Use standard Maven source/resource/test roots; no src/shared or source injection. No unrelated capability activation. Tests, samples and benchmarks never become production dependencies.
+- Preserve ID encoding, epoch, time/lease failure semantics and tests during structural changes. Never imply unconditional uniqueness, silently reuse node 0, ignore rollback or wrap sequences.
+- Public types, configuration, coordinates and compatibility changes require an ADR, migration notes and verification. Keep existing public Java packages unless a migration is necessary.
+- All maintained documentation and code comments are English. Navigation is locale-aware, with English as the only currently available locale. Do not create empty translations.
+- Build with JDK 21 and the pinned Maven wrapper. Java 9 bytecode is not proof of Java 9–27 runtime support. Boot 4 adapter bytecode is Java 17.
 
-用户最新指令决定授权范围。工程约束由本文件和工程规范拥有；同一设计事实只维护一个权威来源。
+## Verification and delivery
 
-领域事实优先级：已接受的 `docs/adr/*` → [ID 契约](docs/05-ID-Contract.md) → [兼容矩阵](docs/03-Compatibility-Matrix.md) → [模块边界](docs/04-Module-Boundaries.md) → 测试清单 → 源码。`PROPOSED` ADR、规划、历史报告不代表设计已批准或能力已实现。发生实质冲突时先澄清受影响设计，其他已授权工作继续。
+When execution is authorized, run meaningful correctness tests and the artifact boundary checker. This round does not run tests or compatibility checks. Preserve PASS, FAIL, NOT_RUN, PARTIAL and BLOCKED. Inspect dependency convergence, generated metadata, imports registration, conditional backoff, binding, startup and shutdown. Compare source behavior and public API, not only successful compilation. Use only owned temporary database/coordination instances for integration and fault tests. Keep benchmark execution excluded.
 
-## 文档规则
+Use detailed English Conventional Commit messages if committing. Commit/tag/push/publication follow the actual authorization. Review final state ownership, dependencies, patterns and evidence before delivery.
 
-- `README.md` 使用英文，`README.zh-CN.md` 使用中文；正文按语言分开，结构保持一致。
-- 首页只保留简介、架构、接入、规划和导航；细节链接到所属文档。
-- 用最少的内容表达清楚；名称直观，关系和流程优先用 Mermaid。
-
-## 工程规则
-
-- 顺序：外部契约 → 验收门禁 → 模块/状态归属 → API 设计 → 实现 → 兼容性验证 → 按授权进行性能验证 → 文档闭环。
-- 根 POM 不继承 Spring Boot Parent；BOM 只管理本项目生产组件，不接管 Spring、Jackson、Netty 等外部版本。
-- `id-api` 零第三方依赖；`id-spi` 只允许依赖 API；`id-core` 只允许依赖 API、SPI 和 JDK。Spring 留在适配层。
-- Starter 只聚合依赖；testkit、compatibility-tests、benchmark 不进入生产传递依赖。
-- 对象必须有明确职责、状态 owner、生命周期及线程归属。避免无领域含义的 Manager、Helper、Utils、Common、Misc、Processor、Handler、Context。
-- 生产代码不使用 Lombok、Unsafe、JDK 内部 API；API 与核心不使用反射。暂不引入 Multi-Release JAR 或 `module-info.java`。
-- 实现不得用默认 Node ID 0、IP/MAC/Pod 名散列、无约束序列回绕或忽略回拨伪装唯一性保证。静态 Node ID 不等于已具备冲突检测能力。
-- 公共 API、配置名、异常、位布局、Epoch、ArtifactId、支持矩阵和默认失败语义的冻结或变更，需要对应 ADR 与验收证据；当前基线见 ADR-0006 和 ID 契约。
-- 保留用户及其他会话改动。Git 初始化、提交、tag、push 和发布按实际授权执行。
-
-## 验证与交付
-
-日常命令见 [README](README.md)。构建 JDK 与产物运行 JDK 分离。配置 `--release 9` 不等于通过 Java 9～27 运行验证。
-
-当前必须执行实现正确性检查；不得仅凭构建成功声称唯一性、并发安全、Spring Boot 自动装配或性能通过。使用 `PASS`、`FAIL`、`NOT_RUN`、`PARTIAL`、`BLOCKED` 记录真实状态。
-
-Benchmark 只在明确授权且有场景、预算和环境记录时运行，默认排除。性能结论需要可比较的 before/after、JDK、CPU、OS、线程数、批量大小、JVM 参数及分配率；理论编码容量不是实测吞吐。
-
-交付前复审模块依赖、对象归属、模式取舍及证据。只有骨架被授权时，以骨架验收为停点；不进入功能实现。
-
-<!-- CODEGRAPH_START -->
 ## CodeGraph
 
-如果仓库根目录存在 `.codegraph/`，理解或定位代码时先使用 `codegraph_explore`，或 `codegraph explore "<symbol names or question>"`，再使用文本搜索或读取源码。没有 `.codegraph/` 时直接跳过；不自动创建索引。
-<!-- CODEGRAPH_END -->
+When `.codegraph/` exists, use `codegraph_explore` or `codegraph explore "<question>"` before text searches or reading code to locate/understand symbols. If absent, skip it and do not index automatically.
+
+## Style and documentation
+
+Follow the official [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html): two-space indentation, braces for control-flow bodies, explicit imports, one statement per line and meaningful English Javadoc. Pinned Spotless/google-java-format runs at Maven validate. Apply with `./mvnw -Pverification,samples -pl '!build/smartscity-dependencies' spotless:apply`; the independent production-only BOM intentionally does not inherit build plugins. Do not format generated sources or historical evidence.
+
+Every maintained top-level Java type and public nested configuration type has a meaningful class Javadoc and `@author jack`. This author requirement is project policy, not a Google requirement. Use a summary sentence, `<p>` for subsequent paragraphs and correctly ordered block tags. Public factories and nontrivial methods use multiline Javadoc with meaningful @param, @return and @throws where applicable, including nullability, ownership transfer, concurrency and cleanup; do not add empty tags or boilerplate to obvious accessors. Release Javadoc checks syntax, references and HTML with doclint.
+
+The IDE scheme is [Google Java Style XML](build/style/google-java-style.xml); the build parent owns the authoritative formatter version.
+
+Comments explain contracts, failures, concurrency, resource ownership or non-obvious decisions. Remove decorative banners and narration of obvious code. Preserve stable public names for compatibility.
+
+Each component owns docs/<component>/README.md for design and USER_GUIDE.md for usage, plus its compatibility, migration, tests and domain ADRs. Module and starter READMEs are short pointers only. Global docs contain shared architecture/policy and navigation. Maintain one complete configuration example and one reference table; documentation binding tests must read the actual example. English is the only maintained locale. Do not add empty translation directories or .gitkeep placeholders.
+
+Epoch and bit widths form one immutable IdLayout. Keep legacy defaults and property names stable. Validate the complete format before allocation; use the same format for generation, decoding and JDBC group checks. Never hot-reload or silently migrate a live identity namespace.
+
+## Ownership and pattern review
+
+Before nontrivial implementation, identify each object's responsibility, invariant, state owner, collaborators, lifetime and thread ownership. Keep state and its protecting rules together. Entry points assemble and delegate; domain code stays independent of frameworks and I/O. Bound every queue, executor, retry and resource lifetime. Distinguish acceptance, completion, cancellation, timeout and unknown outcomes. Supplied DataSources remain application-owned; observation must not alter readiness or uniqueness.
+
+Evaluate patterns for real problems and record the decision briefly:
+
+| Trigger | Review |
+|---|---|
+| Three related mutable fields | Encapsulate their invariant in one owner |
+| Third repeated state/policy branch | Centralize transition/strategy only if it clarifies ownership |
+| Four significant construction collaborators | Reuse the composition root and its cleanup responsibility |
+| Five public parameters or optional combinations | Use validated immutable options or an existing builder |
+| Unrelated responsibilities | Separate by state and reason for change, not line count |
+
+Reuse existing TimeSource/WorkerLease ports, JDBC/ZK adapters, IdGeneratorFactory, GeneratorOptions and combined integration/starters. IdLayout is the immutable identity-format value. Do not introduce speculative facades, state hierarchies, utilities, Lombok, Unsafe, JDK internals or reflection in domain/API code. No multi-release JAR or module-info is needed. Before delivery, review state/resource ownership, dependencies, failure paths, preserved assertions, current docs and actual evidence; compilation alone is insufficient.
+
+## Worker registry
+
+Follow ADR-0009. Group format and monotonic cursor are separate from worker registration identities. Use one transaction and database uniqueness constraints; never map a row ID modulo worker capacity. No committed worker reuse, even after shutdown or expiry; fail closed on exhaustion and unknown commit. Registration tokens protect metadata updates, not local issuance. No JDBC heartbeat, pool or generation-path query. Resolve application DataSources only with explicit opt-in and never close them. Schema migration is operator-managed; no implicit upgrade, cursor reset, status/age-based reclamation or old/new allocator mixing. Preserve UTC event metadata and do not invent a crash-safe last-issued timestamp without a durable protocol.

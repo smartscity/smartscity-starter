@@ -1,0 +1,3 @@
+["/private/tmp/starter-postgres-14.15/bin/pg_ctl", "-D", "/var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/starter-postgres-data-03mlydv0/data", "-l", "/Users/liyunlong/git/smartscity/smartscity-starter/test/evidence/redesign-20261025/postgres/server.txt", "-o", "-h 127.0.0.1 -p 61195 -k /var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/starter-postgres-data-03mlydv0", "-w", "start"]
+waiting for server to start.... done
+server started

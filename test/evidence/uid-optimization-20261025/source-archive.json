@@ -1,0 +1,6 @@
+{
+  "archive": "frozen-sources.tar.gz",
+  "sha256": "9841c1cd27e9fe744e581a51b1aa2ea6fd73c9f763a4aaab698de965771d1751",
+  "bytes": 79502,
+  "contents": "Three SDK source snapshots and exact Java/Python comparison harness; no upstream source, credentials or database configuration"
+}

@@ -1,0 +1,19 @@
+["/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java", "-cp", "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/classes:/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/benchmarks-fa1ff20919c6e21957af5cc81580ca30ebc7e49ac7f2456c80319f20c3249e7c.jar:/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/deps/spring-core-4.2.5.RELEASE.jar:/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/deps/spring-beans-4.2.5.RELEASE.jar:/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/deps/commons-lang-2.6.jar:/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/deps/slf4j-api-1.7.7.jar:/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/baidu-comparison/deps/slf4j-nop-1.7.7.jar", "org.openjdk.jmh.Main", "ComparisonBenchmark.generate", "-p", "implementation=baidu-default", "-p", "profile=high-throughput", "-t", "8", "-f", "2", "-wi", "2", "-w", "1s", "-i", "3", "-r", "2s", "-foe", "true", "-prof", "gc", "-rf", "json", "-rff", "/Users/liyunlong/git/smartscity/smartscity-starter/test/evidence/uid-local-20261025-193733/high-throughput-8-baidu-default.json"]
+# JMH version: 1.37
+# VM version: JDK 21.0.12.1, OpenJDK 64-Bit Server VM, 21.0.12.1+1-LTS
+# VM invoker: /Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java
+# VM options: -Xms512m -Xmx512m -Duser.timezone=UTC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 3 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 8 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate
+# Parameters: (implementation = baidu-default, profile = high-throughput)
+
+# Run progress: 0.00% complete, ETA 00:00:16
+# Fork: 1 of 2
+# Warmup Iteration   1: 157913.095 ops/s
+# Warmup Iteration   2: 243099.680 ops/s
+Iteration   1: 

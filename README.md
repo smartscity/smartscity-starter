@@ -1,43 +1,36 @@
 # Smartscity Starter
 
-English · [简体中文](README.zh-CN.md)
+Independent Spring Boot extensions with framework-independent SDKs. Distributed ID is the first implemented capability; this repository is unreleased.
 
-Java / Spring Boot components. Currently: distributed IDs. Not yet released.
+## Repository layout
 
-Local generation · Monotonic clock · Concurrent buffer · Health and metrics
-
-## Architecture
-
-```mermaid
-flowchart LR
-    App[Application] --> ID[ID component]
-    ID -. Startup and shutdown .-> DB[(Database)]
-    ID -. JavaScript profile only .-> ZK[ZooKeeper]
+```text
+build/                              Build parent and production-only BOM
+core/                               Shared infrastructure when needed
+module/smartscity-id/                Standalone ID SDK; zero production dependencies
+starter/smartscity-starter-id/       Unpublished family aggregator
+  boot2-3/                          smartscity-starter-id: Boot 2.7/3 integration
+  boot4/                            smartscity-starter-id-boot4: Boot 4 integration
+test/                               Compatibility, benchmarks and evidence
+samples/id/                         ID example family
+  id-example/                       Boot 2.7/3 executable consumer
+  id-example-boot4/                  Boot 4 executable consumer
+docs/id/                            Canonical ID design and usage
+.github/                            CI and delivery workflows
 ```
 
-## Quick start
+The two starters are alternatives and each includes its own integration code. All modules use standard Maven source trees. Published artifacts inherit the build parent directly; the family aggregator is not published. See [module boundaries](docs/architecture/modules.md).
 
-1. Install locally with JDK 21: `./mvnw -DskipTests install`.
-2. Keep your application's Spring Boot BOM. Add `com.smartscity:smartscity-id-spring-boot-starter:0.1.0-SNAPSHOT` and a JDBC driver.
-3. Apply the matching [schema](smartscity-id-spring-boot-autoconfigure/src/main/resources/db), configure your application's DataSource and set `smartscity.id.group=orders`.
-4. Inject `IdGenerator` and call `getUniqueId()`.
+## Use distributed IDs
 
-The JavaScript profile also requires ZooKeeper. See [configuration](docs/06-Configuration.md) and the [example](samples/id-example) for details.
+Follow the [ID user guide](docs/id/USER_GUIDE.md): select the dependency for your Boot generation, initialize the database, copy one complete configuration, then inject `IdGenerator`. Standalone consumers depend only on `smartscity-id`. The [ID design](docs/id/README.md) explains encoding lifetime, worker capacity, ownership and failure guarantees.
 
-## Roadmap
+Keep the application's Boot BOM. `smartscity-dependencies` manages only Smartscity production versions. Build with JDK 21 and the pinned Maven wrapper. Bytecode targets and exact tested environments are distinguished in [ID compatibility](docs/id/compatibility.md).
 
-- [x] ID component and fault verification
-- [ ] Run the performance matrix in GitHub Actions
-- [ ] Complete compatibility validation and prepare the first release
+## Development status
 
-## Documentation
+The current architecture and documentation structure is accepted. **Tests and benchmarks have not been run for this revision.** See [verification status](docs/testing/verification.md) and [deferred test inventory](docs/id/testing.md). Formatting/static inspection and main-source compilation do not establish runtime compatibility.
 
-Detailed guides are currently in Chinese.
+New components should start with one standalone SDK and a combined starter, with further splits justified by actual framework or release needs. No speculative cache, lock or rate-limit modules exist.
 
-| Topic | Links |
-|---|---|
-| Design | [Architecture](docs/02-System-Architecture.md) · [ID contract](docs/05-ID-Contract.md) |
-| Usage | [Configuration](docs/06-Configuration.md) · [Compatibility](docs/03-Compatibility-Matrix.md) |
-| Validation | [Tests](testing/TEST-INVENTORY.md) · [JMH and Actions](docs/08-Benchmark.md) |
-
-[Documentation index](docs/00-README.md)
+[Documentation](docs/README.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [Release process](docs/releasing.md) · [Apache 2.0 license](LICENSE)

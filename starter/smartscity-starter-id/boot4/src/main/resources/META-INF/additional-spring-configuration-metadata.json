@@ -1,0 +1,22 @@
+{
+  "properties": [
+    {
+      "name": "smartscity.id.epoch",
+      "type": "java.time.Instant",
+      "defaultValue": "2026-01-01T00:00:00Z",
+      "description": "Whole-second epoch, immutable for an ID namespace; changing it requires a namespace migration."
+    },
+    {
+      "name": "smartscity.id.bits.timestamp",
+      "description": "Timestamp width in seconds. Supply all three widths together or use profile defaults."
+    },
+    {
+      "name": "smartscity.id.bits.worker",
+      "description": "Worker width. Supply all three widths together; changing widths requires namespace migration."
+    },
+    {
+      "name": "smartscity.id.bits.sequence",
+      "description": "Sequence width. Total width must not exceed 63 bits (53 for javascript)."
+    }
+  ]
+}

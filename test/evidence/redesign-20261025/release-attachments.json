@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "signing": "NOT_RUN",
+  "centralUpload": "NOT_RUN",
+  "attachments": [
+    "module/smartscity-id/target/smartscity-id-0.1.0-SNAPSHOT-sources.jar",
+    "module/smartscity-id/target/smartscity-id-0.1.0-SNAPSHOT-javadoc.jar",
+    "module/smartscity-id-spring-boot/target/smartscity-id-spring-boot-0.1.0-SNAPSHOT-sources.jar",
+    "module/smartscity-id-spring-boot/target/smartscity-id-spring-boot-0.1.0-SNAPSHOT-javadoc.jar",
+    "module/smartscity-id-spring-boot4/target/smartscity-id-spring-boot4-0.1.0-SNAPSHOT-sources.jar",
+    "module/smartscity-id-spring-boot4/target/smartscity-id-spring-boot4-0.1.0-SNAPSHOT-javadoc.jar",
+    "starter/smartscity-starter-id/target/smartscity-starter-id-0.1.0-SNAPSHOT-sources.jar",
+    "starter/smartscity-starter-id/target/smartscity-starter-id-0.1.0-SNAPSHOT-javadoc.jar",
+    "starter/smartscity-starter-id-boot4/target/smartscity-starter-id-boot4-0.1.0-SNAPSHOT-sources.jar",
+    "starter/smartscity-starter-id-boot4/target/smartscity-starter-id-boot4-0.1.0-SNAPSHOT-javadoc.jar"
+  ]
+}

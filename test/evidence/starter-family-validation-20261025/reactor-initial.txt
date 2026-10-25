@@ -1,0 +1,109 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Parent                                                  [pom]
+[INFO] smartscity-dependencies                                            [pom]
+[INFO] smartscity-id                                                      [jar]
+[INFO] smartscity-starter-id                                              [jar]
+[INFO] smartscity-starter-id-boot4                                        [jar]
+[INFO] ID Starter Family                                                  [pom]
+[INFO] smartscity-id-compatibility-tests                                  [jar]
+[INFO] smartscity-id-example                                              [jar]
+[INFO] smartscity-id-example-boot4                                        [jar]
+[INFO] smartscity-starter                                                 [pom]
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-parent >------------------
+[INFO] Building Smartscity Parent 0.1.0-SNAPSHOT                         [1/10]
+[INFO]   from build/smartscity-parent/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-parent ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-parent/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-parent ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-parent ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-parent/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-parent/0.1.0-SNAPSHOT/smartscity-parent-0.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] ---------------< com.smartscity:smartscity-dependencies >---------------
+[INFO] Building smartscity-dependencies 0.1.0-SNAPSHOT                   [2/10]
+[INFO]   from build/smartscity-dependencies/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-dependencies ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ smartscity-dependencies ---
+[INFO] Installing /Users/liyunlong/git/smartscity/smartscity-starter/build/smartscity-dependencies/pom.xml to /Users/liyunlong/.m2/repository/com/smartscity/smartscity-dependencies/0.1.0-SNAPSHOT/smartscity-dependencies-0.1.0-SNAPSHOT.pom
+[INFO] 
+[INFO] --------------------< com.smartscity:smartscity-id >--------------------
+[INFO] Building smartscity-id 0.1.0-SNAPSHOT                             [3/10]
+[INFO]   from module/smartscity-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ smartscity-id ---
+[INFO] Deleting /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/target
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id ---
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 22 files clean - 2 needs changes to be clean, 20 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for smartscity-starter 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Parent .................................. SUCCESS [  1.261 s]
+[INFO] smartscity-dependencies ............................ SUCCESS [  0.029 s]
+[INFO] smartscity-id ...................................... FAILURE [  3.174 s]
+[INFO] smartscity-starter-id .............................. SKIPPED
+[INFO] smartscity-starter-id-boot4 ........................ SKIPPED
+[INFO] ID Starter Family .................................. SKIPPED
+[INFO] smartscity-id-compatibility-tests .................. SKIPPED
+[INFO] smartscity-id-example .............................. SKIPPED
+[INFO] smartscity-id-example-boot4 ........................ SKIPPED
+[INFO] smartscity-starter ................................. SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.876 s
+[INFO] Finished at: 2026-10-25T17:35:15+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (google-java-style) on project smartscity-id: The following files had format violations:
+[ERROR]     src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
+[ERROR]         @@ -242,7 +242,8 @@
+[ERROR]          ········}
+[ERROR]          ······}
+[ERROR]          ······producerParked.set(true);
+[ERROR]         -······//·Arm·before·rechecking:·a·consumer·racing·the·park·either·changes·occupancy·or·leaves·a·permit.
+[ERROR]         +······//·Arm·before·rechecking:·a·consumer·racing·the·park·either·changes·occupancy·or·leaves·a
+[ERROR]         +······//·permit.
+[ERROR]          ······if·(produced·>·0·&&·ring.size()·<=·lowWatermark)·{
+[ERROR]          ········producerParked.set(false);
+[ERROR]          ········continue;
+[ERROR]     src/main/java/com/smartscity/id/core/BitsAllocator.java
+[ERROR]         @@ -10,8 +10,8 @@
+[ERROR]          ·*·@author·jack
+[ERROR]          ·*/
+[ERROR]          public·final·class·BitsAllocator·{
+[ERROR]         -··/**x
+[ERROR]         -···*·Default·epoch·retained·for·source·compatibility·with·fixed-format·callers.
+[ERROR]         +··/**
+[ERROR]         +···*·x·Default·epoch·retained·for·source·compatibility·with·fixed-format·callers.
+[ERROR]          ···*
+[ERROR]          ···*·@deprecated·Use·{@code·getLayout().getEpoch()}·for·the·configured·instance·epoch.
+[ERROR]          ···*/
+[ERROR] Run 'mvn spotless:apply' to fix these violations.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :smartscity-id

@@ -1,0 +1,110 @@
+name: Build and compatibility
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: smartscity_id_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost" --health-interval=5s
+          --health-timeout=5s --health-retries=30
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: smartscity_id_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd="pg_isready -U postgres" --health-interval=5s
+          --health-timeout=5s --health-retries=30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Verify Google formatting, reactor, isolated databases and bounded restarts
+        run: >-
+          ./mvnw -B -ntp -Pverification,benchmarks,samples verify
+          '-Did.test.mysql.url=jdbc:mysql://127.0.0.1:3306/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true'
+          -Did.test.postgres.url=jdbc:postgresql://127.0.0.1:5432/smartscity_id_test
+          -Did.test.restart=true
+      - name: Check artifact boundaries and benchmark orchestration
+        run: |
+          python3 test/check-artifacts.py
+          python3 test/check-repository.py
+          bash test/check-benchmark-ci.sh
+          java -jar test/smartscity-id-benchmark/target/benchmarks.jar -l
+      - name: Preserve test reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: reactor-test-reports
+          path: '**/target/surefire-reports/*.txt'
+  compatibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['17', '21']
+        boot: ['2.7.18', '3.3.6', '3.3.13', '3.4.13', '3.5.16', '4.0.9', '4.1.2']
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: smartscity_id_test
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost" --health-interval=5s
+          --health-timeout=5s --health-retries=30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        id: runtime
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Install production artifacts at their own compile baselines
+        run: ./mvnw -B -ntp -DskipTests install
+      - name: Test independent application BOM and runtime
+        env:
+          BOOT_VERSION: ${{ matrix.boot }}
+          TEST_JAVA: ${{ steps.runtime.outputs.path }}/bin/java
+        run: |
+          profile=boot3
+          if [[ "$BOOT_VERSION" == 4.* ]]; then profile=boot4; fi
+          ./mvnw -B -ntp -f test/smartscity-id-compatibility-tests/pom.xml -P"$profile" \
+            -Dspring-boot.version="$BOOT_VERSION" -Djvm="$TEST_JAVA" \
+            '-Did.test.mysql.url=jdbc:mysql://127.0.0.1:3306/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true' clean test
+      - name: Preserve reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: boot-${{ matrix.boot }}-java-${{ matrix.java }}
+          path: test/smartscity-id-compatibility-tests/target/surefire-reports/*.txt

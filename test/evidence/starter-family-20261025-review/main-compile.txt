@@ -1,0 +1,212 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Parent                                                  [pom]
+[INFO] smartscity-dependencies                                            [pom]
+[INFO] smartscity-id                                                      [jar]
+[INFO] smartscity-starter-id                                              [jar]
+[INFO] smartscity-starter-id-boot4                                        [jar]
+[INFO] ID Starter Family                                                  [pom]
+[INFO] smartscity-id-compatibility-tests                                  [jar]
+[INFO] smartscity-id-benchmark                                            [jar]
+[INFO] smartscity-id-example                                              [jar]
+[INFO] smartscity-id-example-boot4                                        [jar]
+[INFO] smartscity-starter                                                 [pom]
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-parent >------------------
+[INFO] Building Smartscity Parent 0.1.0-SNAPSHOT                         [1/11]
+[INFO]   from build/smartscity-parent/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] ---------------< com.smartscity:smartscity-dependencies >---------------
+[INFO] Building smartscity-dependencies 0.1.0-SNAPSHOT                   [2/11]
+[INFO]   from build/smartscity-dependencies/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --------------------< com.smartscity:smartscity-id >--------------------
+[INFO] Building smartscity-id 0.1.0-SNAPSHOT                             [3/11]
+[INFO]   from module/smartscity-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id ---
+[INFO] Spotless.Java is keeping 22 files clean - 0 needs changes to be clean, 0 were already clean, 22 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 14 source files with javac [debug parameters release 9] to target/classes
+[INFO] 
+[INFO] ----------------< com.smartscity:smartscity-starter-id >----------------
+[INFO] Building smartscity-starter-id 0.1.0-SNAPSHOT                     [4/11]
+[INFO]   from starter/smartscity-starter-id/boot2-3/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter-id ---
+[INFO] Spotless.Java is keeping 25 files clean - 0 needs changes to be clean, 0 were already clean, 25 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter-id ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-starter-id ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-starter-id ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 9] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[INFO] 
+[INFO] -------------< com.smartscity:smartscity-starter-id-boot4 >-------------
+[INFO] Building smartscity-starter-id-boot4 0.1.0-SNAPSHOT               [5/11]
+[INFO]   from starter/smartscity-starter-id/boot4/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter-id-boot4 ---
+[INFO] Spotless.Java is keeping 25 files clean - 0 needs changes to be clean, 0 were already clean, 25 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter-id-boot4 ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-starter-id-boot4 ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-starter-id-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[INFO] 
+[INFO] ------------< com.smartscity:smartscity-starter-id-family >-------------
+[INFO] Building ID Starter Family 0.1.0-SNAPSHOT                         [6/11]
+[INFO]   from starter/smartscity-starter-id/pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter-id-family ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter-id-family ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] ----------< com.smartscity:smartscity-id-compatibility-tests >----------
+[INFO] Building smartscity-id-compatibility-tests 0.1.0-SNAPSHOT         [7/11]
+[INFO]   from test/smartscity-id-compatibility-tests/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-compatibility-tests ---
+[INFO] Spotless.Java is keeping 2 files clean - 0 needs changes to be clean, 0 were already clean, 2 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-compatibility-tests ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-compatibility-tests ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-compatibility-tests/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-compatibility-tests ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] ---------------< com.smartscity:smartscity-id-benchmark >---------------
+[INFO] Building smartscity-id-benchmark 0.1.0-SNAPSHOT                   [8/11]
+[INFO]   from test/smartscity-id-benchmark/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-benchmark ---
+[INFO] Spotless.Java is keeping 3 files clean - 0 needs changes to be clean, 0 were already clean, 3 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-benchmark ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-benchmark ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-benchmark ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 9] to target/classes
+[INFO] 
+[INFO] ----------------< com.smartscity:smartscity-id-example >----------------
+[INFO] Building smartscity-id-example 0.1.0-SNAPSHOT                     [9/11]
+[INFO]   from samples/id-example/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-example ---
+[INFO] Spotless.Java is keeping 1 files clean - 0 needs changes to be clean, 0 were already clean, 1 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-example ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-example ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-example ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] -------------< com.smartscity:smartscity-id-example-boot4 >-------------
+[INFO] Building smartscity-id-example-boot4 0.1.0-SNAPSHOT              [10/11]
+[INFO]   from samples/id-example-boot4/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-example-boot4 ---
+[INFO] Spotless.Java is keeping 1 files clean - 0 needs changes to be clean, 0 were already clean, 1 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-example-boot4 ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-example-boot4 ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-example-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] -----------------< com.smartscity:smartscity-starter >------------------
+[INFO] Building smartscity-starter 0.1.0-SNAPSHOT                       [11/11]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-starter ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-starter ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for smartscity-starter 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Parent .................................. SUCCESS [  0.997 s]
+[INFO] smartscity-dependencies ............................ SUCCESS [  0.019 s]
+[INFO] smartscity-id ...................................... SUCCESS [  2.923 s]
+[INFO] smartscity-starter-id .............................. SUCCESS [  1.639 s]
+[INFO] smartscity-starter-id-boot4 ........................ SUCCESS [  1.572 s]
+[INFO] ID Starter Family .................................. SUCCESS [  0.059 s]
+[INFO] smartscity-id-compatibility-tests .................. SUCCESS [  0.098 s]
+[INFO] smartscity-id-benchmark ............................ SUCCESS [  1.181 s]
+[INFO] smartscity-id-example .............................. SUCCESS [  0.327 s]
+[INFO] smartscity-id-example-boot4 ........................ SUCCESS [  0.412 s]
+[INFO] smartscity-starter ................................. SUCCESS [  0.075 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.912 s
+[INFO] Finished at: 2026-10-25T17:30:10+08:00
+[INFO] ------------------------------------------------------------------------

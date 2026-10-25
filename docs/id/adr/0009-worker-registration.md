@@ -1,0 +1,21 @@
+# ADR 0009: Bounded non-reusable Worker registration
+
+Status: ACCEPTED / IMPLEMENTED_UNRELEASED, 2026-10-25. Authority: the user's distributed registry/lifecycle implementation request and explicit author convention.
+
+One transaction creates/validates a group, locks its allocation cursor, rejects repeated instance identity, reserves the next unused encoded worker, and inserts its registration. The committed cursor never decreases and committed workers are never reused, including failed startup, shutdown, expiry and crash. Capacity exhaustion fails closed. A rolled-back, unpublished allocation may be attempted again; an uncertain commit is never handed to a generator or automatically retried. This replaces modulo allocation for every profile. ZooKeeper remains the javascript profile's additional local-observed ownership gate, not permission to reuse numbers.
+
+The group owns identity format, configuration version, worker capacity and a monotonic next-worker cursor. The worker record separately owns database identity, encoded worker, instance identity, random registration token, optional application/host metadata and lifecycle timestamps/status. Database uniqueness covers (group, worker), (group, instance) and token. Row locks and constraints, not process synchronization, enforce allocation. A token protects lifecycle updates, but does not fence local generation or prove liveness. Stale ACTIVE/REGISTERED rows remain allocated forever. Group names do not partition numeric ID space.
+
+Use ordinary parameterized SQL for MySQL/PostgreSQL. A duplicate group INSERT rolls back to a savepoint and is followed by locked configuration validation; no no-op update or ignored unrelated error. Startup is bounded and does not expose a generator before registration, calibration and activation succeed. Shutdown is idempotent and bounded; status update failure cannot free workers. No database heartbeat or hot-path JDBC is introduced.
+
+Reuse the existing factory, resource owner and JDBC repository. Add only an immutable WorkerInstance value and a nested Registration receipt; no generic registry framework or module. Application DataSource lookup is explicit (`database.use-application-data-source=true`); a direct factory DataSource argument is also explicit. Independent URLs use the existing unpooled driver adapter. No supplied DataSource is closed. Optional host fields come from configuration, with Boot application name/hostname hints when present; no DNS scan is required.
+
+Stable Reason names gain codes/default messages; IdException retains causes and context details. CLOCK means general clock validation, not only rollback. Type-level Javadoc uses @author jack by project policy; Google Style does not itself mandate authors.
+
+Schema v2 requires explicit migration. Old tables fail rather than being upgraded at runtime. Because prior modulo allocations may have covered the entire worker space, a safe existing-namespace migration requires complete allocation history and an irreversible high-water floor, or conservatively a new externally separated namespace. See migration notes. The low-level repository insert/offline APIs are replaced by registration-receipt APIs; the public IdGenerator contract is unchanged.
+
+## Reference evidence and current audit
+
+The original Longfor/Longhub temporary source directory and ZIP are no longer available in this run. The repository retains the 2026-10-24 static audit at `f86b741:docs/proposals/id-v1/legacy-input-audit.md` and its 48-file SHA manifest at `test/evidence/legacy-reference-manifest.json`. These are historical observations, not a fresh execution of the legacy implementation. That audit recorded Druid/MyBatis allocation, modulo encoding, non-atomic ZooKeeper list/check registration, unbounded future-second padding, a flawed consumer claim interleaving and incomplete per-instance shutdown ownership. No legacy throughput or production failure frequency is inferred.
+
+The current pre-change worktree independently confirmed raw-row-ID modulo allocation and eager application DataSource lookup. The redesign removes those two paths while retaining the existing bounded local producer, primitive ring, clock validation, explicit claim protocol and per-instance lifecycle owner. Existing local algorithms are not replaced by a copy of legacy code.

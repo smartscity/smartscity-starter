@@ -1,0 +1,16 @@
+{
+  "domain": "PASS",
+  "tests": 50,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "publicApi": "UNCHANGED",
+  "productionPackaging": "PASS",
+  "artifactBoundary": "PASS",
+  "repositoryCheck": "PASS",
+  "fullReactorTestCompilation": "FAIL: existing DocumentationConfigurationTest uses Java 11 Files.readString at Java 9 release",
+  "benchmark": "NOT_RUN",
+  "profiling": "NOT_RUN",
+  "performanceImprovement": "NOT_MEASURED",
+  "testedSourcesStillMatch": true
+}

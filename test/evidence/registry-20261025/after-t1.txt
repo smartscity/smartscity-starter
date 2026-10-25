@@ -1,0 +1,118 @@
+# JMH version: 1.37
+# VM version: JDK 21.0.12.1, OpenJDK 64-Bit Server VM, 21.0.12.1+1-LTS
+# VM invoker: /Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java
+# VM options: -Xms512m -Xmx512m
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 3 iterations, 1 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.smartscity.id.benchmark.IdBenchmark.generate
+# Parameters: (profile = standard)
+
+# Run progress: 0.00% complete, ETA 00:00:10
+# Fork: 1 of 2
+# Warmup Iteration   1: 65199.041 ops/s
+# Warmup Iteration   2: 32528.074 ops/s
+Iteration   1: 32626.301 ops/s
+                 gc.alloc.rate:      0.074 MB/sec
+                 gc.alloc.rate.norm: 2.381 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32530.006 ops/s
+                 timeouts:           96.295 ops/s
+
+Iteration   2: 32649.310 ops/s
+                 gc.alloc.rate:      0.074 MB/sec
+                 gc.alloc.rate.norm: 2.377 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32552.947 ops/s
+                 timeouts:           96.363 ops/s
+
+Iteration   3: 32506.446 ops/s
+                 gc.alloc.rate:      0.075 MB/sec
+                 gc.alloc.rate.norm: 2.428 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32409.518 ops/s
+                 timeouts:           96.928 ops/s
+
+
+# Run progress: 50.00% complete, ETA 00:00:05
+# Fork: 2 of 2
+# Warmup Iteration   1: 65298.483 ops/s
+# Warmup Iteration   2: 32705.567 ops/s
+Iteration   1: 32560.151 ops/s
+                 gc.alloc.rate:      0.074 MB/sec
+                 gc.alloc.rate.norm: 2.381 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32464.051 ops/s
+                 timeouts:           96.100 ops/s
+
+Iteration   2: 32649.782 ops/s
+                 gc.alloc.rate:      0.074 MB/sec
+                 gc.alloc.rate.norm: 2.377 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32553.417 ops/s
+                 timeouts:           96.365 ops/s
+
+Iteration   3: 32565.407 ops/s
+                 gc.alloc.rate:      0.074 MB/sec
+                 gc.alloc.rate.norm: 2.384 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                32470.279 ops/s
+                 timeouts:           95.128 ops/s
+
+
+
+Result "com.smartscity.id.benchmark.IdBenchmark.generate":
+  32592.900 ±(99.9%) 162.719 ops/s [Average]
+  (min, avg, max) = (32506.446, 32592.900, 32649.782), stdev = 58.027
+  CI (99.9%): [32430.180, 32755.619] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:gc.alloc.rate":
+  0.074 ±(99.9%) 0.001 MB/sec [Average]
+  (min, avg, max) = (0.074, 0.074, 0.075), stdev = 0.001
+  CI (99.9%): [0.073, 0.076] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:gc.alloc.rate.norm":
+  2.388 ±(99.9%) 0.056 B/op [Average]
+  (min, avg, max) = (2.377, 2.388, 2.428), stdev = 0.020
+  CI (99.9%): [2.332, 2.444] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:gc.count":
+  ≈ 0 counts
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:ids":
+  32496.703 ±(99.9%) 162.809 ops/s [Average]
+  (min, avg, max) = (32409.518, 32496.703, 32553.417), stdev = 58.059
+  CI (99.9%): [32333.894, 32659.512] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.IdBenchmark.generate:timeouts":
+  96.197 ±(99.9%) 1.660 ops/s [Average]
+  (min, avg, max) = (95.128, 96.197, 96.928), stdev = 0.592
+  CI (99.9%): [94.537, 97.857] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:11
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                (profile)   Mode  Cnt      Score     Error   Units
+IdBenchmark.generate                      standard  thrpt    6  32592.900 ± 162.719   ops/s
+IdBenchmark.generate:gc.alloc.rate        standard  thrpt    6      0.074 ±   0.001  MB/sec
+IdBenchmark.generate:gc.alloc.rate.norm   standard  thrpt    6      2.388 ±   0.056    B/op
+IdBenchmark.generate:gc.count             standard  thrpt    6        ≈ 0            counts
+IdBenchmark.generate:ids                  standard  thrpt    6  32496.703 ± 162.809   ops/s
+IdBenchmark.generate:timeouts             standard  thrpt    6     96.197 ±   1.660   ops/s
+
+Benchmark result is saved to test/evidence/registry-20261025/after-t1.json

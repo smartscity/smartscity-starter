@@ -1,0 +1,76 @@
+["/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java", "-cp", "/private/tmp/smartscity-id-optimization-20261025/harness/classes:/private/tmp/smartscity-id-optimization-20261025/optimized/sdk.jar:/private/tmp/smartscity-id-optimization-20261025/harness/benchmarks-3a1d038865eaa2b9a8c7096a41b63fd337d2c2c668737c48e51643770cac795e.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/spring-core-4.2.5.RELEASE.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/spring-beans-4.2.5.RELEASE.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/commons-lang-2.6.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/slf4j-api-1.7.7.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/slf4j-nop-1.7.7.jar", "org.openjdk.jmh.Main", "ComparisonBenchmark.generate", "-p", "implementation=smartscity", "-p", "profile=standard", "-t", "1", "-f", "1", "-wi", "2", "-w", "1s", "-i", "3", "-r", "2s", "-foe", "true", "-jvmArgsAppend", "-XX:StartFlightRecording=settings=profile,filename=/private/tmp/smartscity-id-optimization-20261025/standard.jfr,dumponexit=true", "-rf", "json", "-rff", "/Users/liyunlong/git/smartscity/smartscity-starter/test/evidence/uid-optimization-20261025/profile/standard.json"]
+# JMH version: 1.37
+# VM version: JDK 21.0.12.1, OpenJDK 64-Bit Server VM, 21.0.12.1+1-LTS
+# VM invoker: /Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java
+# VM options: -XX:StartFlightRecording=settings=profile,filename=/private/tmp/smartscity-id-optimization-20261025/standard.jfr,dumponexit=true
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 3 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate
+# Parameters: (implementation = smartscity, profile = standard)
+
+# Run progress: 0.00% complete, ETA 00:00:08
+# Fork: 1 of 1
+[0.784s][info][jfr,startup] Started recording 1. No limit specified, using maxsize=250MB as default.
+[0.784s][info][jfr,startup] 
+[0.784s][info][jfr,startup] Use jcmd 81748 JFR.dump name=1 to copy recording data to file.
+# Warmup Iteration   1: 2843101.003 ops/s
+# Warmup Iteration   2: 2846255.730 ops/s
+Iteration   1: 2412154.740 ops/s
+                 ids:        2412154.740 ops/s
+                 rejections: ≈ 0 ops/s
+                 timeouts:   ≈ 0 ops/s
+
+Iteration   2: 1695051.556 ops/s
+                 ids:        1695051.556 ops/s
+                 rejections: ≈ 0 ops/s
+                 timeouts:   ≈ 0 ops/s
+
+Iteration   3: 2166700.839 ops/s
+                 ids:        2166700.839 ops/s
+                 rejections: ≈ 0 ops/s
+                 timeouts:   ≈ 0 ops/s
+
+
+
+Result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate":
+  2091302.378 ±(99.9%) 6648903.143 ops/s [Average]
+  (min, avg, max) = (1695051.556, 2091302.378, 2412154.740), stdev = 364448.817
+  CI (99.9%): [≈ 0, 8740205.521] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:ids":
+  2091302.378 ±(99.9%) 6648903.143 ops/s [Average]
+  (min, avg, max) = (1695051.556, 2091302.378, 2412154.740), stdev = 364448.817
+  CI (99.9%): [≈ 0, 8740205.521] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:rejections":
+  ≈ 0 ops/s
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:timeouts":
+  ≈ 0 ops/s
+
+
+# Run complete. Total time: 00:00:10
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                (implementation)  (profile)   Mode  Cnt        Score         Error  Units
+ComparisonBenchmark.generate                   smartscity   standard  thrpt    3  2091302.378 ± 6648903.143  ops/s
+ComparisonBenchmark.generate:ids               smartscity   standard  thrpt    3  2091302.378 ± 6648903.143  ops/s
+ComparisonBenchmark.generate:rejections        smartscity   standard  thrpt    3          ≈ 0                ops/s
+ComparisonBenchmark.generate:timeouts          smartscity   standard  thrpt    3          ≈ 0                ops/s
+
+Benchmark result is saved to /Users/liyunlong/git/smartscity/smartscity-starter/test/evidence/uid-optimization-20261025/profile/standard.json

@@ -1,7 +1,5 @@
-# 安全问题处理
+# Security
 
-本工程已有 ID 实现，目前为未发布的开发版本。正式维护版本和私密漏洞报告渠道尚待项目所有者配置。
+This is an unreleased development project. Maintained release lines and a private reporting endpoint have not been established. Contact the repository owner through an existing private channel for potential duplicate IDs, stale worker ownership, dependency vulnerabilities or exposed credentials. Include the affected version, environment, impact and minimal reproduction; never publish credentials or sensitive production data.
 
-发现潜在重复 ID、节点身份失效、依赖漏洞或凭据泄露时，在已有的私密沟通渠道联系项目所有者；请勿在公开问题中附加凭据或敏感业务数据。报告包含受影响版本、最小复现、环境和影响范围。
-
-唯一性与失败策略见 [ID 契约](docs/05-ID-Contract.md)及相关 ADR。普通档取模不能检测存活实例的槽位重叠，ZK 档也不承诺消除所有会话过期及同秒复用风险。
+Review the [ID contract](module/smartscity-id/README.md): worker modulo reuse and ZooKeeper session expiry impose explicit uniqueness limits. A static worker assignment or passing local tests does not establish global uniqueness.

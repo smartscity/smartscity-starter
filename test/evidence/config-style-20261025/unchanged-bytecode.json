@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "scope": "javap instructions and signatures, ignoring constant-pool numbering, for domain classes outside configuration refactor",
+  "classes": [
+    "com.smartscity.id.api.IdException$Reason",
+    "com.smartscity.id.api.IdException",
+    "com.smartscity.id.api.IdGenerator",
+    "com.smartscity.id.api.IdParts",
+    "com.smartscity.id.api.IdSnapshot$1",
+    "com.smartscity.id.api.IdSnapshot$Builder",
+    "com.smartscity.id.api.IdSnapshot",
+    "com.smartscity.id.core.DefaultUniqueIdGenerator",
+    "com.smartscity.id.core.GeneratorMetrics",
+    "com.smartscity.id.core.RingBuffer$1",
+    "com.smartscity.id.core.RingBuffer$PaddedCursor",
+    "com.smartscity.id.core.RingBuffer",
+    "com.smartscity.id.spi.TimeSource$1",
+    "com.smartscity.id.spi.TimeSource",
+    "com.smartscity.id.spi.WorkerLease$State",
+    "com.smartscity.id.spi.WorkerLease"
+  ]
+}

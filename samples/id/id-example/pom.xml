@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.smartscity</groupId>
+    <artifactId>smartscity-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>../../../build/smartscity-parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>smartscity-id-example</artifactId>
+  <packaging>jar</packaging>
+  <name>smartscity-id-example</name>
+  <description>Smartscity independent Spring Boot extensions: smartscity-id-example.</description>
+  <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
+    <maven.compiler.release>17</maven.compiler.release>
+    <java.module.name>com.smartscity.id.example</java.module.name>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.smartscity</groupId>
+      <artifactId>smartscity-starter-id</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

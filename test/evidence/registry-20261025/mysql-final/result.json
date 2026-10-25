@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "cleanup": true,
+  "adapters": {
+    "smartscity-id-spring-boot": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "smartscity-id-spring-boot4": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  }
+}

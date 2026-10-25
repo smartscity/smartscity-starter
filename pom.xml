@@ -1,117 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.smartscity</groupId>
+  <parent>
+    <groupId>com.smartscity</groupId>
+    <artifactId>smartscity-parent</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <relativePath>build/smartscity-parent/pom.xml</relativePath>
+  </parent>
   <artifactId>smartscity-starter</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Smartscity Starter</name>
-  <description>Distributed ID component with local generation and startup worker allocation.</description>
-  <modules>
-    <module>smartscity-starter-bom</module>
-    <module>smartscity-id-api</module>
-    <module>smartscity-id-spi</module>
-    <module>smartscity-id-core</module>
-    <module>smartscity-id-spring-boot-autoconfigure</module>
-    <module>smartscity-id-spring-boot-starter</module>
-  </modules>
+  <name>smartscity-starter</name>
+  <description>Smartscity independent Spring Boot extensions: smartscity-starter.</description>
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.release>9</maven.compiler.release>
-    <spring-boot.version>2.7.18</spring-boot.version>
-    <zookeeper.version>3.9.4</zookeeper.version>
-    <micrometer.version>1.9.17</micrometer.version>
-    <junit.version>5.14.4</junit.version>
-    <maven.compiler.parameters>true</maven.compiler.parameters>
-    <project.build.outputTimestamp>2026-10-24T00:00:00Z</project.build.outputTimestamp>
-    <!-- Scaffold only: no remote publication is configured or authorized. -->
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.4.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.4.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.15.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.5.4</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.5.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>3.1.4</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.1.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.5.0</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>enforce-build-environment</id>
-            <goals>
-              <goal>enforce</goal>
-            </goals>
-            <configuration>
-              <rules>
-                <requireJavaVersion>
-                  <version>[21,22)</version>
-                  <message>Build with JDK 21. Runtime compatibility is tested separately.</message>
-                </requireJavaVersion>
-                <requireMavenVersion>
-                  <version>[3.9.15,4.0.0)</version>
-                  <message>Use the repository Maven Wrapper.</message>
-                </requireMavenVersion>
-              </rules>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <modules>
+    <module>build/smartscity-parent</module>
+    <module>build/smartscity-dependencies</module>
+    <module>module/smartscity-id</module>
+    <module>starter/smartscity-starter-id</module>
+  </modules>
   <profiles>
     <profile>
       <id>verification</id>
       <modules>
-        <module>smartscity-id-testkit</module>
-        <module>smartscity-id-compatibility-tests</module>
+        <module>test/smartscity-id-compatibility-tests</module>
       </modules>
     </profile>
     <profile>
       <id>benchmarks</id>
       <modules>
-        <module>smartscity-id-benchmark</module>
+        <module>test/smartscity-id-benchmark</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>samples</id>
+      <modules>
+        <module>samples/id</module>
       </modules>
     </profile>
   </profiles>

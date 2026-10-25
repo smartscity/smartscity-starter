@@ -1,0 +1,129 @@
+["/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java", "-cp", "/private/tmp/smartscity-id-optimization-20261025/harness/classes:/private/tmp/smartscity-id-optimization-20261025/optimized/sdk.jar:/private/tmp/smartscity-id-optimization-20261025/harness/benchmarks-3a1d038865eaa2b9a8c7096a41b63fd337d2c2c668737c48e51643770cac795e.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/spring-core-4.2.5.RELEASE.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/spring-beans-4.2.5.RELEASE.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/commons-lang-2.6.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/slf4j-api-1.7.7.jar:/private/tmp/smartscity-id-optimization-20261025/harness/deps/slf4j-nop-1.7.7.jar", "org.openjdk.jmh.Main", "ComparisonBenchmark.generate", "-p", "implementation=smartscity", "-p", "profile=standard", "-t", "4", "-f", "2", "-wi", "2", "-w", "1s", "-i", "3", "-r", "2s", "-foe", "true", "-prof", "gc", "-rf", "json", "-rff", "/Users/liyunlong/git/smartscity/smartscity-starter/test/evidence/uid-optimization-20261025/measurement/standard-4-optimized.json"]
+# JMH version: 1.37
+# VM version: JDK 21.0.12.1, OpenJDK 64-Bit Server VM, 21.0.12.1+1-LTS
+# VM invoker: /Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java
+# VM options: -Xms512m -Xmx512m -Duser.timezone=UTC
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 2 iterations, 1 s each
+# Measurement: 3 iterations, 2 s each
+# Timeout: 10 min per iteration
+# Threads: 4 threads, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate
+# Parameters: (implementation = smartscity, profile = standard)
+
+# Run progress: 0.00% complete, ETA 00:00:16
+# Fork: 1 of 2
+# Warmup Iteration   1: 3037498.002 ops/s
+# Warmup Iteration   2: 3937501.672 ops/s
+Iteration   1: 3058764.145 ops/s
+                 gc.alloc.rate:      0.012 MB/sec
+                 gc.alloc.rate.norm: 0.004 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                3058756.147 ops/s
+                 rejections:         ≈ 0 ops/s
+                 timeouts:           7.998 ops/s
+
+Iteration   2: 3703825.400 ops/s
+                 gc.alloc.rate:      0.006 MB/sec
+                 gc.alloc.rate.norm: 0.002 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                3703825.400 ops/s
+                 rejections:         ≈ 0 ops/s
+                 timeouts:           ≈ 0 ops/s
+
+Iteration   3: 3492506.588 ops/s
+                 gc.alloc.rate:      0.006 MB/sec
+                 gc.alloc.rate.norm: 0.002 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                3492506.588 ops/s
+                 rejections:         ≈ 0 ops/s
+                 timeouts:           ≈ 0 ops/s
+
+
+# Run progress: 50.00% complete, ETA 00:00:09
+# Fork: 2 of 2
+# Warmup Iteration   1: 3205470.339 ops/s
+# Warmup Iteration   2: 2824953.736 ops/s
+Iteration   1: 2864053.523 ops/s
+                 gc.alloc.rate:      0.006 MB/sec
+                 gc.alloc.rate.norm: 0.002 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                2864053.024 ops/s
+                 rejections:         ≈ 0 ops/s
+                 timeouts:           0.499 ops/s
+
+Iteration   2: 3098056.161 ops/s
+                 gc.alloc.rate:      0.006 MB/sec
+                 gc.alloc.rate.norm: 0.002 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                3098056.161 ops/s
+                 rejections:         ≈ 0 ops/s
+                 timeouts:           ≈ 0 ops/s
+
+Iteration   3: 2778811.016 ops/s
+                 gc.alloc.rate:      0.007 MB/sec
+                 gc.alloc.rate.norm: 0.003 B/op
+                 gc.count:           ≈ 0 counts
+                 ids:                2778809.517 ops/s
+                 rejections:         ≈ 0 ops/s
+                 timeouts:           1.499 ops/s
+
+
+
+Result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate":
+  3166002.806 ±(99.9%) 1013445.336 ops/s [Average]
+  (min, avg, max) = (2778811.016, 3166002.806, 3703825.400), stdev = 361404.369
+  CI (99.9%): [2152557.470, 4179448.141] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:gc.alloc.rate":
+  0.007 ±(99.9%) 0.007 MB/sec [Average]
+  (min, avg, max) = (0.006, 0.007, 0.012), stdev = 0.002
+  CI (99.9%): [≈ 10⁻⁴, 0.014] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:gc.alloc.rate.norm":
+  0.002 ±(99.9%) 0.003 B/op [Average]
+  (min, avg, max) = (0.002, 0.002, 0.004), stdev = 0.001
+  CI (99.9%): [≈ 0, 0.005] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:gc.count":
+  ≈ 0 counts
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:ids":
+  3166001.140 ±(99.9%) 1013447.801 ops/s [Average]
+  (min, avg, max) = (2778809.517, 3166001.140, 3703825.400), stdev = 361405.249
+  CI (99.9%): [2152553.338, 4179448.941] (assumes normal distribution)
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:rejections":
+  ≈ 0 ops/s
+
+Secondary result "com.smartscity.id.benchmark.comparison.ComparisonBenchmark.generate:timeouts":
+  1.666 ±(99.9%) 8.851 ops/s [Average]
+  (min, avg, max) = (≈ 0, 1.666, 7.998), stdev = 3.156
+  CI (99.9%): [≈ 0, 10.517] (assumes normal distribution)
+
+
+# Run complete. Total time: 00:00:18
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                                        (implementation)  (profile)   Mode  Cnt        Score         Error   Units
+ComparisonBenchmark.generate                           smartscity   standard  thrpt    6  3166002.806 ± 1013445.336   ops/s
+ComparisonBenchmark.generate:gc.alloc.rate             smartscity   standard  thrpt    6        0.007 ±       0.007  MB/sec
+ComparisonBenchmark.generate:gc.alloc.rate.norm        smartscity   standard  thrpt    6        0.002 ±       0.003    B/op
+ComparisonBenchmark.generate:gc.count                  smartscity   standard  thrpt    6          ≈ 0                counts
+ComparisonBenchmark.generate:ids                       smartscity   standard  thrpt    6  3166001.140 ± 1013447.801   ops/s
+ComparisonBenchmark.generate:rejections                smartscity   standard  thrpt    6          ≈ 0                 ops/s
+ComparisonBenchmark.generate:timeouts                  smartscity   standard  thrpt    6        1.666 ±       8.851   ops/s
+
+Benchmark result is saved to /Users/liyunlong/git/smartscity/smartscity-starter/test/evidence/uid-optimization-20261025/measurement/standard-4-optimized.json

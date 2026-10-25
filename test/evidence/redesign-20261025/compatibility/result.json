@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "matrix": [
+    {
+      "boot": "2.7.18",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.3.6",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.3.13",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.4.13",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.5.16",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "4.0.9",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "4.1.2",
+      "runtime": "openjdk version \"17\" 2021-09-14",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "2.7.18",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.3.6",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.3.13",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.4.13",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "3.5.16",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "4.0.9",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "boot": "4.1.2",
+      "runtime": "openjdk version \"21.0.12.1\" 2026-08-18 LTS",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "samples": [
+    {
+      "sample": "id-example",
+      "status": "PASS"
+    },
+    {
+      "sample": "id-example-boot4",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": true,
+  "isolatedPort": 55841
+}

@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "scope": "bounded diagnostic measurements only; no performance improvement or equivalence claim",
+  "results": [
+    {
+      "threads": 1,
+      "before": {
+        "attemptsPerSecond": 36114.22457477611,
+        "attemptsError": 21547.96321993108,
+        "idsPerSecond": 36023.296749535286,
+        "idsError": 21555.822246921245,
+        "bytesPerAttempt": 2.116059533513088,
+        "bytesPerAttemptError": 1.220216508835703,
+        "timeoutsPerSecond": 90.92782524082766
+      },
+      "after": {
+        "attemptsPerSecond": 32593.00485854542,
+        "attemptsError": 128.61926864349346,
+        "idsPerSecond": 32495.818876797188,
+        "idsError": 128.23575107740544,
+        "bytesPerAttempt": 2.4101097385342505,
+        "bytesPerAttemptError": 0.039150671379154164,
+        "timeoutsPerSecond": 97.18598174823377
+      }
+    },
+    {
+      "threads": 4,
+      "before": {
+        "attemptsPerSecond": 33142.88159474457,
+        "attemptsError": 278.49501049461975,
+        "idsPerSecond": 32757.997927414544,
+        "idsError": 270.4178238421129,
+        "bytesPerAttempt": 8.927644254096755,
+        "bytesPerAttemptError": 0.4032838225132966,
+        "timeoutsPerSecond": 390.88689991190637
+      },
+      "after": {
+        "attemptsPerSecond": 33826.06886896515,
+        "attemptsError": 3287.4531760743707,
+        "idsPerSecond": 33534.760044148505,
+        "idsError": 3548.6427634462816,
+        "bytesPerAttempt": 8.719306883166908,
+        "bytesPerAttemptError": 0.914697089012796,
+        "timeoutsPerSecond": 390.14885689302713
+      }
+    }
+  ]
+}

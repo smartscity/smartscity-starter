@@ -1,0 +1,35 @@
+--- before/src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
++++ future-only/src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
+@@ -192,7 +192,7 @@
+           throw new IdException(IdException.Reason.INTERRUPTED, "Cache initialization interrupted");
+         }
+         checkAvailable();
+-        long id = source.next(clock.seconds(options.bits.getLayout().getEpoch()));
++        long id = source.nextBuffered(clock.seconds(options.bits.getLayout().getEpoch()));
+         if (id == 0 || !ring.offer(id)) {
+           break;
+         }
+--- before/src/main/java/com/smartscity/id/core/DefaultUniqueIdGenerator.java
++++ future-only/src/main/java/com/smartscity/id/core/DefaultUniqueIdGenerator.java
+@@ -27,6 +27,21 @@
+     }
+     this.bits = bits;
+     this.worker = worker;
++  }
++
++  /** Advances the producer's logical time when its current sequence has been consumed. */
++  long nextBuffered(long nowSecond) {
++    if (nowSecond < 0 || nowSecond > bits.getMaxTime()) {
++      throw new IdException(IdException.Reason.CAPACITY, "Wall time outside identity layout");
++    }
++    long logicalSecond = Math.max(nowSecond, second);
++    if (logicalSecond == second && nextSequence > bits.getMaxSequence()) {
++      if (second == bits.getMaxTime()) {
++        throw new IdException(IdException.Reason.CAPACITY, "Logical timestamp range exhausted");
++      }
++      logicalSecond++;
++    }
++    return next(logicalSecond);
+   }
+ 
+   /**

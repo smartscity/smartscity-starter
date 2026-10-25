@@ -1,0 +1,56 @@
+name: Stage Maven Central release
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Exact non-SNAPSHOT version already committed in every release POM
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: maven-central
+  cancel-in-progress: false
+jobs:
+  stage:
+    if: vars.MAVEN_CENTRAL_ENABLED == 'true'
+    environment: maven-central
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Validate release version
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: python3 build/check-release.py "$RELEASE_VERSION"
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          server-id: central
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_PASSWORD
+      - name: Verify release sources
+        run: |
+          ./mvnw -B -ntp -Pverification,benchmarks,samples verify
+          python3 test/check-artifacts.py
+      - name: Sign and stage production artifacts
+        env:
+          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+          MAVEN_GPG_KEY: ${{ secrets.MAVEN_GPG_KEY }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: >-
+          ./mvnw -B -ntp -Prelease -Dgpg.signer=bc
+          -pl build/smartscity-parent,build/smartscity-dependencies,module/smartscity-id,starter/smartscity-starter-id/boot2-3,starter/smartscity-starter-id/boot4
+          deploy
+      - name: Preserve Central bundle
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: central-release-bundle
+          path: '**/target/central-publishing/*.zip'
+          if-no-files-found: warn

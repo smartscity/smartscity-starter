@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Existing public signatures retained in the three changed domain classes; other domain classes have identical normalized bytecode. Low-level JDBC adapter APIs intentionally changed per ADR-0009.",
+  "classes": [
+    "com.smartscity.id.api.IdException",
+    "com.smartscity.id.api.IdException$Reason",
+    "com.smartscity.id.core.DefaultUniqueIdGenerator"
+  ]
+}

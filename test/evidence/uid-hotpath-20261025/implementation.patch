@@ -1,0 +1,441 @@
+--- before/module/smartscity-id/src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
++++ after/module/smartscity-id/src/main/java/com/smartscity/id/core/CachedUniqueIdGenerator.java
+@@ -20,6 +20,8 @@
+ public final class CachedUniqueIdGenerator implements IdGenerator {
+   private static final int REFILL_CHUNK = 256;
+   private final GeneratorOptions options;
++  private final long firstMillis;
++  private final long lastMillis;
+   private final int lowWatermark;
+   private final AtomicBoolean producerParked = new AtomicBoolean();
+   private final WorkerLease lease;
+@@ -90,6 +92,13 @@
+     this.lease = Objects.requireNonNull(lease);
+     try {
+       this.options = Objects.requireNonNull(options);
++      IdLayout layout = options.bits.getLayout();
++      firstMillis = layout.getEpoch().toEpochMilli();
++      long lastSecondMillis =
++          layout.getEpoch().plusSeconds(options.bits.getMaxTime()).toEpochMilli();
++      // Include the entire last second, including layouts ending at the millisecond long limit.
++      lastMillis =
++          lastSecondMillis > Long.MAX_VALUE - 999 ? Long.MAX_VALUE : lastSecondMillis + 999;
+       lowWatermark = options.capacity * options.lowWaterPercent / 100;
+       clock = clockFactory.get();
+       ring = new RingBuffer(options.capacity);
+@@ -127,28 +136,33 @@
+     }
+     WorkerLease.State state = lease.state();
+     if (state != WorkerLease.State.ACTIVE) {
+-      IdException ex = new IdException(IdException.Reason.COORDINATION, "Worker state: " + state);
+-      if (state == WorkerLease.State.EXPIRED || state == WorkerLease.State.CLOSED) {
+-        failure.compareAndSet(null, ex);
+-      }
+-      throw ex;
+-    }
+-    try {
+-      long second = clock.seconds(options.bits.getLayout().getEpoch());
+-      if (second < 0 || second > options.bits.getMaxTime()) {
++      throw unavailableWorker(state);
++    }
++    try {
++      long millis = clock.millis();
++      if (millis < firstMillis || millis > lastMillis) {
+         throw new IdException(IdException.Reason.CAPACITY, "Epoch time range exhausted");
+       }
+-      return second;
++      return millis;
+     } catch (IdException e) {
+       failure.compareAndSet(null, e);
+       throw e;
+     }
++  }
++
++  private IdException unavailableWorker(WorkerLease.State state) {
++    IdException ex = new IdException(IdException.Reason.COORDINATION, "Worker state: " + state);
++    if (state == WorkerLease.State.EXPIRED || state == WorkerLease.State.CLOSED) {
++      failure.compareAndSet(null, ex);
++    }
++    return ex;
+   }
+ 
+   @Override
+   public long getUniqueId() {
+     long start = System.nanoTime();
+     long waitingSince = 0;
++    boolean generated = false;
+ 
+     try {
+       while (true) {
+@@ -162,7 +176,7 @@
+           if (waitingSince != 0 && System.nanoTime() - start >= options.waitNanos) {
+             throw new IdException(IdException.Reason.TIMEOUT, "ID wait deadline exceeded");
+           }
+-          metrics.generated.increment();
++          generated = true;
+           requestRefill();
+           return id;
+         }
+@@ -182,7 +196,7 @@
+       throw e;
+     } finally {
+       long end = System.nanoTime();
+-      metrics.latency(end - start);
++      metrics.completed(end - start, generated);
+       if (waitingSince != 0) {
+         metrics.waitNanos.add(end - waitingSince);
+       }
+@@ -200,7 +214,11 @@
+   private int fill() {
+     long start = System.nanoTime();
+     try {
+-      long second = checkAvailable();
++      // Only the producer needs relative seconds. Subtract after division to avoid millisecond
++      // overflow for valid layouts whose epoch and current time straddle the signed long range.
++      long second =
++          Math.floorDiv(checkAvailable(), 1000)
++              - options.bits.getLayout().getEpoch().getEpochSecond();
+       int produced = 0;
+       while (produced < REFILL_CHUNK && !closed.get() && ring.size() < ring.capacity()) {
+         if (Thread.currentThread().isInterrupted()) {
+@@ -278,7 +296,7 @@
+         .state(state)
+         .rawWorkerId(lease.rawId())
+         .workerId(lease.workerId())
+-        .generated(metrics.generated.sum())
++        .generated(metrics.generated())
+         .waits(metrics.waits.sum())
+         .waitNanos(metrics.waitNanos.sum())
+         .latencyNanos(metrics.latencyNanos.sum())
+--- before/module/smartscity-id/src/main/java/com/smartscity/id/core/GeneratorMetrics.java
++++ after/module/smartscity-id/src/main/java/com/smartscity/id/core/GeneratorMetrics.java
+@@ -11,7 +11,6 @@
+  * @author jack
+  */
+ final class GeneratorMetrics {
+-  final LongAdder generated = new LongAdder();
+   final LongAdder waits = new LongAdder();
+   final LongAdder waitNanos = new LongAdder();
+ 
+@@ -19,7 +18,10 @@
+   final LongAdder refillNanos = new LongAdder();
+   final LongAdder refillFailures = new LongAdder();
+ 
+-  private final LongAdder[] latencyBuckets = new LongAdder[64];
++  // The successful histogram is also the generated counter. Keep failed durations separate so
++  // every request contributes to latency without an additional success-path atomic increment.
++  private final LongAdder[] successfulLatencyBuckets = new LongAdder[64];
++  private final LongAdder[] failedLatencyBuckets = new LongAdder[64];
+   private final EnumMap<IdException.Reason, LongAdder> failures =
+       new EnumMap<>(IdException.Reason.class);
+ 
+@@ -27,22 +29,32 @@
+     for (IdException.Reason r : IdException.Reason.values()) {
+       failures.put(r, new LongAdder());
+     }
+-    for (int i = 0; i < latencyBuckets.length; i++) {
+-      latencyBuckets[i] = new LongAdder();
++    for (int i = 0; i < successfulLatencyBuckets.length; i++) {
++      successfulLatencyBuckets[i] = new LongAdder();
++      failedLatencyBuckets[i] = new LongAdder();
+     }
+   }
+ 
+-  void latency(long nanos) {
++  void completed(long nanos, boolean generated) {
+     latencyNanos.add(nanos);
+     int bucket = nanos <= 1 ? 0 : 64 - Long.numberOfLeadingZeros(nanos - 1);
+-    latencyBuckets[Math.min(63, bucket)].increment();
++    LongAdder[] buckets = generated ? successfulLatencyBuckets : failedLatencyBuckets;
++    buckets[Math.min(63, bucket)].increment();
++  }
++
++  long generated() {
++    long count = 0;
++    for (LongAdder bucket : successfulLatencyBuckets) {
++      count += bucket.sum();
++    }
++    return count;
+   }
+ 
+   long percentile(double quantile) {
+     long[] counts = new long[64];
+     long count = 0;
+     for (int i = 0; i < counts.length; i++) {
+-      counts[i] = latencyBuckets[i].sum();
++      counts[i] = successfulLatencyBuckets[i].sum() + failedLatencyBuckets[i].sum();
+       count += counts[i];
+     }
+     if (count == 0) {
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/GeneratorMetricsTest.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/GeneratorMetricsTest.java
+@@ -0,0 +1,78 @@
++package com.smartscity.id.core;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++
++import com.smartscity.id.api.IdException;
++import java.util.ArrayList;
++import java.util.List;
++import java.util.concurrent.ExecutorService;
++import java.util.concurrent.Executors;
++import java.util.concurrent.Future;
++import java.util.concurrent.TimeUnit;
++import org.junit.jupiter.api.Test;
++import org.junit.jupiter.api.Timeout;
++
++/**
++ * Verifies complete outcome and duration accounting, including concurrent updates and bucket edges.
++ *
++ * @author jack
++ */
++class GeneratorMetricsTest {
++  @Test
++  void everyOutcomeRetainsItsDurationAndBucketUpperBound() {
++    for (boolean success : new boolean[] {false, true}) {
++      for (long nanos : new long[] {0, 1, 2, 3, 4, 1024, 1025, (1L << 62) + 1, Long.MAX_VALUE}) {
++        GeneratorMetrics metrics = new GeneratorMetrics();
++        assertEquals(0, metrics.generated());
++        assertEquals(0, metrics.percentile(0.99));
++        metrics.completed(nanos, success);
++        long expected = 1;
++        while (expected < nanos && expected <= (1L << 61)) {
++          expected *= 2;
++        }
++        if (expected < nanos) {
++          expected = Long.MAX_VALUE;
++        }
++        assertEquals(success ? 1 : 0, metrics.generated());
++        assertEquals(nanos, metrics.latencyNanos.sum());
++        assertEquals(expected, metrics.percentile(0.50));
++        assertEquals(expected, metrics.percentile(0.99));
++      }
++    }
++  }
++
++  @Test
++  @Timeout(5)
++  void concurrentMixedOutcomesRemainExactAfterWritersComplete() throws Exception {
++    GeneratorMetrics metrics = new GeneratorMetrics();
++    ExecutorService pool = Executors.newFixedThreadPool(8);
++    try {
++      List<Future<?>> jobs = new ArrayList<>();
++      for (int thread = 0; thread < 8; thread++) {
++        jobs.add(
++            pool.submit(
++                () -> {
++                  for (int i = 0; i < 256; i++) {
++                    if (i % 2 == 0) {
++                      metrics.completed(1, true);
++                    } else {
++                      metrics.failed(IdException.Reason.TIMEOUT);
++                      metrics.completed(1024, false);
++                    }
++                  }
++                }));
++      }
++      for (Future<?> job : jobs) {
++        job.get(3, TimeUnit.SECONDS);
++      }
++      assertEquals(1024, metrics.generated());
++      assertEquals(1024, metrics.failures().get(IdException.Reason.TIMEOUT));
++      assertEquals(1024L * 1025, metrics.latencyNanos.sum());
++      assertEquals(1, metrics.percentile(0.50));
++      assertEquals(1024, metrics.percentile(0.95));
++      assertEquals(1024, metrics.percentile(0.99));
++    } finally {
++      pool.shutdownNow();
++    }
++  }
++}
+--- before/module/smartscity-id/src/test/java/com/smartscity/id/core/HotPathCorrectnessTest.java
++++ after/module/smartscity-id/src/test/java/com/smartscity/id/core/HotPathCorrectnessTest.java
+@@ -0,0 +1,188 @@
++package com.smartscity.id.core;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertThrows;
++import static org.junit.jupiter.api.Assertions.assertTrue;
++
++import com.smartscity.id.api.IdException;
++import com.smartscity.id.api.IdSnapshot;
++import com.smartscity.id.spi.TimeSource;
++import com.smartscity.id.spi.WorkerLease;
++import java.time.Instant;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.List;
++import org.junit.jupiter.api.Test;
++
++/**
++ * Protects the time admission and observation contracts while removing redundant hot-path work.
++ *
++ * @author jack
++ */
++class HotPathCorrectnessTest {
++  @Test
++  void millisecondAdmissionMatchesWholeSecondEncodingAtSignedAndFormatBoundaries() {
++    List<BitsAllocator> layouts = new ArrayList<>(ClockRollbackTest.layouts());
++    layouts.add(new BitsAllocator(new IdLayout(Instant.ofEpochSecond(-2), 3, 4, 4)));
++    layouts.add(
++        new BitsAllocator(new IdLayout(Instant.ofEpochSecond(Long.MIN_VALUE / 1000), 54, 4, 4)));
++    layouts.add(
++        new BitsAllocator(new IdLayout(Instant.ofEpochSecond(Long.MAX_VALUE / 1000 - 7), 3, 4, 4)));
++    for (BitsAllocator bits : layouts) {
++      Instant epoch = bits.getLayout().getEpoch();
++      long first = epoch.toEpochMilli();
++      long lastSecond = epoch.plusSeconds(bits.getMaxTime()).toEpochMilli();
++      List<Long> samples =
++          new ArrayList<>(
++              Arrays.asList(
++                  Long.MIN_VALUE,
++                  -1001L,
++                  -1000L,
++                  -999L,
++                  -1L,
++                  0L,
++                  1L,
++                  Long.MAX_VALUE,
++                  first - 1,
++                  first,
++                  first + 999,
++                  lastSecond - 1,
++                  lastSecond));
++      if (lastSecond <= Long.MAX_VALUE - 1000) {
++        samples.add(lastSecond + 999);
++        samples.add(lastSecond + 1000);
++      }
++      for (long wall : samples) {
++        // Independent reference: the original whole-second admission rule, including floor for
++        // negative UTC timestamps. No subtraction of millisecond endpoints is safe in general.
++        long second = Math.floorDiv(wall, 1000) - epoch.getEpochSecond();
++        boolean valid = second >= 0 && second <= bits.getMaxTime();
++        ControlledTime time = new ControlledTime();
++        time.set(wall, 0);
++        CoreTest.Lease lease = new CoreTest.Lease();
++        GeneratorOptions options = GeneratorOptions.builder().bits(bits).capacity(2).build();
++        if (valid) {
++          try (CachedUniqueIdGenerator generator =
++              new CachedUniqueIdGenerator(options, lease, time)) {
++            long id = generator.getUniqueId();
++            assertEquals(bits.allocate(second, lease.workerId(), 0), id);
++            assertEquals(epoch.plusSeconds(second), generator.parse(id).getTimestamp());
++          }
++        } else {
++          assertEquals(
++              IdException.Reason.CAPACITY,
++              assertThrows(
++                      IdException.class, () -> new CachedUniqueIdGenerator(options, lease, time))
++                  .getReason());
++        }
++        assertEquals(1, lease.closes.get());
++      }
++    }
++  }
++
++  @Test
++  void timestampExhaustionAfterClaimBurnsTheIdAndRemainsTerminal() throws Exception {
++    BitsAllocator bits = new BitsAllocator(7, 4, 4);
++    long initialWall =
++        bits.getLayout().getEpoch().plusSeconds(bits.getMaxTime()).toEpochMilli() + 999;
++    class CrossingTime implements TimeSource {
++      boolean armed;
++      int reads;
++      long nanos;
++
++      public long nanoTime() {
++        return nanos;
++      }
++
++      public long wallTimeMillis() {
++        if (armed && ++reads == 2) {
++          nanos = 1_000_000;
++        }
++        return initialWall + nanos / 1_000_000;
++      }
++    }
++    CrossingTime time = new CrossingTime();
++    try (PausedProducerTime paused = new PausedProducerTime(time);
++        CachedUniqueIdGenerator generator =
++            new CachedUniqueIdGenerator(
++                GeneratorOptions.builder().bits(bits).capacity(4).build(),
++                new CoreTest.Lease(),
++                paused)) {
++      try {
++        paused.awaitPaused();
++        time.armed = true;
++        assertEquals(
++            IdException.Reason.CAPACITY,
++            assertThrows(IdException.class, generator::getUniqueId).getReason());
++        assertEquals(2, time.reads);
++        assertEquals(3, generator.snapshot().getBuffered());
++        assertEquals(0, generator.snapshot().getGenerated());
++        time.armed = false;
++        time.nanos = 0;
++        assertEquals(
++            IdException.Reason.CAPACITY,
++            assertThrows(IdException.class, generator::getUniqueId).getReason());
++        assertEquals(3, generator.snapshot().getBuffered());
++        assertEquals(2, generator.snapshot().getFailures().get(IdException.Reason.CAPACITY));
++      } finally {
++        paused.close();
++      }
++    }
++  }
++
++  @Test
++  void successfulCachedCallStillTakesTwoIndependentClockSamples() {
++    Thread caller = Thread.currentThread();
++    int[] reads = new int[2];
++    TimeSource time =
++        new TimeSource() {
++          public long nanoTime() {
++            if (Thread.currentThread() == caller) {
++              reads[0]++;
++            }
++            return 0;
++          }
++
++          public long wallTimeMillis() {
++            if (Thread.currentThread() == caller) {
++              reads[1]++;
++            }
++            return ControlledTime.BASE;
++          }
++        };
++    try (CachedUniqueIdGenerator generator =
++        new CachedUniqueIdGenerator(
++            GeneratorOptions.builder().capacity(8).build(), new CoreTest.Lease(), time)) {
++      Arrays.fill(reads, 0);
++      assertTrue(generator.getUniqueId() > 0);
++      assertEquals(4, reads[0]);
++      assertEquals(2, reads[1]);
++    }
++  }
++
++  @Test
++  void successfulCountsExcludeSuspendedAndClosedCallsWithoutLosingFailureMetrics() {
++    CoreTest.Lease lease = new CoreTest.Lease();
++    try (CachedUniqueIdGenerator generator =
++        new CachedUniqueIdGenerator(
++            GeneratorOptions.builder().capacity(8).build(), lease, new CoreTest.Clock())) {
++      assertTrue(generator.getUniqueId() > 0);
++      lease.state = WorkerLease.State.SUSPENDED;
++      assertEquals(
++          IdException.Reason.COORDINATION,
++          assertThrows(IdException.class, generator::getUniqueId).getReason());
++      lease.state = WorkerLease.State.ACTIVE;
++      assertTrue(generator.getUniqueId() > 0);
++      generator.close();
++      assertEquals(
++          IdException.Reason.CLOSED,
++          assertThrows(IdException.class, generator::getUniqueId).getReason());
++      IdSnapshot snapshot = generator.snapshot();
++      assertEquals(2, snapshot.getGenerated());
++      assertEquals(1, snapshot.getFailures().get(IdException.Reason.COORDINATION));
++      assertEquals(1, snapshot.getFailures().get(IdException.Reason.CLOSED));
++      assertTrue(snapshot.getLatencyNanos() > 0);
++      assertTrue(snapshot.getLatencyP99Nanos() >= snapshot.getLatencyP50Nanos());
++    }
++  }
++}

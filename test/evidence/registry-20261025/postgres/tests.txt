@@ -1,0 +1,168 @@
+["/Users/liyunlong/git/smartscity/smartscity-starter/mvnw", "-B", "-ntp", "-o", "-pl", "module/smartscity-id-spring-boot,module/smartscity-id-spring-boot4", "-am", "-Dtest=PostgresIntegrationTest", "-Dsurefire.failIfNoSpecifiedTests=false", "-Did.test.postgres.url=jdbc:postgresql://127.0.0.1:63453/smartscity_id_test", "test"]
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Smartscity Parent                                                  [pom]
+[INFO] smartscity-id                                                      [jar]
+[INFO] smartscity-id-spring-boot                                          [jar]
+[INFO] smartscity-id-spring-boot4                                         [jar]
+[INFO] 
+[INFO] ------------------< com.smartscity:smartscity-parent >------------------
+[INFO] Building Smartscity Parent 0.1.0-SNAPSHOT                          [1/4]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --------------------< com.smartscity:smartscity-id >--------------------
+[INFO] Building smartscity-id 0.1.0-SNAPSHOT                              [2/4]
+[INFO]   from /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id ---
+[INFO] Spotless.Java is keeping 22 files clean - 0 needs changes to be clean, 0 were already clean, 22 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 14 source files with javac [debug parameters release 9] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 8 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java: Some input files use or override a deprecated API.
+[INFO] /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id/src/test/java/com/smartscity/id/core/ClockAndLifecycleTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id ---
+[INFO] 
+[INFO] --------------< com.smartscity:smartscity-id-spring-boot >--------------
+[INFO] Building smartscity-id-spring-boot 0.1.0-SNAPSHOT                  [3/4]
+[INFO]   from /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-spring-boot ---
+[INFO] Spotless.Java is keeping 24 files clean - 0 needs changes to be clean, 0 were already clean, 24 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spring-boot ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (shared-adapter-source) @ smartscity-id-spring-boot ---
+[INFO] Source directory: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/src/shared/java added.
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spring-boot ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spring-boot ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 9] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spring-boot ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spring-boot ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 9] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spring-boot ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.autoconfigure.PostgresIntegrationTest
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.370 s -- in com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] -------------< com.smartscity:smartscity-id-spring-boot4 >--------------
+[INFO] Building smartscity-id-spring-boot4 0.1.0-SNAPSHOT                 [4/4]
+[INFO]   from /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- spotless:2.43.0:check (google-java-style) @ smartscity-id-spring-boot4 ---
+[INFO] Spotless.Java is keeping 1 files clean - 0 needs changes to be clean, 0 were already clean, 1 were skipped because caching determined they were already clean
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-build-environment) @ smartscity-id-spring-boot4 ---
+[INFO] Rule 2: org.apache.maven.enforcer.rules.dependency.DependencyConvergence passed
+[INFO] 
+[INFO] --- build-helper:3.6.1:add-source (shared-adapter-source) @ smartscity-id-spring-boot4 ---
+[INFO] Source directory: /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/../smartscity-id-spring-boot/src/shared/java added.
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ smartscity-id-spring-boot4 ---
+[INFO] Copying 5 resources from ../smartscity-id-spring-boot/src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ smartscity-id-spring-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[WARNING] unknown enum constant com.fasterxml.jackson.annotation.JsonInclude.Include.NON_EMPTY
+  reason: class file for com.fasterxml.jackson.annotation.JsonInclude$Include not found
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ smartscity-id-spring-boot4 ---
+[INFO] skip non existing resourceDirectory /Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot4/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ smartscity-id-spring-boot4 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 12 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ smartscity-id-spring-boot4 ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.smartscity.id.autoconfigure.PostgresIntegrationTest
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.678 s -- in com.smartscity.id.autoconfigure.PostgresIntegrationTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Smartscity Parent 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] Smartscity Parent .................................. SUCCESS [  0.793 s]
+[INFO] smartscity-id ...................................... SUCCESS [  4.617 s]
+[INFO] smartscity-id-spring-boot .......................... SUCCESS [  5.968 s]
+[INFO] smartscity-id-spring-boot4 ......................... SUCCESS [  4.218 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  16.139 s
+[INFO] Finished at: 2026-10-25T16:51:53+08:00
+[INFO] ------------------------------------------------------------------------

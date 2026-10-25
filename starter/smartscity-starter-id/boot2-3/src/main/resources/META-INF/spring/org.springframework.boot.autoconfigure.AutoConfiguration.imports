@@ -1,0 +1,3 @@
+com.smartscity.id.autoconfigure.IdAutoConfiguration
+com.smartscity.id.autoconfigure.IdHealthAutoConfiguration
+com.smartscity.id.autoconfigure.IdMetricsAutoConfiguration
