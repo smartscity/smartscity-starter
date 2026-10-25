@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -42,7 +41,7 @@ class ClockRollbackConcurrencyTest {
         .build();
   }
 
-  private static void await(BooleanSupplier condition) throws InterruptedException {
+  static void await(BooleanSupplier condition) throws InterruptedException {
     long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(2);
     while (!condition.getAsBoolean() && System.nanoTime() < deadline) {
       Thread.sleep(1);
@@ -112,75 +111,61 @@ class ClockRollbackConcurrencyTest {
   }
 
   @Test
-  void rollbackAfterClaimBurnsTheIdAndCannotBeClearedByClockRecovery() throws Exception {
-    CountDownLatch producerEntered = new CountDownLatch(1);
-    CountDownLatch releaseProducer = new CountDownLatch(1);
-
-    AtomicInteger closes = new AtomicInteger();
+  void producerFailurePublishedAfterClaimBurnsTheIdAndCannotBeCleared() throws Exception {
     Thread caller = Thread.currentThread();
     AtomicBoolean armed = new AtomicBoolean();
     AtomicInteger reads = new AtomicInteger();
+    AtomicInteger closes = new AtomicInteger();
     ControlledTime base = new ControlledTime();
-    TimeSource time =
-        new TimeSource() {
-          public long nanoTime() {
-            return base.nanoTime();
-          }
-
-          public long wallTimeMillis() {
-            long wall = base.wallTimeMillis();
-            return armed.get() && Thread.currentThread() == caller && reads.incrementAndGet() == 2
-                ? wall - 2000
-                : wall;
-          }
-        };
-    WorkerLease lease =
-        new WorkerLease() {
-          public long rawId() {
-            return 1;
-          }
-
-          public long workerId() {
-            return 1;
-          }
-
-          public State state() {
-            if (Thread.currentThread().getName().startsWith("smartscity-id-fill-")) {
-              producerEntered.countDown();
-              try {
-                if (!releaseProducer.await(5, TimeUnit.SECONDS)) {
-                  throw new AssertionError("Producer latch timeout");
-                }
-              } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new AssertionError(e);
-              }
+    CachedUniqueIdGenerator[] holder = new CachedUniqueIdGenerator[1];
+    try (PausedProducerTime paused = new PausedProducerTime(base)) {
+      WorkerLease lease =
+          new WorkerLease() {
+            public long rawId() {
+              return 1;
             }
-            return State.ACTIVE;
-          }
 
-          public void close() {
-            closes.incrementAndGet();
-          }
-        };
-    CachedUniqueIdGenerator generator =
-        new CachedUniqueIdGenerator(GeneratorOptions.builder().capacity(4).build(), lease, time);
-    try {
-      assertTrue(producerEntered.await(2, TimeUnit.SECONDS));
-      assertEquals(4, generator.snapshot().getBuffered());
-      armed.set(true);
-      clockFailure(generator::getUniqueId);
-      armed.set(false);
-      assertEquals(2, reads.get());
-      assertEquals(3, generator.snapshot().getBuffered());
-      assertEquals(0, generator.snapshot().getGenerated());
-      for (int i = 0; i < 10; i++) {
+            public long workerId() {
+              return 1;
+            }
+
+            public State state() {
+              if (armed.get() && Thread.currentThread() == caller && reads.incrementAndGet() == 2) {
+                // The second admission read is after the claim. Let the producer publish CLOCK
+                // before this read returns; the final gate must burn that claimed ID.
+                base.set(BASE - 2000, 0);
+                paused.close();
+                try {
+                  await(() -> holder[0].snapshot().getState().equals("CLOCK"));
+                } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+                  throw new AssertionError(e);
+                }
+              }
+              return State.ACTIVE;
+            }
+
+            public void close() {
+              closes.incrementAndGet();
+            }
+          };
+      try (CachedUniqueIdGenerator generator =
+          new CachedUniqueIdGenerator(
+              GeneratorOptions.builder().capacity(4).build(), lease, paused)) {
+        holder[0] = generator;
+        paused.awaitPaused();
+        assertEquals(4, generator.snapshot().getBuffered());
+        armed.set(true);
         clockFailure(generator::getUniqueId);
+        armed.set(false);
+        assertEquals(3, generator.snapshot().getBuffered());
+        assertEquals(0, generator.snapshot().getGenerated());
+        base.set(BASE, 0);
+        for (int i = 0; i < 10; i++) {
+          clockFailure(generator::getUniqueId);
+        }
+        assertEquals(3, generator.snapshot().getBuffered());
       }
-      assertEquals(3, generator.snapshot().getBuffered());
-    } finally {
-      releaseProducer.countDown();
-      generator.close();
     }
     assertEquals(1, closes.get());
   }
@@ -209,6 +194,7 @@ class ClockRollbackConcurrencyTest {
       }
       await(() -> generator.snapshot().getWaits() >= 4);
       time.set(BASE - 2000, 0);
+      paused.close();
       for (Future<?> future : waiting) {
         future.get(2, TimeUnit.SECONDS);
       }
@@ -239,7 +225,7 @@ class ClockRollbackConcurrencyTest {
   }
 
   @Test
-  void unstableSamplingStopsGeneratorPermanently() {
+  void unstableSamplingStopsGeneratorPermanently() throws Exception {
     AtomicBoolean unstable = new AtomicBoolean();
     AtomicLong nanos = new AtomicLong();
     TimeSource time =
@@ -259,6 +245,7 @@ class ClockRollbackConcurrencyTest {
         new CachedUniqueIdGenerator(
             options(BitsAllocator.standard()), new CoreTest.Lease(), time)) {
       unstable.set(true);
+      await(() -> generator.snapshot().getState().equals("CLOCK"));
       clockFailure(generator::getUniqueId);
       unstable.set(false);
       clockFailure(generator::getUniqueId);

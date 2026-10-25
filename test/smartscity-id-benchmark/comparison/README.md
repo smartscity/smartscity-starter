@@ -1,6 +1,6 @@
 # Baidu UID Generator comparison
 
-This opt-in local fixture compares the unchanged Smartscity `CachedUniqueIdGenerator` with Baidu `DefaultUidGenerator` and `CachedUidGenerator`. It is outside normal Maven source roots and adds no dependency to production or the ordinary benchmark JAR. The `2026-10-25 report` (not present in this checkout) owns this run's conclusions and limitations.
+This opt-in local fixture compares the unchanged Smartscity `CachedUniqueIdGenerator` with Baidu `DefaultUidGenerator` and `CachedUidGenerator`. It is outside normal Maven source roots and adds no dependency to production or the ordinary benchmark JAR. Generated reports display Smartscity results only, while raw measurements retain all implementations. See the [retained benchmark](../../../docs/id/benchmark.md) for the latest curated snapshot.
 
 ## Reproduce
 
@@ -30,6 +30,6 @@ The report must retain short-run uncertainty, machine/JVM details and actual err
 
 ## Controlled optimization experiment
 
-`run-optimization.py --run --upstream <pinned-checkout> --variants <frozen-directory> --output <fresh-evidence>` expects `before/sdk.jar`, `before/benchmarks.jar`, `future-only/sdk.jar`, and `optimized/sdk.jar`. Build these with JDK 21. The future-only variant adds only logical-second advancement to the before source; the optimized variant also changes refill validation, notification coalescing, contention retry and unchanged deviation publication. Exact hashes and source snapshots are recorded in the report's evidence. Keep these artifacts outside ordinary Maven target directories.
+`run-optimization.py --run --upstream <pinned-checkout> --variants <frozen-directory> --output <fresh-evidence>` expects `before/sdk.jar`, `before/benchmarks.jar`, `future-only/sdk.jar`, and `optimized/sdk.jar`. Build these with JDK 21. The future-only variant adds only logical-second advancement to the before source; the optimized variant also changes refill validation, notification coalescing, contention retry and unchanged deviation publication. Keep exact hashes and source snapshots with each run. Keep these artifacts outside ordinary Maven target directories.
 
 The matrix contains standard at 1/4/8 consumers for all four variants, and high-throughput at 1/4/8 for optimized/Baidu Cached: 18 scenarios, two forks, the same timing and eight-minute budget as above. Four separate probes follow. The harness uses JMH Control start/stop flags to exclude synchronization catch-up calls from outcome counters; the runner rejects a mismatch between outcomes and primary timed-loop operations. Java fixture and SDK JAR hashes must stay unchanged. Preparation can also use `run.py --work-directory <isolated-directory> --smartscity-jar <frozen-benchmark-jar>`; input JARs are copied to content-addressed files before compilation.

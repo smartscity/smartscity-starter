@@ -10,8 +10,10 @@ import platform
 import signal
 import shutil
 import subprocess
+import sys
 import time
 import urllib.request
+from report import write_report
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
@@ -204,6 +206,9 @@ def main():
                         'estimatedBytesPerSuccess': values[4] * values[0] / values[1],
                         'idsScoreError999': metrics['ids']['scoreError'],
                         'allocationMiBPerSecond': metrics['gc.alloc.rate']['score']})
+                    print(f'  {values[1]:,.0f} IDs/s | timeout {values[2]:,.3f}/s | '
+                          f'rejection {values[3]:,.3f}/s | '
+                          f'{values[4] * values[0] / values[1]:,.6f} B/success', flush=True)
                     save()
         for impl in implementations:
             log = out / f'probe-{impl}.txt'
@@ -228,6 +233,11 @@ def main():
         if not result['sourceUnchanged']:
             result['status'] = 'NOT_COMPARABLE'
         save()
+        try:
+            print(write_report(out), flush=True)
+        except Exception as error:
+            # Report rendering must not mask an existing measurement failure or replace raw evidence.
+            print(f'Report generation failed; raw evidence remains at {out}: {error}', file=sys.stderr)
 
 
 if __name__ == '__main__':

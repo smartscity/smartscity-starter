@@ -1,5 +1,0 @@
-1.7.12
-installed by downloading from release page
-built with go1.26.1 compiler for darwin/amd64
-PASS actionlint; ShellCheck not installed and not run
-PASS bash -n

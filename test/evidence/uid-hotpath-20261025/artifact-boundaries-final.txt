@@ -1,4 +1,0 @@
-PASS smartscity-id: 23 classes; SHA256=52aa070fe3819656a2ede70a078ca69941764f7c445ffed71528a9b935733ac2
-PASS smartscity-starter-id: 19 classes; SHA256=1f9f8c7c4ec5fc106ca98891c3c02e93244c2bd5b1b1187ce62352f8ecf26640
-PASS smartscity-starter-id-boot4: 18 classes; SHA256=46d1d32faa3ff9d1384c1f42dccbe667ce1a2155270fa3482da9f172e3eb6aa8
-PASS production dependency boundaries, generation isolation, BOM, registration and metadata

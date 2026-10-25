@@ -6,7 +6,7 @@
 | `core/` | Shared infrastructure only after demonstrated reuse; no placeholder artifact |
 | `module/` | Framework-independent SDKs, usable without Spring Boot |
 | `starter/` | Component families containing Boot integration and starter dependencies |
-| `test/` | Cross-module verification, opt-in benchmarks and historical evidence |
+| `test/` | Cross-module verification and opt-in benchmarks |
 | `samples/` | Executable consumer applications |
 | `docs/` | Global navigation/architecture and component-owned documentation |
 | `.github/` | CI and explicitly dispatched delivery workflows |

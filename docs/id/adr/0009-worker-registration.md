@@ -13,9 +13,3 @@ Reuse the existing factory, resource owner and JDBC repository. Add only an immu
 Stable Reason names gain codes/default messages; IdException retains causes and context details. CLOCK means general clock validation, not only rollback. Type-level Javadoc uses @author jack by project policy; Google Style does not itself mandate authors.
 
 Schema v2 requires explicit migration. Old tables fail rather than being upgraded at runtime. Because prior modulo allocations may have covered the entire worker space, a safe existing-namespace migration requires complete allocation history and an irreversible high-water floor, or conservatively a new externally separated namespace. See migration notes. The low-level repository insert/offline APIs are replaced by registration-receipt APIs; the public IdGenerator contract is unchanged.
-
-## Reference evidence and current audit
-
-The original Longfor/Longhub temporary source directory and ZIP are no longer available in this run. The repository retains the 2026-10-24 static audit at `f86b741:docs/proposals/id-v1/legacy-input-audit.md` and its 48-file SHA manifest at `test/evidence/legacy-reference-manifest.json`. These are historical observations, not a fresh execution of the legacy implementation. That audit recorded Druid/MyBatis allocation, modulo encoding, non-atomic ZooKeeper list/check registration, unbounded future-second padding, a flawed consumer claim interleaving and incomplete per-instance shutdown ownership. No legacy throughput or production failure frequency is inferred.
-
-The current pre-change worktree independently confirmed raw-row-ID modulo allocation and eager application DataSource lookup. The redesign removes those two paths while retaining the existing bounded local producer, primitive ring, clock validation, explicit claim protocol and per-instance lifecycle owner. Existing local algorithms are not replaced by a copy of legacy code.

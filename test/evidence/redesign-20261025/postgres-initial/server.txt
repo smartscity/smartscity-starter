@@ -1,7 +1,0 @@
-2026-10-25 15:44:45.095 +08 [18364] LOG:  starting PostgreSQL 14.15 on x86_64-apple-darwin23.6.0, compiled by Apple clang version 16.0.0 (clang-1600.0.26.4), 64-bit
-2026-10-25 15:44:45.105 +08 [18364] LOG:  listening on IPv4 address "127.0.0.1", port 61195
-2026-10-25 15:44:45.132 +08 [18364] LOG:  listening on Unix socket "/var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/starter-postgres-data-03mlydv0/.s.PGSQL.61195"
-2026-10-25 15:44:45.222 +08 [18369] LOG:  database system was shut down at 2026-10-25 15:44:44 +08
-2026-10-25 15:44:45.260 +08 [18364] LOG:  database system is ready to accept connections
-2026-10-25 15:44:45.499 +08 [18364] LOG:  received immediate shutdown request
-2026-10-25 15:44:45.545 +08 [18364] LOG:  database system is shut down

@@ -1,6 +1,6 @@
 # ADR 0010: SDKs, starter families and component documentation
 
-Status: ACCEPTED / IMPLEMENTED_UNRELEASED / TESTS_NOT_RUN, 2026-10-25. Authority: the user's architecture/API documentation request. The user accepted the layout; the latest instruction stops test execution. Earlier PASS records do not validate subsequent changes.
+Status: ACCEPTED / IMPLEMENTED_UNRELEASED, 2026-10-25.
 
 Keep only framework-independent SDKs under `module/`. The ID SDK retains its zero production dependencies and existing API, generation, clock and lease semantics. Group all Boot integration under `starter/smartscity-starter-id/`, an unpublished aggregator with coordinate `smartscity-starter-id-family`. It is not a runtime dependency and is not the parent of published artifacts.
 

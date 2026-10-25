@@ -2,15 +2,19 @@
 
 ## Unreleased
 
+- Publish bounded ID ranges and retain explicit CAS claims with delayed slot reclamation.
+- Validate clocks in the producer; cached consumers retain local lifecycle/lease/failure gates and exact metrics. See the migration notes for delayed clock-fault detection.
+- Preserve bounded waits and coalesced refill wakeups under contention.
+- Retain one Smartscity benchmark report; remove generated evidence and redundant verification summaries from version control.
+
 - Group Boot-generation examples under the unpublished samples/id aggregator.
 - Add a repository-owned IntelliJ Google Java Style XML and retain Maven formatting enforcement.
 - Remove the redundant configuration/style ADR; keep its rules in the component contract and coding guide.
-- Present verification outcomes with explicit status icons and preserve NOT_RUN for stopped checks.
 
 - Keep only the independent ID SDK under module/; place all Boot integration under the ID starter family.
 - Consolidate ID documentation under docs/id with one complete configuration and a lifetime table.
 - Expand public method contracts and configuration metadata descriptions; retain author jack.
-- Add tests binding the actual guide configuration; execution is stopped by the latest user instruction.
+- Bind the guide YAML with origin-aware property sources in both starter test suites.
 
 - Configure immutable per-instance epochs and complete bit layouts while preserving legacy defaults.
 - Replace modulo worker mapping with bounded transactional registrations that never reuse committed workers.
@@ -24,4 +28,4 @@
 - Remove the empty testkit; rename the production BOM and starter coordinates.
 - Add dependency convergence, compatibility CI, artifact checks and an opt-in Central publishing workflow.
 
-See [migration](docs/id/migration.md) and [verification](docs/testing/verification.md). Earlier implementation and experiment history remains in Git and `test/evidence/`.
+See [migration](docs/id/migration.md), [test commands](docs/id/testing.md) and the [benchmark](docs/id/benchmark.md).

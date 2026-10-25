@@ -23,6 +23,7 @@ import org.springframework.boot.context.properties.bind.BindHandler;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.context.properties.bind.handler.NoUnboundElementsBindHandler;
+import org.springframework.boot.env.OriginTrackedMapPropertySource;
 import org.springframework.boot.env.YamlPropertySourceLoader;
 import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.PropertySource;
@@ -101,9 +102,11 @@ class DocumentationConfigurationTest {
         bind(
             guideSource(),
             Map.of(
+                "smartscity.id.enabled", "false",
                 "smartscity.id.group", "external-orders",
                 "smartscity.id.epoch", "2020-01-01T00:00:00Z",
                 "smartscity.id.wait-timeout", "25ms"));
+    assertThat(properties.isEnabled()).isFalse();
     assertThat(properties.getGroup()).isEqualTo("external-orders");
     assertThat(properties.options().bits.getLayout().getEpoch())
         .isEqualTo(Instant.parse("2020-01-01T00:00:00Z"));
@@ -174,6 +177,7 @@ class DocumentationConfigurationTest {
   void invalidScalarTypesFailDuringBinding() {
     for (Map<String, Object> invalid :
         List.<Map<String, Object>>of(
+            Map.of("smartscity.id.enabled", "not-a-boolean"),
             Map.of("smartscity.id.buffer-size", "many"),
             Map.of("smartscity.id.wait-timeout", "tomorrow"),
             Map.of("smartscity.id.epoch", "not-an-instant"))) {
@@ -204,7 +208,10 @@ class DocumentationConfigurationTest {
     environment
         .getPropertySources()
         .remove(StandardEnvironment.SYSTEM_ENVIRONMENT_PROPERTY_SOURCE_NAME);
-    environment.getPropertySources().addLast(new MapPropertySource("guide", documented));
+    // YAML values retain origin wrappers; this source unwraps them for binding and keeps origins.
+    environment
+        .getPropertySources()
+        .addLast(new OriginTrackedMapPropertySource("guide", documented));
     environment
         .getPropertySources()
         .addFirst(

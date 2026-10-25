@@ -1,6 +1,0 @@
-PASS smartscity-id: 22 classes; SHA256=eac095d65c64d02ebc838a38f1a258603cb5a165d54980b7869e643b575e2b8d
-PASS smartscity-id-spring-boot: 14 classes; SHA256=e5e8ade0660ebf1edca1d7b355135cce6cbfeae67924d171216451333bc87166
-PASS smartscity-id-spring-boot4: 14 classes; SHA256=b9c81a64ed4de4074baa19184ba996f33b3e58024e1b2e97922ab4a5b1a0991c
-PASS smartscity-starter-id: 0 classes; SHA256=138efc0503306f7ab9ed15c02778acb2cb4485bd73cd9a828ff25efbf8d58a8c
-PASS smartscity-starter-id-boot4: 0 classes; SHA256=1d49cb86fcb7131f790a86c12369000c8bdedca8b4c5d69812b48ef6b8a375fb
-PASS production dependency boundaries, generation isolation, BOM, registration and metadata

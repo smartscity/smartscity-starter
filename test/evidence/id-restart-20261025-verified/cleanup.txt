@@ -1,1 +1,0 @@
-PASS: no isolated MySQL or SDK child process remains; port 13367 closed. JUnit verifies SDK/ZK client threads and tracked JDBC connections after repeated lifecycle tests.

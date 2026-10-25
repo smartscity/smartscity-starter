@@ -5,7 +5,7 @@ import com.smartscity.id.spi.TimeSource;
 import java.util.Objects;
 
 /**
- * Validates wall-clock drift against one monotonic anchor shared by producer and consumers.
+ * Validates wall-clock drift against one monotonic anchor retained across startup and production.
  *
  * @author jack
  */

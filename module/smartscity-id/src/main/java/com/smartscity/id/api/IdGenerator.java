@@ -10,6 +10,10 @@ public interface IdGenerator extends AutoCloseable {
    * Claims one ID under the configured worker-ownership assumptions. Supports concurrent callers;
    * completion order need not match ID order.
    *
+   * <p>Cached implementations validate time in the producer and reject its published terminal
+   * failures. A cached claim does not imply a fresh wall-clock sample; an undetected clock fault
+   * may coexist with successful cached issuance until the producer next validates time.
+   *
    * @return a positive ID in this generator's namespace
    * @throws IdException on closure, invalid clock/lease, exhaustion timeout or interruption
    */

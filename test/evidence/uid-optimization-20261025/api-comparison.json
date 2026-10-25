@@ -1,5 +1,0 @@
-{
-  "publicSignaturesUnchanged": true,
-  "classes": 23,
-  "scope": "Public Java signatures only; logical timestamp behavior intentionally changed by ADR 0011"
-}

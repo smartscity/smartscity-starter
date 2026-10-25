@@ -1,8 +1,0 @@
-PASS smartscity-id source archive matches 14 current Java files
-PASS smartscity-id Javadoc renders author jack
-PASS smartscity-starter-id source archive matches 12 current Java files
-PASS smartscity-starter-id Javadoc renders author jack
-PASS smartscity-starter-id all 31 metadata descriptions and guide reference names
-PASS smartscity-starter-id-boot4 source archive matches 12 current Java files
-PASS smartscity-starter-id-boot4 Javadoc renders author jack
-PASS smartscity-starter-id-boot4 all 31 metadata descriptions and guide reference names

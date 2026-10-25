@@ -1,6 +1,0 @@
-PASS smartscity-id-api: 7 classes, SHA256=18e4958f832f7c5e074f6f978688b007041b6692d238d6c60e7270166f089258
-PASS smartscity-id-spi: 4 classes, SHA256=afa3bc19b765b7927997ab035aa7ff37ffdce94120034a46473d9f018a6fda76
-PASS smartscity-id-core: 11 classes, SHA256=e8185f2b8cd270e2b3be264c57ebf0a890a2577020519f078b1195b6b37483f0
-PASS smartscity-id-spring-boot-autoconfigure: 15 classes, SHA256=3aa56338e407167affbc790ce81a5c28e3a4d9c1982c7252b5594472e30af7c8
-PASS smartscity-id-spring-boot-starter: 0 classes, SHA256=d09df77981ad9440b1e82f0923a07870c2004dbd028ff0138576cfdd0fd743d5
-PASS production dependency boundaries, generated metadata and Java 9 bytecode

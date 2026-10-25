@@ -292,12 +292,13 @@ class CoreTest {
 
   @Test
   @Timeout(5)
-  void cachedIdsAreRejectedAfterClockFailureAndDoNotAutoResume() {
+  void cachedIdsAreRejectedAfterClockFailureAndDoNotAutoResume() throws Exception {
     Clock clock = new Clock();
     Lease lease = new Lease();
     try (CachedUniqueIdGenerator g =
         new CachedUniqueIdGenerator(GeneratorOptions.builder().capacity(8).build(), lease, clock)) {
       clock.offset = 2000;
+      ClockRollbackConcurrencyTest.await(() -> g.snapshot().getState().equals("CLOCK"));
       assertEquals(
           IdException.Reason.CLOCK, assertThrows(IdException.class, g::getUniqueId).getReason());
       clock.offset = 0;

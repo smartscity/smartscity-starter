@@ -1,1 +1,0 @@
-PASS actionlint; zero diagnostics. No remote workflow executed.

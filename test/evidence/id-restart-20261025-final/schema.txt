@@ -1,1 +1,0 @@
-["/usr/local/bin/mysql", "--no-defaults", "-u", "root", "--socket=/var/folders/5z/3rn3wkms6mzdfwd7cvnwlx6w0000gn/T/id-fault-rdtqbsq3/mysql.sock", "-e", "CREATE DATABASE smartscity_id_test"]

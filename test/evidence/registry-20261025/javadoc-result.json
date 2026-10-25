@@ -1,8 +1,0 @@
-{
-  "status": "PASS",
-  "maintainedTopLevelTypes": 53,
-  "author": "jack",
-  "doclint": "all,-missing; syntax, references and HTML validated; obvious accessors may omit Javadoc",
-  "generation": "three production Java modules; author rendered in BitsAllocator HTML",
-  "warnings": "Optional upstream Jackson annotation is absent from adapter documentation classpaths; javadoc completed with one warning per adapter."
-}

@@ -62,9 +62,10 @@ public final class CachedUniqueIdGenerator implements IdGenerator {
    * Starts a buffered generator with the clock anchor already validated during external
    * registration.
    *
-   * <p>The supplied clock is used directly by the producer and consumers. This method neither
-   * creates a replacement anchor nor performs database calibration; the caller must validate the
-   * anchor and allocate an exclusive worker before calling it.
+   * <p>The supplied clock is used by startup and the producer. Consumers read its published failure
+   * state without sampling time. This method neither creates a replacement anchor nor performs
+   * database calibration; the caller must validate the anchor and allocate an exclusive worker
+   * before calling it.
    *
    * <p>A non-null lease transfers to this generator before options and clock validation.
    * Initialization failure closes the lease and attaches cleanup failures to the original
@@ -126,18 +127,22 @@ public final class CachedUniqueIdGenerator implements IdGenerator {
     }
   }
 
-  private long checkAvailable() {
+  private void checkState() {
     if (closed.get()) {
       throw new IdException(IdException.Reason.CLOSED, "Generator closed");
     }
+    WorkerLease.State state = lease.state();
     IdException terminal = failure.get();
     if (terminal != null) {
       throw terminal;
     }
-    WorkerLease.State state = lease.state();
     if (state != WorkerLease.State.ACTIVE) {
       throw unavailableWorker(state);
     }
+  }
+
+  private long checkAvailable() {
+    checkState();
     try {
       long millis = clock.millis();
       if (millis < firstMillis || millis > lastMillis) {
@@ -161,45 +166,65 @@ public final class CachedUniqueIdGenerator implements IdGenerator {
   @Override
   public long getUniqueId() {
     long start = System.nanoTime();
-    long waitingSince = 0;
     boolean generated = false;
+    try {
+      checkInterrupted();
+      checkState();
+      long id = ring.pollClaim();
+      if (id <= 0) {
+        id = awaitId(start, id);
+      } else {
+        checkState(); // claimed but unhealthy IDs are burned, never requeued
+      }
+      generated = true;
+      requestRefill();
+      return id;
+    } catch (IdException e) {
+      metrics.failed(e.getReason());
+      throw e;
+    } finally {
+      metrics.completed(System.nanoTime() - start, generated);
+    }
+  }
 
+  private static void checkInterrupted() {
+    if (Thread.currentThread().isInterrupted()) {
+      throw new IdException(IdException.Reason.INTERRUPTED, "ID wait interrupted");
+    }
+  }
+
+  /** Owns unavailable-claim retries and their original call-start deadline. */
+  private long awaitId(long start, long claim) {
+    long waitingSince = System.nanoTime();
+    int contentionRetries = 0;
+    metrics.waits.increment();
     try {
       while (true) {
-        if (Thread.currentThread().isInterrupted()) {
-          throw new IdException(IdException.Reason.INTERRUPTED, "ID wait interrupted");
-        }
-        checkAvailable();
-        long id = ring.poll();
-        if (id != 0) {
-          checkAvailable(); // claimed but unhealthy IDs are burned, never requeued
-          if (waitingSince != 0 && System.nanoTime() - start >= options.waitNanos) {
-            throw new IdException(IdException.Reason.TIMEOUT, "ID wait deadline exceeded");
-          }
-          generated = true;
-          requestRefill();
-          return id;
-        }
-        if (waitingSince == 0) {
-          waitingSince = System.nanoTime();
-          metrics.waits.increment();
-        }
         long remaining = options.waitNanos - (System.nanoTime() - start);
         if (remaining <= 0) {
           throw new IdException(IdException.Reason.TIMEOUT, "ID cache wait timed out");
         }
         requestRefill();
-        LockSupport.parkNanos(this, Math.min(remaining, 100_000));
+        if (claim == RingBuffer.CONTENDED && contentionRetries++ < 8) {
+          Thread.onSpinWait();
+        } else {
+          contentionRetries = 0;
+          long pause = claim == RingBuffer.CONTENDED ? 1_000 : 100_000;
+          LockSupport.parkNanos(this, Math.min(remaining, pause));
+        }
+        checkInterrupted();
+        checkState();
+        claim = ring.pollClaim();
+        if (claim > 0) {
+          checkState();
+          if (System.nanoTime() - start >= options.waitNanos) {
+            throw new IdException(IdException.Reason.TIMEOUT, "ID wait deadline exceeded");
+          }
+          return claim;
+        }
       }
-    } catch (IdException e) {
-      metrics.failed(e.getReason());
-      throw e;
     } finally {
-      long end = System.nanoTime();
-      metrics.completed(end - start, generated);
-      if (waitingSince != 0) {
-        metrics.waitNanos.add(end - waitingSince);
-      }
+      metrics.waitNanos.add(System.nanoTime() - waitingSince);
     }
   }
 
@@ -219,19 +244,16 @@ public final class CachedUniqueIdGenerator implements IdGenerator {
       long second =
           Math.floorDiv(checkAvailable(), 1000)
               - options.bits.getLayout().getEpoch().getEpochSecond();
-      int produced = 0;
-      while (produced < REFILL_CHUNK && !closed.get() && ring.size() < ring.capacity()) {
-        if (Thread.currentThread().isInterrupted()) {
-          throw new IdException(IdException.Reason.INTERRUPTED, "Cache initialization interrupted");
-        }
-        // Consumers validate before and after claiming. Producer validation is amortized per chunk.
-        long id = source.nextBuffered(second);
-        if (!ring.offer(id)) {
-          break; // A stalled claimant can still own the next slot; the unused ID is burned.
-        }
-        produced++;
+      if (Thread.currentThread().isInterrupted()) {
+        throw new IdException(IdException.Reason.INTERRUPTED, "Cache initialization interrupted");
       }
-      return produced;
+      if (closed.get()) {
+        return 0;
+      }
+      // Bound work and logical advancement to the available capacity observed at chunk entry.
+      // Slot reclamation still decides admission; head advancement alone does not free a slot.
+      int limit = Math.min(REFILL_CHUNK, ring.capacity() - ring.size());
+      return source.fillBuffered(ring, second, limit);
     } finally {
       metrics.refillNanos.add(System.nanoTime() - start);
     }
@@ -240,8 +262,10 @@ public final class CachedUniqueIdGenerator implements IdGenerator {
   private void produce() {
     while (!closed.get() && failure.get() == null) {
       int produced = 0;
+      boolean refillAllowed = false;
       try {
         produced = fill();
+        refillAllowed = true;
         if (produced == REFILL_CHUNK) {
           continue;
         }
@@ -262,7 +286,7 @@ public final class CachedUniqueIdGenerator implements IdGenerator {
       producerParked.set(true);
       // Arm before rechecking: a consumer racing the park either changes occupancy or leaves a
       // permit.
-      if (produced > 0 && ring.size() <= lowWatermark) {
+      if (refillAllowed && ring.size() <= lowWatermark && ring.hasReclaimedSlot()) {
         producerParked.set(false);
         continue;
       }

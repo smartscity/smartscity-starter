@@ -1,5 +1,5 @@
 # Cross-module verification
 
-Compatibility consumers, opt-in benchmarks, verification scripts and evidence live here. Ordinary tests remain in their owning domain/adapter modules. See [test inventory](../docs/id/testing.md), [current results](../docs/testing/verification.md) and [benchmark policy](smartscity-id-benchmark/USER_GUIDE.md).
+Compatibility consumers, opt-in benchmarks and verification scripts live here. Ordinary tests remain in their owning domain/adapter modules. See the [test inventory](../docs/id/testing.md), [benchmark usage](smartscity-id-benchmark/USER_GUIDE.md) and [recorded Smartscity benchmark](../docs/id/benchmark.md).
 
-`evidence/` contains historical logs moved without changing their bytes, plus clearly named current runs. Old log paths and hashes refer to their original source snapshot. English summaries do not retroactively reinterpret failed, skipped or unexecuted gates.
+Generated output under `evidence/` is ignored by Git. Use a fresh directory per run and retain source/artifact fingerprints with any results needed for comparison. Skipped and unexecuted checks are not passing results.

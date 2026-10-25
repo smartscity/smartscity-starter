@@ -1,6 +1,0 @@
-{
-  "status": "PASS",
-  "scope": "baseline copied before edits; all 49 initial Java sources match redesign sources.sha256, and all domain class bytes match the previously tested artifact manifest",
-  "domainClasses": 22,
-  "baselineRebuiltInThisTask": false
-}

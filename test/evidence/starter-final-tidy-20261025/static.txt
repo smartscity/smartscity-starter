@@ -1,2 +1,0 @@
-PASS static inspection: 12 Maven POMs, module/parent paths, IDE XML, maintained Markdown links and matching documentation fixtures.
-NOT_RUN unit/integration/compatibility tests, application execution and benchmarks.

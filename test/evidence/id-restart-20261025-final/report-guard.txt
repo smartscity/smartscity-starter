@@ -1,1 +1,0 @@
-Report guard: missing selected suite rejected; zero tests rejected; present nonempty suite accepted. Synthetic XML parser checks only.

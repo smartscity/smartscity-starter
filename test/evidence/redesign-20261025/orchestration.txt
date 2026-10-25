@@ -1,1 +1,0 @@
-PASS: 11 result validation checks; 7 runner scenarios; stale output rejected. Synthetic results only.

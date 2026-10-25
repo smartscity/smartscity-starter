@@ -1,5 +1,0 @@
-PASS isolated test port 13367 is closed
-PASS isolated test port 15437 is closed
-2026-10-24T17:47:34.144772Z 0 [System] [MY-010910] [Server] /usr/local/bin/mysqld: Shutdown complete (mysqld 9.6.0)  Homebrew.
-waiting for server to shut down.... done
-server stopped

@@ -1,5 +1,0 @@
-92e316344730b75479ad99d7deb50b81504ca63c5cb9ce99c6850539c24d2364  .github/workflows/id-benchmark.yml
-d609b5e56ac3ba6b31f645270eea5a044f71b3603b68c26401aad76095291399  testing/run-benchmark-ci.sh
-00618e45536e78627876662dbf47113177d7e28d5d0205a7d06e83cf325dc327  testing/check-benchmark-ci.sh
-7b035aa831471b0d6f54e750ed45a9959fabada3f6a5dd62611d4bf01e60055e  testing/benchmark-result.jq
-2bb486e5278faaeed07c593ea192ca8ea841eb667227f02dcfd65b54209e9f68  smartscity-id-benchmark/target/benchmarks.jar

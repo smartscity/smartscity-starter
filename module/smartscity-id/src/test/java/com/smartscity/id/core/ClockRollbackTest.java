@@ -136,7 +136,8 @@ class ClockRollbackTest {
   }
 
   @Test
-  void incrementalDriftUsesOriginalAnchorAndFailureRemainsTerminalForEveryLayout() {
+  void incrementalDriftUsesOriginalAnchorAndFailureRemainsTerminalForEveryLayout()
+      throws Exception {
     for (BitsAllocator bits : layouts()) {
       for (int direction : new int[] {-1, 1}) {
         ControlledTime time = new ControlledTime();
@@ -150,6 +151,7 @@ class ClockRollbackTest {
             assertTrue(ids.add(generator.getUniqueId()));
           }
           time.set(BASE + 11000 + direction * 1100, 11_000_000_000L);
+          ClockRollbackConcurrencyTest.await(() -> generator.snapshot().getState().equals("CLOCK"));
           clockFailure(generator::getUniqueId);
           time.set(BASE + 11000, 11_000_000_000L);
           for (int i = 0; i < 10; i++) {
@@ -197,7 +199,7 @@ class ClockRollbackTest {
   }
 
   @Test
-  void invalidEpochAndTimeFieldExhaustionRejectEvenCachedIdsForEveryLayout() {
+  void invalidEpochAndTimeFieldExhaustionRejectEvenCachedIdsForEveryLayout() throws Exception {
     for (BitsAllocator bits : layouts()) {
       ControlledTime time = new ControlledTime();
       time.set(BitsAllocator.EPOCH.toEpochMilli() - 1, 0);
@@ -216,6 +218,8 @@ class ClockRollbackTest {
         assertTrue(generator.getUniqueId() > 0);
         assertTrue(generator.snapshot().getBuffered() > 0);
         time.set(last + 1000, 1_000_000_000);
+        ClockRollbackConcurrencyTest.await(
+            () -> generator.snapshot().getState().equals("CAPACITY"));
         assertEquals(
             IdException.Reason.CAPACITY,
             assertThrows(IdException.class, generator::getUniqueId).getReason());

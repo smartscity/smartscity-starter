@@ -42,7 +42,7 @@ Merge these entries into existing sections; do not replace the application's Boo
 | Boot 2.7 / 3.x | `smartscity-starter-id` | Java 9 | Use the dependency above; Boot 3 itself requires Java 17+ |
 | Boot 4.x | `smartscity-starter-id-boot4` | Java 17 | Replace only the starter artifact ID above |
 
-Do not combine the two starters. Boot before 2.7 is unsupported. Bytecode minimums do not certify every runtime version. Consult [compatibility and historical evidence](compatibility.md); tests for this revised packaging are NOT_RUN under the latest user instruction.
+Do not combine the two starters. Boot before 2.7 is unsupported. Bytecode minimums do not certify every runtime version. Consult the [compatibility requirements](compatibility.md) and [verification commands](testing.md).
 
 ## 3. Initialize the database
 
@@ -222,6 +222,8 @@ try (IdGenerator generator = new CachedUniqueIdGenerator(options, lease, TimeSou
   long id = generator.getUniqueId();
 }
 ```
+
+The producer validates time before refill and while idle. Consumers check local ownership and published failure state; they do not sample the wall clock per call. A clock fault is rejected after producer detection, which has scheduling delay and no hard detection bound. See [migration considerations](migration.md#producer-side-clock-validation).
 
 The generator owns the lease, including cleanup after failed initialization. Lease state reads must be local, bounded and thread-safe; do not share a lease between generators. The builder's `capacity`, `lowWaterPercent`, `waitTimeout` and `clockTolerance` correspond to the values in the configuration table. For externally calibrated startup, `CachedUniqueIdGenerator.usingClock` accepts that already validated anchor; it does not perform database calibration itself.
 

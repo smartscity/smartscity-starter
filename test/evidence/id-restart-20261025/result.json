@@ -1,7 +1,0 @@
-{
-  "status": "FAIL",
-  "isolatedPort": 13367,
-  "cleanup": true,
-  "restart": true,
-  "elapsedSeconds": 12.89
-}

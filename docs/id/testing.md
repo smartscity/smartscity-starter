@@ -4,7 +4,8 @@
 |---|---|---|
 | ID domain | IdExceptionTest | Stable reason codes, default messages, details and original cause |
 | ID domain | CoreTest, ClockAndLifecycleTest, IdLayoutTest | Default/custom immutable formats, field/epoch bounds, multi-worker concurrency, CAS, capacity, timeout, interrupt, producer and cleanup |
-| ID domain | ClockRollbackTest, ClockRollbackConcurrencyTest | Rollback, sample retry, clock overflow, cache and terminal races |
+| ID domain | BufferedRangeTest | Partial range publication, full/wrapped rings, unpublished suffix retention, zero/sequence/timestamp boundaries and concurrent payload visibility across many laps |
+| ID domain | ClockRollbackTest, ClockRollbackConcurrencyTest, HotPathCorrectnessTest | Producer-detected rollback/capacity failures, no consumer clock samples, pre-detection cached issuance, sample retry/overflow, published-failure burn and terminal races |
 | ID domain | RestartConcurrencyTest | Opt-in bounded concurrent restarts; no soak |
 | Both starter generations | AutoConfigurationTest | Disable, backoff, default/custom binding, application isolation, invalid formats, health, metrics |
 | Both starter generations | ClockValidationTest, LifecycleReviewTest | Calibration, overflow/NULL, cancellation, late JDBC cleanup |
@@ -18,7 +19,7 @@
 | Packaging | test/check-artifacts.py | Bytecode, framework isolation, production-only BOM, metadata and starter contents |
 | Benchmarks | IdBenchmark, FixedRateProbe, check-benchmark-ci.sh | Existing JMH and uniqueness harness; opt-in measurements; synthetic orchestration checks |
 
-**Current revision: tests NOT_RUN under the latest user instruction.** Commands below are reference instructions for a future authorized verification stage. The interrupted reactor attempts stopped at formatting, before test execution.
+Use fresh reports for the source and environment under verification. Skipped, interrupted and unexecuted checks are not passing results. Local output under `test/evidence/` is ignored by Git; retain it externally when needed.
 
 `DocumentationConfigurationTest` in each starter reads the actual marked YAML in `docs/id/USER_GUIDE.md`. It checks sample equality, scalar binding, defaults, environment/property precedence, explicit-width precedence, incomplete/invalid fields and required database selection. The two standard test trees are synchronized by the repository layout gate.
 

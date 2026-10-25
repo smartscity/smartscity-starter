@@ -23,8 +23,8 @@
       "../AGENTS.md"
     ],
     "verification": [
-      "testing/inventory.md",
-      "testing/verification.md",
+      "id/testing.md",
+      "id/benchmark.md",
       "../test/smartscity-id-benchmark/USER_GUIDE.md"
     ],
     "delivery": [

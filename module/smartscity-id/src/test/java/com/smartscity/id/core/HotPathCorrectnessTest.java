@@ -81,27 +81,12 @@ class HotPathCorrectnessTest {
   }
 
   @Test
-  void timestampExhaustionAfterClaimBurnsTheIdAndRemainsTerminal() throws Exception {
+  void producerDetectsTimestampExhaustionAndRejectsRemainingCachedIds() throws Exception {
     BitsAllocator bits = new BitsAllocator(7, 4, 4);
     long initialWall =
         bits.getLayout().getEpoch().plusSeconds(bits.getMaxTime()).toEpochMilli() + 999;
-    class CrossingTime implements TimeSource {
-      boolean armed;
-      int reads;
-      long nanos;
-
-      public long nanoTime() {
-        return nanos;
-      }
-
-      public long wallTimeMillis() {
-        if (armed && ++reads == 2) {
-          nanos = 1_000_000;
-        }
-        return initialWall + nanos / 1_000_000;
-      }
-    }
-    CrossingTime time = new CrossingTime();
+    ControlledTime time = new ControlledTime();
+    time.set(initialWall, 0);
     try (PausedProducerTime paused = new PausedProducerTime(time);
         CachedUniqueIdGenerator generator =
             new CachedUniqueIdGenerator(
@@ -110,15 +95,20 @@ class HotPathCorrectnessTest {
                 paused)) {
       try {
         paused.awaitPaused();
-        time.armed = true;
+        time.set(initialWall + 1, 1_000_000);
+        // Cached admission has no synchronous clock read. The already encoded ID is valid even
+        // though the producer has not yet observed the wall-time boundary.
+        assertEquals(bits.allocate(bits.getMaxTime(), 7, 0), generator.getUniqueId());
+        assertEquals(3, generator.snapshot().getBuffered());
+        paused.close();
+        ClockRollbackConcurrencyTest.await(
+            () -> generator.snapshot().getState().equals("CAPACITY"));
         assertEquals(
             IdException.Reason.CAPACITY,
             assertThrows(IdException.class, generator::getUniqueId).getReason());
-        assertEquals(2, time.reads);
         assertEquals(3, generator.snapshot().getBuffered());
-        assertEquals(0, generator.snapshot().getGenerated());
-        time.armed = false;
-        time.nanos = 0;
+        assertEquals(1, generator.snapshot().getGenerated());
+        time.set(initialWall, 0);
         assertEquals(
             IdException.Reason.CAPACITY,
             assertThrows(IdException.class, generator::getUniqueId).getReason());
@@ -131,7 +121,7 @@ class HotPathCorrectnessTest {
   }
 
   @Test
-  void successfulCachedCallStillTakesTwoIndependentClockSamples() {
+  void successfulCachedCallDoesNotSampleTheTimeSource() {
     Thread caller = Thread.currentThread();
     int[] reads = new int[2];
     TimeSource time =
@@ -155,8 +145,8 @@ class HotPathCorrectnessTest {
             GeneratorOptions.builder().capacity(8).build(), new CoreTest.Lease(), time)) {
       Arrays.fill(reads, 0);
       assertTrue(generator.getUniqueId() > 0);
-      assertEquals(4, reads[0]);
-      assertEquals(2, reads[1]);
+      assertEquals(0, reads[0]);
+      assertEquals(0, reads[1]);
     }
   }
 

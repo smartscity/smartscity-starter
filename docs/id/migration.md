@@ -11,7 +11,7 @@ The baseline `f86b741` was unreleased. All new coordinates use group `com.smarts
 7. Automatic module names now follow the artifact names with dots, prefixed by `com.` (for example `com.smartscity.id` and `com.smartscity.starter.id.boot4`). Update experimental module-path consumers; JPMS is not a verified support target.
 8. Build selectors now use paths such as `-pl module/smartscity-id`, or Maven artifact selectors `-pl :smartscity-id`. Scripts moved from `testing/` to `test/`. Empty testkit is removed without a replacement.
 
-No relocation artifacts or deprecated wrapper classes are added for this unreleased baseline. Existing raw evidence retains its original path text and hashes; use it only to inspect historical results. English current documentation replaces prior planning pages; previous narratives remain in Git.
+No relocation artifacts or deprecated wrapper classes are added for this unreleased baseline. English current documentation replaces prior planning pages; previous narratives remain in Git.
 
 ## Coordinate map
 
@@ -26,7 +26,7 @@ No relocation artifacts or deprecated wrapper classes are added for this unrelea
 | `smartscity-id-testkit` | Removed | Empty placeholder |
 | `smartscity-id-compatibility-tests` | `test/smartscity-id-compatibility-tests` | Independent application BOM and generation profiles |
 | `smartscity-id-benchmark` | `test/smartscity-id-benchmark` | Opt-in JMH; never a production dependency |
-| `testing/` | `test/` | Shared verification scripts and historical evidence |
+| `testing/` | `test/` | Shared verification scripts |
 
 ## Identity-format migration
 
@@ -60,10 +60,16 @@ Existing starter coordinates remain unchanged. Direct users of `smartscity-id-sp
 
 The family POM (`smartscity-starter-id-family`) is an unpublished aggregator only. Published children inherit `smartscity-parent` directly. Build selectors become `-pl starter/smartscity-starter-id/boot2-3` or `-pl starter/smartscity-starter-id/boot4`; artifact selectors for the starters are unchanged. No `src/shared` or custom source roots remain. Automatic module names are `com.smartscity.starter.id` and `com.smartscity.starter.id.boot4`; JPMS remains NOT_RUN.
 
-ID documentation moved to `docs/id/`; module READMEs link here. Unit, integration, compatibility and packaged-artifact verification for this revision are NOT_RUN not executed under the latest user instruction. Prior PASS evidence cannot certify the new coordinates/packaging.
+ID documentation moved to `docs/id/`; module READMEs link here. Verify the new coordinates and packaging with the [owning test commands](testing.md).
 
 ## Cached logical time
 
-ADR-0011 restores future-second pre-generation following the user's clarification. The ID bit format, configured/default epoch, worker registry schema and coordinates are unchanged. Existing formats continue to decode. This is a timestamp-behavior change: IDs can encode future logical time, so review any use of decoded timestamps for business ordering, event time, expiration or range partitioning. Record those values separately from ID allocation time. Sustained throughput consumes logical seconds and can shorten time-field service life. Exhaustion is terminal; no wrap or implicit epoch migration occurs.
+ADR-0011 restores future-second pre-generation. The ID bit format, configured/default epoch, worker registry schema and coordinates are unchanged. Existing formats continue to decode. This is a timestamp-behavior change: IDs can encode future logical time, so review any use of decoded timestamps for business ordering, event time, expiration or range partitioning. Record those values separately from ID allocation time. Sustained throughput consumes logical seconds and can shorten time-field service life. Exhaustion is terminal; no wrap or implicit epoch migration occurs.
 
 Drain and close old instances through their normal lifecycle and acquire fresh, non-reused worker allocations for replacements. Never reset the registry cursor or reuse a worker to adopt this change. Earlier benchmark results describing a wall-second sequence ceiling apply only to the old artifact, not to the restored cached path.
+
+## Producer-side clock validation
+
+[ADR-0012](adr/0012-producer-clock-validation.md) adopts the Longfor cached consumer model. The producer validates clock deviation and time bounds; consumers read cached IDs and local lease/closed/terminal state without sampling time themselves. An undetected clock fault may coexist with successful cached issuance until the producer next validates. The idle park request is 1 ms, but scheduling and blocked time sources can delay detection; there is no synchronous per-request or hard real-time detection guarantee. Transient faults between validations may be missed. Published terminal failures never auto-resume. Reconnecting a lease does not itself perform a new clock sample; producer validation follows the same scheduling rule.
+
+Applications relying on immediate rejection of wall-clock changes must review this semantic change before upgrading. Continue to use a separate event clock for business timestamps and TTLs. No format, schema, configuration or dependency migration is introduced. Exact counts and per-call latency accounting remain enabled. Startup database calibration, lease rejection, worker non-reuse and sequence/time encoding bounds remain unchanged. Replace instances through normal startup with fresh worker allocations.

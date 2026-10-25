@@ -45,6 +45,29 @@ public final class DefaultUniqueIdGenerator {
   }
 
   /**
+   * Transfers bounded contiguous ranges to the single-producer ring. Encoding is validated once per
+   * range, never once per ID. Only accepted IDs advance the sequence; the producer checks for a
+   * reclaimed slot before reserving a range and retains any unpublished suffix for the next refill.
+   */
+  int fillBuffered(RingBuffer ring, long nowSecond, int limit) {
+    int produced = 0;
+    while (produced < limit) {
+      if (!ring.hasReclaimedSlot()) {
+        break;
+      }
+      long first = nextBuffered(nowSecond);
+      int count = (int) Math.min(limit - produced, bits.getMaxSequence() - nextSequence + 2);
+      int offered = ring.offerRange(first, count);
+      nextSequence += Math.max(0, offered - 1);
+      produced += offered;
+      if (offered < count) {
+        break;
+      }
+    }
+    return produced;
+  }
+
+  /**
    * Advances the sequence within the supplied second without borrowing future time.
    *
    * @param nowSecond elapsed whole seconds since the configured epoch

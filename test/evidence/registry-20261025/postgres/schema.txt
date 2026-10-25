@@ -1,1 +1,0 @@
-["/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java", "--class-path", "/Users/liyunlong/.m2/repository/org/postgresql/postgresql/42.7.4/postgresql-42.7.4.jar", "/private/tmp/PrepareStarterPostgres.java", "jdbc:postgresql://127.0.0.1:63453/postgres"]

@@ -11,7 +11,7 @@ module/smartscity-id/                Standalone ID SDK; zero production dependen
 starter/smartscity-starter-id/       Unpublished family aggregator
   boot2-3/                          smartscity-starter-id: Boot 2.7/3 integration
   boot4/                            smartscity-starter-id-boot4: Boot 4 integration
-test/                               Compatibility, benchmarks and evidence
+test/                               Compatibility and opt-in benchmarks
 samples/id/                         ID example family
   id-example/                       Boot 2.7/3 executable consumer
   id-example-boot4/                  Boot 4 executable consumer
@@ -29,7 +29,7 @@ Keep the application's Boot BOM. `smartscity-dependencies` manages only Smartsci
 
 ## Development status
 
-The current architecture and documentation structure is accepted. **Tests and benchmarks have not been run for this revision.** See [verification status](docs/testing/verification.md) and [deferred test inventory](docs/id/testing.md). Formatting/static inspection and main-source compilation do not establish runtime compatibility.
+See the [test inventory and commands](docs/id/testing.md) and the [recorded Smartscity benchmark](docs/id/benchmark.md). Run the relevant checks against the source and runtime you intend to deploy; a build alone does not establish runtime compatibility.
 
 New components should start with one standalone SDK and a combined starter, with further splits justified by actual framework or release needs. No speculative cache, lock or rate-limit modules exist.
 

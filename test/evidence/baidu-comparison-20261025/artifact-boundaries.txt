@@ -1,4 +1,0 @@
-PASS smartscity-id: 23 classes; SHA256=9e9a478783e4933f951bac3a8c4ff35caa4da1538aa16edfb0a5878bfa7643e7
-FAIL: checker exited 1 after the SDK entry during this task's first boundary-check invocation.
-Observed stderr: FileNotFoundError: [Errno 2] No such file or directory: '/Users/liyunlong/git/smartscity/smartscity-starter/module/smartscity-id-spring-boot/pom.xml'
-Context: an independent in-progress repository redesign moved the adapter modules; the checker still referenced the prior paths. No full-repository PASS is claimed.

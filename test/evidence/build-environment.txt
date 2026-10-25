@@ -1,5 +1,0 @@
-Apache Maven 3.9.15 (98b2cdbfdb5f1ac8781f537ea9acccaed7922349)
-Maven home: /Users/liyunlong/.m2/wrapper/dists/apache-maven-3.9.15/9925cc1d
-Java version: 21.0.12.1, vendor: Eclipse Adoptium, runtime: /Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem
-Default locale: en_SG, platform encoding: UTF-8
-OS name: "mac os x", version: "26.5.1", arch: "x86_64", family: "mac"

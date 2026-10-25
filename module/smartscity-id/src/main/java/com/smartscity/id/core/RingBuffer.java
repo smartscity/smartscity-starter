@@ -5,11 +5,15 @@ import java.lang.invoke.VarHandle;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * SPMC bounded queue. A stalled claimed consumer can stall the next producer lap.
+ * SPMC bounded queue with batched publication and per-slot reclamation generations.
+ *
+ * <p>The producer publishes initialized slots through the tail. Consumers release slots only after
+ * reading them, so a stalled claimant can stall the next producer lap.
  *
  * @author jack
  */
 public final class RingBuffer {
+  static final long CONTENDED = -1;
   private static final VarHandle SEQUENCE = MethodHandles.arrayElementVarHandle(long[].class);
   private final long[] ids;
   private final long[] sequence;
@@ -45,21 +49,44 @@ public final class RingBuffer {
    * @throws IllegalStateException before the ring cursor would overflow
    */
   public boolean offer(long id) {
-    if (id <= 0) {
-      throw new IllegalArgumentException("ID must be positive");
+    return offerRange(id, 1) == 1;
+  }
+
+  /**
+   * Publishes a prefix of a validated contiguous ID range with one tail release. The caller owns
+   * layout/sequence boundaries; this queue only checks positive longs and available slots.
+   */
+  int offerRange(long firstId, int count) {
+    if (firstId <= 0 || count < 1 || firstId > Long.MAX_VALUE - (count - 1L)) {
+      throw new IllegalArgumentException("ID range must contain positive longs without overflow");
     }
     long p = tail.get();
     if (p >= Long.MAX_VALUE - ids.length) {
       throw new IllegalStateException("Ring position exhausted");
     }
-    int index = (int) p & mask;
-    if ((long) SEQUENCE.getAcquire(sequence, index) != p) {
-      return false;
+    int limit = (int) Math.min(Math.min((long) count, ids.length), Long.MAX_VALUE - ids.length - p);
+    int offered = 0;
+    while (offered < limit) {
+      long position = p + offered;
+      int index = (int) position & mask;
+      if ((long) SEQUENCE.getAcquire(sequence, index) != position) {
+        break;
+      }
+      ids[index] = firstId + offered;
+      offered++;
     }
-    ids[index] = id;
-    SEQUENCE.setRelease(sequence, index, p + 1);
-    tail.lazySet(p + 1);
-    return true;
+    if (offered != 0) {
+      // No consumer can claim any part of this range before all its payload writes are visible.
+      // Slot generations are only reclamation receipts; the producer does not write them.
+      tail.lazySet(p + offered);
+    }
+    return offered;
+  }
+
+  /** Only the producer uses this recheck after arming its low-watermark notification. */
+  boolean hasReclaimedSlot() {
+    long p = tail.get();
+    return (long) SEQUENCE.getAcquire(sequence, (int) p & mask) == p;
   }
 
   /**
@@ -68,20 +95,27 @@ public final class RingBuffer {
    * @return a positive ID, or zero when no claim was obtained
    */
   public long poll() {
+    long id = pollClaim();
+    return id == CONTENDED ? 0 : id;
+  }
+
+  /** Returns zero for an observed empty queue and CONTENDED for exhausted CAS retries. */
+  long pollClaim() {
     for (int attempt = 0; attempt < 8; attempt++) {
       long c = head.get();
-      int index = (int) c & mask;
-      if ((long) SEQUENCE.getAcquire(sequence, index) != c + 1) {
+      if (c >= tail.get()) {
         return 0;
       }
       if (head.compareAndSet(c, c + 1)) {
+        int index = (int) c & mask;
+        // The acquired tail publishes this payload; successful CAS alone grants read ownership.
         long id = ids[index];
         SEQUENCE.setRelease(sequence, index, c + ids.length);
         return id;
       }
       Thread.onSpinWait();
     }
-    return 0;
+    return CONTENDED;
   }
 
   /**
@@ -92,11 +126,13 @@ public final class RingBuffer {
   public long oldestId() {
     long c = head.get();
     int index = (int) c & mask;
-    if ((long) SEQUENCE.getAcquire(sequence, index) != c + 1) {
+    if (c >= tail.get()) {
       return 0;
     }
     long id = ids[index];
-    return (long) SEQUENCE.getAcquire(sequence, index) == c + 1 ? id : 0;
+    // A claim may release and recycle this slot during observation. Never report that newer lap.
+    VarHandle.acquireFence();
+    return head.get() == c ? id : 0;
   }
 
   /**

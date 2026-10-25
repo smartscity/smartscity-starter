@@ -2,7 +2,7 @@
 
 ## Scope and authorization
 
-The user accepted the starter-family structure and authorized a local commit of all current project changes on 2026-10-25. The latest instruction stops unit/integration tests and compatibility execution; benchmarks are also excluded. This round only reorganizes samples, consolidates documentation and formatting configuration, and commits the reviewed working state. Do not push, tag, publish or trigger remote workflows. Preserve unrelated changes until included in the authorized all-project commit.
+Follow the current user instruction for scope and execution authorization. Preserve unrelated changes. Local commit authorization does not include push, tag, publication or remote workflow execution. Keep benchmarks opt-in.
 
 ## Before changing code
 
@@ -24,7 +24,7 @@ Read [documentation](docs/README.md), the engineering rules below, accepted ADRs
 
 ## Verification and delivery
 
-When execution is authorized, run meaningful correctness tests and the artifact boundary checker. This round does not run tests or compatibility checks. Preserve PASS, FAIL, NOT_RUN, PARTIAL and BLOCKED. Inspect dependency convergence, generated metadata, imports registration, conditional backoff, binding, startup and shutdown. Compare source behavior and public API, not only successful compilation. Use only owned temporary database/coordination instances for integration and fault tests. Keep benchmark execution excluded.
+When execution is authorized, run meaningful correctness tests and the artifact boundary checker. Preserve PASS, FAIL, NOT_RUN, PARTIAL and BLOCKED. Inspect dependency convergence, generated metadata, imports registration, conditional backoff, binding, startup and shutdown. Compare source behavior and public API, not only successful compilation. Use only owned temporary database/coordination instances for integration and fault tests. Keep benchmark execution excluded.
 
 Use detailed English Conventional Commit messages if committing. Commit/tag/push/publication follow the actual authorization. Review final state ownership, dependencies, patterns and evidence before delivery.
 

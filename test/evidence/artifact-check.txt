@@ -1,6 +1,0 @@
-smartscity-id-api/target/smartscity-id-api-0.1.0-SNAPSHOT.jar: metadata only, 0 classes, module name present
-smartscity-id-core/target/smartscity-id-core-0.1.0-SNAPSHOT.jar: metadata only, 0 classes, module name present
-smartscity-id-spi/target/smartscity-id-spi-0.1.0-SNAPSHOT.jar: metadata only, 0 classes, module name present
-smartscity-id-spring-boot-autoconfigure/target/smartscity-id-spring-boot-autoconfigure-0.1.0-SNAPSHOT.jar: metadata only, 0 classes, module name present
-smartscity-id-spring-boot-starter/target/smartscity-id-spring-boot-starter-0.1.0-SNAPSHOT.jar: metadata only, 0 classes, module name present
-ID functionality and Java runtime compatibility: NOT_RUN

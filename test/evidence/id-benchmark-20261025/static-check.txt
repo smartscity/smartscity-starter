@@ -1,4 +1,0 @@
-220 Markdown file links valid (file line suffixes resolved).
-9 JMH records and 3 fixed-rate records present; counters and per-second totals reconciled.
-49 benchmark and 11 destructive source fingerprints matched before commit.
-Production API/SPI/Core JAR SHA-256 match implementation checkpoint.
