@@ -5,13 +5,17 @@ import com.smartscity.id.api.IdException;
 /**
  * Single owner: only the cache producer may advance this sequence.
  *
+ * @deprecated Low-level single-owner cursor retained for compatibility. Use {@link
+ *     SequenceIdGenerator} or {@link BufferedIdGenerator} for lifecycle-managed generation.
  * @author jack
  */
+@Deprecated
 public final class DefaultUniqueIdGenerator {
   private final BitsAllocator bits;
   private final long worker;
   private long second = -1;
   private long nextSequence;
+  private volatile long publishedSecond = -1;
 
   /**
    * Creates a single-owner sequence cursor for an already allocated worker.
@@ -27,6 +31,11 @@ public final class DefaultUniqueIdGenerator {
     }
     this.bits = bits;
     this.worker = worker;
+  }
+
+  /** Observes the last published logical second without reading the mutable sequence cursor. */
+  long publishedSecond() {
+    return publishedSecond;
   }
 
   /** Advances the producer's logical time when its current sequence has been consumed. */
@@ -58,6 +67,9 @@ public final class DefaultUniqueIdGenerator {
       long first = nextBuffered(nowSecond);
       int count = (int) Math.min(limit - produced, bits.getMaxSequence() - nextSequence + 2);
       int offered = ring.offerRange(first, count);
+      if (offered > 0 && publishedSecond != second) {
+        publishedSecond = second;
+      }
       nextSequence += Math.max(0, offered - 1);
       produced += offered;
       if (offered < count) {

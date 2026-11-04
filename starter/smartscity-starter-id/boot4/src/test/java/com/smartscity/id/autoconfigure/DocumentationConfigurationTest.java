@@ -57,6 +57,7 @@ class DocumentationConfigurationTest {
         .isEqualTo(Instant.parse("2026-01-01T00:00:00Z"));
     assertThat(options.capacity).isEqualTo(16384);
     assertThat(options.lowWaterPercent).isEqualTo(50);
+    assertThat(options.latencySampleInterval).isEqualTo(1024);
     assertThat(options.waitNanos).isEqualTo(Duration.ofMillis(10).toNanos());
     assertThat(options.clockToleranceMillis).isEqualTo(1000);
     assertThat(properties.getStartupTimeout()).isEqualTo(Duration.ofSeconds(10));
@@ -83,6 +84,7 @@ class DocumentationConfigurationTest {
     assertThat(options.bits.signature()).isEqualTo("30/18/15");
     assertThat(options.capacity).isEqualTo(16384);
     assertThat(options.lowWaterPercent).isEqualTo(50);
+    assertThat(options.latencySampleInterval).isEqualTo(1024);
     assertThat(options.waitNanos).isEqualTo(10_000_000L);
     assertThat(options.clockToleranceMillis).isEqualTo(1000);
     assertThat(properties.getJavascriptSequenceBits()).isEqualTo(15);
@@ -105,12 +107,14 @@ class DocumentationConfigurationTest {
                 "smartscity.id.enabled", "false",
                 "smartscity.id.group", "external-orders",
                 "smartscity.id.epoch", "2020-01-01T00:00:00Z",
-                "smartscity.id.wait-timeout", "25ms"));
+                "smartscity.id.wait-timeout", "25ms",
+                "smartscity.id.latency-sample-interval", "1"));
     assertThat(properties.isEnabled()).isFalse();
     assertThat(properties.getGroup()).isEqualTo("external-orders");
     assertThat(properties.options().bits.getLayout().getEpoch())
         .isEqualTo(Instant.parse("2020-01-01T00:00:00Z"));
     assertThat(properties.options().waitNanos).isEqualTo(25_000_000L);
+    assertThat(properties.options().latencySampleInterval).isEqualTo(1);
   }
 
   @Test
@@ -159,6 +163,9 @@ class DocumentationConfigurationTest {
             Map.of("smartscity.id.buffer-size", "3"),
             Map.of("smartscity.id.low-water-percent", "100"),
             Map.of("smartscity.id.wait-timeout", "2s"),
+            Map.of("smartscity.id.latency-sample-interval", "0"),
+            Map.of("smartscity.id.latency-sample-interval", "3"),
+            Map.of("smartscity.id.latency-sample-interval", "2097152"),
             Map.of("smartscity.id.clock-tolerance", "0ms"),
             Map.of("smartscity.id.startup-timeout", "99ms"),
             Map.of("smartscity.id.shutdown-timeout", "31s"),

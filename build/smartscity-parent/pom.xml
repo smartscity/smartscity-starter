@@ -19,6 +19,8 @@
     <project.build.outputTimestamp>2026-10-24T00:00:00Z</project.build.outputTimestamp>
     <maven.deploy.skip>true</maven.deploy.skip>
     <jmh.version>1.37</jmh.version>
+    <roaring.version>1.6.29</roaring.version>
+    <jol.version>0.17</jol.version>
     <boot4.version>4.0.9</boot4.version>
     <maven.install.skip>false</maven.install.skip>
     <smartscity.repository.url>https://github.com/smartscity/smartscity-starter</smartscity.repository.url>
@@ -181,6 +183,8 @@
   </scm>
   <dependencyManagement>
     <dependencies>
+      <dependency><groupId>org.roaringbitmap</groupId><artifactId>RoaringBitmap</artifactId><version>${roaring.version}</version></dependency>
+      <dependency><groupId>org.openjdk.jol</groupId><artifactId>jol-core</artifactId><version>${jol.version}</version></dependency>
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>

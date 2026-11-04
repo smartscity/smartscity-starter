@@ -24,6 +24,24 @@ class AutoConfigurationTest {
           .withConfiguration(AutoConfigurations.of(IdAutoConfiguration.class));
 
   @Test
+  void explicitEncoderDoesNotReplaceOrDuplicateStandardGenerator() {
+    runner
+        .withBean(IdGenerator.class, () -> stub())
+        .withBean(
+            com.smartscity.id.api.IdEncoder.class, com.smartscity.id.core.RoaringIdEncoder::new)
+        .run(
+            c -> {
+              assertThat(c).hasSingleBean(IdGenerator.class);
+              IdGenerator standard = c.getBean(IdGenerator.class);
+              long id = standard.getUniqueId();
+              com.smartscity.id.api.IdEncoder encoder =
+                  c.getBean(com.smartscity.id.api.IdEncoder.class);
+              assertThat(encoder.decode(encoder.encode(id))).isEqualTo(id);
+              assertThat(standard.parse(id).getWorkerId()).isEqualTo(1);
+            });
+  }
+
+  @Test
   void disabledDoesNotRequireDatabase() {
     runner
         .withPropertyValues("smartscity.id.enabled=false")
@@ -83,6 +101,38 @@ class AutoConfigurationTest {
   }
 
   @Test
+  void latencyMetersAreUnknownBeforeAnyObservedCompletion() {
+    new ApplicationContextRunner()
+        .withConfiguration(
+            AutoConfigurations.of(IdAutoConfiguration.class, IdMetricsAutoConfiguration.class))
+        .withBean(IdGenerator.class, () -> stub())
+        .run(
+            c -> {
+              io.micrometer.core.instrument.simple.SimpleMeterRegistry meters =
+                  new io.micrometer.core.instrument.simple.SimpleMeterRegistry();
+              try {
+                c.getBean(
+                        "smartscityIdMetrics",
+                        io.micrometer.core.instrument.binder.MeterBinder.class)
+                    .bindTo(meters);
+                assertThat(meters.get("smartscity.id.latency.samples").functionCounter().count())
+                    .isZero();
+                for (String quantile : new String[] {"0.50", "0.95", "0.99"}) {
+                  assertThat(
+                          meters
+                              .get("smartscity.id.latency.upper.nanoseconds")
+                              .tag("quantile", quantile)
+                              .gauge()
+                              .value())
+                      .isNaN();
+                }
+              } finally {
+                meters.close();
+              }
+            });
+  }
+
+  @Test
   void healthAndMetricsReflectGeneratedIds() {
     new ApplicationContextRunner()
         .withConfiguration(
@@ -105,6 +155,10 @@ class AutoConfigurationTest {
                         "smartscityIdMetrics",
                         io.micrometer.core.instrument.binder.MeterBinder.class)
                     .bindTo(meters);
+                assertThat(meters.get("smartscity.id.latency.samples").functionCounter().count())
+                    .isEqualTo(1);
+                assertThat(meters.get("smartscity.id.latency.sample.interval").gauge().value())
+                    .isEqualTo(1);
                 assertThat(meters.get("smartscity.id.generated").functionCounter().count())
                     .isEqualTo(1);
                 assertThat(
@@ -114,6 +168,23 @@ class AutoConfigurationTest {
                             .gauge()
                             .value())
                     .isPositive();
+                assertThat(meters.get("smartscity.id.worker.capacity").gauge().value())
+                    .isEqualTo(262144);
+                assertThat(meters.get("smartscity.id.worker.remaining").gauge().value()).isNaN();
+                assertThat(
+                        meters.get("smartscity.id.worker.capacity.sample.success").gauge().value())
+                    .isZero();
+                assertThat(meters.get("smartscity.id.time.future.milliseconds").gauge().value())
+                    .isGreaterThanOrEqualTo(0);
+                assertThat(meters.get("smartscity.id.time.remaining.seconds").gauge().value())
+                    .isPositive();
+                assertThat(
+                        meters
+                            .get("smartscity.id.timeouts")
+                            .tag("stage", "empty")
+                            .functionCounter()
+                            .count())
+                    .isZero();
                 generator.close();
                 assertThat(healthStatus(health)).isEqualTo("OUT_OF_SERVICE");
               } finally {
@@ -261,7 +332,7 @@ class AutoConfigurationTest {
 
   static IdGenerator stub() {
     return new CachedUniqueIdGenerator(
-        GeneratorOptions.builder().capacity(8).build(),
+        GeneratorOptions.builder().capacity(8).latencySampleInterval(1).build(),
         new WorkerLease() {
           public long rawId() {
             return 1;

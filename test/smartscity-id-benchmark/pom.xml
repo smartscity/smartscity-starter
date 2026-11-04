@@ -15,6 +15,9 @@
     <java.module.name>com.smartscity.id.benchmark</java.module.name>
   </properties>
   <dependencies>
+    <dependency><groupId>org.roaringbitmap</groupId><artifactId>RoaringBitmap</artifactId></dependency>
+    <dependency><groupId>org.openjdk.jol</groupId><artifactId>jol-core</artifactId></dependency>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><scope>test</scope></dependency>
     <dependency>
       <groupId>com.smartscity</groupId>
       <artifactId>smartscity-id</artifactId>

@@ -7,7 +7,7 @@ import com.smartscity.id.autoconfigure.jdbc.JdbcWorkerRepository;
 import com.smartscity.id.autoconfigure.jdbc.JdbcWorkerRepository.Registration;
 import com.smartscity.id.autoconfigure.jdbc.WorkerInstance;
 import com.smartscity.id.autoconfigure.zk.ZookeeperWorkerOccupancy;
-import com.smartscity.id.core.CachedUniqueIdGenerator;
+import com.smartscity.id.core.BufferedIdGenerator;
 import com.smartscity.id.core.GeneratorOptions;
 import com.smartscity.id.core.MonotonicClock;
 import com.smartscity.id.spi.TimeSource;
@@ -137,7 +137,7 @@ public final class IdGeneratorFactory {
 
     ZookeeperWorkerOccupancy occupancy = null;
     WorkerAllocation allocation = null;
-    CachedUniqueIdGenerator generator = null;
+    BufferedIdGenerator generator = null;
     try {
       checkCanceled(canceled);
       DataSource ds = supplied;
@@ -186,7 +186,7 @@ public final class IdGeneratorFactory {
         MonotonicClock clock = new MonotonicClock(TimeSource.SYSTEM, options.clockToleranceMillis);
         repository.checkTime(clock, options.clockToleranceMillis);
         checkCanceled(canceled);
-        generator = CachedUniqueIdGenerator.usingClock(options, allocation, clock);
+        generator = BufferedIdGenerator.usingClock(options, allocation, clock);
         allocation.started();
         checkCanceled(canceled);
         LOG.info(

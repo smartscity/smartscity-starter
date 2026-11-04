@@ -50,6 +50,7 @@ for directory, (module, major) in modules.items():
             assert all('smartscity.id.bits.' + name in defaults for name in ('timestamp', 'worker', 'sequence'))
             assert defaults['smartscity.id.wait-timeout'] == '10ms'
             assert defaults['smartscity.id.buffer-size'] == 16384
+            assert defaults['smartscity.id.latency-sample-interval'] == 1024
             assert defaults['smartscity.id.low-water-percent'] == 50
             assert all(p['name'].startswith('smartscity.id.') for p in metadata['properties'])
             imports = set(archive.read('META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports').decode().splitlines())

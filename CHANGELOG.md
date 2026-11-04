@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Sample latency with default probability 1/1024 while preserving exact outcomes and call-entry deadlines. Expose sample count/interval and unknown quantiles; interval 1 restores full collection. See ID migration notes.
+
+- Notify refill before post-claim failures, including expired claims; retain failure-only timing diagnostics and the original wait budget.
+
+- Observe remaining worker capacity asynchronously, with freshness and failure status; expose logical future lead and remaining timestamp capacity.
+- Notify bounded waiting consumers on publication and shutdown; distinguish empty, contention and post-claim deadline timeouts without changing request deadlines.
+
 - Publish bounded ID ranges and retain explicit CAS claims with delayed slot reclamation.
 - Validate clocks in the producer; cached consumers retain local lifecycle/lease/failure gates and exact metrics. See the migration notes for delayed clock-fault detection.
 - Preserve bounded waits and coalesced refill wakeups under contention.
@@ -29,3 +36,10 @@
 - Add dependency convergence, compatibility CI, artifact checks and an opt-in Central publishing workflow.
 
 See [migration](docs/id/migration.md), [test commands](docs/id/testing.md) and the [benchmark](docs/id/benchmark.md).
+
+### Explicit generator names and Roaring storage encoding
+
+- Add BufferedIdGenerator and synchronous SequenceIdGenerator over the existing validated sequence cursor. Retain deprecated CachedUniqueIdGenerator and DefaultUniqueIdGenerator compatibility entry points; starter defaults still issue standard IDs.
+- Add IdEncoder, IdentityIdEncoder and versioned RoaringIdEncoder with a reversible 63-bit permutation; add a non-owning RoaringIdGenerator view. Keep the standard protocol and zero-dependency core unchanged.
+- Document sparse-container overhead, storage-only selection, ownership, versioned Raft snapshots and migration. Add generation/encoding/storage/live-pipeline JMH groups, deterministic four-way Bitmap comparisons, retention models and charts.
+- Java 21 local verification: 198 reported tests, 165 executed, 33 conditional skips, zero failures/errors. Performance results remain exploratory and host-limited; memory comparisons retain both improvements and regressions.

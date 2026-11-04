@@ -24,7 +24,17 @@ public final class GeneratorOptions {
   /** Positive allowed wall-clock deviation from the monotonic projection. */
   public final long clockToleranceMillis;
 
+  /** Inverse latency-sampling probability; power of two in [1, 1048576], 1 collects every call. */
+  public final int latencySampleInterval;
+
   private GeneratorOptions(Builder b) {
+    latencySampleInterval = b.latencySampleInterval;
+    if (latencySampleInterval < 1
+        || latencySampleInterval > (1 << 20)
+        || Integer.bitCount(latencySampleInterval) != 1) {
+      throw new IllegalArgumentException(
+          "latency-sample-interval must be a power of two from 1 through 1048576");
+    }
     bits = Objects.requireNonNull(b.bits);
     capacity = b.capacity;
     lowWaterPercent = b.lowWaterPercent;
@@ -63,6 +73,7 @@ public final class GeneratorOptions {
     private BitsAllocator bits = BitsAllocator.standard();
     private int capacity = 16384;
     private int lowWaterPercent = 50;
+    private int latencySampleInterval = 1024;
 
     private Duration wait = Duration.ofMillis(10);
     private Duration clockTolerance = Duration.ofSeconds(1);
@@ -101,6 +112,17 @@ public final class GeneratorOptions {
     }
 
     /**
+     * Selects the probability of collecting each call's duration, independently of its outcome.
+     *
+     * @param value inverse probability, a power of two in [1, 1048576]; 1 collects every call
+     * @return this builder; validation occurs before allocation when options are built
+     */
+    public Builder latencySampleInterval(int value) {
+      latencySampleInterval = value;
+      return this;
+    }
+
+    /**
      * Sets the total caller budget for waiting on availability and contention.
      *
      * @param value duration from zero through one second; zero disables waiting
@@ -127,7 +149,8 @@ public final class GeneratorOptions {
      *
      * @return options independent of later builder changes
      * @throws NullPointerException if the allocator or either duration is null
-     * @throws IllegalArgumentException if capacity, watermark or duration limits are violated
+     * @throws IllegalArgumentException if capacity, watermark, sampling or duration limits are
+     *     violated
      * @throws ArithmeticException if a duration cannot be represented in its required time unit
      */
     public GeneratorOptions build() {

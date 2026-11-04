@@ -38,6 +38,9 @@ public class IdProperties {
   /** Occupied-capacity percentage from 1 through 99 that wakes the producer. */
   private int lowWaterPercent = 50;
 
+  /** Inverse latency-sampling probability; power of two in [1, 1048576], 1 collects every call. */
+  private int latencySampleInterval = 1024;
+
   /** Total caller wait budget from zero through one second. */
   private Duration waitTimeout = Duration.ofMillis(10);
 
@@ -240,6 +243,7 @@ public class IdProperties {
         .capacity(bufferSize)
         .lowWaterPercent(lowWaterPercent)
         .waitTimeout(waitTimeout)
+        .latencySampleInterval(latencySampleInterval)
         .clockTolerance(clockTolerance)
         .build();
   }
@@ -290,6 +294,14 @@ public class IdProperties {
 
   public void setLowWaterPercent(int v) {
     lowWaterPercent = v;
+  }
+
+  public int getLatencySampleInterval() {
+    return latencySampleInterval;
+  }
+
+  public void setLatencySampleInterval(int value) {
+    latencySampleInterval = value;
   }
 
   public Duration getWaitTimeout() {

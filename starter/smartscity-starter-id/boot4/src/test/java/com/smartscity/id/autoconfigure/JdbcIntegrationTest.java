@@ -48,6 +48,30 @@ class JdbcIntegrationTest {
   }
 
   @Test
+  void capacityReadsTrackOtherRegistrationsWithoutAllocatingOrReclaiming() throws Exception {
+    JdbcWorkerRepository repo = new JdbcWorkerRepository(ds, DatabaseDialect.MYSQL, 2);
+    BitsAllocator bits = new BitsAllocator(30, 2, 31);
+    Registration first = repo.register("capacity", bits, instance(null));
+    assertEquals(3, first.getCapacity().getRemaining());
+    assertEquals(
+        com.smartscity.id.api.RegistryCapacity.Status.REGISTERED, first.getCapacity().getStatus());
+    Registration second = repo.register("capacity", bits, instance(null));
+    assertEquals(2, repo.capacity(first).getRemaining());
+    assertEquals(
+        com.smartscity.id.api.RegistryCapacity.Status.OBSERVED, repo.capacity(first).getStatus());
+    repo.stopped(second, false);
+    assertEquals(2, repo.capacity(first).getRemaining());
+    Registration third = repo.register("capacity", bits, instance(null));
+    assertEquals(2, third.getWorkerId());
+    repo.register("capacity", bits, instance(null));
+    assertEquals(0, repo.capacity(first).getRemaining());
+    assertEquals(
+        IdException.Reason.CAPACITY,
+        assertThrows(IdException.class, () -> repo.register("capacity", bits, instance(null)))
+            .getReason());
+  }
+
+  @Test
   @Timeout(20)
   void concurrentBoundedRegistrationAndNonReuse() throws Exception {
     exerciseRegistry(ds, DatabaseDialect.MYSQL);

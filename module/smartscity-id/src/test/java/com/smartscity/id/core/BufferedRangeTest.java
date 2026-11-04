@@ -17,6 +17,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicIntegerArray;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Protects batched publication, partial acceptance and encoding boundaries without runtime hooks.
@@ -126,9 +128,26 @@ class BufferedRangeTest {
   }
 
   @Test
+  void publishedWatermarkSurvivesPartialRefillBeforeTerminalExhaustion() {
+    BitsAllocator bits = new BitsAllocator(2, 3, 1);
+    DefaultUniqueIdGenerator source = new DefaultUniqueIdGenerator(bits, 7);
+    RingBuffer ring = new RingBuffer(4);
+    assertEquals(-1, source.publishedSecond());
+    assertEquals(
+        IdException.Reason.CAPACITY,
+        assertThrows(IdException.class, () -> source.fillBuffered(ring, 3, 3)).getReason());
+    assertEquals(3, source.publishedSecond());
+    assertEquals(bits.allocate(3, 7, 0), ring.poll());
+    assertEquals(bits.allocate(3, 7, 1), ring.poll());
+    assertEquals(0, ring.poll());
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = {2, 8, 64})
   @Timeout(15)
-  void concurrentConsumersSeeEveryBatchedPayloadExactlyOnceAcrossManyLaps() throws Exception {
-    RingBuffer ring = new RingBuffer(8);
+  void concurrentConsumersSeeEveryBatchedPayloadExactlyOnceAcrossManyLaps(int capacity)
+      throws Exception {
+    RingBuffer ring = new RingBuffer(capacity);
     int count = 20_000;
     AtomicIntegerArray seen = new AtomicIntegerArray(count + 1);
     AtomicInteger consumed = new AtomicInteger();

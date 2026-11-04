@@ -28,8 +28,9 @@ public class IdHealthAutoConfiguration {
   /**
    * Creates a health indicator from locally observed generator readiness.
    *
-   * <p>Polling does not transfer ownership, allocate an ID or perform external I/O. Its approximate
-   * snapshot can change immediately after the health check returns.
+   * <p>Polling does not transfer ownership, allocate an ID or wait for external I/O. Capacity
+   * sampling may be requested asynchronously and never affects readiness. The approximate snapshot
+   * can change immediately after the health check returns.
    *
    * @param generator shared generator supporting concurrent snapshot reads
    * @return an indicator reporting UP when ready and OUT_OF_SERVICE otherwise

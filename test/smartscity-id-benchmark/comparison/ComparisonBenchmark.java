@@ -46,6 +46,9 @@ public class ComparisonBenchmark {
     @Param({"standard", "high-throughput"})
     public String profile;
 
+    @Param({"1024"})
+    public int latencySampleInterval = 1024;
+
     private CachedUniqueIdGenerator smartscity;
     private DefaultUidGenerator baidu;
 
@@ -61,6 +64,7 @@ public class ComparisonBenchmark {
                 GeneratorOptions.builder()
                     .bits(high ? BitsAllocator.highThroughput() : BitsAllocator.standard())
                     .capacity(1 << ((high ? 17 : 15) + 1))
+                    .latencySampleInterval(latencySampleInterval)
                     .build(),
                 new LocalLease(),
                 TimeSource.SYSTEM);
@@ -92,6 +96,20 @@ public class ComparisonBenchmark {
     @TearDown(Level.Trial)
     public void close() throws Exception {
       if (smartscity != null) {
+        com.smartscity.id.api.IdSnapshot snapshot = smartscity.snapshot();
+        System.out.printf(
+            "SMARTSCITY_DIAGNOSTICS {\"emptyPolls\":%d,\"contendedPolls\":%d,\"parks\":%d,"
+                + "\"emptyTimeouts\":%d,\"contentionTimeouts\":%d,\"deadlineTimeouts\":%d,"
+                + "\"futureMillis\":%d,\"latencySamples\":%d,\"latencySampleInterval\":%d}%n",
+            snapshot.getEmptyPolls(),
+            snapshot.getContendedPolls(),
+            snapshot.getConsumerParks(),
+            snapshot.getEmptyTimeouts(),
+            snapshot.getContentionTimeouts(),
+            snapshot.getDeadlineTimeouts(),
+            snapshot.getFutureTimeMillis(),
+            snapshot.getLatencySamples(),
+            snapshot.getLatencySampleInterval());
         smartscity.close();
       }
       if (baidu instanceof CachedUidGenerator) {

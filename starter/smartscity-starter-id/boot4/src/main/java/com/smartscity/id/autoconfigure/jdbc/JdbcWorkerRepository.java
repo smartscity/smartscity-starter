@@ -1,6 +1,7 @@
 package com.smartscity.id.autoconfigure.jdbc;
 
 import com.smartscity.id.api.IdException;
+import com.smartscity.id.api.RegistryCapacity;
 import com.smartscity.id.core.BitsAllocator;
 import com.smartscity.id.core.MonotonicClock;
 import com.smartscity.id.spi.TimeSource;
@@ -151,6 +152,7 @@ public final class JdbcWorkerRepository {
   public Registration register(String group, BitsAllocator bits, WorkerInstance instance)
       throws SQLException {
     java.util.Objects.requireNonNull(instance, "instance");
+    long observedAt = System.currentTimeMillis();
     try (Connection connection = dataSource.getConnection()) {
       connection.setAutoCommit(false);
       try {
@@ -211,10 +213,56 @@ public final class JdbcWorkerRepository {
           }
         }
         connection.commit();
-        return new Registration(raw, groupId, worker, token);
+        return new Registration(
+            raw,
+            groupId,
+            worker,
+            token,
+            RegistryCapacity.observed(
+                bits.getWorkerSlots(),
+                bits.getWorkerSlots() - worker - 1,
+                observedAt,
+                RegistryCapacity.Status.REGISTERED));
       } catch (SQLException | RuntimeException | Error e) {
         rollback(connection, e);
         throw e;
+      }
+    }
+  }
+
+  /**
+   * Reads committed group capacity without locking or updating the allocation cursor.
+   *
+   * @param registration committed receipt identifying the group and expected capacity
+   * @return observation timestamped before the query; concurrent registrations may reduce it
+   * @throws SQLException if the query fails, metadata is missing or the cursor is invalid
+   */
+  public RegistryCapacity capacity(Registration registration) throws SQLException {
+    long observedAt = System.currentTimeMillis();
+    try (Connection connection = dataSource.getConnection()) {
+      connection.setAutoCommit(true);
+      try (PreparedStatement ps =
+          statement(
+              connection,
+              "SELECT worker_slots, next_worker_id FROM smartscity_id_group WHERE id=?")) {
+        ps.setLong(1, registration.groupId);
+        try (ResultSet rs = ps.executeQuery()) {
+          if (!rs.next()) {
+            throw new SQLException("Missing group capacity");
+          }
+          long slots = rs.getLong(1);
+          boolean missingSlots = rs.wasNull();
+          long next = rs.getLong(2);
+          if (rs.wasNull()
+              || missingSlots
+              || slots != registration.capacity.getSlots()
+              || next <= registration.workerId
+              || next > slots) {
+            throw new SQLException("Invalid group capacity cursor");
+          }
+          return RegistryCapacity.observed(
+              slots, slots - next, observedAt, RegistryCapacity.Status.OBSERVED);
+        }
       }
     }
   }
@@ -280,12 +328,20 @@ public final class JdbcWorkerRepository {
     private final long groupId;
     private final long workerId;
     private final String token;
+    private final RegistryCapacity capacity;
 
-    private Registration(long id, long groupId, long workerId, String token) {
+    private Registration(
+        long id, long groupId, long workerId, String token, RegistryCapacity capacity) {
       this.id = id;
       this.groupId = groupId;
       this.workerId = workerId;
       this.token = token;
+      this.capacity = capacity;
+    }
+
+    /** Returns capacity at this registration, not a live registry read. */
+    public RegistryCapacity getCapacity() {
+      return capacity;
     }
 
     public long getId() {

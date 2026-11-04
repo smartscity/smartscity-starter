@@ -21,6 +21,8 @@ docs/id/                            Canonical ID design and usage
 
 The two starters are alternatives and each includes its own integration code. All modules use standard Maven source trees. Published artifacts inherit the build parent directly; the family aggregator is not published. See [module boundaries](docs/architecture/modules.md).
 
+Standard sequence and buffered generators share one validated ID protocol. An opt-in, versioned Roaring encoder improves locality for suitable Bitmap workloads without changing business IDs. See [design](docs/id/README.md#generator-implementations-and-storage-encoding), [usage](docs/id/USER_GUIDE.md#roaring-oriented-storage) and [measurements](docs/id/benchmark.md).
+
 ## Use distributed IDs
 
 Follow the [ID user guide](docs/id/USER_GUIDE.md): select the dependency for your Boot generation, initialize the database, copy one complete configuration, then inject `IdGenerator`. Standalone consumers depend only on `smartscity-id`. The [ID design](docs/id/README.md) explains encoding lifetime, worker capacity, ownership and failure guarantees.

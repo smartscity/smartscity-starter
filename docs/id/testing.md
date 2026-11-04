@@ -2,10 +2,13 @@
 
 | Owner | Tests / gate | Boundary |
 |---|---|---|
+| ID domain | GeneratorMetricsTest | Exact selected/unselected outcome aggregation, sample duration totals, full mode and sampling bounds |
 | ID domain | IdExceptionTest | Stable reason codes, default messages, details and original cause |
 | ID domain | CoreTest, ClockAndLifecycleTest, IdLayoutTest | Default/custom immutable formats, field/epoch bounds, multi-worker concurrency, CAS, capacity, timeout, interrupt, producer and cleanup |
 | ID domain | BufferedRangeTest | Partial range publication, full/wrapped rings, unpublished suffix retention, zero/sequence/timestamp boundaries and concurrent payload visibility across many laps |
 | ID domain | ClockRollbackTest, ClockRollbackConcurrencyTest, HotPathCorrectnessTest | Producer-detected rollback/capacity failures, no consumer clock samples, pre-detection cached issuance, sample retry/overflow, published-failure burn and terminal races |
+| ID domain | CapacityObservationTest, ConsumerWaitersTest, BurnedClaimRefillTest | Logical lead/capacity, empty timeout classification, bounded notifications, publication before park and refill notification before post-claim rejection or deadline failure |
+| Both starter generations | RegistryCapacityMonitorTest, JdbcIntegrationTest | Read-only capacity across registrations, unknown/stale/error observations, single in-flight read and close with a non-cooperative reader |
 | ID domain | RestartConcurrencyTest | Opt-in bounded concurrent restarts; no soak |
 | Both starter generations | AutoConfigurationTest | Disable, backoff, default/custom binding, application isolation, invalid formats, health, metrics |
 | Both starter generations | ClockValidationTest, LifecycleReviewTest | Calibration, overflow/NULL, cancellation, late JDBC cleanup |
@@ -17,7 +20,7 @@
 | Cross-module | StarterDiscoveryTest | Published imports, user bean, disable, optional-library absence, binding, actual SpringApplication startup and optional MySQL allocation |
 | Standalone | CoreRuntimeProbe | Same domain JAR, five layouts, target JVM execution |
 | Packaging | test/check-artifacts.py | Bytecode, framework isolation, production-only BOM, metadata and starter contents |
-| Benchmarks | IdBenchmark, FixedRateProbe, check-benchmark-ci.sh | Existing JMH and uniqueness harness; opt-in measurements; synthetic orchestration checks |
+| Benchmarks | IdBenchmark, FixedRateProbe, ComparisonProbe, DeadlineProbe, test_report.py, check-benchmark-ci.sh | Existing JMH and uniqueness harness; opt-in measurements; synthetic orchestration checks |
 
 Use fresh reports for the source and environment under verification. Skipped, interrupted and unexecuted checks are not passing results. Local output under `test/evidence/` is ignored by Git; retain it externally when needed.
 
@@ -28,3 +31,5 @@ Run normal gates with `./mvnw -Pverification,samples verify`. Real database test
 For compatibility, first install production artifacts, then run `./mvnw -f test/smartscity-id-compatibility-tests/pom.xml test`, repeat with `-Pboot3` and `-Pboot4`. Override `spring-boot.version` only on this independent consumer project, not the whole reactor. Use `-Djvm=/path/to/other/jdk/bin/java` to run Surefire on another installed JDK while Maven stays on build JDK 21.
 
 For the owned local MySQL matrix and packaged samples, run `python3 test/run-compatibility.py --output <new-directory> --java <runtime-jdk-home> [--java <another-jdk-home>]` with build `JAVA_HOME` set to JDK 21 and `mysqld`/`mysql` on PATH. It creates a new private data directory, checks each eight-test result for skips/failures, and verifies cleanup.
+
+`RoaringEncodingTest` covers every payload bit, fixed v1 vectors, domain boundaries, deterministic randomized round trips, representative collisions, invalid versions/layouts, non-owning decorator lifecycle and concurrent generation. Both starter AutoConfigurationTest suites verify an explicit encoder bean does not duplicate/replace the standard generator. Bitmap membership/deletion/cardinality are checked before storage results are reported.

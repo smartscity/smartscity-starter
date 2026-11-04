@@ -155,7 +155,9 @@ class HotPathCorrectnessTest {
     CoreTest.Lease lease = new CoreTest.Lease();
     try (CachedUniqueIdGenerator generator =
         new CachedUniqueIdGenerator(
-            GeneratorOptions.builder().capacity(8).build(), lease, new CoreTest.Clock())) {
+            GeneratorOptions.builder().capacity(8).latencySampleInterval(1).build(),
+            lease,
+            new CoreTest.Clock())) {
       assertTrue(generator.getUniqueId() > 0);
       lease.state = WorkerLease.State.SUSPENDED;
       assertEquals(
@@ -171,6 +173,8 @@ class HotPathCorrectnessTest {
       assertEquals(2, snapshot.getGenerated());
       assertEquals(1, snapshot.getFailures().get(IdException.Reason.COORDINATION));
       assertEquals(1, snapshot.getFailures().get(IdException.Reason.CLOSED));
+      assertEquals(4, snapshot.getLatencySamples());
+      assertEquals(1, snapshot.getLatencySampleInterval());
       assertTrue(snapshot.getLatencyNanos() > 0);
       assertTrue(snapshot.getLatencyP99Nanos() >= snapshot.getLatencyP50Nanos());
     }

@@ -1,5 +1,6 @@
 package com.smartscity.id.autoconfigure;
 
+import com.smartscity.id.api.RegistryCapacity;
 import com.smartscity.id.autoconfigure.jdbc.JdbcWorkerRepository;
 import com.smartscity.id.autoconfigure.zk.ZookeeperWorkerOccupancy;
 import com.smartscity.id.spi.WorkerLease;
@@ -22,6 +23,7 @@ final class WorkerAllocation implements WorkerLease {
   private final long raw;
   private final long worker;
   private final long shutdownMillis;
+  private final RegistryCapacityMonitor capacityMonitor;
 
   private final JdbcWorkerRepository repository;
   private final ZookeeperWorkerOccupancy occupancy;
@@ -39,6 +41,11 @@ final class WorkerAllocation implements WorkerLease {
     this.repository = repository;
     this.occupancy = occupancy;
     this.shutdownMillis = shutdownMillis;
+    capacityMonitor =
+        new RegistryCapacityMonitor(
+            () -> repository.capacity(registration),
+            registration.getCapacity(),
+            TimeUnit.SECONDS.toNanos(30));
   }
 
   void started() throws java.sql.SQLException {
@@ -54,6 +61,10 @@ final class WorkerAllocation implements WorkerLease {
     return worker;
   }
 
+  public RegistryCapacity capacity() {
+    return capacityMonitor.snapshot();
+  }
+
   public State state() {
     return closed.get() ? State.CLOSED : occupancy == null ? State.ACTIVE : occupancy.state();
   }
@@ -62,6 +73,7 @@ final class WorkerAllocation implements WorkerLease {
     if (!closed.compareAndSet(false, true)) {
       return;
     }
+    capacityMonitor.close();
     // One budget covers both external resources. Never cancel a task before it has run cleanup.
     boolean interrupted = Thread.interrupted();
     CompletableFuture<Void> released = new CompletableFuture<>();

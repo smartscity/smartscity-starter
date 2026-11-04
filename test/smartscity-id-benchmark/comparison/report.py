@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render Smartscity measurements without launching Java or modifying raw results."""
+"""Render matched Smartscity and Baidu measurements without launching Java or modifying raw results."""
 import argparse
 from html import escape
 import json
@@ -7,10 +7,10 @@ import math
 from pathlib import Path
 
 
-IMPLEMENTATIONS = ('smartscity',)
+IMPLEMENTATIONS = ('smartscity', 'baidu-cached', 'baidu-default')
 PROFILES = ('standard', 'high-throughput')
 THREADS = (1, 4, 8)
-LABELS = {'smartscity': 'Smartscity'}
+LABELS = {'smartscity': 'Smartscity', 'baidu-cached': 'Baidu Cached', 'baidu-default': 'Baidu Default'}
 
 
 def number(value, digits=0):
@@ -36,7 +36,7 @@ def write_report(directory):
     result = json.loads((directory / 'result.json').read_text())
     environment_path = directory / 'environment.json'
     environment = json.loads(environment_path.read_text()) if environment_path.exists() else {}
-    cases = [row for row in result.get('jmh', []) if row['implementation'] == 'smartscity']
+    cases = [row for row in result.get('jmh', []) if row['implementation'] in IMPLEMENTATIONS]
     index = {}
     duplicates = []
     for row in cases:
@@ -48,7 +48,8 @@ def write_report(directory):
     status = result.get('status', 'UNKNOWN')
     source_state = {True: 'UNCHANGED', False: 'CHANGED'}.get(result.get('sourceUnchanged'), 'UNKNOWN')
     complete = (status == 'MEASURED' and source_state == 'UNCHANGED'
-                  and not duplicates and not result.get('errors') and expected == set(index))
+                  and not duplicates and not result.get('errors') and not result.get('environmentIssues')
+                  and expected == set(index))
     sections = []
 
     def heading(title):
@@ -61,9 +62,14 @@ def write_report(directory):
         sections.append(('table', (headers, rows)))
 
     heading('Run status')
-    paragraph(f'Saved run: {directory.name}. This view contains only Smartscity measurements.')
-    paragraph(f'Recorded run status: {status}. Completed Smartscity scenarios: '
+    paragraph(f'Saved run: {directory.name}. This view contains all three matched-layout implementations.')
+    paragraph(f'Recorded run status: {status}. Completed scenarios: '
               f'{len(expected & set(index))}/{len(expected)}. Source fingerprint: {source_state}.')
+    for issue in result.get('environmentIssues', []):
+        paragraph('Environment invalidates performance comparison: ' + str(issue))
+    if not result.get('hostObservations'):
+        paragraph('Host power/CPU-limit observations: NOT_RECORDED. Source stability alone '
+                  'does not establish stable host conditions.')
     if not complete:
         paragraph('INCOMPLETE / NOT_VERIFIED: inspect the recorded errors and source state. '
                   'This view does not upgrade the raw run status.')
@@ -78,13 +84,19 @@ def write_report(directory):
         if changed:
             table(['Changed input during measurement'], [[key] for key in changed])
 
-    summary_headers = ['Profile', 'Threads', 'Smartscity IDs/s']
+    summary_headers = ['Profile', 'Threads', 'Smartscity IDs/s', 'Baidu Cached IDs/s',
+                       'Baidu Default IDs/s', 'Smartscity / Cached']
     summary = []
     for profile in PROFILES:
         for threads in THREADS:
-            row = index.get((profile, threads, 'smartscity'))
-            summary.append([profile, str(threads),
-                            number(row.get('idsPerSecond')) if row else 'NOT_RUN'])
+            values = [index.get((profile, threads, impl), {}).get('idsPerSecond')
+                      for impl in IMPLEMENTATIONS]
+            ratio = (f'{values[0] / values[1]:.2f}x'
+                     if complete and all(isinstance(v, (int, float)) and math.isfinite(v) and v > 0
+                            for v in values[:2]) else 'NOT_COMPARABLE')
+            summary.append([profile, str(threads), *[number(v) for v in values], ratio])
+    heading('Throughput comparison')
+    table(summary_headers, summary)
 
     heading('Measurement details')
     paragraph('The +/- column is JMH\'s 99.9% confidence-interval half-width for successful IDs/s, '
@@ -121,6 +133,33 @@ def write_report(directory):
                                  ('attempts', 'ids', 'failures', 'duplicates', 'maxFutureSeconds')]])
     table(['Implementation', 'Status', 'Attempts', 'IDs', 'Failures', 'Duplicates', 'Max future seconds'], probe_rows)
 
+    heading('External 10 ms completion probes (separate from JMH)')
+    paragraph('These eight-thread probes use one second of warmup and five seconds of measurement. '
+              'All implementations are timed externally without changing their internal deadlines. '
+              'A late success is a completed ID taking at least 10 ms; it is not a timeout exception. '
+              'Baidu does not implement Smartscity\'s wait deadline, and Smartscity\'s immediate '
+              'claim path is not a hard latency bound either. Probe counts are not JMH rates.')
+    latency = {(row['profile'], row['implementation']): row
+               for row in result.get('latencyProbes', [])}
+    table(['Profile', 'Implementation', 'Within 10 ms IDs', 'Late successful IDs', 'Timeouts',
+           'Rejections', 'Call p99 upper ns', 'Max call ns'],
+          [[profile, LABELS[impl], *[number(latency.get((profile, impl), {}).get(key))
+            for key in ('withinBudgetIds', 'lateSuccessfulIds', 'timeouts', 'rejections',
+                        'callP99UpperNanos', 'maxCallNanos')]]
+           for profile in PROFILES for impl in IMPLEMENTATIONS])
+
+    heading('Host observations')
+    paragraph('Recorded outside timed JVMs. CPU speed/scheduler limits below 100%, reduced available '
+              'CPUs or a power-source transition mark the run NOT_COMPARABLE. Missing readings remain '
+              'unknown; load averages include this benchmark and are not an attribution by themselves. '
+              'Boundary samples cannot exclude changes between observations.')
+    table(['Observation', 'Load average (1/5/15 min)', 'Power', 'CPU speed limit %',
+           'Scheduler limit %', 'Available CPUs'],
+          [[r['label'], ' / '.join(number(n, 2) for n in r.get('loadAverage', [])),
+            r.get('powerSource', 'NOT_RECORDED'), number(r.get('cpuSpeedLimit')),
+            number(r.get('cpuSchedulerLimit')), number(r.get('availableCpus'))]
+           for r in result.get('hostObservations', [])])
+
     heading('Environment and reproducibility')
     jmh = environment.get('jmh', {})
     table(['Setting', 'Recorded value'], [
@@ -132,6 +171,7 @@ def write_report(directory):
         ['Forks', number(jmh.get('forks'))], ['Warmup', jmh.get('warmup', 'NOT_RECORDED')],
         ['Measurement', jmh.get('measurement', 'NOT_RECORDED')],
         ['Profiler', jmh.get('profiler', 'NOT_RECORDED')],
+        ['Smartscity latency sample interval', number(environment.get('smartscityLatencySampleInterval'))],
         ['Measured JAR SHA-256', environment.get('jarSha256', 'NOT_RECORDED')]])
     paragraph('Layouts: standard 30/18/15 bits with 65,536 cache slots; high-throughput '
               '30/16/17 bits with 262,144 slots; epoch 2026-01-01 UTC and worker 1. Cached IDs '
@@ -152,7 +192,7 @@ def write_report(directory):
             'th{background:#edf2f9;font-size:13px}tr:nth-child(even){background:#f8fafc}',
             'td{overflow-wrap:anywhere} .status{padding:12px;border-left:5px solid #c17a12;background:#fff5dd}',
             '</style><main><h1>Smartscity ID benchmark</h1>',
-            f'<p class="status">{escape(status)} · {len(expected & set(index))}/{len(expected)} Smartscity scenarios</p>']
+            f'<p class="status">{escape(status)} · {len(expected & set(index))}/{len(expected)} scenarios</p>']
     for kind, content in sections:
         if kind == 'heading':
             markdown += ['## ' + content, '']

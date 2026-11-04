@@ -72,4 +72,24 @@ Drain and close old instances through their normal lifecycle and acquire fresh, 
 
 [ADR-0012](adr/0012-producer-clock-validation.md) adopts the Longfor cached consumer model. The producer validates clock deviation and time bounds; consumers read cached IDs and local lease/closed/terminal state without sampling time themselves. An undetected clock fault may coexist with successful cached issuance until the producer next validates. The idle park request is 1 ms, but scheduling and blocked time sources can delay detection; there is no synchronous per-request or hard real-time detection guarantee. Transient faults between validations may be missed. Published terminal failures never auto-resume. Reconnecting a lease does not itself perform a new clock sample; producer validation follows the same scheduling rule.
 
-Applications relying on immediate rejection of wall-clock changes must review this semantic change before upgrading. Continue to use a separate event clock for business timestamps and TTLs. No format, schema, configuration or dependency migration is introduced. Exact counts and per-call latency accounting remain enabled. Startup database calibration, lease rejection, worker non-reuse and sequence/time encoding bounds remain unchanged. Replace instances through normal startup with fresh worker allocations.
+Applications relying on immediate rejection of wall-clock changes must review this semantic change before upgrading. Continue to use a separate event clock for business timestamps and TTLs. No format, schema, configuration or dependency migration is introduced. Exact outcome counts remain enabled; the later ADR-0014 latency-sampling change is described below. Startup database calibration, lease rejection, worker non-reuse and sequence/time encoding bounds remain unchanged. Replace instances through normal startup with fresh worker allocations.
+
+## Capacity and waiting observations
+
+`IdSnapshot` gains additive getters and builder fields for registry capacity, logical time and cold-path diagnostics. `WorkerLease.capacity()` has a default UNKNOWN implementation, so existing standalone leases need no change. The JDBC starter now performs demand-driven, read-only capacity sampling when snapshots are requested; issuance and snapshot callers never wait for that query. Use sample age/status with remaining values, and account for bounded late driver cleanup on close. No schema, format, configuration or allocation policy changes.
+
+Consumers receive bounded refill notifications in addition to timed retries. The call deadline, failure codes, exact accounting and burn-on-failure behavior remain unchanged. See [ADR-0013](adr/0013-capacity-observation-and-consumer-notification.md).
+
+Refill notification now precedes post-claim admission and deadline checks, so burned claims still wake an armed producer. Timeout details include elapsed/park timing and approximate occupancy. Reason/code, the original wait budget and discard-on-failure semantics are unchanged; do not parse diagnostic message text as an API.
+
+## Sampled latency (ADR-0014)
+
+The user-approved default is now `smartscity.id.latency-sample-interval: 1024` (SDK builder: `latencySampleInterval(1024)`). The value is a power of two from 1 through 1048576 and selects each duration independently with probability 1/value. Set it to 1 before upgrading if callers require the previous full duration sum and histogram. Options are immutable; replace the instance normally rather than hot-reloading this setting.
+
+`IdSnapshot.getLatencyNanos()` now means the observed sample-duration sum, not total duration across all calls. Use new `getLatencySamples()` as its denominator and inspect `getLatencySampleInterval()`. Do not multiply by the interval and label the result exact. Existing percentile getters return the bucket upper bounds of the sample; zero is a sentinel when sample count is zero. Micrometer percentile gauges return NaN until observations exist, with new `smartscity.id.latency.samples` and `smartscity.id.latency.sample.interval` meters. Custom snapshot producers must populate sample count to export latency. Historical full-collection values are not directly comparable with sampled duration totals.
+
+Successful-ID and failure-reason counts, capacity/future-time observations, namespace format, worker allocation, clock/lease rejection and the call-entry wait deadline are unchanged. The random selection is observational only; it never supplies identity bits. No schema or dependency change is required.
+
+## Generator names and Bitmap encoding (ADR-0015)
+
+See the canonical [naming, lifecycle and snapshot migration guidance](USER_GUIDE.md#migration-and-raft-snapshots). Standard IDs and default properties are unchanged; concrete CachedUniqueIdGenerator injection must move to IdGenerator. Encoding is explicit and stored with external version metadata.

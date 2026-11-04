@@ -1,0 +1,79 @@
+generator-throughput	sequence	1	6.613444328348824	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	sequence	2	1.8982283654840255	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	sequence	4	2.9954928117624764	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	sequence	8	2.921888578646448	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	sequence	16	2.689624344729839	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	sequence	32	2.7841348820896914	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	buffered	1	18.62115262578059	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	buffered	2	15.973844264008282	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	buffered	4	14.59655306708829	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	buffered	8	8.5159437936249	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	buffered	16	8.19734210098672	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	buffered	32	2.7086712995279276	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	roaring	1	19.43670537297995	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	roaring	2	15.163591654621996	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	roaring	4	13.956950521271178	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	roaring	8	9.371233676676068	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	roaring	16	7.372802162334919	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-throughput	roaring	32	2.887798520679392	M attempts/s	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	sequence	1	277.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	sequence	2	21152.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	sequence	4	34368.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	sequence	8	69248.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	sequence	16	118400.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	sequence	32	210688.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	buffered	1	148.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	buffered	2	329.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	buffered	4	1090.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	buffered	8	5360.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	buffered	16	10608.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	buffered	32	9568.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	roaring	1	146.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	roaring	2	331.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	roaring	4	1290.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	roaring	8	4440.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	roaring	16	10880.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+generator-p99	roaring	32	8288.0	P99 ns (log scale)	Exploratory JMH: later groups host-limited	Shared consumer threads (16/32 oversubscribed)
+encoding-cost	cost	decode	2.259702620629577	ns/op	Encoder cost: host-limited exploratory run	Operation
+encoding-cost	cost	encode	2.233258909598232	ns/op	Encoder cost: host-limited exploratory run	Operation
+encoding-cost	cost	identity	1.3325891483711723	ns/op	Encoder cost: host-limited exploratory run	Operation
+encoding-cost	cost	roundTrip	3.4942338023210473	ns/op	Encoder cost: host-limited exploratory run	Operation
+heap	standard	1w x 10	18440	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	1w x 10	1264	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	1w x 10	189	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	1w x 10	5	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	1w x 10	93.14533622559654	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+heap	standard	1w x 100	116128	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	1w x 100	10408	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	1w x 100	1164	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	1w x 100	50	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	1w x 100	91.03747588867456	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+heap	standard	1w x 1000	112680	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	1w x 1000	70056	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	1w x 1000	1000	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	1w x 1000	500	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	1w x 1000	37.82747603833866	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+heap	standard	1w x 10000	34480	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	1w x 10000	393352	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	1w x 10000	100	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	1w x 10000	4330	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	1w x 10000	-1040.8120649651971	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+heap	standard	100w x 10	931360	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	100w x 10	83552	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	100w x 10	9124	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	100w x 10	500	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	100w x 10	91.02903281223158	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+heap	standard	100w x 1000	79040	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	100w x 1000	925480	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	100w x 1000	500	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	100w x 1000	9085	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	100w x 1000	-1070.9008097165993	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+heap	standard	100w x 10000	279768	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+heap	encoded	100w x 10000	9149896	Estimated heap B (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	standard	100w x 10000	500	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+containers	encoded	100w x 10000	91007	Container count (log scale)	Measured 1% insertion: uniform, no runOptimize, varying windows	Workers x TPS/worker
+memory-reduction	reduction	100w x 10000	-3170.5298676045863	Heap reduction % (negative = worse)	Measured estimated heap: 1% insertion	Workers x TPS/worker
+end-to-end	standard	10	10.308974787254767	M replay add+contains ops/s	Identical replay, excluding allocation; host-limited	Source workload TPS shape
+end-to-end	standard	10000	25.091197660763072	M replay add+contains ops/s	Identical replay, excluding allocation; host-limited	Source workload TPS shape
+end-to-end	roaring	10	11.42365416950185	M replay add+contains ops/s	Identical replay, excluding allocation; host-limited	Source workload TPS shape
+end-to-end	roaring	10000	8.960072350994645	M replay add+contains ops/s	Identical replay, excluding allocation; host-limited	Source workload TPS shape

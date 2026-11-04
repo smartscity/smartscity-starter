@@ -22,6 +22,7 @@ smartscity:
     buffer-size: 16384
     low-water-percent: 50
     wait-timeout: 10ms
+    latency-sample-interval: 1024
     clock-tolerance: 1s
     startup-timeout: 10s
     shutdown-timeout: 2s

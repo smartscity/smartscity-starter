@@ -65,3 +65,7 @@ Reuse existing TimeSource/WorkerLease ports, JDBC/ZK adapters, IdGeneratorFactor
 ## Worker registry
 
 Follow ADR-0009. Group format and monotonic cursor are separate from worker registration identities. Use one transaction and database uniqueness constraints; never map a row ID modulo worker capacity. No committed worker reuse, even after shutdown or expiry; fail closed on exhaustion and unknown commit. Registration tokens protect metadata updates, not local issuance. No JDBC heartbeat, pool or generation-path query. Resolve application DataSources only with explicit opt-in and never close them. Schema migration is operator-managed; no implicit upgrade, cursor reset, status/age-based reclamation or old/new allocator mixing. Preserve UTC event metadata and do not invent a crash-safe last-issued timestamp without a durable protocol.
+
+## Bitmap storage encoding
+
+Standard allocation remains independent of storage representation. Roaring encoding is explicit, versioned, deterministic and restricted to 30/18/15; never silently replace standard IDs or modify their protocol for compression. Keep core free of Roaring/JOL/JMH dependencies. Preserve deprecated generator adapters and non-owning decorator cleanup. Bitmap snapshots require external encoding metadata; compare identical logical datasets and distinguish serialized bytes, estimated heap and process memory.

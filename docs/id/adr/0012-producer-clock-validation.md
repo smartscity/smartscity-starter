@@ -2,6 +2,8 @@
 
 Status: ACCEPTED / IMPLEMENTED_UNRELEASED, 2026-10-25.
 
+The latency-collection requirement below is superseded by [ADR-0014](0014-sampled-call-latency.md); outcome counters and safety semantics remain unchanged.
+
 Adopt the downloaded Longhub cached consumer model: read an already encoded ID from the ring without sampling wall/monotonic time on every successful request. The existing producer validates its startup anchor, clock deviation and layout time bounds before each bounded refill, and periodically while idle. It publishes terminal failure through the existing atomic failure reference. Consumer admission reads local lease, closed and published failure state before and after the claim. No new validator thread, task queue, time cache, configuration switch or public API is required. The existing single-producer lifecycle remains the owner of clock validation, logical time, refill and shutdown.
 
 This explicitly supersedes ADR-0011's two independent clock samples per consumer call. An undetected clock fault does not synchronously reject a cached ID. Detection occurs on the producer's next scheduled validation; its idle park request is 1 ms, not a real-time detection bound. A descheduled or blocked producer delays detection, and a transient fault entirely between validations may not be detected. Cached IDs may be consumed during this interval. Once a failure is published it is terminal, including after wall-clock recovery. Encoded time is logical allocation time, never an event timestamp. No worker is reused, no logical sequence/timestamp wraps, and every newly produced range still validates its encoding bounds.

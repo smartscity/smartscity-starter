@@ -32,7 +32,9 @@ public interface IdGenerator extends AutoCloseable {
    * Observes generation and readiness without changing either state.
    *
    * <p>Safe to call concurrently with generation or shutdown. Fields are approximate observations,
-   * not an atomic checkpoint or a promise that the next request will succeed.
+   * not an atomic checkpoint or a promise that the next request will succeed. Registry observations
+   * carry their own freshness/status; adapters may request an asynchronous refresh without making
+   * this call wait for external I/O.
    *
    * @return a read-only snapshot of locally observed state and counters
    */

@@ -2,6 +2,8 @@
 
 Status: ACCEPTED / IMPLEMENTED_UNRELEASED, 2026-10-25. Clock-validation ownership is defined by [ADR-0012](0012-producer-clock-validation.md).
 
+The latency-collection requirement below is superseded by [ADR-0014](0014-sampled-call-latency.md); outcome counters and safety semantics remain unchanged.
+
 The cached producer owns the logical second/sequence cursor. It advances to the next encodable second when its sequence is exhausted, or to validated wall time when that overtakes it. Neither field wraps. The public low-level `DefaultUniqueIdGenerator.next(second)` retains its explicit-second, zero-on-exhaustion contract.
 
 Refill validates time and lease between bounded 256-ID chunks. The existing cursor encodes contiguous ranges within one logical second; only the prefix accepted by the ring advances its sequence. Full buffers consume no IDs, and partial publication retains the unaccepted suffix. Each range starts with checked encoding, excludes reserved zero and cannot cross sequence or timestamp bounds.

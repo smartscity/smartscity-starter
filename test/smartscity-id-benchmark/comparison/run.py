@@ -7,6 +7,7 @@ import math
 import os
 from pathlib import Path
 import platform
+import re
 import signal
 import shutil
 import subprocess
@@ -33,6 +34,53 @@ DEPENDENCIES = [
 def capture(command):
     return subprocess.check_output(command, cwd=ROOT, stderr=subprocess.STDOUT,
                                    text=True, timeout=15).strip()
+
+
+def host_state(label):
+    """Observe load and macOS power limits outside timed JVMs; never change host policy."""
+    state = {'label': label, 'epochSeconds': time.time(), 'platform': platform.system(),
+             'logicalCpus': os.cpu_count(), 'loadAverage': list(os.getloadavg())}
+    if state['platform'] != 'Darwin':
+        return state
+    for key, command in [('thermal', ['pmset', '-g', 'therm']),
+                         ('power', ['pmset', '-g', 'batt'])]:
+        try:
+            state[key] = capture(command)
+        except (OSError, subprocess.SubprocessError) as error:
+            state[key + 'Error'] = str(error)
+    return parse_host_state(state)
+
+
+def parse_host_state(state):
+    """Keep absent limit readings unknown; an empty thermal log does not prove full speed."""
+    state = dict(state)
+    for name, key in [('CPU_Speed_Limit', 'cpuSpeedLimit'),
+                      ('CPU_Scheduler_Limit', 'cpuSchedulerLimit'),
+                      ('CPU_Available_CPUs', 'availableCpus')]:
+        matches = re.findall(name + r'\s*=\s*(\d+)', state.get('thermal', ''))
+        if matches:
+            state[key] = int(matches[-1])
+    match = re.search(r"Now drawing from '([^']+)'", state.get('power', ''))
+    if match:
+        state['powerSource'] = match.group(1)
+    return state
+
+
+def host_issues(observations):
+    """Reject observed CPU limiting or power transitions, without guessing from load alone."""
+    issues = set()
+    sources = {s['powerSource'] for s in observations if s.get('powerSource')}
+    if len(sources) > 1:
+        issues.add('Power source changed during measurement')
+    for state in observations:
+        for key in ('cpuSpeedLimit', 'cpuSchedulerLimit'):
+            value = state.get(key)
+            if value is not None and value < 100:
+                issues.add(f'Observed {key}={value}%')
+        available, logical = state.get('availableCpus'), state.get('logicalCpus')
+        if available is not None and logical is not None and available < logical:
+            issues.add(f'Observed {available}/{logical} available CPUs')
+    return sorted(issues)
 
 
 def sha(path):
@@ -148,7 +196,8 @@ def main():
                    'jvmOptions': ['-Xms512m', '-Xmx512m', '-Duser.timezone=UTC'],
                    'jmh': {'forks': 2, 'warmup': '2 x 1s', 'measurement': '3 x 2s',
                            'profiler': 'gc', 'threads': [1, 4, 8]},
-                   'measurementBudgetSeconds': 480, 'storage': 'No storage/network on generation path',
+                   'smartscityLatencySampleInterval': 1024,
+                   'measurementBudgetSeconds': 600, 'storage': 'No storage/network on generation path',
                    'classpath': cp}
     if platform.system() == 'Darwin':
         for key in ('machdep.cpu.brand_string', 'hw.memsize', 'hw.ncpu'):
@@ -157,11 +206,12 @@ def main():
     initial = inventory(upstream)
     (out / 'sources-before.json').write_text(json.dumps(initial, indent=2) + '\n')
     run([java, '-cp', cp, 'org.openjdk.jmh.Main', '-l'], out / 'discovery.txt', 20)
-    result = {'status': 'NOT_RUN', 'jmh': [], 'probes': [], 'errors': []}
+    result = {'status': 'NOT_RUN', 'jmh': [], 'probes': [], 'latencyProbes': [], 'errors': [],
+              'hostObservations': [], 'environmentIssues': []}
     start = time.monotonic()
 
     def remaining(limit):
-        budget = min(limit, 480 - (time.monotonic() - start))
+        budget = min(limit, 600 - (time.monotonic() - start))
         if budget <= 0:
             raise TimeoutError('Measurement budget exhausted')
         return budget
@@ -174,6 +224,7 @@ def main():
         if not args.run:
             return
         result['status'] = 'PARTIAL'
+        result['hostObservations'].append(host_state('measurement-start'))
         # Rotate ordering between profiles/thread counts to reduce fixed order bias.
         implementations = ['smartscity', 'baidu-default', 'baidu-cached']
         for p_index, profile in enumerate(('standard', 'high-throughput')):
@@ -181,6 +232,8 @@ def main():
                 shift = (p_index + t_index) % 3
                 for impl in implementations[shift:] + implementations[:shift]:
                     name = f'{profile}-{threads}-{impl}'
+                    result['hostObservations'].append(host_state('before-' + name))
+                    save()
                     print('JMH ' + name, flush=True)
                     raw = out / (name + '.json')
                     run([java, '-cp', cp, 'org.openjdk.jmh.Main', 'ComparisonBenchmark.generate',
@@ -188,6 +241,7 @@ def main():
                          '-f', '2', '-wi', '2', '-w', '1s', '-i', '3', '-r', '2s',
                          '-foe', 'true', '-prof', 'gc', '-rf', 'json', '-rff', str(raw)],
                         out / (name + '.txt'), remaining(45))
+                    result['hostObservations'].append(host_state('after-' + name))
                     records = json.loads(raw.read_text())
                     if len(records) != 1:
                         raise RuntimeError(f'Incomplete JMH output: {name}')
@@ -222,15 +276,31 @@ def main():
             rows = [json.loads(line) for line in log.read_text().splitlines() if line.startswith('{')]
             result['probes'].append({'status': status, 'implementation': impl, 'data': rows})
             save()
+        # Completion latency is observed separately; no extra per-call clocks enter timed JMH.
+        for profile in ('standard', 'high-throughput'):
+            for impl in implementations:
+                log = out / f'latency-{profile}-{impl}.txt'
+                run([java, '-Xms512m', '-Xmx512m', '-Duser.timezone=UTC', '-cp', cp,
+                     'com.smartscity.id.benchmark.comparison.DeadlineProbe', impl, profile, '8', '5'],
+                    log, remaining(20))
+                rows = [json.loads(line) for line in log.read_text().splitlines()
+                        if line.startswith('{')]
+                if len(rows) != 1 or rows[0]['thresholdNanos'] != 10_000_000:
+                    raise RuntimeError(f'Invalid completion probe: {log}')
+                result['latencyProbes'].append(rows[0])
+                save()
         result['status'] = 'MEASURED'
     except BaseException as error:
         result['errors'].append(repr(error))
         raise
     finally:
+        if args.run:
+            result['hostObservations'].append(host_state('measurement-end'))
+        result['environmentIssues'] = host_issues(result['hostObservations'])
         after = inventory(upstream)
         (out / 'sources-after.json').write_text(json.dumps(after, indent=2) + '\n')
         result['sourceUnchanged'] = initial == after and sha(JAR) == environment['jarSha256']
-        if not result['sourceUnchanged']:
+        if not result['sourceUnchanged'] or result['environmentIssues']:
             result['status'] = 'NOT_COMPARABLE'
         save()
         try:

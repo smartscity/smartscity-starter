@@ -1,0 +1,1025 @@
+[
+  {
+    "name": "generator-1-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "thrpt",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-1-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804339.192378,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 22:58:59 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.8447265625,
+        3.39501953125,
+        4.50537109375
+      ]
+    },
+    "after": {
+      "time": 1793804359.7886028,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 22:59:19 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.5751953125,
+        3.302734375,
+        4.44580078125
+      ]
+    }
+  },
+  {
+    "name": "generator-1-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "sample",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-1-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804359.8222988,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 22:59:19 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.5751953125,
+        3.302734375,
+        4.44580078125
+      ]
+    },
+    "after": {
+      "time": 1793804380.729246,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 22:59:40 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.2744140625,
+        3.185546875,
+        4.37646484375
+      ]
+    }
+  },
+  {
+    "name": "generator-2-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "thrpt",
+      "-t",
+      "2",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-2-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804380.768003,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 22:59:40 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.2744140625,
+        3.185546875,
+        4.37646484375
+      ]
+    },
+    "after": {
+      "time": 1793804401.380935,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:00:01 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.45263671875,
+        3.15283203125,
+        4.3291015625
+      ]
+    }
+  },
+  {
+    "name": "generator-2-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "sample",
+      "-t",
+      "2",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-2-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804401.418253,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:00:01 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.45263671875,
+        3.15283203125,
+        4.3291015625
+      ]
+    },
+    "after": {
+      "time": 1793804423.1122382,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:00:23 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.63720703125,
+        3.1435546875,
+        4.2978515625
+      ]
+    }
+  },
+  {
+    "name": "generator-4-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "thrpt",
+      "-t",
+      "4",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-4-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804423.147082,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:00:23 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        2.63720703125,
+        3.1435546875,
+        4.2978515625
+      ]
+    },
+    "after": {
+      "time": 1793804443.8893828,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:00:43 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        3.04638671875,
+        3.19921875,
+        4.2900390625
+      ]
+    }
+  },
+  {
+    "name": "generator-4-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "sample",
+      "-t",
+      "4",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-4-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804443.9239821,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:00:43 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        3.04638671875,
+        3.19921875,
+        4.2900390625
+      ]
+    },
+    "after": {
+      "time": 1793804466.056351,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:01:06 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        3.13623046875,
+        3.203125,
+        4.2646484375
+      ]
+    }
+  },
+  {
+    "name": "generator-8-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "thrpt",
+      "-t",
+      "8",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-8-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804466.098169,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:01:06 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        3.13623046875,
+        3.203125,
+        4.2646484375
+      ]
+    },
+    "after": {
+      "time": 1793804486.954001,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:01:26 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        4.98095703125,
+        3.6220703125,
+        4.38330078125
+      ]
+    }
+  },
+  {
+    "name": "generator-8-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "sample",
+      "-t",
+      "8",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-8-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804486.9886441,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:01:27 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        4.98095703125,
+        3.6220703125,
+        4.38330078125
+      ]
+    },
+    "after": {
+      "time": 1793804509.909684,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:01:49 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        5.94677734375,
+        3.935546875,
+        4.4775390625
+      ]
+    }
+  },
+  {
+    "name": "generator-16-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "thrpt",
+      "-t",
+      "16",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-16-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804509.9474509,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:01:49 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        5.94677734375,
+        3.935546875,
+        4.4775390625
+      ]
+    },
+    "after": {
+      "time": 1793804531.1782138,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:02:11 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 77",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        12.33544921875,
+        5.52587890625,
+        5.0341796875
+      ]
+    }
+  },
+  {
+    "name": "generator-16-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "sample",
+      "-t",
+      "16",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-16-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804531.2087,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:02:11 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 77",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        12.33544921875,
+        5.52587890625,
+        5.0341796875
+      ]
+    },
+    "after": {
+      "time": 1793804555.989263,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:02:36 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 88",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        14.23828125,
+        6.57666015625,
+        5.4296875
+      ]
+    }
+  },
+  {
+    "name": "generator-32-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "thrpt",
+      "-t",
+      "32",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-32-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804556.023762,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:02:36 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 88",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        14.23828125,
+        6.57666015625,
+        5.4296875
+      ]
+    },
+    "after": {
+      "time": 1793804577.8985841,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:02:57 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 82",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        18.48388671875,
+        8.107421875,
+        6.00927734375
+      ]
+    }
+  },
+  {
+    "name": "generator-32-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.GeneratorBenchmark.generate",
+      "-bm",
+      "sample",
+      "-t",
+      "32",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/generator-32-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804577.9332201,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:02:57 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 82",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        18.48388671875,
+        8.107421875,
+        6.00927734375
+      ]
+    },
+    "after": {
+      "time": 1793804605.032303,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:03:25 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 88",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        20.623046875,
+        9.3701171875,
+        6.52001953125
+      ]
+    }
+  },
+  {
+    "name": "encoder-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.EncoderBenchmark.*",
+      "-bm",
+      "thrpt",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/encoder-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804605.06754,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:03:25 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 88",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        20.623046875,
+        9.3701171875,
+        6.52001953125
+      ]
+    },
+    "after": {
+      "time": 1793804619.041474,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:03:39 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        16.6572265625,
+        9.04150390625,
+        6.4521484375
+      ]
+    }
+  },
+  {
+    "name": "encoder-avgt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.EncoderBenchmark.*",
+      "-bm",
+      "avgt",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/encoder-avgt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804619.077268,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:03:39 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        16.6572265625,
+        9.04150390625,
+        6.4521484375
+      ]
+    },
+    "after": {
+      "time": 1793804632.925898,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:03:52 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        13.70458984375,
+        8.76123046875,
+        6.396484375
+      ]
+    }
+  },
+  {
+    "name": "bitmap-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.BitmapBenchmark.*",
+      "-bm",
+      "thrpt",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/bitmap-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804632.959455,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:03:52 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        13.70458984375,
+        8.76123046875,
+        6.396484375
+      ]
+    },
+    "after": {
+      "time": 1793804674.0968409,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:04:34 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        8.49951171875,
+        8.03759765625,
+        6.23828125
+      ]
+    }
+  },
+  {
+    "name": "bitmap-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.BitmapBenchmark.*",
+      "-bm",
+      "sample",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/bitmap-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804674.131127,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:04:34 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        8.49951171875,
+        8.03759765625,
+        6.23828125
+      ]
+    },
+    "after": {
+      "time": 1793804715.294222,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:15 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        6.14453125,
+        7.49560546875,
+        6.1220703125
+      ]
+    }
+  },
+  {
+    "name": "live-thrpt",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.LivePipelineBenchmark.*",
+      "-bm",
+      "thrpt",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/live-thrpt.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804715.3295748,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:15 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        6.14453125,
+        7.49560546875,
+        6.1220703125
+      ]
+    },
+    "after": {
+      "time": 1793804722.588201,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:22 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        5.97265625,
+        7.4375,
+        6.109375
+      ]
+    }
+  },
+  {
+    "name": "live-sample",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-jar",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      ".*roaring.LivePipelineBenchmark.*",
+      "-bm",
+      "sample",
+      "-t",
+      "1",
+      "-f",
+      "1",
+      "-wi",
+      "1",
+      "-w",
+      "1s",
+      "-i",
+      "2",
+      "-r",
+      "1s",
+      "-prof",
+      "gc",
+      "-rf",
+      "json",
+      "-rff",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/roaring/results/live-sample.json",
+      "-jvmArgs",
+      "-Xms256m -Xmx2g -XX:+UseG1GC"
+    ],
+    "before": {
+      "time": 1793804722.6236842,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:22 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        5.97265625,
+        7.4375,
+        6.109375
+      ]
+    },
+    "after": {
+      "time": 1793804729.915355,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:29 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        5.361328125,
+        7.25830078125,
+        6.060546875
+      ]
+    }
+  },
+  {
+    "name": "memory",
+    "exitCode": 0,
+    "command": [
+      "/Users/liyunlong/.sdkman/candidates/java/21.0.12+1.1-tem/bin/java",
+      "-Xms256m",
+      "-Xmx2g",
+      "-XX:+UseG1GC",
+      "-cp",
+      "/Users/liyunlong/git/smartscity/smartscity-starter/test/smartscity-id-benchmark/target/benchmarks.jar",
+      "com.smartscity.id.benchmark.roaring.MemoryComparison"
+    ],
+    "before": {
+      "time": 1793804729.951509,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:29 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        5.361328125,
+        7.25830078125,
+        6.060546875
+      ]
+    },
+    "after": {
+      "time": 1793804752.894908,
+      "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\n2026-11-04 23:05:52 +0800 CPU Power notify\n\tCPU_Scheduler_Limit \t= 100\n\tCPU_Available_CPUs \t= 12\n\tCPU_Speed_Limit \t= 100",
+      "power": "Now drawing from 'AC Power'\n -InternalBattery-0 (id=7471203)\t100%; charged; 0:00 remaining present: true",
+      "load": [
+        4.49755859375,
+        6.89990234375,
+        5.96533203125
+      ]
+    }
+  }
+]

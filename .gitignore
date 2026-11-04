@@ -12,3 +12,9 @@
 *.log
 /test/evidence/
 __pycache__/
+
+# Raw exploratory JMH JSON is committed losslessly in results/jmh-raw.zip.
+/test/smartscity-id-benchmark/roaring/results/generator-*.json
+/test/smartscity-id-benchmark/roaring/results/encoder-*.json
+/test/smartscity-id-benchmark/roaring/results/bitmap-*.json
+/test/smartscity-id-benchmark/roaring/results/live-*.json

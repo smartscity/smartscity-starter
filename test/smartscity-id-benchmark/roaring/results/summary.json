@@ -1,0 +1,30 @@
+{
+  "recordCounts": {
+    "generator": 72,
+    "encoder": 8,
+    "bitmap": 24,
+    "live": 4
+  },
+  "expected": {
+    "generator": 72,
+    "encoder": 8,
+    "bitmap": 24,
+    "live": 4
+  },
+  "hostIssues": [
+    "generator-16-thrpt after: CPU_Speed_Limit=77%",
+    "generator-16-sample before: CPU_Speed_Limit=77%",
+    "generator-16-sample after: CPU_Speed_Limit=88%",
+    "generator-32-thrpt before: CPU_Speed_Limit=88%",
+    "generator-32-thrpt after: CPU_Speed_Limit=82%",
+    "generator-32-sample before: CPU_Speed_Limit=82%",
+    "generator-32-sample after: CPU_Speed_Limit=88%",
+    "encoder-thrpt before: CPU_Speed_Limit=88%"
+  ],
+  "sourcesUnchanged": true,
+  "jarUnchanged": true,
+  "status": "NOT_COMPARABLE",
+  "actualRetainedHeap": "UNAVAILABLE",
+  "processRSS": "UNAVAILABLE",
+  "cpuUtilization": "UNAVAILABLE"
+}

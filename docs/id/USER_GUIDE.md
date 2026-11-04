@@ -93,6 +93,7 @@ smartscity:
     buffer-size: 16384
     low-water-percent: 50
     wait-timeout: 10ms
+    latency-sample-interval: 1024
     clock-tolerance: 1s
     startup-timeout: 10s
     shutdown-timeout: 2s
@@ -166,6 +167,7 @@ Every property below is relative to **`smartscity.id`**. Defaults are the values
 | `javascript-sequence-bits` | int | `15` | No | 15–17 when profile is javascript; ignored by other profiles; explicit widths override its preset |
 | `buffer-size` | int | `16384` | No | Power of two from 2 through 16777216; buffering does not raise encoding capacity |
 | `low-water-percent` | int | `50` | No | 1–99; occupancy threshold that wakes the producer |
+| `latency-sample-interval` | int | `1024` | No | Power of two in [1, 1048576]; independent duration sampling probability 1/value; 1 restores full collection |
 | `wait-timeout` | Duration | `10ms` | No | 0–1s total contention/exhaustion budget; zero fails immediately when no ID is available |
 | `clock-tolerance` | Duration | `1s` | No | At least 1ms; excess local/database skew prevents readiness or terminates generation |
 | `startup-timeout` | Duration | `10s` | No | 100ms–300s; caller's bounded startup budget |
@@ -252,3 +254,91 @@ Branch on `IdException.getReason()` or `getCode()`, not display text. `getDefaul
 The cached generator may generate IDs for future logical seconds. Each sequence field covers one logical second; it does not cap API throughput to that many calls per wall-clock second. At rates above that capacity, timestamp lead grows and the available time field is consumed faster. Increasing the buffer bounds memory differently but does not bound cumulative timestamp lead. Encoded timestamps must not replace event time, audit time or TTL clocks.
 
 Worker allocations remain permanently non-reusable, including after shutdown. A fresh worker protects restart separation even when an older process generated future timestamps. No hot reload, epoch change or schema migration is performed by this behavior correction. See [migration considerations](migration.md#cached-logical-time) and [ADR-0011](adr/0011-cached-logical-time-and-refill.md).
+
+### Capacity and waiting metrics
+
+Latency is sampled independently of the outcome, with probability `1 / latency-sample-interval`. Successful-ID and failure-reason counts remain exact after callers complete. `IdSnapshot.getLatencySamples()` counts observed successful and failed durations; `getLatencyNanos()` sums only those observations, not all calls. Divide by the sample count for the observed mean. Percentiles describe the lifetime sample and cannot certify rare tail behavior or an SLO. With zero samples, API percentile getters retain the zero sentinel; check the sample count before using them. Micrometer exports NaN until a sample exists. Configure `latency-sample-interval: 1` (or `.latencySampleInterval(1)` in the SDK builder) for the previous full-collection semantics. The sampler never changes the call-entry deadline or capacity/clock/lease checks.
+
+All meter names below use the existing `group` label. Standalone leases without a registry observer return UNKNOWN capacity; the remaining-capacity gauge is NaN, never a misleading zero. The JDBC starter initially exposes the registration receipt, then snapshots request a read-only background refresh at most once per 30 seconds. No observer is polled when snapshots are not requested. One read may remain in flight if a driver ignores timeouts; no additional readers are started. Close interrupts it and prevents late publication, with eventual scoped connection cleanup.
+
+| Meter | Meaning / interpretation |
+|---|---|
+| `smartscity.id.worker.capacity` | Lifetime worker slots for this layout |
+| `smartscity.id.worker.remaining` | Unallocated group workers at the last observation; upper bound afterward, never permission to reuse |
+| `smartscity.id.worker.capacity.observed.milliseconds` | UTC start time of the retained observation; alert on stale samples, for example age over 90 seconds with regular scraping |
+| `smartscity.id.worker.capacity.sample.success` | 1 only after the last completed observation succeeded; 0 for initial, unknown or failed observations; also check age |
+| `smartscity.id.time.logical.milliseconds` | Last published allocation timestamp, including consumed ranges |
+| `smartscity.id.time.future.milliseconds` | Nonnegative lead of that timestamp over the wall clock at observation |
+| `smartscity.id.time.remaining.seconds` | Whole logical seconds after the last published second; excludes its remaining sequences |
+| `smartscity.id.polls.empty` | Cold-path empty observations, not distinct requests |
+| `smartscity.id.polls.contended` | Cold-path polls exhausting their bounded CAS attempts |
+| `smartscity.id.consumer.parks` | Requested cold-path parks, including parks that immediately consume an unpark permit |
+| `smartscity.id.latency.samples` | Actual duration observations, including sampled failures |
+| `smartscity.id.latency.sample.interval` | Inverse observation probability; 1 is full collection |
+| `smartscity.id.timeouts{stage=empty}` | Deadline reached after an empty observation |
+| `smartscity.id.timeouts{stage=contention}` | Deadline reached after exhausted CAS retries |
+| `smartscity.id.timeouts{stage=after_claim}` | A waiting caller obtained an ID after its deadline and burned it |
+
+Poll and park counts publish when a wait completes; snapshots do not include retries still in flight. Use the remaining-capacity gauge together with freshness and your deployment rate; reserve enough workers for planned rolling deployments and failed startups. Across instances use the minimum fresh remaining value for a group, not a sum. Observe the registry cursor separately when no generator remains live. Do not change group names or reset cursors to bypass exhaustion: different groups do not automatically have disjoint numeric ranges.
+
+Alert on future lead and declining logical capacity against application limits. A million-ID throughput result is not proof of decades of service life. Clock deviation and logical lead are different measurements. Timeout stages classify the last observed condition, not the root cause: OS scheduling, a descheduled slot claimant, producer starvation and contention still require diagnosis. Timeout diagnostic details include total elapsed time, delay before entering the wait path, cumulative park time and approximate occupancy; they describe the failed call without weakening its deadline. Thread notification preserves the 10 ms default budget; it does not promise a hard scheduling bound or zero timeouts.
+
+## Roaring-oriented storage
+
+Use the existing `com.smartscity:smartscity-id:0.1.0-SNAPSHOT` SDK or the matching combined starter dependency above. No new SDK artifact or production Roaring dependency is required. Applications that actually store bitmaps must add their own pinned RoaringBitmap dependency; the comparison suite uses `org.roaringbitmap:RoaringBitmap:1.6.29`. No new `smartscity.id.*` configuration option is introduced; defaults, layout, epoch, buffer size and Boot injection are unchanged.
+
+For database primary keys, orders and transactions, keep the standard injected generator:
+
+```java
+long businessId = standardGenerator.getUniqueId();
+```
+
+When the same business entity is stored in both SQL and Bitmap, **encode that existing ID**, rather than allocate a second unrelated ID:
+
+```java
+IdEncoder encoder = RoaringIdEncoder.forVersion(RoaringIdEncoder.VERSION);
+long businessId = standardGenerator.getUniqueId();
+long bitmapKey = encoder.encode(businessId);
+bitmap.addLong(bitmapKey);
+boolean exists = bitmap.contains(encoder.encode(businessId));
+bitmap.removeLong(encoder.encode(businessId));
+long restoredBusinessId = encoder.decode(bitmapKey);
+```
+
+For explicitly Bitmap-oriented ID generation (idempotency tracking or account/transaction state-machine ID sets), a local view is also available:
+
+```java
+try (RoaringIdGenerator view =
+    new RoaringIdGenerator(standardGenerator, new RoaringIdEncoder())) {
+  long bitmapKey = view.getUniqueId();
+  IdParts parts = view.parse(bitmapKey); // inverse mapping, then standard decoding
+}
+// The application still owns standardGenerator; the view did not close it.
+```
+
+Imports are `com.smartscity.id.api.IdEncoder`, `IdParts`, and `com.smartscity.id.core.RoaringIdEncoder`, `RoaringIdGenerator`. Both examples require standard 30/18/15 output. High-throughput and javascript presets are unsupported by encoding v1. Do not encode an already encoded value. Arbitrary custom delegates cannot be validated by inspecting their positive long output; the caller must supply the correct format.
+
+For a direct synchronous generator, construct `SequenceIdGenerator(options, exclusiveLease, timeSource)` only after safely reserving a unique, non-reusable worker. It creates no ring or producer and checks time on each call. `BufferedIdGenerator` has the existing constructor and calibrated `usingClock` factory; it remains the production starter default. Do not share one lease between two allocating generators, even when comparing them. The deprecated low-level cursor is not a safe standalone replacement for worker registration/lifecycle.
+
+### Spring Boot selection
+
+The default `IdGenerator` bean continues producing standard IDs. Prefer an independent encoder bean and inject it into the Bitmap-owning service:
+
+```java
+@Bean
+IdEncoder bitmapIdEncoder() {
+  return new RoaringIdEncoder();
+}
+```
+
+This bean does not implement IdGenerator and does not trigger generator backoff. Create a non-owning RoaringIdGenerator view inside the consuming service if needed. Do not add an unqualified second IdGenerator bean: the existing conditional-backoff and injection rules still apply. No additional starter module or automatic replacement is provided. The application's Bitmap synchronization, TTL and persistence remain application responsibilities; Roaring64Bitmap is not assumed safe for concurrent mutation.
+
+### Migration and Raft snapshots
+
+`CachedUniqueIdGenerator` is a deprecated compatibility adapter to `BufferedIdGenerator`, retaining constructor and `usingClock` signatures. `DefaultUniqueIdGenerator` remains a deprecated single-owner cursor with its old `next(second)` behavior; it never implemented IdGenerator. New lifecycle-managed synchronous callers use SequenceIdGenerator. Code injecting the concrete old cached class must migrate to IdGenerator because the starter factory now returns BufferedIdGenerator. Existing standard numeric IDs and decoding remain unchanged.
+
+Persist the storage encoding name alongside every Bitmap snapshot, plus the original epoch/layout, business retention-window metadata and a schema/migration version. Every Raft replica must apply the same deterministic encoding. Leaders should replicate the original business ID; followers must not allocate another local ID. Encoding uses no local clock/randomness. Snapshot restore must validate metadata and refuse unsupported versions; a long does not self-identify its representation.
+
+Never reinterpret existing standard keys as encoded keys. Rebuild into a separate versioned Bitmap using the inverse/source representation, validate cardinality and membership, and cut over at a coordinated log/snapshot boundary. During migration, explicitly route lookups and deletions to the matching old/new representations; use one agreed dual-read/write or replay protocol across replicas. Rollback needs the corresponding old snapshot/log boundary. This SDK supplies the encoder and rejects unknown names; it does not implement a Raft snapshot store or rolling-migration coordinator.
+
+Use short business-time retention windows where possible and runOptimize only under exclusive mutation ownership or on a frozen copy. Low-TPS, sparse, long-lived sets are candidates for mapping; dense high-TPS or already compact runs may favor standard IDs. Heap, serialized bytes, RSS and peak construction memory differ; use the [benchmark report](benchmark.md) and representative production samples before enabling this representation.
