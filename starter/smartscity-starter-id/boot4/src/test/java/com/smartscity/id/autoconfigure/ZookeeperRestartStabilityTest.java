@@ -147,15 +147,15 @@ class ZookeeperRestartStabilityTest {
         try (IdGenerator generator =
             new IdGeneratorFactory()
                 .create(properties(database, good, "/success"), database.tracked)) {
-          int connections = database.opened.get();
+          int connections = database.lifecycleOpened.get();
           for (int id = 0; id < 16; id++) {
             assertTrue(ids.add(generator.getUniqueId()));
           }
-          assertEquals(connections, database.opened.get());
+          assertEquals(connections, database.lifecycleOpened.get());
         }
         assertTrue(admin.getChildren("/success/" + good + "/workers", false).isEmpty());
-        assertEquals(0, database.active.get());
         RestartDatabase.noSdkThreads();
+        assertEquals(0, database.active.get());
       }
       assertEquals(25, database.rows(denied, "FAILED"));
       assertEquals(0, database.rows(denied, "ACTIVE"));
@@ -185,7 +185,7 @@ class ZookeeperRestartStabilityTest {
         ZooKeeper admin = new ZooKeeper(address, 10000, event -> {})) {
       String node = "/traffic/" + group + "/workers/" + generator.snapshot().getWorkerId();
       long session = admin.exists(node, false).getEphemeralOwner();
-      int startupConnections = database.opened.get();
+      int startupConnections = database.lifecycleOpened.get();
       Future<?> traffic =
           consumers.submit(
               () -> {
@@ -247,7 +247,9 @@ class ZookeeperRestartStabilityTest {
             assertThrows(IdException.class, generator::getUniqueId).getReason());
       }
       assertEquals(
-          startupConnections, database.opened.get(), "Traffic or reconnect performed runtime JDBC");
+          startupConnections,
+          database.lifecycleOpened.get(),
+          "Traffic or reconnect performed lifecycle JDBC");
       try (IdGenerator replacement =
           new IdGeneratorFactory()
               .create(properties(database, group, "/traffic"), database.tracked)) {
@@ -264,6 +266,7 @@ class ZookeeperRestartStabilityTest {
       consumers.shutdownNow();
       assertTrue(consumers.awaitTermination(3, TimeUnit.SECONDS));
     }
+    RestartDatabase.noSdkThreads();
     assertEquals(0, database.active.get());
   }
 }

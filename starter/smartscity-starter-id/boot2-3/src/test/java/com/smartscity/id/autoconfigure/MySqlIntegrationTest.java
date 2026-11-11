@@ -14,7 +14,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -42,20 +41,7 @@ class MySqlIntegrationTest {
   @BeforeAll
   static void schema() throws Exception {
     url = System.getProperty("id.test.mysql.url");
-    // Explicit opt-in isolated database; never use application configuration implicitly.
-    assertTrue(url.contains("smartscity_id_test"), "Use an isolated test database");
-    String sql =
-        new String(
-            MySqlIntegrationTest.class.getResourceAsStream("/db/mysql.sql").readAllBytes(),
-            java.nio.charset.StandardCharsets.UTF_8);
-    try (Connection c = DriverManager.getConnection(url, "root", "");
-        Statement s = c.createStatement()) {
-      for (String part : sql.split(";")) {
-        if (!part.trim().isEmpty()) {
-          s.execute(part.replace("CREATE TABLE ", "CREATE TABLE IF NOT EXISTS "));
-        }
-      }
-    }
+    MySqlTestSchema.initialize(url);
   }
 
   @Test
@@ -209,10 +195,12 @@ class MySqlIntegrationTest {
   }
 
   @Test
-  void runningSdkDoesNotOpenDatabaseConnections() throws Exception {
+  void issuanceDoesNotOpenConnectionsAndSnapshotsUseBoundedObservation() throws Exception {
     IdProperties p = config("local_" + System.nanoTime());
     DriverDataSource delegate = new DriverDataSource(p.getDatabase(), 2000);
     java.util.concurrent.atomic.AtomicInteger connections =
+        new java.util.concurrent.atomic.AtomicInteger();
+    java.util.concurrent.atomic.AtomicInteger observations =
         new java.util.concurrent.atomic.AtomicInteger();
     javax.sql.DataSource tracked =
         (javax.sql.DataSource)
@@ -221,7 +209,11 @@ class MySqlIntegrationTest {
                 new Class<?>[] {javax.sql.DataSource.class},
                 (proxy, method, args) -> {
                   if (method.getName().equals("getConnection")) {
-                    connections.incrementAndGet();
+                    if (Thread.currentThread().getName().equals("smartscity-id-capacity")) {
+                      observations.incrementAndGet();
+                    } else {
+                      connections.incrementAndGet();
+                    }
                   }
                   try {
                     return method.invoke(delegate, args);
@@ -236,8 +228,20 @@ class MySqlIntegrationTest {
       for (int i = 0; i < 256; i++) {
         generator.getUniqueId();
       }
-      generator.snapshot();
-      assertEquals(startup, connections.get());
+      assertEquals(startup, connections.get(), "Issuance must not borrow JDBC connections");
+      assertEquals(0, observations.get(), "Issuance must not request capacity observations");
+      RestartDatabase.await(
+          () ->
+              generator.snapshot().getRegistryCapacity().getStatus()
+                  == com.smartscity.id.api.RegistryCapacity.Status.OBSERVED,
+          5,
+          "The explicitly requested capacity read did not complete");
+      for (int i = 0; i < 256; i++) {
+        generator.getUniqueId();
+        generator.snapshot();
+      }
+      assertEquals(startup, connections.get(), "Observation must not add lifecycle JDBC");
+      assertEquals(1, observations.get(), "Snapshots within the sampling interval share one read");
     }
   }
 

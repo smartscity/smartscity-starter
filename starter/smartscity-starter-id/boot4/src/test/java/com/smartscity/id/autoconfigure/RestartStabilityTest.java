@@ -42,10 +42,9 @@ class RestartStabilityTest {
     List<WeakReference<IdGenerator>> closed = new ArrayList<>();
     for (int cycle = 0; cycle < 1000; cycle++) {
       closed.add(cycle(database, group, ids, rawWorkers, workers));
+      // Close interrupts the asynchronous reader; its own scoped cleanup may finish later.
+      RestartDatabase.noSdkThreads();
       assertEquals(0, database.active.get());
-      if (cycle % 100 == 99) {
-        RestartDatabase.noSdkThreads();
-      }
     }
     assertEquals(16000, ids.size());
     assertEquals(1000, rawWorkers.size());
@@ -80,11 +79,12 @@ class RestartStabilityTest {
     try {
       assertTrue(rawWorkers.add(generator.snapshot().getRawWorkerId()));
       assertTrue(workers.add(generator.snapshot().getWorkerId()));
-      int startupConnections = database.opened.get();
+      int startupConnections = database.lifecycleOpened.get();
       for (int i = 0; i < 16; i++) {
         assertTrue(ids.add(generator.getUniqueId()), "Duplicate across SDK restart");
       }
-      assertEquals(startupConnections, database.opened.get(), "Runtime JDBC access");
+      assertEquals(
+          startupConnections, database.lifecycleOpened.get(), "Issuance performed lifecycle JDBC");
     } finally {
       generator.close();
     }

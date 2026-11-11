@@ -148,12 +148,13 @@ class RoaringEncodingTest {
     for (boolean buffered : new boolean[] {false, true}) {
       AtomicInteger closes = new AtomicInteger();
       WorkerLease lease = lease(closes);
+      // Exercise concurrent uniqueness; controlled-clock tests own deadline assertions.
+      GeneratorOptions options =
+          GeneratorOptions.builder().waitTimeout(java.time.Duration.ofSeconds(1)).build();
       IdGenerator d =
           buffered
-              ? new BufferedIdGenerator(
-                  GeneratorOptions.builder().build(), lease, TimeSource.SYSTEM)
-              : new SequenceIdGenerator(
-                  GeneratorOptions.builder().build(), lease, TimeSource.SYSTEM);
+              ? new BufferedIdGenerator(options, lease, TimeSource.SYSTEM)
+              : new SequenceIdGenerator(options, lease, TimeSource.SYSTEM);
       try (d;
           RoaringIdGenerator view = new RoaringIdGenerator(d, new RoaringIdEncoder())) {
         Set<Long> ids = ConcurrentHashMap.newKeySet();

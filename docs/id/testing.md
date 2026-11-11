@@ -33,3 +33,7 @@ For compatibility, first install production artifacts, then run `./mvnw -f test/
 For the owned local MySQL matrix and packaged samples, run `python3 test/run-compatibility.py --output <new-directory> --java <runtime-jdk-home> [--java <another-jdk-home>]` with build `JAVA_HOME` set to JDK 21 and `mysqld`/`mysql` on PATH. It creates a new private data directory, checks each eight-test result for skips/failures, and verifies cleanup.
 
 `RoaringEncodingTest` covers every payload bit, fixed v1 vectors, domain boundaries, deterministic randomized round trips, representative collisions, invalid versions/layouts, non-owning decorator lifecycle and concurrent generation. Both starter AutoConfigurationTest suites verify an explicit encoder bean does not duplicate/replace the standard generator. Bitmap membership/deletion/cardinality are checked before storage results are reported.
+
+## CI database and restart gates
+
+The build job publishes its owned MySQL service on loopback port 13367, matching the restart fixture guard. Every MySQL integration consumer initializes the test schema independently. JDBC assertions distinguish local issuance/lifecycle connections from ADR-0013 capacity sampling. `test/check-ci-evidence.py` rejects missing or skipped real database/restart reports in either starter generation. See the [CI review](ci-review-20261112.md) for root causes, ownership and verification.

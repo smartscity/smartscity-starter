@@ -232,6 +232,7 @@ class ZookeeperIntegrationTest {
       named = "id.test.mysql.url",
       matches = ".+")
   void javascriptSdkIntegratesMysqlZookeeperAndCachedStopGate() throws Exception {
+    MySqlTestSchema.initialize(System.getProperty("id.test.mysql.url"));
     IdProperties p = new IdProperties();
     p.setProfile("javascript");
     p.setGroup("js_" + System.nanoTime());

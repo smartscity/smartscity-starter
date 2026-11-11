@@ -8,7 +8,6 @@ import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BooleanSupplier;
@@ -22,7 +21,9 @@ import javax.sql.DataSource;
 final class RestartDatabase {
   final String url = System.getProperty("id.test.mysql.url", "");
   final AtomicInteger active = new AtomicInteger();
-  final AtomicInteger opened = new AtomicInteger();
+  // Issuance/reconnect must not add lifecycle connections; snapshots may request read-only samples.
+  final AtomicInteger lifecycleOpened = new AtomicInteger();
+  final AtomicInteger observationOpened = new AtomicInteger();
 
   final DataSource tracked;
 
@@ -41,7 +42,11 @@ final class RestartDatabase {
                 return value;
               }
               Connection connection = (Connection) value;
-              opened.incrementAndGet();
+              if (Thread.currentThread().getName().equals("smartscity-id-capacity")) {
+                observationOpened.incrementAndGet();
+              } else {
+                lifecycleOpened.incrementAndGet();
+              }
               active.incrementAndGet();
               AtomicBoolean closed = new AtomicBoolean();
               return proxy(
@@ -54,18 +59,7 @@ final class RestartDatabase {
                     return result;
                   });
             });
-    String ddl;
-    try (java.io.InputStream input = getClass().getResourceAsStream("/db/mysql.sql")) {
-      ddl = new String(input.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
-    }
-    try (Connection connection = tracked.getConnection();
-        Statement statement = connection.createStatement()) {
-      for (String part : ddl.split(";")) {
-        if (!part.trim().isEmpty()) {
-          statement.execute(part.replace("CREATE TABLE ", "CREATE TABLE IF NOT EXISTS "));
-        }
-      }
-    }
+    MySqlTestSchema.initialize(url);
   }
 
   IdProperties config(String group) {

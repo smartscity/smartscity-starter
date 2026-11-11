@@ -18,7 +18,7 @@ jobs:
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
           MYSQL_DATABASE: smartscity_id_test
-        ports: ['3306:3306']
+        ports: ['13367:3306']
         options: >-
           --health-cmd="mysqladmin ping -h localhost" --health-interval=5s
           --health-timeout=5s --health-retries=30
@@ -43,13 +43,14 @@ jobs:
       - name: Verify Google formatting, reactor, isolated databases and bounded restarts
         run: >-
           ./mvnw -B -ntp -Pverification,benchmarks,samples verify
-          '-Did.test.mysql.url=jdbc:mysql://127.0.0.1:3306/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true'
+          '-Did.test.mysql.url=jdbc:mysql://127.0.0.1:13367/smartscity_id_test?useSSL=false&allowPublicKeyRetrieval=true'
           -Did.test.postgres.url=jdbc:postgresql://127.0.0.1:5432/smartscity_id_test
           -Did.test.restart=true
       - name: Check artifact boundaries and benchmark orchestration
         run: |
           python3 test/check-artifacts.py
           python3 test/check-repository.py
+          python3 test/check-ci-evidence.py
           bash test/check-benchmark-ci.sh
           java -jar test/smartscity-id-benchmark/target/benchmarks.jar -l
       - name: Preserve test reports
@@ -57,7 +58,7 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: reactor-test-reports
-          path: '**/target/surefire-reports/*.txt'
+          path: '**/target/surefire-reports/*'
   compatibility:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
