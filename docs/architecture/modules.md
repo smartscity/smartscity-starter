@@ -26,8 +26,10 @@ flowchart LR
   J[Opt-in benchmarks] --> SDK
 ```
 
-The starter paths are alternatives. Their unpublished family aggregator groups `boot2-3` and `boot4`; it is neither a runtime dependency nor the parent of published artifacts. All production children inherit `build/smartscity-parent` directly, so their published POMs resolve without the family POM. `build/smartscity-dependencies` has no parent and manages only the three production library coordinates. It never imports Boot or test dependency management. The root only aggregates the reactor.
+The starter paths are alternatives. Their unpublished family aggregator groups `boot2-3` and `boot4`; it is neither a runtime dependency nor the parent of published artifacts. All production children inherit `build/smartscity-parent` directly, so their published POMs resolve without the family POM. `build/smartscity-dependencies` has no parent and manages only the six production library coordinates across ID and observability. It never imports Boot or test dependency management. The root only aggregates the reactor.
 
 Every module uses standard Maven source/resource/test roots. The two ID starters maintain matching generation-neutral source, resources and tests, checked by the repository gate; the health implementation is intentionally generation-specific. No `src/shared`, source injection, cross-generation runtime dependency or speculative common adapter artifact exists. This small duplication is the explicit cost of conventional, self-contained source trees. Normal source and Javadoc JARs now contain actual starter implementation.
 
 See [ADR-0010](../adr/0010-component-families.md) for the packaging decision, [ID design](../id/README.md) for state ownership, and [ID usage](../id/USER_GUIDE.md) for the consumer path. Component compatibility, migrations and test inventories live under `docs/<component>/`; global documents provide navigation and shared policies.
+
+Observability follows the same generation alternatives with `smartscity-observability`, `smartscity-starter-observability` and `smartscity-starter-observability-boot4`. One family supplies four independent capabilities; the pure domain has zero production dependencies. See [observability design](../observability/README.md) and [usage](../observability/USER_GUIDE.md).

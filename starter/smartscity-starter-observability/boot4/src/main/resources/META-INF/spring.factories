@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=com.smartscity.observability.autoconfigure.ExporterImportFilter
+
+org.springframework.boot.env.EnvironmentPostProcessor=com.smartscity.observability.logging.LogbackEnvironmentPostProcessor

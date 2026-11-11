@@ -64,6 +64,19 @@ assert left_files == right_files, 'Starter source/resource/test inventory drift'
 for relative in left_files:
     if relative.as_posix() == 'main/java/com/smartscity/id/autoconfigure/IdHealthAutoConfiguration.java': continue
     assert (left / relative).read_bytes() == (right / relative).read_bytes(), ('Starter generation drift', relative)
+# Observability keeps matching neutral adapters in conventional generation trees.
+observability = root / 'starter/smartscity-starter-observability'
+model = ET.parse(observability / 'pom.xml')
+assert model.findtext("m:profiles/m:profile[m:id='release']/m:properties/m:maven.deploy.skip", namespaces=ns) == 'true'
+left = observability / 'boot2-3/src/main/java/com/smartscity/observability'
+right = observability / 'boot4/src/main/java/com/smartscity/observability'
+for source in right.rglob('*.java'):
+    relative = source.relative_to(right)
+    if relative.name == 'RestTemplateBuilderAutoConfiguration.java':
+        continue  # Boot 4 relocates the public customizer interface.
+    assert (left / relative).read_bytes() == source.read_bytes(), ('Observability generation drift', relative)
+for name in ('README.md', 'USER_GUIDE.md', 'compatibility.md', 'migration.md', 'testing.md'):
+    assert (root / 'docs/observability' / name).is_file(), name
 for source in (root / 'module').rglob('*.java'):
     if 'target' in source.parts or 'test' in source.parts: continue
     assert not re.search(r'^import (org\.springframework|org\.apache\.zookeeper|javax\.sql)\.', source.read_text(), re.M), source

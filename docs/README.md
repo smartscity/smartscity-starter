@@ -6,6 +6,7 @@ Locale: **English (`en`)**. The [navigation manifest](navigation.json) lists the
 |---|---|
 | Global architecture | [Responsibilities and dependencies](architecture/modules.md), [repository decisions](adr/README.md) |
 | Distributed ID | [Design and contract](id/README.md), [user guide](id/USER_GUIDE.md), [compatibility](id/compatibility.md), [migration](id/migration.md), [tests](id/testing.md), [decisions](id/adr/README.md) |
+| Observability | [Design](observability/README.md), [usage](observability/USER_GUIDE.md), [compatibility](observability/compatibility.md), [migration](observability/migration.md), [tests](observability/testing.md), [ADRs](observability/adr/README.md) |
 | Engineering | [Agent and coding rules](../AGENTS.md), [contributing](../CONTRIBUTING.md) |
 | Performance | [Recorded ID benchmark](id/benchmark.md), [benchmark usage](../test/smartscity-id-benchmark/USER_GUIDE.md) |
 | Delivery | [Release process](releasing.md), [examples](../samples/README.md) |

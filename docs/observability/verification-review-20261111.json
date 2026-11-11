@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-11",
+  "status": "PASS",
+  "scope": "Local review corrections; before separately authorized benchmark execution",
+  "java": "21.0.12+1.1-tem",
+  "maven": "3.9.15",
+  "suites": {
+    "domain": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 7
+    },
+    "starter-boot2-3": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 20
+    },
+    "starter-boot4": {
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 20
+    },
+    "boot2": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 5
+    },
+    "boot3": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    "boot4": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    }
+  },
+  "benchmarks": "NOT_RUN_AT_THIS_SNAPSHOT",
+  "artifacts": {
+    "smartscity-observability-0.1.0-SNAPSHOT.jar": "523539c27bcc0ac1c222421bdd06e33a94fa9b214fa8b5876fd81612e5b6f30e",
+    "smartscity-starter-observability-0.1.0-SNAPSHOT.jar": "9ea46a42ecc82e69df6d7934be40e4a83ee60f9df744ef0bc0e0ca119ae2bf3e",
+    "smartscity-starter-observability-boot4-0.1.0-SNAPSHOT.jar": "73b2927805271c0e67e8a4321b74ac34ff4c4932b9a2e7cc25642d0b1c829f1a"
+  },
+  "collector": {
+    "version": "0.28.0",
+    "platform": "darwin/amd64",
+    "tests": "Counter, Timer and actively polled Gauge through real UDP and Prometheus scrape"
+  },
+  "gates": {
+    "artifact_boundaries": "PASS",
+    "repository": "PASS",
+    "dependency_convergence": "PASS",
+    "javadoc_doclint": "PASS"
+  }
+}

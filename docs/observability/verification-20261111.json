@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-11",
+  "status": "PASS",
+  "java": "21.0.12+1.1-tem",
+  "maven": "3.9.15",
+  "scope": "Local implementation and verification; unreleased",
+  "benchmarks": "NOT_RUN",
+  "publication": "NOT_RUN",
+  "suites": {
+    "domain": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 7
+    },
+    "starter-boot2-3": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 14
+    },
+    "starter-boot4": {
+      "tests": 14,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 14
+    },
+    "boot2": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 3
+    },
+    "boot3": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    "boot4": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    }
+  },
+  "collector": {
+    "name": "statsd_exporter",
+    "version": "0.28.0",
+    "platform": "darwin/amd64",
+    "archive_sha256": "341f51d01d3cbadf58c233046c9b4ea8fbb455137c6c19742b96b5c1922b400a",
+    "verified": "Real UDP counter/timer -> tagged Prometheus scrape in all three consumers"
+  },
+  "gates": {
+    "artifact_boundaries": "PASS",
+    "repository_layout_docs": "PASS",
+    "dependency_convergence": "PASS",
+    "javadoc_doclint": "PASS",
+    "samples_build": "PASS",
+    "id_regression": {
+      "tests": 200,
+      "passed": 167,
+      "skipped": 33,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "artifacts": {
+    "smartscity-observability-0.1.0-SNAPSHOT.jar": "57b1a40e75602ed9f2bd2ed11419246b6b1dc4781e55f5ced65156fb91544c3d",
+    "smartscity-starter-observability-0.1.0-SNAPSHOT.jar": "02283d7c62eb43b817e41a7d3efc27165470bc7e44bccfb6b33ec77f740331ca",
+    "smartscity-starter-observability-boot4-0.1.0-SNAPSHOT.jar": "bba056d2af508a2e6b7c31a0c6ddd8df73f33fe8c4ffb074b00747677c9f8012"
+  }
+}

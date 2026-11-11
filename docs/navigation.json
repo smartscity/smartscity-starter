@@ -29,6 +29,14 @@
     ],
     "delivery": [
       "releasing.md"
+    ],
+    "observability": [
+      "observability/README.md",
+      "observability/USER_GUIDE.md",
+      "observability/compatibility.md",
+      "observability/migration.md",
+      "observability/testing.md",
+      "observability/adr/README.md"
     ]
   }
 }

@@ -1,0 +1,4 @@
+<configuration>
+  <include resource="com/smartscity/observability/logback.xml"/>
+  <root level="WARN"><appender-ref ref="OBSERVABILITY"/></root>
+</configuration>

@@ -1,0 +1,16 @@
+<included>
+  <springProperty name="obsService" source="smartscity.observability.internal.logback.service" defaultValue="unknown"/>
+  <springProperty name="obsMask" source="smartscity.observability.masking.enabled" defaultValue="true"/>
+  <springProperty name="obsLiterals" source="smartscity.observability.internal.logback.literal-credentials" defaultValue=""/>
+  <springProperty name="obsFields" source="smartscity.observability.internal.logback.fields" defaultValue=""/>
+  <springProperty name="obsMaxRecord" source="smartscity.observability.logging.max-record-bytes" defaultValue="16384"/>
+  <appender name="OBSERVABILITY" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="com.smartscity.observability.logging.ObservabilityEncoder">
+      <service>${obsService}</service>
+      <maskingEnabled>${obsMask}</maskingEnabled>
+      <encodedLiterals>${obsLiterals}</encodedLiterals>
+      <fields>${obsFields}</fields>
+      <maxRecordBytes>${obsMaxRecord}</maxRecordBytes>
+    </encoder>
+  </appender>
+</included>

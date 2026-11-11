@@ -1,0 +1,124 @@
+name: Observability functional and performance verification
+on:
+  workflow_dispatch:
+  push:
+    branches: ['codex/observability-validation-*']
+permissions:
+  contents: read
+concurrency:
+  group: observability-verification-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build and test production modules and samples
+        run: |
+          set -o pipefail
+          mkdir -p test/evidence/observability-contracts
+          ./mvnw -B -ntp -Psamples install |& tee test/evidence/observability-contracts/maven.log
+          python3 test/check-artifacts.py | tee test/evidence/observability-contracts/artifacts.log
+          python3 test/check-repository.py
+          python3 test/smartscity-observability-benchmark/verify_tests.py contracts
+      - name: Preserve test and artifact evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: observability-contracts
+          path: |
+            **/target/surefire-reports/*
+            test/evidence/observability-contracts/*
+          retention-days: 30
+  compatibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        java: ['17', '21']
+        boot: ['boot2', 'boot3', 'boot4']
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        id: runtime
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Download checksum-pinned real StatsD receiver
+        run: |
+          mkdir -p "$RUNNER_TEMP/observability-receiver"
+          cd "$RUNNER_TEMP/observability-receiver"
+          curl --fail --location --retry 3 --max-time 120 -o receiver.tar.gz https://github.com/prometheus/statsd_exporter/releases/download/v0.28.0/statsd_exporter-0.28.0.linux-amd64.tar.gz
+          echo '6951081e3115669e4353975f897dda1cefddef5a5d16addc908485d9be16b72b  receiver.tar.gz' | sha256sum --check
+          tar xzf receiver.tar.gz --strip-components=1
+      - name: Build production artifacts with JDK 21
+        run: ./mvnw -B -ntp -DskipTests install
+      - name: Exercise independent framework and runtime with real exporter
+        env:
+          BOOT_PROFILE: ${{ matrix.boot }}
+          TEST_JAVA: ${{ steps.runtime.outputs.path }}/bin/java
+        run: |
+          set -o pipefail
+          mkdir -p test/evidence/observability-compatibility
+          profile=()
+          if [[ "$BOOT_PROFILE" != boot2 ]]; then profile=(-P"$BOOT_PROFILE"); fi
+          "$TEST_JAVA" -version |& tee test/evidence/observability-compatibility/java.log
+          ./mvnw -B -ntp -f test/smartscity-observability-compatibility-tests/pom.xml "${profile[@]}" \
+            -Djvm="$TEST_JAVA" -Dobservability.test.statsd-exporter="$RUNNER_TEMP/observability-receiver/statsd_exporter" \
+            clean test |& tee test/evidence/observability-compatibility/maven.log
+          python3 test/smartscity-observability-benchmark/verify_tests.py "$BOOT_PROFILE"
+      - name: Preserve consumer evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: observability-${{ matrix.boot }}-jdk${{ matrix.java }}
+          path: |
+            test/smartscity-observability-compatibility-tests/target/surefire-reports/*
+            test/evidence/observability-compatibility/*
+          retention-days: 30
+  performance:
+    needs: [contracts, compatibility]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Build opt-in benchmark
+        run: ./mvnw -B -ntp -Pbenchmarks -pl test/smartscity-observability-benchmark -am package -DskipTests
+      - name: Run bounded JMH and UDP measurements
+        run: python3 test/smartscity-observability-benchmark/run.py --output test/evidence/observability-performance
+      - name: Publish readable job summary
+        if: always()
+        run: |
+          if [[ -f test/evidence/observability-performance/report.md ]]; then
+            cat test/evidence/observability-performance/report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Preserve raw measurements even on failure
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: observability-performance
+          path: test/evidence/observability-performance/*
+          retention-days: 90

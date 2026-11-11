@@ -18,25 +18,30 @@
     <module>build/smartscity-parent</module>
     <module>build/smartscity-dependencies</module>
     <module>module/smartscity-id</module>
+    <module>module/smartscity-observability</module>
     <module>starter/smartscity-starter-id</module>
+    <module>starter/smartscity-starter-observability</module>
   </modules>
   <profiles>
     <profile>
       <id>verification</id>
       <modules>
         <module>test/smartscity-id-compatibility-tests</module>
+        <module>test/smartscity-observability-compatibility-tests</module>
       </modules>
     </profile>
     <profile>
       <id>benchmarks</id>
       <modules>
         <module>test/smartscity-id-benchmark</module>
+        <module>test/smartscity-observability-benchmark</module>
       </modules>
     </profile>
     <profile>
       <id>samples</id>
       <modules>
         <module>samples/id</module>
+        <module>samples/observability</module>
       </modules>
     </profile>
   </profiles>

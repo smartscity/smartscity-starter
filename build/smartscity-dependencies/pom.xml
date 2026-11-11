@@ -37,6 +37,21 @@
     <dependencies>
       <dependency>
         <groupId>com.smartscity</groupId>
+        <artifactId>smartscity-observability</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.smartscity</groupId>
+        <artifactId>smartscity-starter-observability</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.smartscity</groupId>
+        <artifactId>smartscity-starter-observability-boot4</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.smartscity</groupId>
         <artifactId>smartscity-id</artifactId>
         <version>${project.version}</version>
       </dependency>

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add the observability starter family with independent correlation, masking, logging and metrics switches; parent/current span aliases, bounded HTTP capture, pipe logs, Prometheus and a single-consumer StatsD UDP sender. See observability usage and verification notes.
+
 - Sample latency with default probability 1/1024 while preserving exact outcomes and call-entry deadlines. Expose sample count/interval and unknown quantiles; interval 1 restores full collection. See ID migration notes.
 
 - Notify refill before post-claim failures, including expired claims; retain failure-only timing diagnostics and the original wait budget.
