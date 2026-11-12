@@ -20,6 +20,8 @@ The isolated remote snapshot passes the repository link/layout checker. The shar
 
 Masking owns immutable copied rules; invocation scratch state remains local. Logging owns request scopes and capture budgets, and uses the SDK policy without requiring metrics. Metrics owns only its created registry/transport, retaining registry-before-sender destruction and bounded shutdown. Supplied policy and registry backoff is verified. No duplicate class is present across simultaneously usable component JARs. Both generations retain conventional source trees, direct published-parent inheritance and independent registration.
 
+A supplied MaskingPolicy originally caused the default-policy factory to back off before capture validation. The regression test reproduced a startup-validation failure, and logging runtime assembly now validates its own capture limits and path opt-in independently of policy creation. Both starter generations pass the expanded regression.
+
 Source comparison also confirms unchanged correlation values, scope/provider adapters, capture state, pipe encoding, literal range union and UDP sender implementation.
 
 No ID production code, allocation semantics, queue algorithm, trace wire protocol or pipe format was changed by this split. SDK API documentation and component migration notes record preserved Java packages and property keys, removed unreleased combined coordinates, and the metrics binding API move. No release, tag, deployment or default-branch merge is included.

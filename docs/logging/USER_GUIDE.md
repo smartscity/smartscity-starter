@@ -5,3 +5,5 @@ Choose `com.smartscity:smartscity-starter-logging:0.1.0-SNAPSHOT` for Boot 2.7/3
 The [single complete configuration example and reference](../observability/USER_GUIDE.md) owns existing property keys and the Logback include. A logging-only application uses correlation/logging/masking fields from that example and omits the metrics starter. The optional logging diagnostic bridge honors `metrics.enabled` but creates no registry or sender. Without the metrics component, native Boot exporter dependencies follow the application's normal Boot configuration.
 
 `logging.enabled=false` disables automatic HTTP lifecycle events; use `correlation.enabled=false` separately to disable correlation. The global `smartscity.observability.enabled=false` disables Smartscity assembly. Ordinary appender installation remains explicit.
+
+An application-supplied `MaskingPolicy` or `TextSanitizer` bean customizes runtime HTTP sanitization. Early Logback initialization runs before beans exist, so configure its rules through the documented masking properties or the application-owned encoder. Runtime capture validation still applies when custom policy beans are supplied.

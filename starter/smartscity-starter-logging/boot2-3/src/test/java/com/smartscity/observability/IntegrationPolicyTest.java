@@ -78,6 +78,22 @@ class IntegrationPolicyTest {
     runner
         .withPropertyValues("smartscity.observability.logging.body.enabled=true")
         .run(c -> assertNotNull(c.getStartupFailure()));
+    for (String invalid :
+        Arrays.asList(
+            "smartscity.observability.logging.body.enabled=true",
+            "smartscity.observability.logging.body.max-bytes=1048577")) {
+      runner
+          .withBean(
+              MaskingPolicy.class,
+              () ->
+                  new MaskingPolicy(
+                      true,
+                      java.util.Collections.emptyList(),
+                      java.util.Collections.emptyList(),
+                      java.util.Collections.emptyList()))
+          .withPropertyValues(invalid)
+          .run(c -> assertNotNull(c.getStartupFailure()));
+    }
   }
 
   @Test

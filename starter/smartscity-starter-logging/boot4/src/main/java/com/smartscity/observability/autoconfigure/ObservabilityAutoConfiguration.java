@@ -70,6 +70,7 @@ public class ObservabilityAutoConfiguration {
       StructuredSanitizer body,
       ObjectProvider<BusinessResultExtractor> extractor,
       ApplicationContext app) {
+    validate(p);
     String service = p.getServiceName();
     if (service == null) {
       service = env.getProperty("spring.application.name");
