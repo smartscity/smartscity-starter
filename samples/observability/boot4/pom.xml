@@ -16,7 +16,11 @@
   <dependencies>
     <dependency>
       <groupId>com.smartscity</groupId>
-      <artifactId>smartscity-starter-observability-boot4</artifactId>
+      <artifactId>smartscity-starter-logging-boot4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.smartscity</groupId>
+      <artifactId>smartscity-starter-metrics-boot4</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

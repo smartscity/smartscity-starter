@@ -17,7 +17,8 @@
     <java.module.name>com.smartscity.observability.benchmark</java.module.name>
   </properties>
   <dependencies>
-    <dependency><groupId>com.smartscity</groupId><artifactId>smartscity-starter-observability</artifactId></dependency>
+    <dependency><groupId>com.smartscity</groupId><artifactId>smartscity-starter-logging</artifactId></dependency>
+    <dependency><groupId>com.smartscity</groupId><artifactId>smartscity-starter-metrics</artifactId></dependency>
     <dependency><groupId>ch.qos.logback</groupId><artifactId>logback-classic</artifactId></dependency>
     <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-core</artifactId></dependency>
     <dependency><groupId>org.openjdk.jmh</groupId><artifactId>jmh-generator-annprocess</artifactId><scope>provided</scope></dependency>

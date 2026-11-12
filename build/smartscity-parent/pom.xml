@@ -186,17 +186,17 @@
     <dependencies>
       <dependency>
         <groupId>com.smartscity</groupId>
-        <artifactId>smartscity-observability</artifactId>
+        <artifactId>smartscity-masking</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.smartscity</groupId>
-        <artifactId>smartscity-starter-observability</artifactId>
+        <artifactId>smartscity-starter-logging</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>com.smartscity</groupId>
-        <artifactId>smartscity-starter-observability-boot4</artifactId>
+        <artifactId>smartscity-starter-logging-boot4</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency><groupId>org.roaringbitmap</groupId><artifactId>RoaringBitmap</artifactId><version>${roaring.version}</version></dependency>
@@ -274,6 +274,16 @@
         <groupId>org.openjdk.jmh</groupId>
         <artifactId>jmh-generator-annprocess</artifactId>
         <version>${jmh.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.smartscity</groupId>
+        <artifactId>smartscity-starter-metrics</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.smartscity</groupId>
+        <artifactId>smartscity-starter-metrics-boot4</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

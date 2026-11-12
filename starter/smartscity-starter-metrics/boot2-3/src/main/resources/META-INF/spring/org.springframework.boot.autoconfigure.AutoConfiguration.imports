@@ -1,0 +1,2 @@
+com.smartscity.observability.autoconfigure.MetricsAutoConfiguration
+com.smartscity.observability.autoconfigure.UdpMetricsAutoConfiguration

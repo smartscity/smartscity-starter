@@ -1,0 +1,805 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Singapore",
+  "status": "PASS",
+  "revision": "c6d0178f894159d7b070159f684aaeaafddd9801",
+  "branch": "codex/observability-validation-20261112",
+  "workflows": [
+    {
+      "id": 43065188046,
+      "name": "Build and compatibility",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801",
+      "url": "https://github.com/smartscity/smartscity-starter/actions/runs/43065188046"
+    },
+    {
+      "id": 43065188021,
+      "name": "Observability functional and performance verification",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801",
+      "url": "https://github.com/smartscity/smartscity-starter/actions/runs/43065188021"
+    }
+  ],
+  "jobs": {
+    "passed": 23,
+    "total": 23,
+    "attempts": 1
+  },
+  "mandatory_real_integration": {
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "readback": "PASS independently checked from uploaded XML"
+  },
+  "functional": {
+    "reactor": {
+      "counts": {
+        "tests": 251,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 4
+      },
+      "skips": [
+        {
+          "suite": "com.smartscity.id.autoconfigure.MySqlOutageTest",
+          "case": "databaseShutdownDoesNotStopAnAlreadyStartedSdk",
+          "reason": "System property [id.test.mysql.outage] does not exist"
+        },
+        {
+          "suite": "com.smartscity.id.autoconfigure.MySqlOutageTest",
+          "case": "databaseShutdownDoesNotStopAnAlreadyStartedSdk",
+          "reason": "System property [id.test.mysql.outage] does not exist"
+        },
+        {
+          "suite": "com.smartscity.observability.compatibility.StatsdExporterTest",
+          "case": "udpBecomesPrometheusSeries",
+          "reason": "System property [observability.test.statsd-exporter] does not exist"
+        },
+        {
+          "suite": "com.smartscity.observability.compatibility.TracerProviderTest",
+          "case": "nativeBraveAndMicrometerScopesPreserveIds",
+          "reason": null
+        }
+      ]
+    },
+    "id_compatibility": [
+      {
+        "artifact": "boot-2.7.18-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-2.7.18-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.3.13-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.3.13-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.3.6-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.3.6-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.4.13-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.4.13-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.5.16-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-3.5.16-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-4.0.9-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-4.0.9-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-4.1.2-java-17.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "artifact": "boot-4.1.2-java-21.zip",
+        "counts": {
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    ],
+    "observability": [
+      {
+        "artifact": "observability-boot2-jdk17.zip",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "skips": [
+          {
+            "suite": "com.smartscity.observability.compatibility.TracerProviderTest",
+            "case": "nativeBraveAndMicrometerScopesPreserveIds",
+            "reason": null
+          }
+        ]
+      },
+      {
+        "artifact": "observability-boot2-jdk21.zip",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "skips": [
+          {
+            "suite": "com.smartscity.observability.compatibility.TracerProviderTest",
+            "case": "nativeBraveAndMicrometerScopesPreserveIds",
+            "reason": null
+          }
+        ]
+      },
+      {
+        "artifact": "observability-boot3-jdk17.zip",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skips": []
+      },
+      {
+        "artifact": "observability-boot3-jdk21.zip",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skips": []
+      },
+      {
+        "artifact": "observability-boot4-jdk17.zip",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skips": []
+      },
+      {
+        "artifact": "observability-boot4-jdk21.zip",
+        "counts": {
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skips": []
+      },
+      {
+        "artifact": "observability-contracts.zip",
+        "counts": {
+          "tests": 47,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skips": []
+      }
+    ]
+  },
+  "local_verification": {
+    "fresh_schema_regression": "PASS; old standalone test first reproduced FAIL on a separate fresh database",
+    "isolated_v1_roaring": {
+      "passed": 6,
+      "skipped": 0
+    },
+    "lifecycle_recheck": {
+      "status": "PASS",
+      "isolatedPort": 13367,
+      "cleanup": true,
+      "restart": true,
+      "faults": {
+        "tests": 14,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "outage": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "elapsedSeconds": 141.28
+    },
+    "initial_cleanup_reproduction": {
+      "status": "FAIL",
+      "isolatedPort": 13367,
+      "cleanup": true,
+      "restart": true,
+      "elapsedSeconds": 188.12
+    }
+  },
+  "performance": {
+    "status": "MEASURED",
+    "summary": {
+      "status": "MEASURED",
+      "errors": [],
+      "return_codes": {
+        "jmh": 0,
+        "udp": 0
+      },
+      "jmh_cases": 24,
+      "udp_trials": 6,
+      "scope": "Single shared host, one JMH thread; logging sink excludes filesystem/network I/O. UDP is loopback, not collector throughput or delivery assurance."
+    },
+    "environment": {
+      "timestamp": "2026-11-11T17:09:52Z",
+      "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+      "cpu_count": 4,
+      "machine": "x86_64",
+      "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+      "revision": "c6d0178f894159d7b070159f684aaeaafddd9801",
+      "dirty": false,
+      "runner": "GitHub Actions 1000001619",
+      "github_run_id": "43065188021",
+      "benchmark_sha256": "0da7a714e413fba2afa9bbfb61e6a3079f228ac720d745188be6b52ca46ad811",
+      "smoke": false,
+      "cpu": "model name\t: AMD EPYC 7763 64-Core Processor",
+      "artifacts": {
+        "module/smartscity-observability/target/smartscity-observability-0.1.0-SNAPSHOT.jar": "523539c27bcc0ac1c222421bdd06e33a94fa9b214fa8b5876fd81612e5b6f30e",
+        "starter/smartscity-starter-observability/boot2-3/target/smartscity-starter-observability-0.1.0-SNAPSHOT.jar": "9ea46a42ecc82e69df6d7934be40e4a83ee60f9df744ef0bc0e0ca119ae2bf3e"
+      }
+    },
+    "artifact": {
+      "id": 13875148478,
+      "name": "observability-performance",
+      "size_in_bytes": 36899,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875148478",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875148478/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:17:36Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:17:36Z",
+      "digest": "sha256:0fa6eaa3286164b81d8f476a31c10f0bb43aae8252b812da66fb8d05827f615a",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    "report": "../observability/benchmark-results/20261112-ci-followup/report.md",
+    "regeneration": "PASS byte-for-byte",
+    "cross_run_rate_comparison": "NOT_COMPARABLE: different CPUs with identical benchmark and measured production JARs"
+  },
+  "functional_artifacts": [
+    {
+      "id": 13876335527,
+      "name": "boot-3.4.13-java-17",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876335527",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876335527/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:24Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:24Z",
+      "digest": "sha256:9ba6288a3311c9cf25e102325cadaa282ed98ed1dbdc4002ad1450aee7f1aa72",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13876250685,
+      "name": "boot-3.5.16-java-17",
+      "size_in_bytes": 353,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876250685",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876250685/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:25Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:25Z",
+      "digest": "sha256:2c9784b9e8f63705c064a1fc4cb9553698ce16d6cade22aefc656cbd3d096e41",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13876245733,
+      "name": "boot-4.0.9-java-17",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876245733",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876245733/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:43Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:43Z",
+      "digest": "sha256:37925236ad73806daada083904fdc742332e2aa3d32037457f9fca6791b2d558",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13876210869,
+      "name": "boot-3.3.6-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876210869",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876210869/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:30Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:30Z",
+      "digest": "sha256:630cfb7191c007c04db326a164b125e3d1b3f2ac595b5edda37ea8280f7b29b5",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875956796,
+      "name": "boot-3.3.13-java-17",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875956796",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875956796/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:24Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:24Z",
+      "digest": "sha256:a8b3f4966c707c5841ad4b0ceb9f74f9c4685e35686bd7142bba949ed6d77d67",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875876586,
+      "name": "boot-4.0.9-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875876586",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875876586/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:21Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:21Z",
+      "digest": "sha256:30391f68323f894135066a787270aa2db365b65cd681c1dc1bf225b4853d1489",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875826684,
+      "name": "boot-2.7.18-java-17",
+      "size_in_bytes": 353,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875826684",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875826684/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:08Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:08Z",
+      "digest": "sha256:c69f95fbff623d5f79090300b4befceb65a016fc282729b679b7216a0544ee75",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875796715,
+      "name": "boot-3.4.13-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875796715",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875796715/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:28Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:28Z",
+      "digest": "sha256:cbe5bfa67d71a5c4acafd6841c817d4a62c9016baf5fc2d90177abd9d838c78c",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875556810,
+      "name": "boot-3.5.16-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875556810",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875556810/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:13Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:13Z",
+      "digest": "sha256:44af82af3eb6eb4f30e1eb4be455801ff32b6b851b243f4e7b54962ec43e8383",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875416957,
+      "name": "boot-2.7.18-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875416957",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875416957/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:16Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:16Z",
+      "digest": "sha256:c97433420b6ded770c868e8526156de104d0edd23ad908604cbe966e5428155f",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874972446,
+      "name": "reactor-test-reports",
+      "size_in_bytes": 338930,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874972446",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874972446/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:12:05Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:12:05Z",
+      "digest": "sha256:5285855e9285ea94a45e75ae16996da29f38ade7380ac94bd06a1f10fa350962",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874653455,
+      "name": "boot-4.1.2-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874653455",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874653455/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:19Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:19Z",
+      "digest": "sha256:5d6069a005f7788e4cc3acf544458b2edb18afe69f2059663400ae873262bcaa",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874349551,
+      "name": "boot-4.1.2-java-17",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874349551",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874349551/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:53Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:53Z",
+      "digest": "sha256:1cf58eae064011fcc5eac15ef4c4828e1a66334d08fe6a59e1752753c5a59f9d",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874324669,
+      "name": "boot-3.3.13-java-21",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874324669",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874324669/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:20Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:09:20Z",
+      "digest": "sha256:bd611b40af9b2726a48545af114b5dcbc3e1a6be13c3df7c15a1b509110894a7",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874304860,
+      "name": "boot-3.3.6-java-17",
+      "size_in_bytes": 354,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874304860",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874304860/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:10:02Z",
+      "expires_at": "2027-02-09T17:08:19Z",
+      "updated_at": "2026-11-11T17:10:02Z",
+      "digest": "sha256:42f2d8124ced5b1cc440044ebe129ddface4f4f5bd4a560e91f392a2f3e59ef6",
+      "workflow_run": {
+        "id": 43065188046,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13876275474,
+      "name": "observability-boot4-jdk21",
+      "size_in_bytes": 18381,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876275474",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13876275474/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:08:53Z",
+      "expires_at": "2026-12-11T17:08:52Z",
+      "updated_at": "2026-11-11T17:08:53Z",
+      "digest": "sha256:5e97b7400a5f9853cb085f952125d4a6868d1ea1b664452440ed55a8c5634f9a",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13875956726,
+      "name": "observability-boot4-jdk17",
+      "size_in_bytes": 18359,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875956726",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13875956726/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:08:58Z",
+      "expires_at": "2026-12-11T17:08:57Z",
+      "updated_at": "2026-11-11T17:08:58Z",
+      "digest": "sha256:024c24714904b0495be506b2e2cab70effb0c71e32344b8355a487a7afb7ee09",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874942485,
+      "name": "observability-boot3-jdk21",
+      "size_in_bytes": 18060,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874942485",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874942485/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:08:51Z",
+      "expires_at": "2026-12-11T17:08:51Z",
+      "updated_at": "2026-11-11T17:08:51Z",
+      "digest": "sha256:abb41c462391c06f7afbe2a900c70c9d95906b291dabf2dda6f7afb5582a1048",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874778115,
+      "name": "observability-boot2-jdk21",
+      "size_in_bytes": 17937,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874778115",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874778115/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:08:55Z",
+      "expires_at": "2026-12-11T17:08:54Z",
+      "updated_at": "2026-11-11T17:08:55Z",
+      "digest": "sha256:a4661bca1a85a3b8d379e3e8795a7ebba505d723d5b6b1aec23044124f062f4a",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874638466,
+      "name": "observability-boot3-jdk17",
+      "size_in_bytes": 18021,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874638466",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874638466/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:08:52Z",
+      "expires_at": "2026-12-11T17:08:51Z",
+      "updated_at": "2026-11-11T17:08:52Z",
+      "digest": "sha256:355f5476346bc006a26cafb05830ef3d80f609de87320fb10cbfbd621643430d",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874604155,
+      "name": "observability-contracts",
+      "size_in_bytes": 241386,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874604155",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874604155/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:27Z",
+      "expires_at": "2026-12-11T17:09:25Z",
+      "updated_at": "2026-11-11T17:09:27Z",
+      "digest": "sha256:32896ac25b1d9f9f3cb745871a3b099a783f96b57e23ab799b7a8f9706d39ee0",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    },
+    {
+      "id": 13874509304,
+      "name": "observability-boot2-jdk17",
+      "size_in_bytes": 17899,
+      "url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874509304",
+      "archive_download_url": "https://api.github.com/repos/smartscity/smartscity-starter/actions/artifacts/13874509304/zip",
+      "expired": false,
+      "created_at": "2026-11-11T17:09:02Z",
+      "expires_at": "2026-12-11T17:09:01Z",
+      "updated_at": "2026-11-11T17:09:02Z",
+      "digest": "sha256:9cccfd66e9eac42052a6ee8cb1b4f4bb4a0c037646ae45d6d577b9e4b1172caf",
+      "workflow_run": {
+        "id": 43065188021,
+        "repository_id": 631197290,
+        "head_repository_id": 631197290,
+        "head_branch": "codex/observability-validation-20261112",
+        "head_sha": "c6d0178f894159d7b070159f684aaeaafddd9801"
+      }
+    }
+  ],
+  "previous_failures": {
+    "repository_run": 43056669110,
+    "observability_first_contract_attempt": 43056669257,
+    "disposition": "Retained historical failures; resolved by this correction and a fresh successful first-attempt CI run"
+  },
+  "change_scope": "17 files: CI, test fixtures and documentation. No production Java changes. Unrelated local Roaring v2 and audit edits excluded.",
+  "raw_evidence_directory": "test/evidence/id-ci-fix-20261112",
+  "acceptance": {
+    "approved_functionality": "MET within documented support scope",
+    "whole_ci": "PASS for both workflows triggered on the validation revision",
+    "performance": "MEASURED with explicit regressions and host/workload limits; production SLA not established",
+    "release": "NOT_RUN",
+    "deployment": "NOT_RUN",
+    "merge": "NOT_RUN"
+  }
+}

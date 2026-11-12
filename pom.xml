@@ -18,9 +18,10 @@
     <module>build/smartscity-parent</module>
     <module>build/smartscity-dependencies</module>
     <module>module/smartscity-id</module>
-    <module>module/smartscity-observability</module>
+    <module>module/smartscity-masking</module>
     <module>starter/smartscity-starter-id</module>
-    <module>starter/smartscity-starter-observability</module>
+    <module>starter/smartscity-starter-logging</module>
+    <module>starter/smartscity-starter-metrics</module>
   </modules>
   <profiles>
     <profile>

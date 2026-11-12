@@ -123,7 +123,7 @@ def main():
     cpuinfo = Path('/proc/cpuinfo')
     env['cpu'] = next((line for line in cpuinfo.read_text().splitlines() if line.startswith('model name')), '') if cpuinfo.exists() else platform.processor()
     env['artifacts'] = {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
-                        for base in ('module/smartscity-observability', 'starter/smartscity-starter-observability/boot2-3')
+                        for base in ('module/smartscity-masking', 'starter/smartscity-starter-logging/boot2-3', 'starter/smartscity-starter-metrics/boot2-3')
                         for p in (ROOT / base / 'target').glob('*-SNAPSHOT.jar')}
     (directory / 'environment.json').write_text(json.dumps(env, indent=2) + '\n')
     command([str(ROOT / 'mvnw'), '-version'], directory / 'maven.log', 30)

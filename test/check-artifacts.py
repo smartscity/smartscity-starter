@@ -11,9 +11,11 @@ root = Path(__file__).resolve().parents[1]
 ns = {'m': 'http://maven.apache.org/POM/4.0.0'}
 modules = {
     'module/smartscity-id': ('smartscity-id', 53),
-    'module/smartscity-observability': ('smartscity-observability', 53),
-    'starter/smartscity-starter-observability/boot2-3': ('smartscity-starter-observability', 53),
-    'starter/smartscity-starter-observability/boot4': ('smartscity-starter-observability-boot4', 61),
+    'module/smartscity-masking': ('smartscity-masking', 53),
+    'starter/smartscity-starter-logging/boot2-3': ('smartscity-starter-logging', 53),
+    'starter/smartscity-starter-logging/boot4': ('smartscity-starter-logging-boot4', 61),
+    'starter/smartscity-starter-metrics/boot2-3': ('smartscity-starter-metrics', 53),
+    'starter/smartscity-starter-metrics/boot4': ('smartscity-starter-metrics-boot4', 61),
     'starter/smartscity-starter-id/boot2-3': ('smartscity-starter-id', 53),
     'starter/smartscity-starter-id/boot4': ('smartscity-starter-id-boot4', 61),
 }
@@ -44,7 +46,7 @@ for directory, (module, major) in modules.items():
                 forbidden += [b'org/springframework/boot/health/']
             for entry in forbidden:
                 assert entry not in data, (name, entry)
-        if directory.startswith('starter/') and 'observability' not in directory:
+        if directory.startswith('starter/smartscity-starter-id/'):
             metadata = json.loads(archive.read('META-INF/spring-configuration-metadata.json'))
             defaults = {p['name']: p.get('defaultValue') for p in metadata['properties']}
             assert defaults['smartscity.id.database.use-application-data-source'] is False
@@ -63,23 +65,39 @@ for directory, (module, major) in modules.items():
             assert 'META-INF/spring-autoconfigure-metadata.properties' in archive.namelist()
             assert all('db/' + dialect + '.sql' in archive.namelist() for dialect in ('mysql', 'postgresql', 'tidb'))
             assert any('autoconfigure/IdGeneratorFactory.class' in name for name in classes)
-        if directory.startswith('starter/') and 'observability' in directory:
+        if directory.startswith('starter/smartscity-starter-logging/'):
             metadata = json.loads(archive.read('META-INF/spring-configuration-metadata.json'))
             defaults = {p['name']: p.get('defaultValue') for p in metadata['properties']}
-            for capability in ('correlation', 'logging', 'masking', 'metrics'):
+            for capability in ('correlation', 'logging', 'masking'):
                 assert defaults[f'smartscity.observability.{capability}.enabled'] is True
-            assert defaults['smartscity.observability.metrics.udp.enabled'] is False
             assert defaults['smartscity.observability.logging.body.enabled'] is False
             imports = archive.read('META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports').decode().splitlines()
             assert len(imports) == len(set(imports))
             assert all(entry.replace('.', '/') + '.class' in classes for entry in imports)
             assert 'META-INF/spring-autoconfigure-metadata.properties' in archive.namelist()
             factories = archive.read('META-INF/spring.factories').decode()
-            assert 'ExporterImportFilter' in factories
+            assert 'ExporterImportFilter' not in factories
+            assert not any('/metrics/' in name for name in classes)
             assert 'LogbackEnvironmentPostProcessor' in factories
             assert 'com/smartscity/observability/logback.xml' in archive.namelist()
             if directory.endswith('/boot4'):
                 assert all(b'javax/servlet/' not in archive.read(name) for name in classes)
+        if 'starter-metrics/' in directory:
+            metadata = json.loads(archive.read('META-INF/spring-configuration-metadata.json'))
+            defaults = {p['name']: p.get('defaultValue') for p in metadata['properties']}
+            assert defaults['smartscity.observability.metrics.enabled'] is True
+            assert defaults['smartscity.observability.metrics.udp.enabled'] is False
+            assert defaults['smartscity.observability.metrics.prometheus.enabled'] is False
+            assert all(key.startswith('smartscity.observability.metrics.') for key in defaults)
+            imports = archive.read('META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports').decode().splitlines()
+            assert set(imports) == {'com.smartscity.observability.autoconfigure.' + name for name in ('MetricsAutoConfiguration', 'UdpMetricsAutoConfiguration')}
+            assert all(entry.replace('.', '/') + '.class' in classes for entry in imports)
+            factories = archive.read('META-INF/spring.factories').decode()
+            assert 'ExporterImportFilter' in factories and 'EnvironmentPostProcessor' not in factories
+            assert not any('/logging/' in name or '/http/' in name or '/tracing/' in name for name in classes)
+            for name in classes:
+                assert b'com/smartscity/observability/logging/' not in archive.read(name)
+                assert b'com/smartscity/observability/LiteralMasker' not in archive.read(name)
     print(f'PASS {module}: {len(classes)} classes; SHA256={hashlib.sha256(jar.read_bytes()).hexdigest()}')
 bom = ET.parse(root / 'build/smartscity-dependencies/pom.xml')
 assert bom.find('m:parent', ns) is None, 'BOM must not inherit external dependency management'
@@ -87,3 +105,14 @@ managed = bom.findall('m:dependencyManagement/m:dependencies/m:dependency', ns)
 assert {d.findtext('m:artifactId', namespaces=ns) for d in managed} == {artifact for artifact, _ in modules.values()}
 assert all(d.findtext('m:groupId', namespaces=ns) == 'com.smartscity' for d in managed)
 print('PASS production dependency boundaries, generation isolation, BOM, registration and metadata')
+
+# Mutually exclusive Boot alternatives may mirror classes; simultaneously usable components may not.
+for generation in ('boot2-3', 'boot4'):
+    seen = set()
+    for directory in ('module/smartscity-masking', f'starter/smartscity-starter-logging/{generation}', f'starter/smartscity-starter-metrics/{generation}'):
+        artifact, _ = modules[directory]
+        with zipfile.ZipFile(root / directory / 'target' / f'{artifact}-{version}.jar') as jar:
+            owned = {n for n in jar.namelist() if n.endswith('.class')}
+            assert not seen.intersection(owned), ('Duplicate component classes', seen.intersection(owned))
+            seen.update(owned)
+print('PASS independently composable components have no duplicate classes')

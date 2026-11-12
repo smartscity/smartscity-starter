@@ -1,0 +1,11 @@
+{
+  "status": "MEASURED",
+  "errors": [],
+  "return_codes": {
+    "jmh": 0,
+    "udp": 0
+  },
+  "jmh_cases": 24,
+  "udp_trials": 6,
+  "scope": "Single shared host, one JMH thread; logging sink excludes filesystem/network I/O. UDP is loopback, not collector throughput or delivery assurance."
+}

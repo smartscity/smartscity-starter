@@ -1,6 +1,6 @@
-# Observability starter
+# Observability components
 
-Status: implemented, unreleased. The user approved the parent/current mapping and implementation on 2026-11-11. [ADR-0001](adr/0001-observability-contract.md) records the accepted contract. See [benchmark contract](benchmark.md), [verification](testing.md) for executed evidence and [usage](USER_GUIDE.md) for the single configuration example.
+Status: split into three components, unreleased. See [ADR-0002](adr/0002-independent-components.md) and [current verification](component-split-verification.md). The user approved the parent/current mapping and implementation on 2026-11-11. [ADR-0001](adr/0001-observability-contract.md) records the accepted contract. See [requirement acceptance](acceptance-20261112.md), [benchmark contract](benchmark.md), [verification](testing.md) for executed evidence and [usage](USER_GUIDE.md) for the single configuration example.
 
 ## Capabilities and packaging
 
@@ -15,13 +15,27 @@ All property paths are under `smartscity.observability`. Body capture and both e
 
 | Location | Responsibility |
 |---|---|
-| module/smartscity-observability | Zero-production-dependency correlation values, literal matcher, pipe codec and capture budget |
-| starter/smartscity-starter-observability/boot2-3 | Combined Boot 2.7/3 integration/starter; isolated javax/jakarta adapters |
-| starter/smartscity-starter-observability/boot4 | Alternative Boot 4 integration/starter |
-| samples/observability | Conventional Boot 3 and Boot 4 applications |
-| test/smartscity-observability-compatibility-tests | Independent framework consumers and collector integration |
+| module/smartscity-masking | Zero-dependency business masking SDK |
+| starter/smartscity-starter-logging/{boot2-3,boot4} | Logging, correlation and optional JSON adapters; depends on masking |
+| starter/smartscity-starter-metrics/{boot2-3,boot4} | Independent exporter integration; no logging or masking dependency |
+| samples/observability | Conventional combined Boot 3 and Boot 4 consumers |
+| test/smartscity-observability-compatibility-tests | Framework and real collector integration |
 
-This is one starter family. Choose one generation-specific artifact. Published children inherit the build parent directly; the unpublished family aggregator is not a production dependency. The BOM manages only Smartscity production coordinates. Servlet, Jackson, metrics and exporter libraries are optional application dependencies.
+Choose capabilities independently and one binary per starter generation. The [masking](../masking/README.md), [logging](../logging/README.md) and [metrics](../metrics/README.md) documents own component entry points. Published children inherit the build parent directly. Family aggregators are unpublished. The BOM manages only production coordinates.
+
+```mermaid
+flowchart LR
+  A[Application] --> L[Logging starter: trace and HTTP logs]
+  A --> S[Pure Java masking SDK]
+  A --> M[Metrics starter]
+  L --> S
+  L -. Optional diagnostics .-> R[Application MeterRegistry]
+  M --> R
+  M --> P[Prometheus]
+  M --> Q[Bounded queue]
+  Q --> U[One UDP writer]
+  U --> E[statsd_exporter]
+```
 
 ## Data flow
 

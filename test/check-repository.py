@@ -65,7 +65,7 @@ for relative in left_files:
     if relative.as_posix() == 'main/java/com/smartscity/id/autoconfigure/IdHealthAutoConfiguration.java': continue
     assert (left / relative).read_bytes() == (right / relative).read_bytes(), ('Starter generation drift', relative)
 # Observability keeps matching neutral adapters in conventional generation trees.
-observability = root / 'starter/smartscity-starter-observability'
+observability = root / 'starter/smartscity-starter-logging'
 model = ET.parse(observability / 'pom.xml')
 assert model.findtext("m:profiles/m:profile[m:id='release']/m:properties/m:maven.deploy.skip", namespaces=ns) == 'true'
 left = observability / 'boot2-3/src/main/java/com/smartscity/observability'
@@ -75,8 +75,16 @@ for source in right.rglob('*.java'):
     if relative.name == 'RestTemplateBuilderAutoConfiguration.java':
         continue  # Boot 4 relocates the public customizer interface.
     assert (left / relative).read_bytes() == source.read_bytes(), ('Observability generation drift', relative)
-for name in ('README.md', 'USER_GUIDE.md', 'compatibility.md', 'migration.md', 'testing.md'):
-    assert (root / 'docs/observability' / name).is_file(), name
+for component in ('observability', 'masking', 'logging', 'metrics'):
+    for name in ('README.md', 'USER_GUIDE.md', 'compatibility.md', 'migration.md', 'testing.md'):
+        assert (root / 'docs' / component / name).is_file(), (component, name)
+metrics = root / 'starter/smartscity-starter-metrics'
+left = metrics / 'boot2-3/src'
+right = metrics / 'boot4/src'
+assert {p.relative_to(left) for p in left.rglob('*') if p.is_file()} == {p.relative_to(right) for p in right.rglob('*') if p.is_file()}
+for source in left.rglob('*'):
+    if source.is_file():
+        assert source.read_bytes() == (right / source.relative_to(left)).read_bytes(), source
 for source in (root / 'module').rglob('*.java'):
     if 'target' in source.parts or 'test' in source.parts: continue
     assert not re.search(r'^import (org\.springframework|org\.apache\.zookeeper|javax\.sql)\.', source.read_text(), re.M), source

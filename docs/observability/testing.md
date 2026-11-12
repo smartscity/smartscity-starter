@@ -1,5 +1,11 @@
 # Observability verification
 
+Latest full CI follow-up: **23/23 jobs passed on the first attempt** at c6d0178. The previous ID database/restart failures are resolved; all 43 mandatory integration cases ran without skips. See [CI results](../id/ci-review-20261112.md), [requirement acceptance](acceptance-20261112.md) and [performance recheck](benchmark-results/20261112-ci-followup/README.md). Historical snapshots below retain their own original outcomes.
+
+Earlier remote functional snapshot (2026-11-12): **81 passed, 2 conditional skips, 0 failures/errors** across production contracts and Boot 2.7/3.5/4.0 on JDK 17/21. See [Actions evidence](verification-actions-20261112.json) and the [workflow run](https://github.com/smartscity/smartscity-starter/actions/runs/43056669257). The contract job passed after one same-revision retry of an ID sequence-lock timeout. At that earlier snapshot, the separate existing repository CI was **FAIL** in ID database/restart tests; its 14 compatibility jobs passed. Performance completed: **24 JMH cases and 6 UDP trials measured**. See the [result and limitations](benchmark-results/20261112/README.md).
+
+## Local review snapshot
+
 Status: **PASS for the executed local review scope**, 2026-11-11. Performance benchmarks were subsequently authorized on 2026-11-12; their results are tracked separately. Publication and deployment remain **NOT_RUN**. [Machine-readable review evidence](verification-review-20261111.json) records counts and JAR hashes. Raw logs and XML reports remain in ignored `test/evidence/observability-review-20261111/`.
 
 | Gate | Result | Evidence / practical boundary |
@@ -17,9 +23,9 @@ Status: **PASS for the executed local review scope**, 2026-11-11. Performance be
 | Javadoc | PASS | Three observability artifacts, doclint all,-missing |
 | Samples | PASS build | Boot 3/4 samples included in the reactor build; no deployment implied |
 | Existing ID regression | 167 passed, 33 skipped, 0 failures/errors | 200 discovered cases in the existing reactor; skipped cases remain unverified |
-| Performance / remote infrastructure | IN_PROGRESS | Authorized functional/runtime matrix and measured benchmark; see [experiment contract](benchmark.md). No production capacity claim |
+| Performance / remote infrastructure | MEASURED separately on 2026-11-12 | See [results](benchmark-results/20261112/README.md) and [experiment contract](benchmark.md). No production capacity claim |
 
-The observability total is **64 passed, 1 skipped, 0 failures/errors**. These are test cases, not a count of all assertions or switch permutations. Runtime verification uses JDK 21.0.12+1.1-tem and Maven Wrapper 3.9.15 on macOS. Bytecode does not prove a wider JVM runtime matrix.
+The local review snapshot total is **64 passed, 1 skipped, 0 failures/errors**. These are test cases, not a count of all assertions or switch permutations. Runtime verification uses JDK 21.0.12+1.1-tem and Maven Wrapper 3.9.15 on macOS. Bytecode does not prove a wider JVM runtime matrix.
 
 The final Boot 2.7 HTTP test logs a Tomcat AsynchronousCloseException while its owned listener shuts down. Its assertions and process exit pass. The task executor is shut down by the test; UDP sender termination is asserted. This shutdown log is not suppressed or presented as an application request failure.
 
@@ -28,7 +34,7 @@ The final Boot 2.7 HTTP test logs a Tomcat AsynchronousCloseException while its 
 Build/install the observability production modules before running independent consumers:
 
 ```sh
-./mvnw -pl module/smartscity-observability,starter/smartscity-starter-observability/boot2-3,starter/smartscity-starter-observability/boot4 -am install javadoc:javadoc -Ddoclint=all,-missing
+./mvnw -pl module/smartscity-masking,starter/smartscity-starter-logging/boot2-3,starter/smartscity-starter-logging/boot4 -am install javadoc:javadoc -Ddoclint=all,-missing
 ```
 
 Run each independent consumer, keeping its reports before the next profile overwrites them:
@@ -53,6 +59,6 @@ The observability consumer is excluded from that reactor invocation because it i
 
 ## Remaining boundaries
 
-Boot 2.7 plus Sleuth, WebFlux/WebClient, Feign, alternate log backends, native images and the broader JVM matrix are NOT_RUN/unsupported as described in compatibility. Tests do not establish UDP reliability, sustained throughput or compressed storage savings. Existing application-native tracing/metrics resource ownership is preserved by conditional integration; explicitly managed application resources still follow the application's own shutdown lifecycle.
+Boot 2.7 plus Sleuth, WebFlux/WebClient, Feign, alternate log backends, native images and JVMs beyond the recorded 17/21 matrix are NOT_RUN/unsupported as described in compatibility. Tests do not establish UDP reliability, sustained throughput or compressed storage savings. Existing application-native tracing/metrics resource ownership is preserved by conditional integration; explicitly managed application resources still follow the application's own shutdown lifecycle.
 
 See the [review findings](review-20261111.md). The [initial 46-pass snapshot](verification-20261111.json) is historical and was superseded by the targeted review regressions.

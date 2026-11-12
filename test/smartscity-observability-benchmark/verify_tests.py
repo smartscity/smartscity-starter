@@ -7,12 +7,13 @@ import xml.etree.ElementTree as ET
 root = Path(__file__).resolve().parents[2]
 mode = sys.argv[1]
 if mode == 'contracts':
-    paths = ['module/smartscity-observability', 'starter/smartscity-starter-observability/boot2-3',
-             'starter/smartscity-starter-observability/boot4']
-    expected = (47, 0)
+    paths = ['module/smartscity-masking', 'starter/smartscity-starter-logging/boot2-3',
+             'starter/smartscity-starter-logging/boot4', 'starter/smartscity-starter-metrics/boot2-3',
+             'starter/smartscity-starter-metrics/boot4']
+    expected = (66, 0)
 elif mode in ('boot2', 'boot3', 'boot4'):
     paths = ['test/smartscity-observability-compatibility-tests']
-    expected = (6, 1 if mode == 'boot2' else 0)
+    expected = (7, 1 if mode == 'boot2' else 0)
 else:
     raise SystemExit('Unknown verification mode: ' + mode)
 totals = dict(tests=0, failures=0, errors=0, skipped=0)

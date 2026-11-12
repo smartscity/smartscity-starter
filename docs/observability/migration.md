@@ -1,6 +1,6 @@
 # Observability migration
 
-This is the first unreleased implementation. Add one starter matching the application Boot generation and the required optional exporter dependencies. No ID generator configuration, worker allocation, encoding or schema changes are needed.
+This is the first unreleased implementation. Select the independently needed components matching the application Boot generation and add required optional exporter dependencies. No ID generator configuration, worker allocation, encoding or schema changes are needed.
 
 | Existing behavior | Opt-in change |
 |---|---|
@@ -12,3 +12,7 @@ This is the first unreleased implementation. Add one starter matching the applic
 | UDP native auto-export | When Smartscity owns UDP, its bounded line sink replaces the native network sender; do not configure duplicate export |
 
 Body capture is off by default. Enabling masking does not make every arbitrary string safe; configure literal/field/path rules appropriate to the application. Do not change a log collector parser before testing the new format against representative sanitized records.
+
+## Independent components
+
+The combined unreleased coordinates are replaced by [masking SDK](../masking/migration.md), [logging starter](../logging/migration.md) and [metrics starter](../metrics/migration.md). Remove old JARs before adding new coordinates. Public Java packages, logback resource paths and property keys remain stable; the metrics binding object moves from `ObservabilityProperties.getMetrics()` to `MetricsProperties`. See [ADR-0002](adr/0002-independent-components.md).

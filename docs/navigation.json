@@ -37,6 +37,30 @@
       "observability/migration.md",
       "observability/testing.md",
       "observability/adr/README.md"
+    ],
+    "masking": [
+      "masking/README.md",
+      "masking/USER_GUIDE.md",
+      "masking/compatibility.md",
+      "masking/migration.md",
+      "masking/testing.md",
+      "masking/adr/README.md"
+    ],
+    "logging": [
+      "logging/README.md",
+      "logging/USER_GUIDE.md",
+      "logging/compatibility.md",
+      "logging/migration.md",
+      "logging/testing.md",
+      "logging/adr/README.md"
+    ],
+    "metrics": [
+      "metrics/README.md",
+      "metrics/USER_GUIDE.md",
+      "metrics/compatibility.md",
+      "metrics/migration.md",
+      "metrics/testing.md",
+      "metrics/adr/README.md"
     ]
   }
 }

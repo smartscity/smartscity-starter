@@ -2,7 +2,7 @@
 
 ## Dependencies
 
-Use `com.smartscity:smartscity-starter-observability:0.1.0-SNAPSHOT` for Boot 2.7/3, or `com.smartscity:smartscity-starter-observability-boot4:0.1.0-SNAPSHOT` for Boot 4. Never install both. The standalone `smartscity-observability` artifact contains pure correlation values, masking and encoding.
+Choose `com.smartscity:smartscity-masking:0.1.0-SNAPSHOT` for pure Java business masking. Use `smartscity-starter-logging` and/or `smartscity-starter-metrics` for Boot 2.7/3, or their alternative `-boot4` artifacts for Boot 4. Never install both generations of a starter. Logging brings masking transitively; metrics is independent. The unreleased combined observability artifacts have been removed. See [migration](migration.md).
 
 | Capability | Additional application dependencies |
 |---|---|

@@ -1,0 +1,235 @@
+{
+  "date": "2026-11-12",
+  "timezone": "Asia/Singapore",
+  "revision": "01b966ddb5108671232c8f53c1eefb6ed39f0e68",
+  "branch": "codex/observability-validation-20261112",
+  "run_id": 43056669257,
+  "run_url": "https://github.com/smartscity/smartscity-starter/actions/runs/43056669257",
+  "functional_status": "PASS",
+  "performance_status": "MEASURED",
+  "functional_counts": {
+    "passed": 81,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "functional_artifacts": [
+    {
+      "artifact": "contracts-attempt2.zip",
+      "counts": {
+        "tests": 47,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "jdk": [
+        "21.0.13"
+      ]
+    },
+    {
+      "artifact": "observability-boot2-jdk17.zip",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "jdk": [
+        "17.0.21"
+      ]
+    },
+    {
+      "artifact": "observability-boot2-jdk21.zip",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "jdk": [
+        "21.0.13"
+      ]
+    },
+    {
+      "artifact": "observability-boot3-jdk17.zip",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "jdk": [
+        "17.0.21"
+      ]
+    },
+    {
+      "artifact": "observability-boot3-jdk21.zip",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "jdk": [
+        "21.0.13"
+      ]
+    },
+    {
+      "artifact": "observability-boot4-jdk17.zip",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "jdk": [
+        "17.0.21"
+      ]
+    },
+    {
+      "artifact": "observability-boot4-jdk21.zip",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "jdk": [
+        "21.0.13"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13872261142,
+      "name": "observability-contracts",
+      "digest": "sha256:6a8323785b1ba6fb7658f8a622e2204084dc78102390548750f2d25c057bfd89",
+      "created_at": "2026-11-11T16:22:15Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13871687887,
+      "name": "observability-boot2-jdk21",
+      "digest": "sha256:3eb7bff689dce1d31f7a91a876894351973fd37c087ad8efd8b5fc24b7c7ad2f",
+      "created_at": "2026-11-11T16:19:50Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13871632938,
+      "name": "observability-boot4-jdk21",
+      "digest": "sha256:75e4d9049db9ebd303ebd3c0da640bfd609e75e08fe1e9a4d7c9d42e4d7b64df",
+      "created_at": "2026-11-11T16:19:41Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13871477633,
+      "name": "observability-boot3-jdk21",
+      "digest": "sha256:70da159753aa03e6a278aa1a9629b8b0a97d5ea0856b85c9ae46712c34b4f05b",
+      "created_at": "2026-11-11T16:17:14Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13871423419,
+      "name": "observability-boot4-jdk17",
+      "digest": "sha256:5245fc0d008b79ec01e5d067531cdcd973910d0490a4d294dfc1ea3205abb9fc",
+      "created_at": "2026-11-11T16:18:20Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13871338504,
+      "name": "observability-contracts",
+      "digest": "sha256:12c9577a680ed902da89e8b2b6497a20bc9ce0307d12d4fd813fe4246891e3be",
+      "created_at": "2026-11-11T16:16:56Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13871188792,
+      "name": "observability-boot3-jdk17",
+      "digest": "sha256:b67e548dfe91bc398bf054372ec711f00e3d98e1c8c692c3e2890077ed56c340",
+      "created_at": "2026-11-11T16:17:14Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13870834219,
+      "name": "observability-boot2-jdk17",
+      "digest": "sha256:df53be0c64c09c7af32aa77e5106aca269270b3347416818379ea3cc546890d2",
+      "created_at": "2026-11-11T16:17:20Z",
+      "head_sha": "01b966ddb5108671232c8f53c1eefb6ed39f0e68"
+    },
+    {
+      "id": 13873031242,
+      "name": "observability-performance",
+      "digest": "sha256:28c7819930eb6782c44597228e1ef3554e685d97595a396e52d5601fca3b0bc3",
+      "created_at": "2026-11-11T16:30:22Z"
+    }
+  ],
+  "first_attempt": {
+    "status": "FAIL",
+    "job_id": 130647829946,
+    "reason": "Unchanged ID RoaringEncodingTest.concurrentGeneratorsPreserveUniquenessAndSingleLease exceeded its sequence-lock deadline. One retry of the same revision passed; the initial failure artifact is preserved."
+  },
+  "existing_repository_ci": {
+    "status": "FAIL",
+    "run_id": 43056669110,
+    "url": "https://github.com/smartscity/smartscity-starter/actions/runs/43056669110",
+    "compatibility_jobs_passed": 14,
+    "failures": [
+      "ID restart tests reject the configured database because it does not meet their dedicated-loopback precondition.",
+      "ID ZookeeperIntegrationTest reports missing smartscity_id_group table.",
+      "ID MySqlIntegrationTest connection-count assertion expects 3 but observes 4."
+    ],
+    "scope": "No ID source, tests or existing CI configuration were changed in this validation branch."
+  },
+  "receiver": {
+    "version": "0.28.0",
+    "platform": "linux-amd64",
+    "archive_sha256": "6951081e3115669e4353975f897dda1cefddef5a5d16addc908485d9be16b72b"
+  },
+  "release": "NOT_RUN",
+  "deployment": "NOT_RUN",
+  "raw_evidence_directory": "test/evidence/observability-actions-20261112",
+  "workflow_status": "PASS",
+  "run_attempt": 2,
+  "performance": {
+    "summary": {
+      "status": "MEASURED",
+      "errors": [],
+      "return_codes": {
+        "jmh": 0,
+        "udp": 0
+      },
+      "jmh_cases": 24,
+      "udp_trials": 6,
+      "scope": "Single shared host, one JMH thread; logging sink excludes filesystem/network I/O. UDP is loopback, not collector throughput or delivery assurance."
+    },
+    "environment": {
+      "timestamp": "2026-11-11T16:22:44Z",
+      "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+      "cpu_count": 4,
+      "machine": "x86_64",
+      "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+      "revision": "01b966ddb5108671232c8f53c1eefb6ed39f0e68",
+      "dirty": false,
+      "runner": "GitHub Actions 1000001594",
+      "github_run_id": "43056669257",
+      "benchmark_sha256": "0da7a714e413fba2afa9bbfb61e6a3079f228ac720d745188be6b52ca46ad811",
+      "smoke": false,
+      "cpu": "model name\t: AMD EPYC 9V45 96-Core Processor",
+      "artifacts": {
+        "module/smartscity-observability/target/smartscity-observability-0.1.0-SNAPSHOT.jar": "523539c27bcc0ac1c222421bdd06e33a94fa9b214fa8b5876fd81612e5b6f30e",
+        "starter/smartscity-starter-observability/boot2-3/target/smartscity-starter-observability-0.1.0-SNAPSHOT.jar": "9ea46a42ecc82e69df6d7934be40e4a83ee60f9df744ef0bc0e0ca119ae2bf3e"
+      }
+    },
+    "artifact_id": 13873031242,
+    "archive_sha256": "28c7819930eb6782c44597228e1ef3554e685d97595a396e52d5601fca3b0bc3",
+    "report": "benchmark-results/20261112/report.md",
+    "raw_archive": "benchmark-results/20261112/raw-results.zip",
+    "report_regeneration": "PASS: report.md and summary.json reproduced byte-for-byte from raw JSON",
+    "limits": [
+      "Shared runner, one JMH thread, synthetic inputs; not production SLA or sustained capacity.",
+      "Logback sink excludes disk and network I/O; standalone correlation excludes native tracer overhead.",
+      "UDP has one producer and a loopback receiver; no collector-capacity or multi-producer throughput claim.",
+      "AC is slower for the tested 64-word HIT scenarios and allocates more on HIT; no universal speedup."
+    ]
+  }
+}

@@ -10,13 +10,20 @@
   <artifactId>smartscity-observability-compatibility-tests</artifactId>
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
-    <observability.starter.artifact>smartscity-starter-observability</observability.starter.artifact>
+    <observability.starter.artifact>smartscity-starter-logging</observability.starter.artifact>
+    <metrics.starter.artifact>smartscity-starter-metrics</metrics.starter.artifact>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
   <dependencies>
     <dependency>
       <groupId>com.smartscity</groupId>
       <artifactId>${observability.starter.artifact}</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.smartscity</groupId>
+      <artifactId>${metrics.starter.artifact}</artifactId>
       <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
@@ -86,7 +93,8 @@
       <id>boot4</id>
       <properties>
         <spring-boot.version>${boot4.version}</spring-boot.version>
-        <observability.starter.artifact>smartscity-starter-observability-boot4</observability.starter.artifact>
+        <observability.starter.artifact>smartscity-starter-logging-boot4</observability.starter.artifact>
+        <metrics.starter.artifact>smartscity-starter-metrics-boot4</metrics.starter.artifact>
       </properties>
       <dependencies>
         <dependency>

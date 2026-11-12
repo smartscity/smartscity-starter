@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-11-11T17:09:52Z",
+  "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+  "cpu_count": 4,
+  "machine": "x86_64",
+  "java": "openjdk version \"21.0.13\" 2026-10-20 LTS\nOpenJDK Runtime Environment Temurin-21.0.13+9 (build 21.0.13+9-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.13+9 (build 21.0.13+9-LTS, mixed mode, sharing)",
+  "revision": "c6d0178f894159d7b070159f684aaeaafddd9801",
+  "dirty": false,
+  "runner": "GitHub Actions 1000001619",
+  "github_run_id": "43065188021",
+  "benchmark_sha256": "0da7a714e413fba2afa9bbfb61e6a3079f228ac720d745188be6b52ca46ad811",
+  "smoke": false,
+  "cpu": "model name\t: AMD EPYC 7763 64-Core Processor",
+  "artifacts": {
+    "module/smartscity-observability/target/smartscity-observability-0.1.0-SNAPSHOT.jar": "523539c27bcc0ac1c222421bdd06e33a94fa9b214fa8b5876fd81612e5b6f30e",
+    "starter/smartscity-starter-observability/boot2-3/target/smartscity-starter-observability-0.1.0-SNAPSHOT.jar": "9ea46a42ecc82e69df6d7934be40e4a83ee60f9df744ef0bc0e0ca119ae2bf3e"
+  }
+}

@@ -1,5 +1,9 @@
 # Observability benchmark contract
 
+Latest all-green CI recheck: [2026-11-12 follow-up](benchmark-results/20261112-ci-followup/README.md). The CPU differs from the first run; absolute cross-run rates do not measure a code change.
+
+Earlier completed measurement: [2026-11-12 results](benchmark-results/20261112/README.md), including regressions, raw evidence and the separate repository CI failure.
+
 Execution was authorized on 2026-11-12. Functional verification and measured performance are separate gates. Raw results are retained even on timeout or failure; no release or production SLA follows from this experiment.
 
 ## Experiment budget
